@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Apply reviewed submission naming and client repair
+        run: python3 tools/finalize_submission.py
       - name: Test the shared domain model and HTTP service
         run: |
           mkdir -p build-reports
@@ -79,13 +81,29 @@ jobs:
       - name: Verify APK and publish repository copy
         run: |
           mkdir -p apk
-          cp android/app/build/outputs/apk/release/app-release.apk apk/WinWin_안심동행_release.apk
-          "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/WinWin_안심동행_release.apk | tee build-reports/apk-signature.txt
+          if [ -f apk/WinWin_안심동행_release.apk ]; then cp apk/WinWin_안심동행_release.apk "$RUNNER_TEMP/previous.apk"; else cp apk/안심동행_안심동행플랫폼_release.apk "$RUNNER_TEMP/previous.apk"; fi
+          cp android/app/build/outputs/apk/release/app-release.apk apk/안심동행_안심동행플랫폼_release.apk
+          "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/안심동행_안심동행플랫폼_release.apk | tee build-reports/apk-signature.txt
+          python3 -m pip install --quiet bsdiff4==1.2.6
+          python3 - <<'PYDELTA'
+          from pathlib import Path
+          import os, json, base64, hashlib, bsdiff4
+          old=Path(os.environ['RUNNER_TEMP'],'previous.apk').read_bytes()
+          new=Path('apk/안심동행_안심동행플랫폼_release.apk').read_bytes()
+          patch=bsdiff4.diff(old,new)
+          assert bsdiff4.patch(old,patch)==new
+          encoded=base64.b64encode(patch).decode()
+          Path('build-reports/release-delta.b64').write_text('\n'.join(encoded[i:i+120] for i in range(0,len(encoded),120)))
+          metadata={'source_sha':os.environ['GITHUB_SHA'],'baseline_sha256':hashlib.sha256(old).hexdigest(),'apk_sha256':hashlib.sha256(new).hexdigest(),'delta_bytes':len(patch),'apk_bytes':len(new),'version':'0.1.1'}
+          Path('build-reports/release-metadata.json').write_text(json.dumps(metadata,indent=2))
+          print(json.dumps(metadata))
+          PYDELTA
+          rm -f apk/WinWin_안심동행_release.apk
           sha256sum apk/*.apk | tee build-reports/apk-sha256.txt
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add apk build-reports
-          git diff --cached --quiet || git commit -m 'build: verify rendered Android UI and publish release APK'
+          git add apk build-reports web android/app/src/main/AndroidManifest.xml android/app/build.gradle android/app/src/main/assets/index.html package.json README.md .gitignore dist
+          git diff --cached --quiet || git commit -m 'release: finalize platform naming, repair demo reconnect, and publish verified APK'
           git push
       - name: Package source without local state or signing keys
         if: always()
