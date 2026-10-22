@@ -1,0 +1,51 @@
+name: Fetch official submission template
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/official-template.yml'
+permissions:
+  contents: write
+jobs:
+  template:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official form and extract its outline
+        run: |
+          mkdir -p docs/official
+          curl --fail --location --retry 2 --max-time 60 'https://appdevchallenge.auto-hmg.io/downloads/contest-application-consent.docx' -o docs/official/application-consent.docx
+          python3 - <<'PY'
+          import zipfile
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          path = Path('docs/official/application-consent.docx')
+          with zipfile.ZipFile(path) as z:
+              xml = z.read('word/document.xml')
+          Path('docs/official/document.xml').write_bytes(xml)
+          ns = {'w':'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
+          root = ET.fromstring(xml)
+          lines=[]
+          for node in root.findall('.//w:body/*',ns):
+              if node.tag.endswith('}p'):
+                  lines.append('P: '+''.join(node.itertext()) if False else 'P: '+''.join(n.text or '' for n in node.findall('.//w:t',ns)))
+              elif node.tag.endswith('}tbl'):
+                  lines.append('TABLE')
+                  for row in node.findall('w:tr',ns):
+                      lines.append(' | '.join(' / '.join(''.join(t.text or '' for t in p.findall('.//w:t',ns)) for p in cell.findall('w:p',ns)) for cell in row.findall('w:tc',ns)))
+          Path('docs/official/outline.txt').write_text('\n'.join(lines),encoding='utf-8')
+          print('\n'.join(lines))
+          PY
+      - name: Preserve the original template
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/official
+          git diff --cached --quiet || git commit -m 'docs: preserve official contest form and field outline'
+          git push
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-submission-template
+          path: docs/official/
+          retention-days: 14
