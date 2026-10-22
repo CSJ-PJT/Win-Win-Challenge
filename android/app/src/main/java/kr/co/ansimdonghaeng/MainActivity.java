@@ -12,6 +12,9 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.WebChromeClient;
+import android.webkit.ConsoleMessage;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.json.JSONObject;
@@ -43,6 +46,12 @@ public final class MainActivity extends Activity {
         web.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
         web.getSettings().setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_NEVER_ALLOW);
         web.addJavascriptInterface(new Bridge(), "VehicleBridge");
+        web.setWebChromeClient(new WebChromeClient(){
+            @Override public boolean onConsoleMessage(ConsoleMessage m){
+                if(m.messageLevel()==ConsoleMessage.MessageLevel.ERROR) Log.e("HandoffUI",m.message()+" @"+m.lineNumber());
+                return true;
+            }
+        });
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return !"https".equals(request.getUrl().getScheme()) || !HOST.equals(request.getUrl().getHost());
@@ -60,6 +69,7 @@ public final class MainActivity extends Activity {
             }
             @Override public void onPageFinished(WebView view, String url) {
                 report(automotive ? "AAOS 환경: CarUxRestrictions 확인 중. 경로·위치·인계는 별도 검증이 필요합니다." : "일반 Android 로컬 시연. 실제 차량 신호·Pleos 내비게이션은 연결되지 않았습니다.");
+                web.postDelayed(()->web.evaluateJavascript("Boolean(document.querySelector('.brand-name') && document.querySelectorAll('[data-action]').length >= 10)",result->Log.i("HandoffUI","true".equals(result)?"HANDOFF_UI_READY":"HANDOFF_UI_NOT_READY")),2000);
             }
         });
         frame.addView(web, new FrameLayout.LayoutParams(-1,-1));
