@@ -1,0 +1,25 @@
+name: Inspect published SDK API
+on:
+  push:
+    paths: ['.github/workflows/sdk-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read published API bytecode signatures
+        run: |
+          mkdir -p build-reports/sdk
+          curl --fail --location --max-time 60 'https://nexus-playground.pleos.ai/repository/maven-releases/ai/pleos/playground/NaviHelper/3.0.5/NaviHelper-3.0.5.aar' -o /tmp/navi.aar
+          unzip -p /tmp/navi.aar classes.jar > /tmp/navi.jar
+          javap -p -c -classpath /tmp/navi.jar ai.pleos.playground.navi.data.RouteInfo > build-reports/sdk/route-info.txt
+          javap -p -classpath /tmp/navi.jar ai.pleos.playground.navi.helper.NaviHelper > build-reports/sdk/navi-helper.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add build-reports/sdk
+          git diff --cached --quiet || git commit -m 'docs: record actual SDK constructor and default values'
+          git push
