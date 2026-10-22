@@ -1,0 +1,10 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..');
+let html=fs.readFileSync(path.join(root,'web/index.html'),'utf8');
+html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+fs.readFileSync(path.join(root,'web/style.css'),'utf8')+'</style>');
+html=html.replace('<script defer src="core.js"></script><script defer src="app.js"></script>','');
+html=html.replace('</body>','<script>'+fs.readFileSync(path.join(root,'web/core.js'),'utf8')+'</script><script>'+fs.readFileSync(path.join(root,'web/app.js'),'utf8')+'</script></body>');
+fs.mkdirSync(path.join(root,'dist'),{recursive:true});
+fs.writeFileSync(path.join(root,'dist/handoff-demo.html'),html);
+console.log('dist/handoff-demo.html');

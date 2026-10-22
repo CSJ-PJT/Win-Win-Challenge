@@ -1,0 +1,95 @@
+name: Test and build demonstration APK
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'web/**'
+      - 'server.js'
+      - 'test/**'
+      - 'android/**'
+      - 'tools/**'
+      - 'package.json'
+      - '.github/workflows/build.yml'
+permissions:
+  contents: write
+concurrency:
+  group: demo-build-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test the shared domain model and HTTP service
+        run: |
+          mkdir -p build-reports
+          npm test | tee build-reports/node-tests.txt
+          npm run bundle
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - name: Prepare local assets and a disposable demonstration signing key
+        run: |
+          mkdir -p android/app/src/main/assets
+          cp web/* android/app/src/main/assets/
+          keytool -genkeypair -keystore "$RUNNER_TEMP/demo-release.jks" -storepass demo-ci-only -keypass demo-ci-only -alias demo -keyalg RSA -keysize 3072 -validity 3650 -dname 'CN=Ansim Handoff Demonstration, O=Contest Prototype, C=KR'
+      - name: Build signed release variant
+        env:
+          DEMO_KEYSTORE: ${{ runner.temp }}/demo-release.jks
+          DEMO_STORE_PASSWORD: demo-ci-only
+        run: |
+          set -o pipefail
+          gradle -p android --no-daemon assembleRelease 2>&1 | tee build-reports/gradle-build.txt
+      - name: Enable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Launch on a standard Android emulator (not Pleos)
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          script: |
+            adb install android/app/build/outputs/apk/release/app-release.apk
+            adb shell am start -W -n kr.co.ansimdonghaeng/.MainActivity
+            sleep 8
+            adb shell pidof kr.co.ansimdonghaeng
+            adb exec-out screencap -p > build-reports/android-launch.png
+            adb logcat -d -s AndroidRuntime > build-reports/android-runtime.txt
+            if grep -q 'FATAL EXCEPTION' build-reports/android-runtime.txt; then exit 1; fi
+      - name: Verify APK and publish repository copy
+        run: |
+          mkdir -p apk
+          cp android/app/build/outputs/apk/release/app-release.apk apk/WinWin_안심동행_release.apk
+          "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/WinWin_안심동행_release.apk | tee build-reports/apk-signature.txt
+          sha256sum apk/*.apk | tee build-reports/apk-sha256.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add apk build-reports
+          git diff --cached --quiet || git commit -m 'build: add verified demonstration release APK and test reports'
+          git push
+      - name: Package source without local state or signing keys
+        if: always()
+        run: |
+          git archive --format=zip HEAD -o handoff-source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: handoff-demo-deliverables
+          path: |
+            apk/
+            dist/
+            build-reports/
+            handoff-source.zip
+          retention-days: 30

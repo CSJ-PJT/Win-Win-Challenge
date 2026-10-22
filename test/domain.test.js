@@ -1,0 +1,45 @@
+'use strict';
+const { test }=require('node:test');
+const assert=require('node:assert/strict');
+const H=require('../web/core');
+const actors={vehicle:{role:'vehicle',id:'sender-001'},facility:{role:'facility',id:'staff-001'},guardian:{role:'guardian',id:'observer-001'},simulator:{role:'simulator',id:'demo-controller'}};
+function fixture(kind='kindergarten'){
+  let time=1000000,s=H.createTrip(kind,time,'trip-test');
+  return {get s(){return s;},get time(){return time;},advance(ms){time+=ms;},event(type,payload={},role='vehicle',override){const r=H.apply(s,{type,payload},override||actors[role],{now:time,code:'381204'});s=r.state;return r;},park(){this.event('VEHICLE',{known:true,restricted:false,gear:'P',speed:0},'simulator');},arrive(){this.park();if(!s.consent)this.event('CONSENT',{accepted:true},'simulator');this.event('DEPART');this.event('ARRIVE',{},'simulator');},ready(){this.event('READY',{ready:true},'facility');},prepare(){this.arrive();this.ready();this.event('ISSUE_CODE');}};
+}
+function fails(fn,code){assert.throws(fn,e=>e.code===code);}
+test('starts without an invented safe vehicle signal',()=>{const f=fixture();assert.equal(f.s.state,'PLANNED');assert.equal(H.safeVehicle(f.s,f.time),false);});
+test('rejects unsupported scenario',()=>fails(()=>H.createTrip('x',0),'SCENARIO'));
+test('departure requires a fresh parked UX-allowed signal',()=>{const f=fixture();fails(()=>f.event('DEPART'),'VEHICLE_UNSAFE');});
+test('arrival is not completion',()=>{const f=fixture();f.arrive();assert.equal(f.s.state,'ARRIVED');assert.equal(f.s.completedAt,null);});
+test('arrival cannot happen before departure',()=>fails(()=>fixture().event('ARRIVE',{},'simulator'),'STATE'));
+test('a missing receiver blocks code issuance',()=>{const f=fixture();f.arrive();fails(()=>f.event('ISSUE_CODE'),'NOT_READY');});
+test('only the assigned facility account may mark readiness',()=>{const f=fixture();fails(()=>f.event('READY',{ready:true},'facility',{role:'facility',id:'intruder'}),'RECEIVER');});
+test('an observer cannot claim a handoff',()=>{const f=fixture();f.prepare();fails(()=>f.event('SENDER_CONFIRM',{inPerson:true},'guardian'),'FORBIDDEN');});
+test('a sender account cannot also receive',()=>{const f=fixture();f.prepare();fails(()=>f.event('RECEIVER_CONFIRM',{inPerson:true,code:'381204'},'vehicle'),'FORBIDDEN');});
+test('code possession does not bypass receiver assignment',()=>{const f=fixture();f.prepare();fails(()=>f.event('RECEIVER_CONFIRM',{inPerson:true,code:'381204'},'facility',{role:'facility',id:'intruder'}),'RECEIVER');});
+test('in-person acknowledgement is mandatory',()=>{const f=fixture();f.prepare();fails(()=>f.event('SENDER_CONFIRM',{inPerson:false}),'IN_PERSON');});
+test('one confirmation cannot complete',()=>{const f=fixture();f.prepare();f.event('SENDER_CONFIRM',{inPerson:true});assert.equal(f.s.state,'VERIFYING');});
+test('both independent confirmations complete',()=>{const f=fixture();f.prepare();f.event('SENDER_CONFIRM',{inPerson:true});f.event('RECEIVER_CONFIRM',{inPerson:true,code:'381204'},'facility');assert.equal(f.s.state,'COMPLETED');assert.equal(f.s.challenge,null);});
+test('receiver-first confirmation is supported',()=>{const f=fixture();f.prepare();f.event('RECEIVER_CONFIRM',{inPerson:true,code:'381204'},'facility');f.event('SENDER_CONFIRM',{inPerson:true});assert.equal(f.s.state,'COMPLETED');});
+test('incorrect codes never confirm receiver',()=>{const f=fixture();f.prepare();const r=f.event('RECEIVER_CONFIRM',{inPerson:true,code:'000000'},'facility');assert.equal(r.rejected.code,'WRONG_CODE');assert.equal(f.s.receiverConfirmed,false);assert.equal(f.s.challenge.attempts,1);});
+test('five incorrect attempts destroy the challenge',()=>{const f=fixture();f.prepare();for(let i=0;i<5;i++)f.event('RECEIVER_CONFIRM',{inPerson:true,code:'000000'},'facility');assert.equal(f.s.challenge,null);assert.equal(f.s.state,'ARRIVED');});
+test('expired challenge clears both confirmations',()=>{const f=fixture();f.prepare();f.event('SENDER_CONFIRM',{inPerson:true});f.advance(H.CODE_TTL);const r=f.event('RECEIVER_CONFIRM',{inPerson:true,code:'381204'},'facility');assert.equal(r.rejected.code,'EXPIRED');assert.equal(f.s.senderConfirmed,false);});
+test('renewing a code requires both confirmations again',()=>{const f=fixture();f.prepare();f.event('SENDER_CONFIRM',{inPerson:true});f.event('ISSUE_CODE');assert.equal(f.s.senderConfirmed,false);});
+test('moving invalidates an ongoing challenge',()=>{const f=fixture();f.prepare();f.event('VEHICLE',{known:true,restricted:true,gear:'D',speed:20},'simulator');assert.equal(f.s.challenge,null);});
+test('zero speed alone does not authorize interaction',()=>{const f=fixture();f.event('VEHICLE',{known:true,restricted:true,gear:'D',speed:0},'simulator');assert.equal(H.safeVehicle(f.s,f.time),false);});
+test('unknown vehicle data fails closed',()=>{const f=fixture();f.arrive();f.ready();f.event('VEHICLE',{known:false,restricted:true,gear:'UNKNOWN',speed:null},'simulator');fails(()=>f.event('ISSUE_CODE'),'NOT_READY');});
+test('stale vehicle signals block completion and invalidate the challenge',()=>{const f=fixture();f.prepare();f.event('SENDER_CONFIRM',{inPerson:true});f.advance(H.TELEMETRY_TTL+1);const r=f.event('RECEIVER_CONFIRM',{inPerson:true,code:'381204'},'facility');assert.equal(r.rejected.code,'NOT_READY');assert.equal(f.s.challenge,null);});
+test('future-dated signals do not authorize interaction',()=>{const f=fixture();f.park();assert.equal(H.safeVehicle(f.s,f.time-1),false);});
+test('readiness expires',()=>{const f=fixture();f.arrive();f.ready();f.advance(H.READY_TTL+1);f.park();fails(()=>f.event('ISSUE_CODE'),'NOT_READY');});
+test('receiver absence invalidates prior sender confirmation',()=>{const f=fixture();f.prepare();f.event('SENDER_CONFIRM',{inPerson:true});f.event('READY',{ready:false},'facility');assert.equal(f.s.senderConfirmed,false);assert.equal(f.s.challenge,null);});
+test('leaving the assigned area invalidates the handoff',()=>{const f=fixture();f.prepare();f.event('LEAVE_AREA',{},'simulator');assert.equal(f.s.locationInside,false);assert.equal(f.s.challenge,null);});
+test('adults start without assumed consent',()=>{const f=fixture('senior');f.park();fails(()=>f.event('DEPART'),'CONSENT');});
+test('consent withdrawal destroys an active challenge',()=>{const f=fixture('senior');f.prepare();f.event('CONSENT',{accepted:false},'simulator');assert.equal(f.s.challenge,null);assert.equal(f.s.consent,false);});
+test('unassigned community visit cannot create an alleged handoff',()=>{const f=fixture('community');f.arrive();fails(()=>f.event('ISSUE_CODE'),'ARRIVAL_ONLY');f.event('REPORT_ARRIVAL');assert.equal(f.s.state,'ARRIVAL_REPORTED');assert.equal(f.s.receiverConfirmed,false);});
+test('child handoff cannot fall back to arrival-only completion',()=>{const f=fixture();f.arrive();fails(()=>f.event('REPORT_ARRIVAL'),'MODE');});
+test('terminal journeys reject further mutations',()=>{const f=fixture();f.event('CANCEL');fails(()=>f.event('READY',{ready:true},'facility'),'TERMINAL');});
+test('guardian and receiver projections do not disclose the challenge code',()=>{const f=fixture();f.prepare();assert.equal(H.project(f.s,'guardian').challenge.code,undefined);assert.equal(H.project(f.s,'facility').challenge.code,undefined);assert.equal(H.project(f.s,'vehicle').challenge.code,'381204');});
+test('audit messages never contain a challenge code',()=>{const f=fixture();f.prepare();assert.equal(JSON.stringify(f.s.events).includes('381204'),false);});
+test('invalid events leave the original state unchanged',()=>{const f=fixture(),snapshot=JSON.stringify(f.s);fails(()=>f.event('SENDER_CONFIRM',{inPerson:true}),'NO_CHALLENGE');assert.equal(JSON.stringify(f.s),snapshot);});
+test('boolean-like strings are rejected',()=>{const f=fixture();fails(()=>f.event('READY',{ready:'true'},'facility'),'INPUT');});

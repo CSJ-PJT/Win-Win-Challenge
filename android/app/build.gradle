@@ -1,0 +1,21 @@
+plugins { id 'com.android.application' }
+android {
+  namespace 'kr.co.ansimdonghaeng'
+  compileSdk 35
+  buildFeatures { buildConfig true }
+  useLibrary 'android.car', false
+  defaultConfig { applicationId 'kr.co.ansimdonghaeng'; minSdk 28; targetSdk 35; versionCode 1; versionName '0.1.0' }
+  signingConfigs {
+    demoRelease {
+      if (System.getenv('DEMO_KEYSTORE')) {
+        storeFile file(System.getenv('DEMO_KEYSTORE'))
+        storePassword System.getenv('DEMO_STORE_PASSWORD')
+        keyAlias 'demo'
+        keyPassword System.getenv('DEMO_STORE_PASSWORD')
+      }
+    }
+  }
+  buildTypes { release { minifyEnabled false; if (System.getenv('DEMO_KEYSTORE')) signingConfig signingConfigs.demoRelease } }
+  compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+dependencies { implementation 'ai.pleos.playground:NaviHelper:3.0.5' }
