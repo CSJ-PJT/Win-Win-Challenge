@@ -1,0 +1,8 @@
+{
+  "source_sha": "c1b926fe430c91c2ac9875abe56f57ec06553ede",
+  "baseline_sha256": "4428bdeb15148e49129785522788a370adca91d131717a992be23536257ad8d1",
+  "apk_sha256": "c66afc0b1ee7a890052dfafe6c6f5927b5d2dcca4d9a30094a64c93057b3cb92",
+  "delta_bytes": 32934,
+  "apk_bytes": 5131231,
+  "version": "0.1.1"
+}

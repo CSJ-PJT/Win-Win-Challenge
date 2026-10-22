@@ -27,7 +27,7 @@
     if (pretendOffline) throw new Error('통신 끊김을 모의 중입니다. 확인을 저장하거나 자동 전송하지 않습니다.');
     const res=await fetch(path,{...options,signal:AbortSignal.timeout(5000)});
     const data=await res.json();
-    if (!res.ok) { const error=new Error(data.message || data.error); error.data=data; throw error; }
+    if (!res.ok) { const error=new Error(data.message || data.error); error.data=data; error.status=res.status; throw error; }
     return data;
   }
   async function connect() {
@@ -40,7 +40,19 @@
       const data=await request('/api/state',{headers:{Authorization:'Bearer '+tokens[role]}});
       const changed=!state || data.state.id!==state.id || data.state.version!==state.version || !connected;
       state=data.state; connected=true; if(changed || force) render();
-    } catch(e) { if(connected){connected=false;render();} }
+    } catch(e) {
+      // A different demo window may rotate synthetic role tokens during reset.
+      // Rebootstrap only after a 401; never fall back to local completion.
+      if(e.status===401 && !pretendOffline){
+        try {
+          const boot=await request('/api/bootstrap'); tokens=boot.tokens;
+          const role=currentRole==='all'?'vehicle':currentRole;
+          const fresh=await request('/api/state',{headers:{Authorization:'Bearer '+tokens[role]}});
+          state=fresh.state; connected=true; codeInput=''; senderCheck=false; receiverCheck=false; render(); return;
+        } catch(_) { /* Remain explicitly disconnected when recovery fails. */ }
+      }
+      if(connected){connected=false;render();}
+    }
   }
   async function send(type, payload={}, role='vehicle', quiet=false) {
     if(busy) return;
@@ -92,7 +104,7 @@
     const phase={PLANNED:1,EN_ROUTE:2,ARRIVED:3,VERIFYING:4,COMPLETED:5,ARRIVAL_REPORTED:3,CANCELLED:0}[state.state];
     const cards=currentRole==='all'?vehicleCard()+facilityCard()+guardianCard():currentRole==='vehicle'?vehicleCard():currentRole==='facility'?facilityCard():guardianCard();
     const focused=document.activeElement?.id,selection=document.activeElement?.selectionStart;
-    document.getElementById('app').innerHTML=`<div class="shell"><header class="header"><div class="brand"><div class="mark">${icons.mark}</div><div><div class="brand-name">도착완성 <span class="ok">안심동행</span></div><div class="brand-sub">ARRIVAL IS NOT HANDOFF</div></div></div><div class="header-right"><span class="badge ${connected&&!pretendOffline?'green':'amber'}"><i class="dot"></i>${serverMode?'로컬 서버 연동':'단일 기기 로컬 시연'}</span><span class="version">PROTOTYPE 0.1</span></div></header><nav class="nav" aria-label="시연 역할">${[['all','통합 시연'],['vehicle','차량'],['facility','시설'],['guardian','보호자']].map(([v,l])=>`<button data-action="view" data-role="${v}" class="${currentRole===v?'active':''}">${l}</button>`).join('')}</nav><div class="banner"><span><strong>합성 데이터 시연</strong> · 실제 이용자·시설·차량 위치를 사용하지 않습니다. 안전 보장 서비스가 아닙니다.</span><span class="badge">${serverMode?'서버 저장·역할 검사':'오프라인 체험'}</span></div>${!connected||pretendOffline?'<div class="offline-overlay" role="alert">연결을 확인할 수 없습니다. 마지막 상태만 표시하며, 확인을 자동 저장·예약하거나 완료로 바꾸지 않습니다.</div>':''}<section class="hero"><div><div class="eyebrow">${esc(state.info.title)} · CARE HANDOFF</div><h1>도착했다고,<br><span>인계된 것은 아니니까.</span></h1><p>차량의 도착과 사람의 직접 확인을 나누어 기록합니다.</p></div><div class="hero-right"><span class="badge ${state.state==='COMPLETED'?'green':'amber'}">${esc(H.LABELS[state.state])}</span><div class="trip">이동 건 ${esc(state.id.slice(0,8))} · 상태 버전 ${state.version}</div><div class="progress" aria-label="진행 단계 ${phase}/5">${[1,2,3,4,5].map(i=>`<span class="${i<=phase?'on':''}"></span>`).join('')}</div></div></section>${guide?'<div class="guide">① 시설 인수 준비 → ② P·정차 신호 → ③ 출발 계획 시작 → ④ 도착·정차 모의 → ⑤ 연결번호 발급 → ⑥ 인계자 직접 확인 → ⑦ 시설에서 번호 입력·인수 확인. 담당자 부재나 통신 끊김도 함께 시험하세요.</div>':''}<main class="${currentRole==='all'?'grid':'single-grid'}">${cards}</main>${consolePanel()}<footer class="footer"><span>공모전 개발 시연 · 모의 신호와 실제 SDK 연결 상태를 구분합니다.</span><span>사람의 판단·현장 인수 절차를 대신하지 않습니다.</span></footer></div>`;
+    document.getElementById('app').innerHTML=`<div class="shell"><header class="header"><div class="brand"><div class="mark">${icons.mark}</div><div><div class="brand-name">안심동행 <span class="ok">플랫폼</span></div><div class="brand-sub">ARRIVAL IS NOT HANDOFF</div></div></div><div class="header-right"><span class="badge ${connected&&!pretendOffline?'green':'amber'}"><i class="dot"></i>${serverMode?'로컬 서버 연동':'단일 기기 로컬 시연'}</span><span class="version">PROTOTYPE 0.1.1</span></div></header><nav class="nav" aria-label="시연 역할">${[['all','통합 시연'],['vehicle','차량'],['facility','시설'],['guardian','보호자']].map(([v,l])=>`<button data-action="view" data-role="${v}" class="${currentRole===v?'active':''}">${l}</button>`).join('')}</nav><div class="banner"><span><strong>합성 데이터 시연</strong> · 실제 이용자·시설·차량 위치를 사용하지 않습니다. 안전 보장 서비스가 아닙니다.</span><span class="badge">${serverMode?'서버 저장·역할 검사':'오프라인 체험'}</span></div>${!connected||pretendOffline?'<div class="offline-overlay" role="alert">연결을 확인할 수 없습니다. 마지막 상태만 표시하며, 확인을 자동 저장·예약하거나 완료로 바꾸지 않습니다.</div>':''}<section class="hero"><div><div class="eyebrow">${esc(state.info.title)} · CARE HANDOFF</div><h1>도착했다고,<br><span>인계된 것은 아니니까.</span></h1><p>차량의 도착과 사람의 직접 확인을 나누어 기록합니다.</p></div><div class="hero-right"><span class="badge ${state.state==='COMPLETED'?'green':'amber'}">${esc(H.LABELS[state.state])}</span><div class="trip">이동 건 ${esc(state.id.slice(0,8))} · 상태 버전 ${state.version}</div><div class="progress" aria-label="진행 단계 ${phase}/5">${[1,2,3,4,5].map(i=>`<span class="${i<=phase?'on':''}"></span>`).join('')}</div></div></section>${guide?'<div class="guide">① 시설 인수 준비 → ② P·정차 신호 → ③ 출발 계획 시작 → ④ 도착·정차 모의 → ⑤ 연결번호 발급 → ⑥ 인계자 직접 확인 → ⑦ 시설에서 번호 입력·인수 확인. 담당자 부재나 통신 끊김도 함께 시험하세요.</div>':''}<main class="${currentRole==='all'?'grid':'single-grid'}">${cards}</main>${consolePanel()}<footer class="footer"><span>공모전 개발 시연 · 모의 신호와 실제 SDK 연결 상태를 구분합니다.</span><span>사람의 판단·현장 인수 절차를 대신하지 않습니다.</span></footer></div>`;
     if(focused){const el=document.getElementById(focused);if(el){el.focus({preventScroll:true});if(typeof selection==='number'&&el.setSelectionRange){try{el.setSelectionRange(selection,selection);}catch{}}}}
     updateCountdown();
   }
@@ -101,7 +113,7 @@
     const scenario=document.getElementById('scenario').value;
     if(serverMode){try{await request('/api/reset',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tokens.simulator},body:JSON.stringify({scenario})});await connect();}catch(e){notify(e.message);return;}}
     else{state=H.createTrip(scenario,Date.now(),uid());store();}
-    codeInput='';senderCheck=false;receiverCheck=false;render();notify('가상 시연을 초기화했습니다.');
+    codeInput='';senderCheck=false;receiverCheck=false;heartbeat=true;lastHeartbeat=0;render();notify('가상 시연을 초기화했습니다.');
   }
   document.addEventListener('input',e=>{if(e.target.id==='codeInput'){codeInput=e.target.value.replace(/\D/g,'').slice(0,6);e.target.value=codeInput; const button=document.querySelector('[data-action="receiver"]'); if(button)button.disabled=!(canAct()&&receiverCheck&&codeInput.length===6&&state.state==='VERIFYING'&&!state.receiverConfirmed);}});
   document.addEventListener('change',async e=>{

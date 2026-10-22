@@ -9,3 +9,8 @@ local.properties
 __pycache__/
 .DS_Store
 .env
+
+# Operational application/consent forms must never enter the review repository.
+/submission-private/
+*공식접수양식*
+*서명*

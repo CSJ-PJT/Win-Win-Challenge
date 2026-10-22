@@ -1,4 +1,4 @@
 V2 Signer: certificate DN: CN=Ansim Handoff Demonstration, O=Contest Prototype, C=KR
-V2 Signer: certificate SHA-256 digest: 4a1a61df9ec24799b925e6b9e56ce9bd9350b1c994191ee06e2abb3efaf459a4
-V2 Signer: certificate SHA-1 digest: be9b3cc7d32513493f19765f72310caa57f43d2d
-V2 Signer: certificate MD5 digest: 579a94c7c12a25d30c5e18bcad171353
+V2 Signer: certificate SHA-256 digest: 4989d86d5d4abd833ba6cb6fd8f7dc3b5138ff108e623fee90e713d23ecd628c
+V2 Signer: certificate SHA-1 digest: a83b9ef572a1dc5cde9cfff86203b216d883a4be
+V2 Signer: certificate MD5 digest: 53ac1a62766852f7b44bc1ba460f0a67
