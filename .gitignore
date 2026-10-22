@@ -4,6 +4,7 @@ node_modules/
 *.keystore
 local.properties
 .gradle/
+.kotlin/
 **/build/
 __pycache__/
 .DS_Store

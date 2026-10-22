@@ -5,11 +5,9 @@ import java.util.function.Consumer;
 import ai.pleos.playground.navi.helper.NaviHelper;
 import ai.pleos.playground.navi.helper.listener.NaviHelperEventListener;
 import ai.pleos.playground.navi.constants.NaviErrorCode;
-import ai.pleos.playground.navi.constants.RouteOption;
-import ai.pleos.playground.navi.data.RouteInfo;
 import kotlin.Unit;
 
-/** Actual NaviHelper adapter. Route request != successful route search != person handoff. */
+/** Actual NaviHelper adapter. A route request is not successful routing or person handoff. */
 final class NavigationAdapter {
     private final NaviHelper helper;
     private final Consumer<String> status;
@@ -30,7 +28,7 @@ final class NavigationAdapter {
     void requestSampleRoute(){
         if(!connected){status.accept("NaviHelper 미연결. 요청하지 않았습니다.");return;}
         try{
-            helper.requestRoute(new RouteInfo(127.03636666,37.48544722,null,null,"42dot SDK 공식 예제","36khp37hh8gqcm5nqhe5","서울시 강남구 남부순환로 2621","0",RouteOption.RECOMMENDED));
+            helper.requestRoute(RouteFactory.sample());
             status.accept("NaviHelper 예제 경로 요청을 전달했습니다. 완료 콜백 전에는 성공으로 표시하지 않습니다.");
         }catch(Exception e){status.accept("NaviHelper 요청 실패: "+e.getClass().getSimpleName());}
     }
