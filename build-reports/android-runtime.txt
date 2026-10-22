@@ -1,5 +1,2 @@
 --------- beginning of main
-10-22 22:40:11.695   343   343 D AndroidRuntime: >>>>>> START com.android.internal.os.ZygoteInit uid 0 <<<<<<
-10-22 22:40:11.756   343   343 I AndroidRuntime: Using default boot image
-10-22 22:40:11.756   343   343 I AndroidRuntime: Leaving lock profiling enabled
-10-22 22:40:29.858   899   899 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-22 22:48:36.337  1806  1806 I HandoffUI: HANDOFF_UI_READY
