@@ -95,6 +95,11 @@ with sync_playwright() as pw:
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
         shot('05-zoomed-facility')
         passed('role tabs remain usable at 320 px width with 200 percent text')
+        page.evaluate('window.scrollTo(0, document.documentElement.scrollHeight)')
+        page.wait_for_timeout(150)
+        coords=tab('facility').evaluate('(el)=>({top:el.getBoundingClientRect().top,bottom:el.getBoundingClientRect().bottom})')
+        assert coords['top'] >= -1 and coords['bottom'] <= 740, coords
+        passed('role navigation stays on screen while scrolling long visitor details')
         assert not errors, errors
         passed('no uncaught JavaScript errors')
     except Exception:
