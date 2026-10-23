@@ -54,13 +54,14 @@ jobs:
           npm test 2>&1 | tee build-reports/v040/ci/node-tests.txt
           npm run bundle
       - name: Browser journeys and settings regression
+        timeout-minutes: 4
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends fonts-noto-cjk > /dev/null
           python3 -m pip install --quiet playwright==1.57.0
           python3 test/flow040.py --output build-reports/v040/ci/browser 2>&1 | tee build-reports/v040/ci/browser-tests.txt
           python3 test/ui040_regression.py --output build-reports/v040/ci/regression 2>&1 | tee build-reports/v040/ci/regression-tests.txt
-          python3 test/flow040_http.py --output build-reports/v040/ci/http 2>&1 | tee build-reports/v040/ci/http-tests.txt
+          timeout -k 5s 65s python3 test/flow040_http.py --output build-reports/v040/ci/http 2>&1 | tee build-reports/v040/ci/http-tests.txt
           rm -f build-reports/v040/ci/http/server-private.json
       - uses: actions/setup-java@v4
         with:
