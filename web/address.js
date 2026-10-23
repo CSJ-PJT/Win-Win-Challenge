@@ -29,6 +29,10 @@
   function mount(element,{query='',onselect,onerror,onready}={}){
     let disposed=false,timer=null;
     const fail=e=>{if(!disposed){clearTimeout(timer);onerror?.(e instanceof Error?e:new Error(String(e)));}};
+    if(location.protocol==='file:'){
+      queueMicrotask(()=>fail(new Error('주소 검색은 PC 실행.cmd로 열면 사용할 수 있어요. 휴대전화에서는 APK를 실행해 주세요.')));
+      return ()=>{disposed=true;};
+    }
     load().then(Postcode=>{
       if(disposed||!element.isConnected)return;
       element.replaceChildren();
