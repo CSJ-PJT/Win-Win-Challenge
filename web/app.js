@@ -117,7 +117,7 @@
     // person's private state while fetching the new role's permitted view.
     changingRole=true;state=null;
     $('app').innerHTML='<div class="shell"><div class="loading" role="status">화면을 불러오고 있어요.</div></div>';
-    if(location.pathname!==`/${nextRole}`)history.replaceState({},'',`/${nextRole}`);
+    if(location.pathname!==`/${nextRole}`)window.history.replaceState({},'',`/${nextRole}`);
     try{
       const d=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[nextRole]}});
       if(revision!==roleRevision)return;
