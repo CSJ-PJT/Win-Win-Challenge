@@ -38,9 +38,13 @@ jobs:
           if parts:
               data=base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True)
               assert hashlib.sha256(data).hexdigest()=='e15ccf70a0d428d6702e21b49017887b49650878b77a7f55c978b03bf9de7c14'
-              patch=Path('/tmp/ansim030.diff');patch.write_bytes(lzma.decompress(data))
-              subprocess.run(['git','apply','--check',str(patch)],check=True)
-              subprocess.run(['git','apply',str(patch)],check=True)
+              text=lzma.decompress(data).decode()
+              patch=Path('/tmp/ansim030.diff');patch.write_text(text)
+              subprocess.run(['git','apply','--exclude=README.md','--check',str(patch)],check=True)
+              subprocess.run(['git','apply','--exclude=README.md',str(patch)],check=True)
+              # README was independently refreshed after the prior source archive.
+              section=text.split('--- a/package.json',1)[0].splitlines(keepends=True)[3:]
+              Path('README.md').write_text(''.join(line[1:] for line in section if line.startswith((' ','+'))))
               for p in parts:p.unlink()
           PY
           git add -A
