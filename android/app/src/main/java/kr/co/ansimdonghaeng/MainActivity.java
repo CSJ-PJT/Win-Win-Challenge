@@ -74,7 +74,7 @@ public final class MainActivity extends Activity {
             }
             @Override public void onPageFinished(WebView view, String url) {
                 report(automotive ? "AAOS · 차량 상태 확인 중" : "Android · 로컬 연결");
-                web.postDelayed(()->web.evaluateJavascript("Boolean(document.querySelector('.brand-name') && document.querySelector('#main') && document.querySelectorAll('[data-action]').length >= 3)",result->Log.i("HandoffUI","true".equals(result)?"HANDOFF_UI_READY":"HANDOFF_UI_NOT_READY")),2000);
+                web.postDelayed(()->web.evaluateJavascript("Boolean(document.querySelector('.branding') && document.querySelector('#main') && document.querySelectorAll('[data-action]').length >= 3)",result->Log.i("HandoffUI","true".equals(result)?"HANDOFF_UI_READY":"HANDOFF_UI_NOT_READY")),2000);
             }
         });
         frame.addView(web, new FrameLayout.LayoutParams(-1,-1));
@@ -125,7 +125,7 @@ public final class MainActivity extends Activity {
         });
     }
     private void mapStatus(String message) {
-        if(web!=null) web.evaluateJavascript("window.onNativeDialerStatus && window.onNativeDialerStatus("+JSONObject.quote(message)+");",null);
+        if(web!=null) web.evaluateJavascript("window.onMapStatus && window.onMapStatus("+JSONObject.quote(message)+");",null);
     }
     public final class Bridge {
         @JavascriptInterface public void searchAddress(String query, String requestId) {

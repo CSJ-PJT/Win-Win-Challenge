@@ -14,7 +14,7 @@
       text: [100, 125, 150, 200].includes(v.text) ? v.text : 100,
       phone: normalizePhone(v.phone),
       theme: 'light',
-      mapProvider: v.mapProvider==='google'?'google':'kakao',
+      mapProvider: v.mapProvider==='kakao'?'kakao':'google',
       roleChosen: v.roleChosen===true
     };
   }
