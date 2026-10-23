@@ -21,7 +21,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: source
-        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+        name: Apply verified input layout correction
+        run: |
+          if [ -f tools/fix042_search_position.py ]; then
+            python3 tools/fix042_search_position.py
+            rm tools/fix042_search_position.py
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add web/app.js web/style.css tools/fix042_search_position.py
+            git diff --cached --quiet || git commit -m 'fix: keep address search reachable with the keyboard open [skip ci]'
+            git push
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -65,16 +76,30 @@ jobs:
           cp android/app/build/outputs/apk/androidTest/release/app-release-androidTest.apk apk/ansim-address-tests.apk
           "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/ansim-platform-0.4.2-preview.apk > build-reports/v042/signature.txt
           sha256sum apk/ansim-platform-0.4.2-preview.apk > build-reports/v042/apk-sha256.txt
-          git archive --format=zip HEAD web android test tools server.js package.json README.md .github .gitignore start-demo.cmd start-demo.sh -o ansim-platform-0.4.2-source.zip
+      - name: Package source and PC launcher
+        run: |
+          python3 - <<'PY'
+          import subprocess,zipfile
+          from pathlib import Path
+          entries=subprocess.check_output(['git','ls-files','-z','web','android','test','tools','server.js','package.json','README.md','.github','.gitignore','start-demo.cmd','start-demo.sh','PC 실행.cmd']).decode().split('\0')
+          with zipfile.ZipFile('ansim-platform-0.4.2-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for item in entries:
+                  if item and Path(item).is_file():z.write(item,item)
+          with zipfile.ZipFile('ansim-platform-0.4.2-pc.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for item in ['dist/handoff-demo.html','tools/serve-demo.cjs','PC 실행.cmd']:z.write(item,item)
+              z.writestr('실행안내.txt','안심동행 플랫폼 0.4.2\n\nNode.js 22 이상이 설치된 PC에서 압축을 풀고 PC 실행.cmd를 실행합니다.\n주소 검색은 인터넷 연결이 필요합니다. HTML 파일을 직접 열지 말고 실행 파일을 사용합니다.\n브라우저 주소: http://127.0.0.1:18420\n종료: 실행 창에서 Ctrl+C\n')
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ansim-0.4.2-build
           path: |
-            apk/*.apk
+            apk/ansim-platform-0.4.2-preview.apk
+            apk/ansim-address-tests.apk
             dist/handoff-demo.html
             build-reports/v042/
             ansim-platform-0.4.2-source.zip
+            ansim-platform-0.4.2-pc.zip
           retention-days: 14
   live-address:
     needs: verify-build
@@ -155,11 +180,11 @@ jobs:
         run: |
           cat > /tmp/notes.md <<'EOF'
           ## 안심동행 플랫폼 0.4.2
-          카카오 우편번호 검색창에서 선택한 주소와 우편번호를 가져와 저장합니다. 입력 내용과 역할별 방문 진행 상태를 유지합니다.
+          카카오 우편번호 검색창에서 선택한 주소와 우편번호를 가져와 저장합니다. 입력 중인 내용과 역할별 방문 진행 상태를 유지합니다. 주소 검색 버튼은 주소 입력란 옆에 배치했습니다.
           
-          PC 주소 검색은 로컬 웹 서버 실행이 필요합니다. HTML 파일을 직접 여는 방식은 공식 주소 반환을 지원하지 않습니다. Android APK에는 별도의 주소 검색 창이 포함됩니다.
+          PC는 압축을 풀고 PC 실행.cmd로 실행합니다(Node.js 22 이상). HTML 직접 열기는 공식 주소 반환을 지원하지 않습니다. Android APK에는 별도의 주소 검색 창이 포함됩니다.
           
           주소만 있을 때는 카카오맵 위치 검색, 좌표가 있으면 길찾기로 연결합니다. Google 지도도 선택할 수 있습니다. 이전 시험판과 서명이 다르면 삭제 후 설치해야 하며 저장 기록이 지워집니다.
           EOF
           gh release view v0.4.2-preview >/dev/null 2>&1 || gh release create v0.4.2-preview --target '${{ needs.verify-build.outputs.source_sha }}' --prerelease --title '안심동행 플랫폼 0.4.2' --notes-file /tmp/notes.md
-          gh release upload v0.4.2-preview release-input/apk/ansim-platform-0.4.2-preview.apk release-input/dist/handoff-demo.html release-input/ansim-platform-0.4.2-source.zip --clobber
+          gh release upload v0.4.2-preview release-input/apk/ansim-platform-0.4.2-preview.apk release-input/ansim-platform-0.4.2-pc.zip release-input/ansim-platform-0.4.2-source.zip --clobber
