@@ -1,0 +1,7 @@
+PASS HTTP server saves configured destination across a browser reload
+PASS vehicle departure works through the real API
+PASS independent facility page opens only reception actions
+PASS facility rejects wrong codes through HTTP service
+PASS independent actor confirmation completes via HTTP
+PASS read-only guardian page shows the completed status
+PASS no client-side JavaScript exceptions

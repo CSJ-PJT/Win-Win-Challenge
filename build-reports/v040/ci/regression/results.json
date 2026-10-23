@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "quick destination editor asks only for destination details",
+    "no API key produces a useful search fallback instead of a dead button",
+    "external map search includes the typed address",
+    "real geocoder response is selectable and saves correct coordinates",
+    "Kakao map opens actual routing only when coordinates exist",
+    "changing the address invalidates old coordinates and uses real directions fallback",
+    "invalid phone is rejected while preserving all form fields",
+    "200 percent text at 320 px has no horizontal overflow and stores phone edits",
+    "facility cannot edit private person and guardian fields",
+    "no JavaScript errors"
+  ],
+  "errors": []
+}

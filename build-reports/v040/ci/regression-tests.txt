@@ -1,0 +1,10 @@
+PASS quick destination editor asks only for destination details
+PASS no API key produces a useful search fallback instead of a dead button
+PASS external map search includes the typed address
+PASS real geocoder response is selectable and saves correct coordinates
+PASS Kakao map opens actual routing only when coordinates exist
+PASS changing the address invalidates old coordinates and uses real directions fallback
+PASS invalid phone is rejected while preserving all form fields
+PASS 200 percent text at 320 px has no horizontal overflow and stores phone edits
+PASS facility cannot edit private person and guardian fields
+PASS no JavaScript errors

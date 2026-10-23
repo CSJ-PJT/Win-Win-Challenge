@@ -1,0 +1,22 @@
+{
+  "passed": [
+    "role selection works",
+    "unconfigured destination opens an editable form",
+    "all editable fields accept input without dropping focus",
+    "background heartbeat does not remount or erase the form",
+    "save persists all visit fields",
+    "reopening editor restores saved values",
+    "address-only link opens real Google Maps directions",
+    "start trip transitions to moving",
+    "sender handoff sets sender status only",
+    "facility screen exposes only its reception actions",
+    "wrong code is rejected",
+    "correct code completes only after both confirmations",
+    "guardian is read-only",
+    "next visit restores last configured destination",
+    "easy mode records arrival without inventing handoff",
+    "facility can acknowledge arrival notice",
+    "no JavaScript errors"
+  ],
+  "errors": []
+}

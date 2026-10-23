@@ -25,12 +25,13 @@ function fieldsFor(role){return [...(ROLE_FIELDS[role]||[])];}
 function can(action,role){return !ACTION_ROLES[action]||ACTION_ROLES[action].includes(role);}
 function hasCoordinates(info){return typeof info.latitude==='number'&&typeof info.longitude==='number'&&Number.isFinite(info.latitude)&&Number.isFinite(info.longitude)&&Math.abs(info.latitude)<=90&&Math.abs(info.longitude)<=180;}
 function hasDestination(info){return !!String(info.address||'').trim()||hasCoordinates(info);}
-function navigation(info,provider='kakao',search=false){
+function navigation(info,provider='google',search=false){
  const coord=hasCoordinates(info), label=String(info.facility||'목적지').split(' · ')[0], query=String(info.address||'').trim()||label;
  const encode=encodeURIComponent;
  if(!search&&!hasDestination(info))return null;
- if(provider==='google')return search?'https://www.google.com/maps/search/?api=1&query='+encode(query):'https://www.google.com/maps/dir/?api=1&destination='+encode(coord?`${info.latitude},${info.longitude}`:query)+'&travelmode=driving';
- if(search||!coord)return 'https://map.kakao.com/link/search/'+encode(query);
+ // An address-only Kakao link is search, not turn-by-turn directions. Use Maps URLs for directions instead.
+ if(provider==='google'||!coord)return search?'https://www.google.com/maps/search/?api=1&query='+encode(query):'https://www.google.com/maps/dir/?api=1&destination='+encode(coord?`${info.latitude},${info.longitude}`:query)+'&travelmode=driving';
+ if(search)return 'https://map.kakao.com/link/search/'+encode(query);
  return 'https://map.kakao.com/link/to/'+encode(label)+','+info.latitude+','+info.longitude;
 }
 function defaults(){return {address:'',latitude:null,longitude:null,facilityPhone:'',senderName:'',senderPhone:'',guardianName:'',guardianPhone:'',scheduledAt:'',supportNote:''};}
