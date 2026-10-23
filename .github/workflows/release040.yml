@@ -1,4 +1,4 @@
-name: Verify and release Ansim 0.4.0
+name: Verify and release Ansim 0.4.0 (state consistency)
 on:
   workflow_dispatch:
   push:
