@@ -1,0 +1,185 @@
+name: Address lookup and release 0.4.2
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/address-fix-0.4.2]
+    paths:
+      - .github/workflows/release042.yml
+permissions:
+  contents: write
+concurrency:
+  group: ansim-042-${{ github.ref }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  verify-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      source_sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply checked address patch
+        id: source
+        run: |
+          python3 - <<'PY'
+          import base64,hashlib,lzma,subprocess
+          from pathlib import Path
+          parts=sorted(Path('.ci').glob('update042.*.b64'))
+          if parts:
+              assert len(parts)==3
+              data=base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True)
+              assert hashlib.sha256(data).hexdigest()=='3c841ea478538734f5ebaaabaa20a82d55f1db0a7ac1d99daeda0872a1d42116'
+              patch=Path('/tmp/address042.diff');patch.write_bytes(lzma.decompress(data))
+              subprocess.run(['git','apply','--check',str(patch)],check=True)
+              subprocess.run(['git','apply',str(patch)],check=True)
+              for p in parts:p.unlink()
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet || git commit -m 'fix: real postcode lookup, persistent forms and isolated native picker [skip ci]'
+          git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Domain and service tests
+        run: |
+          mkdir -p build-reports/v042
+          git rev-parse HEAD > build-reports/v042/source-sha.txt
+          npm test | tee build-reports/v042/node-tests.txt
+          npm run bundle
+      - name: Browser input and role regressions
+        timeout-minutes: 4
+        run: |
+          python3 -m pip install --quiet --disable-pip-version-check playwright==1.57.0
+          if ! command -v chromium >/dev/null; then
+            ln -s "$(command -v google-chrome)" "$RUNNER_TEMP/chromium"
+            export PATH="$RUNNER_TEMP:$PATH"
+          fi
+          python3 -u test/flow040.py --output build-reports/v042/flow
+          python3 -u test/role_tabs041.py --output build-reports/v042/tabs
+          python3 -u test/address042_mock.py --output build-reports/v042/address-ui
+          timeout -k 5s 90s python3 -u test/flow040_http.py --output build-reports/v042/http
+          rm -f build-reports/v042/http/server-private.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - name: Build signed Android package
+        env:
+          DEMO_KEYSTORE: ${{ runner.temp }}/preview.jks
+          DEMO_STORE_PASSWORD: preview-ci-only
+        run: |
+          cp web/*.js web/style.css web/postcode.html android/app/src/main/assets/
+          cp dist/handoff-demo.html android/app/src/main/assets/index.html
+          keytool -genkeypair -keystore "$DEMO_KEYSTORE" -storepass "$DEMO_STORE_PASSWORD" -keypass "$DEMO_STORE_PASSWORD" -alias demo -keyalg RSA -keysize 3072 -validity 3650 -dname 'CN=Ansim Preview, O=Contest Prototype, C=KR'
+          gradle -p android --no-daemon --max-workers=2 assembleRelease 2>&1 | tee build-reports/v042/gradle.txt
+          mkdir -p apk
+          cp android/app/build/outputs/apk/release/app-release.apk apk/ansim-platform-0.4.2-preview.apk
+          "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/ansim-platform-0.4.2-preview.apk > build-reports/v042/signature.txt
+          sha256sum apk/ansim-platform-0.4.2-preview.apk > build-reports/v042/apk-sha256.txt
+          git archive --format=zip HEAD web android test tools server.js package.json README.md .github .gitignore start-demo.cmd start-demo.sh -o ansim-platform-0.4.2-source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ansim-0.4.2-build
+          path: |
+            apk/ansim-platform-0.4.2-preview.apk
+            dist/handoff-demo.html
+            build-reports/v042/
+            ansim-platform-0.4.2-source.zip
+          retention-days: 14
+  live-address:
+    needs: verify-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.verify-build.outputs.source_sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Official address search without mock responses
+        run: |
+          npm run bundle
+          python3 -m pip install --quiet --disable-pip-version-check playwright==1.57.0
+          python3 -u test/address042_live.py --output build-reports/v042/live-address
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ansim-0.4.2-live-address
+          path: build-reports/v042/live-address/
+          retention-days: 14
+  native-smoke:
+    needs: verify-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.verify-build.outputs.source_sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: ansim-0.4.2-build
+          path: build-input
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Enable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Touch installed Android package
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-snapshot-save
+          script: python3 -u test/android_smoke.py build-input/apk/ansim-platform-0.4.2-preview.apk --output native-results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ansim-0.4.2-native
+          path: native-results/
+          retention-days: 14
+  publish:
+    needs: [verify-build, live-address, native-smoke]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ansim-0.4.2-build
+          path: release-input
+      - name: Publish private preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > /tmp/notes.md <<'EOF'
+          ## 안심동행 플랫폼 0.4.2
+          실제 카카오 우편번호 검색창에서 주소를 선택해 가져옵니다. 주소·우편번호·상세 위치를 저장하고 다음 방문에서 재사용할 수 있습니다. 입력 중 검색창을 열거나 닫아도 작성 내용은 유지됩니다. 역할 전환 탭은 상단에 고정됩니다.
+          
+          주소만 있으면 카카오맵 위치 검색으로 연결하고, 좌표가 있으면 길찾기로 연결합니다. Google 지도도 설정에서 선택할 수 있습니다.
+          
+          기관 서버와 연결하지 않은 시연판입니다. 이전 시험 APK와 서명이 다르면 삭제 후 설치해야 하며 저장 기록이 지워집니다. 실차 및 실제 기관 검증은 포함하지 않습니다.
+          EOF
+          gh release view v0.4.2-preview >/dev/null 2>&1 || gh release create v0.4.2-preview --target '${{ needs.verify-build.outputs.source_sha }}' --prerelease --title '안심동행 플랫폼 0.4.2' --notes-file /tmp/notes.md
+          gh release upload v0.4.2-preview release-input/apk/ansim-platform-0.4.2-preview.apk release-input/dist/handoff-demo.html release-input/ansim-platform-0.4.2-source.zip --clobber
