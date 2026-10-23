@@ -1,0 +1,1 @@
+This run builds and verifies the APK signature. Android/Pleos runtime testing is not included.
