@@ -1,5 +1,5 @@
 {
-  "passed": 8,
+  "passed": 9,
   "checks": [
     "opens directly with four role tabs and no onboarding dialog",
     "facility tab shows only reception controls and assigned visit",
@@ -8,6 +8,7 @@
     "tab switching preserves the exact same trip and does not write events",
     "arrow and Home/End keys change the focused role accessibly",
     "role tabs remain usable at 320 px width with 200 percent text",
+    "role navigation stays on screen while scrolling long visitor details",
     "no uncaught JavaScript errors"
   ],
   "errors": []

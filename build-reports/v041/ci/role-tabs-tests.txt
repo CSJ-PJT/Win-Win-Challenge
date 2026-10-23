@@ -5,4 +5,5 @@ PASS large-button easy view is one tab away
 PASS tab switching preserves the exact same trip and does not write events
 PASS arrow and Home/End keys change the focused role accessibly
 PASS role tabs remain usable at 320 px width with 200 percent text
+PASS role navigation stays on screen while scrolling long visitor details
 PASS no uncaught JavaScript errors
