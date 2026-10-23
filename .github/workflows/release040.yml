@@ -1,0 +1,183 @@
+name: Verify and release Ansim 0.4.0
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/ux-stable-0.4]
+    paths:
+      - .github/workflows/release040.yml
+permissions:
+  contents: write
+concurrency:
+  group: ansim-v040-${{ github.ref }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  verify-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    outputs:
+      source_sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply checked UX revision
+        id: source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,lzma,subprocess
+          paths=sorted(Path('.ci').glob('update040.*.b64'))
+          if paths:
+              assert len(paths)==4, f'Partial patch upload: {len(paths)} parts'
+              blob=base64.b64decode(''.join(x.read_text().strip() for x in paths),validate=True)
+              assert hashlib.sha256(blob).hexdigest()=='aa2422f8ba4391b8be96d2f80438da8a39e2933c6ade3aef7b21e8a5e0614835'
+              diff=lzma.decompress(blob)
+              assert hashlib.sha256(diff).hexdigest()=='2aa25115e1bd46f33fb963a569eace98eaf701e56909d3facb8cb22f87afce5e'
+              p=Path('/tmp/ansim040.diff');p.write_bytes(diff)
+              subprocess.run(['git','apply','--check',str(p)],check=True)
+              subprocess.run(['git','apply',str(p)],check=True)
+              for x in paths:x.unlink()
+          PY
+          git add -A
+          git diff --cached --quiet || git commit -m 'feat: stabilize input, navigation and role-based handoff [skip ci]'
+          git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Domain and API unit tests
+        run: |
+          mkdir -p build-reports/v040/ci
+          npm test 2>&1 | tee build-reports/v040/ci/node-tests.txt
+          npm run bundle
+      - name: Browser journeys and settings regression
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk > /dev/null
+          python3 -m pip install --quiet playwright==1.57.0
+          python3 test/flow040.py --output build-reports/v040/ci/browser 2>&1 | tee build-reports/v040/ci/browser-tests.txt
+          python3 test/ui040_regression.py --output build-reports/v040/ci/regression 2>&1 | tee build-reports/v040/ci/regression-tests.txt
+          python3 test/flow040_http.py --output build-reports/v040/ci/http 2>&1 | tee build-reports/v040/ci/http-tests.txt
+          rm -f build-reports/v040/ci/http/server-private.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - name: Sync Android UI and prepare signing
+        run: |
+          cp web/*.js web/style.css android/app/src/main/assets/
+          cp dist/handoff-demo.html android/app/src/main/assets/index.html
+          keytool -genkeypair -keystore "$RUNNER_TEMP/preview040.jks" -storepass preview-ci-only -keypass preview-ci-only -alias demo -keyalg RSA -keysize 3072 -validity 3650 -dname 'CN=Ansim Preview, O=Contest Prototype, C=KR'
+      - name: Signed Android release build
+        env:
+          DEMO_KEYSTORE: ${{ runner.temp }}/preview040.jks
+          DEMO_STORE_PASSWORD: preview-ci-only
+        run: |
+          gradle -p android --no-daemon --max-workers=2 assembleRelease 2>&1 | tee build-reports/v040/ci/gradle-build.txt
+          mkdir -p apk
+          cp android/app/build/outputs/apk/release/app-release.apk apk/ansim-platform-0.4.0-preview.apk
+          "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/ansim-platform-0.4.0-preview.apk | tee build-reports/v040/ci/apk-signature.txt
+          sha256sum apk/ansim-platform-0.4.0-preview.apk > build-reports/v040/ci/apk-sha256.txt
+      - name: Package tested source and release
+        run: |
+          git rev-parse HEAD > build-reports/v040/ci/source-revision.txt
+          git add apk/ansim-platform-0.4.0-preview.apk build-reports/v040/ci dist android/app/src/main/assets
+          git diff --cached --quiet || git commit -m 'build: archive 0.4.0 checks and release [skip ci]'
+          git push
+          git archive --format=zip HEAD web android test tools docs server.js package.json README.md .github .gitignore start-demo.cmd start-demo.sh -o ansim-platform-0.4.0-source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ansim-platform-0.4.0-preview
+          path: |
+            apk/ansim-platform-0.4.0-preview.apk
+            dist/handoff-demo.html
+            ansim-platform-0.4.0-source.zip
+            build-reports/v040/ci/
+          retention-days: 14
+  native-smoke:
+    needs: verify-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.verify-build.outputs.source_sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: ansim-platform-0.4.0-preview
+          path: build-input
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Enable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Touch Android install and core journey
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: python3 test/android_smoke.py build-input/apk/ansim-platform-0.4.0-preview.apk --output native-results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ansim-platform-0.4.0-android-check
+          path: native-results/
+          retention-days: 14
+  publish:
+    needs: [verify-build, native-smoke]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/ux-stable-0.4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ansim-platform-0.4.0-preview
+          path: release-input
+      - uses: actions/download-artifact@v4
+        with:
+          name: ansim-platform-0.4.0-android-check
+          path: android-evidence
+      - name: Archive native check results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          mkdir -p build-reports/v040/native
+          cp -r android-evidence/* build-reports/v040/native/ || true
+          git add build-reports/v040/native
+          git diff --cached --quiet || git commit -m 'test: archive Android v0.4.0 direct interaction evidence [skip ci]'
+          git push
+      - name: Publish private preview release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > /tmp/notes.md <<'EOF'
+          ## 안심동행 플랫폼 0.4.0
+          - 방문·보호자·시설 연락처, 목적지와 승하차 장소 입력/저장 흐름 정비
+          - 서버 상태 동기화 중에도 사용자가 입력 중인 필드 유지
+          - 주소만으로 Google Maps 길안내 실행, 좌표가 있으면 카카오맵 연결
+          - 역할별 화면과 인계자·시설 담당자 양측 확인
+          - 어르신 큰 글씨 도착 알림과 담당자 전화
+
+          Google Maps URL 길안내에는 앱용 API 키가 필요하지 않습니다. 검색 API·안드로이드 Geocoder·외부 앱 가용성과 Pleos 실제 차량 연동은 환경에 따라 별도 검증이 필요합니다. 개인정보를 다루는 기관 운영 전에는 계정 인증·권한 관리·서비스 인프라 구축이 필요합니다.
+          EOF
+          if ! gh release view v0.4.0-preview >/dev/null 2>&1; then
+            gh release create v0.4.0-preview --target feature/ux-stable-0.4 --prerelease --title '안심동행 플랫폼 0.4.0' --notes-file /tmp/notes.md
+          fi
+          gh release upload v0.4.0-preview release-input/apk/ansim-platform-0.4.0-preview.apk release-input/dist/handoff-demo.html release-input/ansim-platform-0.4.0-source.zip --clobber
