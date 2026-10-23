@@ -1,0 +1,128 @@
+name: Final address verification 0.4.2
+on:
+  push:
+    branches: [feature/address-fix-0.4.2]
+    paths: [.github/workflows/verify042-final.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: ansim-042-final
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: ansim-0.4.2-build
+          run-id: 39943855388
+          github-token: ${{ github.token }}
+          path: build-input
+      - name: Verify unchanged Android code and exact packaged UI
+        run: |
+          base=$(cat build-input/build-reports/v042/source-sha.txt)
+          git diff --exit-code "$base" HEAD -- web android tools/bundle.js tools/serve-demo.cjs package.json
+          (cd build-input && sha256sum --check build-reports/v042/apk-sha256.txt)
+          npm run bundle
+          cmp dist/handoff-demo.html build-input/dist/handoff-demo.html
+          mkdir -p final-checks
+          git rev-parse HEAD > final-checks/source-sha.txt
+          printf '%s\n' "$base" > final-checks/android-source-sha.txt
+      - name: Domain, input, role and HTTP regressions
+        run: |
+          npm test | tee final-checks/node-tests.txt
+          python3 -m pip install --quiet --disable-pip-version-check playwright==1.57.0
+          if ! command -v chromium >/dev/null; then
+            ln -s "$(command -v google-chrome)" "$RUNNER_TEMP/chromium"
+            export PATH="$RUNNER_TEMP:$PATH"
+          fi
+          python3 -u test/flow040.py --output final-checks/flow
+          python3 -u test/role_tabs041.py --output final-checks/tabs
+          python3 -u test/address042_mock.py --fixture --output final-checks/address-ui
+          timeout -k 5s 90s python3 -u test/flow040_http.py --output final-checks/http
+          rm -f final-checks/http/server-private.json
+      - name: Actual official address selection and map result
+        timeout-minutes: 3
+        run: python3 -u test/address042_live.py --output final-checks/live-address
+      - name: Require successful native verification of this exact APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in $(seq 1 30); do
+            gh api repos/${{ github.repository }}/actions/runs/39943855388/jobs > /tmp/native-jobs.json
+            result=$(python3 -c "import json; d=json.load(open('/tmp/native-jobs.json')); j=next(x for x in d['jobs'] if x['name']=='native-smoke'); print(j['conclusion'] if j['status']=='completed' else 'pending')")
+            if [ "$result" = success ]; then break; fi
+            if [ "$result" != pending ]; then echo "Native check did not pass: $result"; exit 1; fi
+            sleep 10
+          done
+          test "$result" = success
+          cp /tmp/native-jobs.json final-checks/native-jobs.json
+      - uses: actions/download-artifact@v4
+        with:
+          name: ansim-0.4.2-native
+          run-id: 39943855388
+          github-token: ${{ github.token }}
+          path: final-checks/native
+      - name: Preserve verified output and current server source
+        run: |
+          grep -F 'OK (1 test)' final-checks/native/live-address-test.txt
+          grep -F 'address_exit=0' final-checks/native/check-status.txt
+          grep -F 'flow_exit=0' final-checks/native/check-status.txt
+          mkdir -p final
+          cp build-input/apk/ansim-platform-0.4.2-preview.apk final/
+          cp build-input/ansim-platform-0.4.2-pc.zip final/
+          cp web/*.js web/style.css web/postcode.html android/app/src/main/assets/
+          cp dist/handoff-demo.html android/app/src/main/assets/index.html
+          python3 - <<'PY'
+          import subprocess,zipfile,hashlib,json
+          from pathlib import Path
+          paths=subprocess.check_output(['git','ls-files','-z','web','android','test','tools','server.js','package.json','README.md','.github','.gitignore','start-demo.cmd','start-demo.sh','PC 실행.cmd']).decode().split('\0')
+          with zipfile.ZipFile('final/ansim-platform-0.4.2-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in paths:
+                  if name and Path(name).is_file():z.write(name,name)
+          p=Path('final/ansim-platform-0.4.2-preview.apk')
+          expected=Path('build-input/build-reports/v042/apk-sha256.txt').read_text().split()[0]
+          assert hashlib.sha256(p.read_bytes()).hexdigest()==expected
+          with zipfile.ZipFile(p) as z:assert z.read('assets/index.html')==Path('dist/handoff-demo.html').read_bytes()
+          Path('final-checks/release.json').write_text(json.dumps({'version':'0.4.2','apkSha256':expected,'sourceSha':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'androidSourceSha':Path('build-input/build-reports/v042/source-sha.txt').read_text().strip(),'nativeRun':39943855388,'frontendAndAndroidSourcesUnchanged':True},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ansim-0.4.2-final
+          path: |
+            final/
+            final-checks/
+          retention-days: 14
+      - name: Publish verified private preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > /tmp/notes.md <<'EOF'
+          ## 안심동행 플랫폼 0.4.2
+          실제 카카오 주소 검색창에서 선택한 도로명·지번 주소와 우편번호를 저장합니다. 주소 입력란 옆에 검색 버튼을 두고 작성 중인 정보와 역할별 방문 상태를 유지합니다.
+          
+          Android APK와 PC 실행 패키지를 제공합니다. PC는 Node.js 22 이상에서 압축을 풀고 PC 실행.cmd를 실행합니다. HTML 직접 열기는 주소 반환을 지원하지 않습니다.
+          
+          주소가 있으면 카카오맵 위치 검색, 좌표가 있으면 카카오맵 길찾기로 연결합니다. 공식 검색·저장·재조회·지도 표시를 실제 네트워크로 검사했고, Android 15에서 한국어 주소 선택과 저장을 확인했습니다.
+          
+          이전 시험판과 서명이 다르면 삭제 후 설치해야 하며 이전 기록이 지워집니다. 실제 기관 계정·실차 연동 검증은 포함하지 않습니다.
+          EOF
+          if gh release view v0.4.2-preview >/dev/null 2>&1; then
+            gh release edit v0.4.2-preview --notes-file /tmp/notes.md
+          else
+            gh release create v0.4.2-preview --target '${{ github.sha }}' --prerelease --title '안심동행 플랫폼 0.4.2' --notes-file /tmp/notes.md
+          fi
+          gh release upload v0.4.2-preview final/ansim-platform-0.4.2-preview.apk final/ansim-platform-0.4.2-pc.zip final/ansim-platform-0.4.2-source.zip --clobber
