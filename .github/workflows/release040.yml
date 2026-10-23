@@ -1,4 +1,4 @@
-name: Verify and release Ansim 0.4.0 (visible map controls)
+name: Verify and release Ansim 0.4.0 (exact editor field)
 on:
   workflow_dispatch:
   push:
