@@ -16,6 +16,12 @@
       theme: 'light'
     };
   }
+  function initialPresentationEvents(s) {
+    if (!s || s.state !== 'PLANNED' || s.events.some(e => e.type !== 'CREATED')) return [];
+    const events=[['VEHICLE',{known:true,restricted:false,gear:'P',speed:0},'simulator']];
+    if(s.info.mode==='HANDOFF')events.push(['READY',{ready:true},'facility']);
+    return events;
+  }
   function normalizePhone(value) {
     if (typeof value !== 'string' || !/^[+\d][\d ()-]{5,24}$/.test(value.trim())) return '';
     const n = value.replace(/[ ()-]/g, '');
@@ -40,8 +46,8 @@
       if (s.state === 'EN_ROUTE') return ['목적지로 가고 있어요', '도착 후 확인 과정을 여기에서 볼 수 있어요.'];
       return ['출발을 준비하고 있어요', '이동과 인계 상태를 함께 확인하세요.'];
     }
-    if (s.state === 'PLANNED') return ['출발 전에 확인해 주세요', '오늘 방문할 곳과 담당자를 확인하세요.'];
-    if (s.state === 'EN_ROUTE') return ['목적지로 가고 있어요', '운전 중에는 화면을 조작하지 마세요.'];
+    if (s.state === 'PLANNED') return ['오늘의 동행을 시작해요', '방문할 곳과 담당자를 확인해 주세요.'];
+    if (s.state === 'EN_ROUTE') return ['목적지로 가고 있어요', '도착하면 다음 단계를 이어갈 수 있어요.'];
     if (s.senderConfirmed) return ['담당자의 확인을 기다려요', '인계자 확인은 저장됐어요.'];
     if (s.state === 'VERIFYING') return ['담당자를 직접 만나셨나요?', '대상자와 담당자를 확인한 뒤 눌러주세요.'];
     return ['목적지에 도착했어요', '정차 후 담당자와 만나 확인해 주세요.'];
@@ -61,5 +67,5 @@
     };
     return map[code] || '지금은 처리하지 못했어요. 연결과 현재 상태를 확인한 뒤 다시 눌러주세요.';
   }
-  return { SETTINGS_KEY, settings, normalizePhone, facility, subject, recipient, nextStep, publicError };
+  return { SETTINGS_KEY, settings, initialPresentationEvents, normalizePhone, facility, subject, recipient, nextStep, publicError };
 });

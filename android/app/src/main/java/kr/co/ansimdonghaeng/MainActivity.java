@@ -72,7 +72,7 @@ public final class MainActivity extends Activity {
                 return new WebResourceResponse("text/plain", "UTF-8", 403, "Blocked", java.util.Collections.emptyMap(), new ByteArrayInputStream(new byte[0]));
             }
             @Override public void onPageFinished(WebView view, String url) {
-                report(automotive ? "AAOS 환경: CarUxRestrictions 확인 중. 경로·위치·인계는 별도 검증이 필요합니다." : "일반 Android 로컬 시연. 실제 차량 신호·Pleos 내비게이션은 연결되지 않았습니다.");
+                report(automotive ? "AAOS · 차량 상태 확인 중" : "Android · 로컬 연결");
                 web.postDelayed(()->web.evaluateJavascript("Boolean(document.querySelector('.brand-name') && document.querySelector('#main') && document.querySelectorAll('[data-action]').length >= 3)",result->Log.i("HandoffUI","true".equals(result)?"HANDOFF_UI_READY":"HANDOFF_UI_NOT_READY")),2000);
             }
         });

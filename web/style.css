@@ -5,3 +5,26 @@
 @media(max-width:380px){.app-shell{padding-left:16px;padding-right:16px}.mode-bar{align-items:flex-start}.mode-toggle{max-width:62%}.brand-name{font-size:1rem}}
 :root.text-200 .main-grid{grid-template-columns:minmax(0,1fr)}:root.text-200 .destination-card>.place-icon{display:none}:root.text-200 .checklist li{flex-wrap:wrap}:root.text-200 .checklist li strong{margin-left:36px}:root.text-200 .demo-grid{grid-template-columns:minmax(0,1fr)}:root.text-200 .app-header{flex-wrap:wrap}:root.text-200 .settings-button{margin-left:auto}:root.text-200 .connection-code strong{font-size:1.7rem;letter-spacing:.06em}:root.text-200 .mode-bar{align-items:flex-start}:root.text-200 .app-footer{flex-wrap:wrap}:root.text-200 .progress{grid-template-columns:repeat(2,minmax(0,1fr))}:root.text-200 .choice-row{flex-wrap:wrap}:root.text-200 .history li{flex-wrap:wrap}:root.text-200 .easy-main .contact-button{flex-wrap:wrap}:root.text-200 .modal{padding:18px}:root.text-200 .easy-main h1{overflow-wrap:anywhere}:root.text-200 .mode-bar>span{flex-shrink:1}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Direct presentation controls, 0.2.1 */
+.visit-switch{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 14px;color:var(--muted);font-size:.9rem}
+.visit-switch button{background:transparent;color:var(--green);padding:.4rem .1rem;min-height:44px;text-decoration:underline;text-underline-offset:4px}
+.role-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:5px;gap:5px;border-radius:17px;border:1px solid var(--line);background:var(--soft);margin:0 0 24px}
+.role-tabs button{display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;min-height:48px;padding:10px 4px;background:transparent;color:var(--muted);border-radius:12px}
+.role-tabs button[aria-pressed=true]{background:white;color:var(--green);box-shadow:0 2px 8px #183b2e15}
+.role-tabs svg{width:20px;height:20px;flex:none}
+.action-card>.secondary{width:100%;margin-top:14px}
+.code-entry{display:flex;gap:10px;align-items:stretch;margin:8px 0 16px}
+.code-entry input{min-width:0;flex:1;font-size:1.4rem;letter-spacing:.12em}
+.code-entry button{flex:none;padding:12px;font-size:.85rem}
+.visit-choices{display:flex;flex-direction:column;gap:12px}
+.visit-choice{display:flex;gap:14px;align-items:center;text-align:left;background:var(--soft);border:1px solid var(--line);padding:20px;color:var(--green);width:100%}
+.visit-choice>span:nth-child(2){flex:1;min-width:0}
+.visit-choice strong,.visit-choice small{display:block}
+.visit-choice small{color:var(--muted);font-weight:400;margin-top:5px}
+:root.text-200 .role-tabs button{flex-direction:column;font-size:.85rem}
+:root.text-200 .code-entry{flex-direction:column}
+:root.text-200 .visit-switch{flex-wrap:wrap}
+:root.text-200 .visit-choice{flex-wrap:wrap}
+.toast{pointer-events:none}
+@media(max-width:700px){.standard-main .main-grid>div:first-child{order:2}.standard-main .main-grid>div:last-child{order:1}}

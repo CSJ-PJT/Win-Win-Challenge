@@ -36,12 +36,14 @@ with sync_playwright() as pw:
             page.goto('http://127.0.0.1:8139/')
         expect(page.locator('.brand-name')).to_be_visible()
         return page
-    def click(page,a):page.locator('[data-action="'+a+'"]').first.click()
+    def click(page,a):
+        modal=page.locator('.modal [data-action="'+a+'"]')
+        (modal if modal.count() else page.locator('[data-action="'+a+'"]')).first.click()
     def demo(page,a=None):
         click(page,'demo')
         if a: click(page,a);click(page,'close-panel')
     def role(page,r):
-        demo(page);page.locator('[data-action="role"][data-role="'+r+'"]').click()
+        demo(page);page.locator('.modal [data-action="role"][data-role="'+r+'"]').click()
     def current(page):
         if args.content_fixture:return page.evaluate("JSON.parse(localStorage.getItem('ansim-synthetic-demo-v1'))")
         return page.evaluate("async () => {const b=await (await fetch('/api/bootstrap')).json(); return (await (await fetch('/api/state',{headers:{Authorization:'Bearer '+b.tokens.vehicle}})).json()).state;}")
@@ -90,9 +92,9 @@ with sync_playwright() as pw:
         expect(q.locator('html')).to_have_class('text-200');expect(q.locator('.receipt-card')).to_be_visible()
         passed('view settings and arrival record restored on a new app instance')
         q.close();p.set_viewport_size({'width':390,'height':844});click(p,'settings');p.locator('[data-action="text-size"][data-size="100"]').click();click(p,'close-panel')
-        click(p,'phone');expect(p.locator('.modal')).to_contain_text('등록된 연락처가 없어요');assert p.locator('[data-action="open-dialer"]').count()==0
+        click(p,'phone');expect(p.locator('#contactPhone')).to_be_visible();assert p.locator('[data-action="open-dialer"]').count()==0
         p.keyboard.press('Escape');assert p.locator('.modal').count()==0
-        passed('missing contact gives clear feedback without opening a dialer')
+        passed('contact can be entered directly without opening a dialer first')
         fresh(p,'senior','easy');click(p,'consent-yes');demo(p,'offline')
         assert p.locator('[data-action="easy-arrive"]').is_disabled()
         click(p,'phone');expect(p.locator('.modal')).to_be_visible();click(p,'close-panel');click(p,'reconnect')
@@ -104,14 +106,14 @@ with sync_playwright() as pw:
         p.keyboard.press('Escape');passed('settings modal traps focus and Escape closes it')
         # Fresh normal handoff, now through individually selected roles.
         fresh(p,'kindergarten','standard');demo(p,'park');demo(p,'ready');click(p,'depart');demo(p,'arrive');click(p,'issue')
-        number=p.locator('.connection-code strong').inner_text();p.check('#senderCheck');click(p,'sender');assert current(p)['state']=='VERIFYING'
-        role(p,'facility');p.fill('#codeInput',number);p.check('#receiverCheck');click(p,'receiver');expect(p.locator('h1')).to_contain_text('양쪽 확인')
+        number=p.locator('.connection-code strong').inner_text();click(p,'sender');assert current(p)['state']=='VERIFYING'
+        role(p,'facility');p.fill('#codeInput',number);click(p,'receiver');expect(p.locator('h1')).to_contain_text('양쪽 확인')
         assert current(p)['state']=='COMPLETED'
         p.screenshot(path=str(OUT/'facility-complete.png'),full_page=True)
         passed('normal handoff still requires both in-person confirmations')
         # Failed code cannot complete handoff.
         fresh(p,'kindergarten','standard');role(p,'vehicle');demo(p,'park');demo(p,'ready');click(p,'depart');demo(p,'arrive');click(p,'issue')
-        role(p,'facility');p.fill('#codeInput','000000' if current(p)['challenge']['code']!='000000' else '111111');p.check('#receiverCheck');click(p,'receiver')
+        role(p,'facility');p.fill('#codeInput','000000' if current(p)['challenge']['code']!='000000' else '111111');click(p,'receiver')
         expect(p.locator('#inlineError')).to_contain_text('연결번호가 맞지');assert current(p)['receiverConfirmed'] is False
         passed('wrong verification number cannot complete handoff')
         if not args.content_fixture:
