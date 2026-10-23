@@ -68,7 +68,12 @@ try:
   assert g.locator('[data-action="sender"]').count()==0;passed('read-only guardian page shows the completed status')
   # A single reviewing device can change roles without losing server state.
   f.locator('.demo-role-tab[data-role="guardian"]').click()
-  expect(f.get_by_text('인계를 마쳤어요')).to_be_visible()
+  try:
+   expect(f.get_by_text('인계를 마쳤어요')).to_be_visible(timeout=6000)
+  except Exception:
+   print('ROLE_SWITCH_DIAG', json.dumps({'url':f.url,'headings':f.locator('h1').all_text_contents(),'tabCount':f.locator('.demo-role-tab').count(),'activeTabs':f.locator('.demo-role-tab[aria-selected="true"]').all_text_contents(),'body':f.locator('body').inner_text()[:1400],'errors':errors},ensure_ascii=False),flush=True)
+   f.screenshot(path=str(out/'role-switch-failure.png'),full_page=True)
+   raise
   assert f.url.endswith('/guardian')
   assert f.locator('[data-action="receiver"]').count()==0
   passed('in-app facility-to-guardian switch loads the guardian-scoped projection')
