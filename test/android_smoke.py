@@ -65,7 +65,7 @@ try:
     adb('shell','am','force-stop','kr.co.ansimdonghaeng');adb('shell','am','start','-n','kr.co.ansimdonghaeng/.MainActivity');time.sleep(7)
     shot('00-before-accessibility')
     find('안심동행');shot('01-launch');tap('방문 준비와 인계 확인');find('도착지 입력하기');passed('role onboarding and first screen work')
-    tap('도착지 입력하기');find('도착지 주소',exact=True)
+    tap('도착지 입력하기');find('도착지 저장',exact=True)
     inputs=[n for n in ui().iter('node') if n.get('class')=='android.widget.EditText' and rect(n)]
     assert inputs, 'destination address input not accessible in the open editor'
     address=next((n for n in inputs if not n.get('text','').strip()),inputs[-1])
