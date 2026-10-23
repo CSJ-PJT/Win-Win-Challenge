@@ -42,7 +42,7 @@
   function clearError(){error='';editorError='';}
   function recordState(next){if(!storageWrite(localStorage,STATE_KEY,next))throw new Error('기기에 저장하지 못했어요. 저장 공간을 확인해 주세요.');state=next;}
   async function api(path,opts={}){if(offline)throw new Error('연결되지 않았어요.');const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);try{const res=await fetch(path,{...opts,signal:c.signal});const d=await res.json();if(!res.ok){const e=new Error(d.message||'서버 응답을 확인해 주세요.');e.code=d.code||d.error;e.status=res.status;e.data=d;throw e;}return d;}finally{clearTimeout(t);}}
-  async function connect(){const b=await api('/api/bootstrap');tokens=b.tokens;const d=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[role()]}});state=d.state;state.info={...C.defaults(),...state.info};connected=true;render();}
+  async function connect(renderNow=true){const b=await api('/api/bootstrap');tokens=b.tokens;const d=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[role()]}});state=d.state;state.info={...C.defaults(),...state.info};connected=true;if(renderNow)render();}
   function setPending(x){pending=x;storageWrite(sessionStorage,PENDING_KEY,x);}
   async function send(type,payload={},asRole=role(),quiet=false){
     if(busy)return false;
@@ -86,7 +86,7 @@
   async function initialConditions(){if(!state||!connected)return;for(const [type,payload,by] of U.initialPresentationEvents(state)){await send(type,payload,by,true);}}
   async function newVisit(scenario=state.scenario){
     if(busy)return;clearError();
-    if(serverMode){try{await api('/api/reset',{method:'POST',headers:{Authorization:'Bearer '+tokens.simulator,'Content-Type':'application/json'},body:JSON.stringify({scenario})});await connect();}catch(e){showError(e.message);return;}}
+    if(serverMode){try{await api('/api/reset',{method:'POST',headers:{Authorization:'Bearer '+tokens.simulator,'Content-Type':'application/json'},body:JSON.stringify({scenario})});await connect(false);}catch(e){showError(e.message);return;}}
     else recordState(H.createTrip(scenario,Date.now(),uid()));
     await initialConditions();const cfg=profiles[scenario];if(cfg){const allowed=C.fieldsFor(role()),patch=Object.fromEntries(Object.entries(cfg).filter(([k])=>allowed.includes(k)));if(Object.keys(patch).length)await send('CONFIGURE_VISIT',patch,role(),true);}
     panel=null;draft=null;codeInput='';savePrefs();render();toast('새 방문을 시작했어요.');
@@ -297,7 +297,7 @@
   window.onMapStatus=msg=>toast(String(msg));
   window.addEventListener('storage',e=>{if(!serverMode&&e.key===STATE_KEY&&e.newValue){try{state=JSON.parse(e.newValue);render();}catch{}}});
   async function init(){
-    if(serverMode){try{await connect();}catch{connected=false;state=H.createTrip('kindergarten',Date.now(),uid());}}
+    if(serverMode){try{await connect(false);}catch{connected=false;state=H.createTrip('kindergarten',Date.now(),uid());}}
     else{state=storageRead(localStorage,STATE_KEY);if(!state||state.schema!==1){state=H.createTrip('kindergarten',Date.now(),uid());storageWrite(localStorage,STATE_KEY,state);}state.info={...C.defaults(),...state.info};}
     await initialConditions();savePrefs();render();
     setInterval(()=>{countdown();if(serverMode)refresh();renewVehicle();},2000);
