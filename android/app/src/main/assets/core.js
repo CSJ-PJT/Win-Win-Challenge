@@ -5,7 +5,7 @@
   else root.Handoff = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (C) {
   'use strict';
-  const VERSION = '0.4.0';
+  const VERSION = '0.4.1';
   const TELEMETRY_TTL = 30000, READY_TTL = 600000, CODE_TTL = 120000;
   const SCENARIOS = {
     kindergarten: { title: '유치원 등원', facility: '햇살유치원', subject: '도담', receiver: '햇살반 담당 교사', place: '시설 내 지정 승하차 구역 A', mode: 'HANDOFF', adult: false },

@@ -11,7 +11,17 @@
 @media(max-width:390px){.inline-actions{flex-direction:column}.role-line{align-items:flex-start}.role-line .text-link{font-size:.82rem}.branding{font-size:1.08rem}.pin-code strong{font-size:2rem}}
 .text-125{font-size:19px}.text-150{font-size:22px}.text-200{font-size:25px}.text-150 .main-grid,.text-200 .main-grid{grid-template-columns:1fr}.text-200 .fields{grid-template-columns:1fr}.text-200 .button{white-space:normal;min-height:72px}.text-200 .role-line,.text-200 .foot{flex-wrap:wrap}.text-200 .checklist li{flex-wrap:wrap}.text-200 .inline-actions{flex-direction:column}
 @media(prefers-reduced-motion:reduce){.toast,.button{transition:none}}
-</style>
+
+/* Always-visible role selector for a single-device jury demonstration. */
+.demo-role-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:6px;margin:2px 0 12px;max-width:100%;background:#eaf0ec;border:1px solid var(--line);border-radius:16px}
+.demo-role-tab{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:52px;padding:9px 5px;border-radius:11px;background:transparent;color:#53665d;font-weight:730;font-size:.88rem;line-height:1.3;white-space:normal;overflow-wrap:anywhere}
+.demo-role-tab svg{width:19px;height:19px;flex:none}
+.demo-role-tab[aria-selected="true"]{background:#fff;color:var(--green);box-shadow:0 2px 8px #12402a13}
+.demo-role-tab:focus-visible{outline:3px solid #55a88f;outline-offset:-2px}
+@media(max-width:520px){.demo-role-tabs{gap:3px;padding:4px}.demo-role-tab{flex-direction:column;gap:4px;min-height:64px;font-size:.78rem;padding:8px 3px}.demo-role-tab svg{width:21px;height:21px}}
+.text-150 .demo-role-tab,.text-200 .demo-role-tab{font-size:.78rem}
+.text-200 .demo-role-tabs{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin}
+.text-200 .demo-role-tab{flex:0 0 112px;scroll-snap-align:start}</style>
   
 </head>
 <body>
@@ -65,7 +75,7 @@ return {TEXT,PHONES,PERSONAL,PLACE,FIELDS,fieldsFor,cleanPatch,phone,can,hasCoor
   else root.Handoff = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (C) {
   'use strict';
-  const VERSION = '0.4.0';
+  const VERSION = '0.4.1';
   const TELEMETRY_TTL = 30000, READY_TTL = 600000, CODE_TTL = 120000;
   const SCENARIOS = {
     kindergarten: { title: '유치원 등원', facility: '햇살유치원', subject: '도담', receiver: '햇살반 담당 교사', place: '시설 내 지정 승하차 구역 A', mode: 'HANDOFF', adult: false },
@@ -267,8 +277,7 @@ return {TEXT,PHONES,PERSONAL,PLACE,FIELDS,fieldsFor,cleanPatch,phone,can,hasCoor
     return s;
   }
   return { VERSION, TELEMETRY_TTL, READY_TTL, CODE_TTL, SCENARIOS, LABELS, DomainError, createTrip, apply, project, safeVehicle, readyNow, handoffReasons };
-});
-</script><script>/* Pure presentation helpers shared with UI tests. No network or vehicle authority. */
+});</script><script>/* Pure presentation helpers shared with UI tests. No network or vehicle authority. */
 (function(root, factory) {
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
@@ -360,15 +369,19 @@ return {TEXT,PHONES,PERSONAL,PLACE,FIELDS,fieldsFor,cleanPatch,phone,can,hasCoor
   const serverMode=!window.ANSIM_STANDALONE && /^https?:$/.test(location.protocol) && ['localhost','127.0.0.1','[::1]'].includes(location.hostname);
   const pathRole=location.pathname.split('/').filter(Boolean)[0];
   const ROLE_LABELS={vehicle:'보호자 · 인계자',guardian:'보호자 · 조회',facility:'시설 담당자',visitor:'쉬운 화면'};
+  const ROLE_TABS={vehicle:'인계자',guardian:'보호자',facility:'시설',visitor:'쉬운 화면'};
   const VISIT_FIELDS={subject:'이용자 이름',senderName:'인계자 이름',senderPhone:'인계자 연락처',guardianName:'보호자 이름',guardianPhone:'보호자 연락처',facility:'시설 이름',receiver:'인수 담당자',facilityPhone:'시설 전화번호',address:'도착지 주소',place:'승하차 장소',scheduledAt:'방문 예정 일시',supportNote:'이동 도움 요청',latitude:'위도',longitude:'경도'};
   const groups=[{name:'이용자 · 보호자',keys:['subject','senderName','senderPhone','guardianName','guardianPhone']},{name:'방문 시설',keys:['facility','receiver','facilityPhone','address','place']},{name:'방문 일정',keys:['scheduledAt','supportNote']}];
   let prefs={...U.settings(storageRead(localStorage,SETTINGS_KEY))},profiles=storageRead(localStorage,PROFILE_KEY)||{};
   prefs.mapProvider=['google','kakao'].includes(prefs.mapProvider)?prefs.mapProvider:'google';
   if(['vehicle','guardian','facility'].includes(pathRole)){prefs.role=pathRole;prefs.mode='standard';prefs.roleChosen=true;}
   if(pathRole==='visitor'){prefs.role='vehicle';prefs.mode='easy';prefs.roleChosen=true;}
+  // The preview opens directly into a usable screen; role changes remain available above it.
+  if(!prefs.roleChosen){prefs.role='vehicle';prefs.mode='standard';prefs.roleChosen=true;}
   let state=null,tokens=null,connected=!serverMode,busy=false,offline=false,pending=storageRead(sessionStorage,PENDING_KEY);
   let panel=null,draft=null,editorFrom=null,editorError='',searchResults=[],searchMessage='',searchTicket=null;
   let error='',notice='',noticeTimer=null,codeInput='',heartbeatAt=0,refreshing=false,activeVisit=null;
+  let changingRole=false,roleRevision=0;
   const role=()=>prefs.mode==='easy'?'visitor':prefs.role;
   const terminal=()=>['COMPLETED','ARRIVAL_REPORTED','CANCELLED'].includes(state?.state);
   const canWrite=()=>state?.state==='PLANNED'&&!state?.arrivalNotice;
@@ -384,7 +397,7 @@ return {TEXT,PHONES,PERSONAL,PLACE,FIELDS,fieldsFor,cleanPatch,phone,can,hasCoor
   function clearError(){error='';editorError='';}
   function recordState(next){if(!storageWrite(localStorage,STATE_KEY,next))throw new Error('기기에 저장하지 못했어요. 저장 공간을 확인해 주세요.');state=next;}
   async function api(path,opts={}){if(offline)throw new Error('연결되지 않았어요.');const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);try{const res=await fetch(path,{...opts,signal:c.signal});const d=await res.json();if(!res.ok){const e=new Error(d.message||'서버 응답을 확인해 주세요.');e.code=d.code||d.error;e.status=res.status;e.data=d;throw e;}return d;}finally{clearTimeout(t);}}
-  async function connect(){const b=await api('/api/bootstrap');tokens=b.tokens;const d=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[role()]}});state=d.state;state.info={...C.defaults(),...state.info};connected=true;render();}
+  async function connect(renderNow=true){const b=await api('/api/bootstrap');tokens=b.tokens;const d=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[role()]}});state=d.state;state.info={...C.defaults(),...state.info};connected=true;if(renderNow)render();}
   function setPending(x){pending=x;storageWrite(sessionStorage,PENDING_KEY,x);}
   async function send(type,payload={},asRole=role(),quiet=false){
     if(busy)return false;
@@ -428,17 +441,55 @@ return {TEXT,PHONES,PERSONAL,PLACE,FIELDS,fieldsFor,cleanPatch,phone,can,hasCoor
   async function initialConditions(){if(!state||!connected)return;for(const [type,payload,by] of U.initialPresentationEvents(state)){await send(type,payload,by,true);}}
   async function newVisit(scenario=state.scenario){
     if(busy)return;clearError();
-    if(serverMode){try{await api('/api/reset',{method:'POST',headers:{Authorization:'Bearer '+tokens.simulator,'Content-Type':'application/json'},body:JSON.stringify({scenario})});await connect();}catch(e){showError(e.message);return;}}
+    if(serverMode){try{await api('/api/reset',{method:'POST',headers:{Authorization:'Bearer '+tokens.simulator,'Content-Type':'application/json'},body:JSON.stringify({scenario})});await connect(false);}catch(e){showError(e.message);return;}}
     else recordState(H.createTrip(scenario,Date.now(),uid()));
     await initialConditions();const cfg=profiles[scenario];if(cfg){const allowed=C.fieldsFor(role()),patch=Object.fromEntries(Object.entries(cfg).filter(([k])=>allowed.includes(k)));if(Object.keys(patch).length)await send('CONFIGURE_VISIT',patch,role(),true);}
     panel=null;draft=null;codeInput='';savePrefs();render();toast('새 방문을 시작했어요.');
   }
-  async function refresh(){if(!serverMode||offline||busy||refreshing||!tokens)return;refreshing=true;
-    try{const result=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[role()]}});if(busy)return;if(state?.id!==result.state.id||result.state.version>state.version){state=result.state;render();}connected=true;}
-    catch(e){if(e.status===401){try{await connect();}catch{connected=false;render();}}else{connected=false;render();}}
-    finally{refreshing=false;}
+  async function refresh(){
+    if(!serverMode||offline||busy||refreshing||changingRole||!tokens)return;
+    const requestedRole=role(),revision=roleRevision;
+    refreshing=true;
+    try{
+      const result=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[requestedRole]}});
+      if(busy||changingRole||revision!==roleRevision||requestedRole!==role())return;
+      if(state?.id!==result.state.id||result.state.version>state.version){state=result.state;render();}
+      connected=true;
+    }catch(e){
+      if(changingRole||revision!==roleRevision)return;
+      if(e.status===401){try{await connect();}catch{connected=false;render();}}
+      else{connected=false;render();}
+    }finally{refreshing=false;}
   }
-  function setRole(v){if(v==='visitor'){prefs.role='vehicle';prefs.mode='easy';}else{prefs.role=v;prefs.mode='standard';}prefs.roleChosen=true;savePrefs();panel=null;render();if(serverMode)refresh();}
+  async function setRole(v){
+    if(!Object.hasOwn(ROLE_LABELS,v))return;
+    if(v==='visitor'){prefs.role='vehicle';prefs.mode='easy';}
+    else{prefs.role=v;prefs.mode='standard';}
+    prefs.roleChosen=true;savePrefs();panel=null;draft=null;clearError();
+    const nextRole=role(),revision=++roleRevision;
+    if(!serverMode){render(true);return;}
+    // Server states are role-scoped projections, so never paint the previous
+    // person's private state while fetching the new role's permitted view.
+    changingRole=true;state=null;
+    $('app').innerHTML='<div class="shell"><div class="loading" role="status">화면을 불러오고 있어요.</div></div>';
+    if(location.pathname!==`/${nextRole}`)window.history.replaceState({},'',`/${nextRole}`);
+    try{
+      const d=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[nextRole]}});
+      if(revision!==roleRevision)return;
+      state=d.state;state.info={...C.defaults(),...state.info};connected=true;
+    }catch{
+      if(revision!==roleRevision)return;
+      connected=false;
+      $('app').innerHTML='<div class="shell"><div class="error-banner" role="alert">화면을 불러오지 못했어요.</div><button class="button outlined" data-action="reconnect">다시 연결</button></div>';
+      return;
+    }finally{
+      if(revision===roleRevision)changingRole=false;
+    }
+    if(revision===roleRevision)render(true);
+  }
+  function roleTabs(){
+    return `<nav class="demo-role-tabs" role="tablist" aria-label="역할별 화면 전환">${Object.entries(ROLE_TABS).map(([r,label])=>`<button type="button" class="demo-role-tab" role="tab" data-action="select-role" data-role="${r}" aria-selected="${role()===r}" aria-controls="main" tabindex="${role()===r?'0':'-1'}">${icon(r==='vehicle'?'car':r==='guardian'?'shield':r==='facility'?'building':'person')}<span>${label}</span></button>`).join('')}</nav>`;
+  }
   function locationCard(){const info=state.info,loc=info.address||'도착지를 지정해 주세요.';
     return `<section class="panel place-panel"><div class="panel-heading"><span class="panel-icon">${icon('pin')}</span><div><div class="eyebrow">도착지</div><h2>${escapeHTML(info.facility)}</h2></div></div><p class="address ${info.address?'':'empty-address'}">${escapeHTML(loc)}</p>${info.place?`<p class="hint">${escapeHTML(info.place)}</p>`:''}<div class="inline-actions">${role()!=='facility'&&role()!=='guardian'?btn('open-editor',icon('edit')+' 정보 수정','light',canWrite()):''}${C.hasDestination(info)?mapLink('길안내 열기'):btn('edit-destination','도착지 설정','outlined',canWrite())}</div></section>`;
   }
@@ -480,14 +531,14 @@ return {TEXT,PHONES,PERSONAL,PLACE,FIELDS,fieldsFor,cleanPatch,phone,can,hasCoor
   }
   function editor(){const locked=!canWrite();return `<div class="modal-title"><span class="eyebrow">방문 정보</span><h2>${editorFrom==='destination'?'도착지 설정':'방문 정보 수정'}</h2></div>${locked?'<p class="hint">진행 중인 방문은 정보를 바꿀 수 없어요. 다음 방문에서 수정해 주세요.</p>':''}<form id="visitForm" novalidate><div id="editorError" class="inline-error" role="alert" ${editorError?'':'hidden'}>${escapeHTML(editorError)}</div>${(editorFrom==='destination'?[{name:'방문 장소',keys:['facility','address','place']}]:groups).map(g=>{const fields=g.keys.map(textField).filter(Boolean).join('');return fields?`<fieldset><legend>${g.name}</legend><div class="fields">${fields}</div>${g.keys.includes('address')?addressLookup():''}</fieldset>`:''}).join('')}<fieldset><legend>이용 설정</legend><label class="edit-field"><span>길 안내 지도</span><select id="mapProvider" name="mapProvider"><option value="google" ${prefs.mapProvider==='google'?'selected':''}>Google 지도</option><option value="kakao" ${prefs.mapProvider==='kakao'?'selected':''}>카카오맵 (좌표가 있을 때)</option></select></label><label class="edit-field"><span>글씨 크기</span><select name="textSize" id="textSize">${[100,125,150,200].map(n=>`<option value="${n}" ${prefs.text===n?'selected':''}>${n}%</option>`).join('')}</select></label></fieldset><div class="sticky-action"><button class="button primary" type="submit">${locked?'화면 설정 저장':editorFrom==='destination'?'도착지 저장':'방문 정보 저장'}</button></div></form>`;}
   function addressLookup(){return `<div class="lookup-actions">${btn('search-address',icon('pin')+' 주소 검색','outlined',true)}<a class="text-link" data-search-link="true" href="https://www.google.com/maps/search/?api=1" target="_blank" rel="noopener noreferrer">지도에서 직접 검색</a></div><div id="lookupStatus" class="lookup-status" role="status">${escapeHTML(searchMessage)}</div><div id="lookupResults" class="lookup-results">${searchResults.map((it,i)=>`<button type="button" class="search-result" data-action="choose-address" data-index="${i}"><strong>${escapeHTML(it.name||it.address)}</strong><small>${escapeHTML(it.address)}</small></button>`).join('')}</div>${C.fieldsFor(role()).includes('latitude')?`<details class="coordinate"><summary>좌표 직접 입력</summary><div class="fields">${['latitude','longitude'].map(key=>`<label class="edit-field"><span>${VISIT_FIELDS[key]}</span><input type="number" step="any" name="${key}" id="field-${key}" value="${escapeHTML(draft?.[key]??'')}" ${canWrite()?'':'disabled'}></label>`).join('')}</div></details>`:''}`;}
-  function demoMenu(){return `<div class="modal-title"><span class="eyebrow">시연</span><h2>화면 전환</h2></div><div class="choice-list">${Object.entries(ROLE_LABELS).map(([k,label])=>`<button class="role-option" data-action="select-role" data-role="${k}"><strong>${label}</strong>${icon('arrow')}</button>`).join('')}</div><div class="demo-actions">${state.challenge&&role()==='facility'?btn('use-demo-code','연결번호 입력하기','outlined'):''}${btn('new-visit','새 방문 시작','light')}${btn('open-visits','방문 종류 바꾸기','light')}</div>`;}
+  function demoMenu(){return `<div class="modal-title"><span class="eyebrow">방문 관리</span><h2>시연 도구</h2></div><div class="demo-actions">${state.challenge&&role()==='facility'?btn('use-demo-code','연결번호 입력하기','outlined'):''}${btn('new-visit','새 방문 시작','light')}${btn('open-visits','방문 종류 바꾸기','light')}</div>`;}
   function render(force=false){if(!state)return;
     // Never unmount an active form because of a background poll or heartbeat.
     if(!force&&(panel==='editor'||document.activeElement?.id==='codeInput'))return;
     document.documentElement.className='text-'+prefs.text;
     const body=!prefs.roleChosen?rolePicker():prefs.mode==='easy'?easyView():role()==='facility'?facilityView():role()==='guardian'?guardianView():vehicleView();
     const overlays=panel==='editor'?editor():panel==='demo'?demoMenu():panel==='visits'?visitPicker():'';
-    $('app').innerHTML=`<div class="shell" ${panel?'inert aria-hidden="true"':''}><header class="topbar"><div class="branding"><span class="mark">${icon('shield')}</span><span>안심동행 <small>플랫폼</small></span></div><button class="icon-button" aria-label="방문 정보 설정" data-action="open-editor">${icon('settings')}</button></header>${prefs.roleChosen?`<div class="role-line"><span class="role-label">${escapeHTML(ROLE_LABELS[role()])}</span>${role()!=='facility'?`<button class="text-link" data-action="open-visits">방문 변경</button>`:''}</div>`:''}${!connected||offline?`<div class="error-banner">연결을 확인해 주세요. ${btn('reconnect','다시 연결','outlined')}</div>`:''}${error?`<div id="inlineError" class="error-banner" role="alert">${escapeHTML(error)}</div>`:''}<main id="main">${body}</main><footer class="foot"><span>안심동행 v${H.VERSION}</span><button class="text-link" data-action="open-demo">화면 전환</button></footer></div>${panel?`<div class="overlay"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><header><span>안심동행</span><button class="icon-button" aria-label="닫기" data-action="close">${icon('close')}</button></header><div class="dialog-body" id="dialogTitle">${overlays}</div></section></div>`:''}`;
+    $('app').innerHTML=`<div class="shell" ${panel?'inert aria-hidden="true"':''}><header class="topbar"><div class="branding"><span class="mark">${icon('shield')}</span><span>안심동행 <small>플랫폼</small></span></div><button class="icon-button" aria-label="방문 정보 설정" data-action="open-editor">${icon('settings')}</button></header>${prefs.roleChosen?`${roleTabs()}<div class="role-line"><span class="role-label">${escapeHTML(ROLE_LABELS[role()])}</span>${role()!=='facility'?`<button class="text-link" data-action="open-visits">방문 변경</button>`:''}</div>`:''}${!connected||offline?`<div class="error-banner">연결을 확인해 주세요. ${btn('reconnect','다시 연결','outlined')}</div>`:''}${error?`<div id="inlineError" class="error-banner" role="alert">${escapeHTML(error)}</div>`:''}<main id="main">${body}</main><footer class="foot"><span>안심동행 v${H.VERSION}</span><button class="text-link" data-action="open-demo">시연 도구</button></footer></div>${panel?`<div class="overlay"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><header><span>안심동행</span><button class="icon-button" aria-label="닫기" data-action="close">${icon('close')}</button></header><div class="dialog-body" id="dialogTitle">${overlays}</div></section></div>`:''}`;
     countdown();
     if(panel==='editor'){$('field-address')?.focus({preventScroll:true});}
   }
@@ -583,14 +634,25 @@ return {TEXT,PHONES,PERSONAL,PLACE,FIELDS,fieldsFor,cleanPatch,phone,can,hasCoor
     if(action==='ack'){await send('ACK_ARRIVAL_NOTICE',{},'facility');return;}
     if(action==='reconnect'){offline=false;try{if(serverMode)await connect();else connected=true;error='';render();}catch{showError('연결할 수 없어요.');}return;}
   });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel){e.preventDefault();closePanel();}});
+  document.addEventListener('keydown',e=>{
+    const tab=e.target.closest?.('.demo-role-tab');
+    if(tab&&['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){
+      e.preventDefault();
+      const keys=Object.keys(ROLE_TABS),idx=keys.indexOf(tab.dataset.role);
+      const target=e.key==='Home'?0:e.key==='End'?keys.length-1:(idx+(e.key==='ArrowRight'?1:-1)+keys.length)%keys.length;
+      const next=keys[target];
+      Promise.resolve(setRole(next)).then(()=>document.querySelector(`.demo-role-tab[data-role="${next}"]`)?.focus());
+      return;
+    }
+    if(e.key==='Escape'&&panel){e.preventDefault();closePanel();}
+  });
   window.handleAppBack=()=>{if(panel){closePanel();return true;}return false;};
   window.onNativeNavigationStatus=msg=>toast(String(msg));
   window.onNativeDialerStatus=msg=>toast(String(msg));
   window.onMapStatus=msg=>toast(String(msg));
   window.addEventListener('storage',e=>{if(!serverMode&&e.key===STATE_KEY&&e.newValue){try{state=JSON.parse(e.newValue);render();}catch{}}});
   async function init(){
-    if(serverMode){try{await connect();}catch{connected=false;state=H.createTrip('kindergarten',Date.now(),uid());}}
+    if(serverMode){try{await connect(false);}catch{connected=false;state=H.createTrip('kindergarten',Date.now(),uid());}}
     else{state=storageRead(localStorage,STATE_KEY);if(!state||state.schema!==1){state=H.createTrip('kindergarten',Date.now(),uid());storageWrite(localStorage,STATE_KEY,state);}state.info={...C.defaults(),...state.info};}
     await initialConditions();savePrefs();render();
     setInterval(()=>{countdown();if(serverMode)refresh();renewVehicle();},2000);

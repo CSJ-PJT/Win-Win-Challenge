@@ -1,0 +1,11 @@
+PASS HTTP server saves configured destination across a browser reload
+PASS vehicle departure works through the real API
+PASS independent facility page opens only reception actions
+PASS facility rejects wrong codes through HTTP service
+PASS receiver confirmation survives a concurrent telemetry version change
+PASS independent actor confirmation completes via HTTP
+PASS read-only guardian page shows the completed status
+PASS in-app facility-to-guardian switch loads the guardian-scoped projection
+PASS selected role survives a reload on its routed URL
+PASS facility screen restores its own completed reception result
+PASS no client-side JavaScript exceptions

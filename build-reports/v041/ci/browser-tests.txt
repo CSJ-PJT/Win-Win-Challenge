@@ -1,0 +1,17 @@
+PASS initial vehicle role opens with visible role tabs
+PASS unconfigured destination opens an editable form
+PASS all editable fields accept input without dropping focus
+PASS background heartbeat does not remount or erase the form
+PASS save persists all visit fields
+PASS reopening editor restores saved values
+PASS address-only link opens real Google Maps directions
+PASS start trip transitions to moving
+PASS sender handoff sets sender status only
+PASS facility screen exposes only its reception actions
+PASS wrong code is rejected
+PASS correct code completes only after both confirmations
+PASS guardian is read-only
+PASS next visit restores last configured destination
+PASS easy mode records arrival without inventing handoff
+PASS facility can acknowledge arrival notice
+PASS no JavaScript errors

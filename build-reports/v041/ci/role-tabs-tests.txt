@@ -1,0 +1,8 @@
+PASS opens directly with four role tabs and no onboarding dialog
+PASS facility tab shows only reception controls and assigned visit
+PASS guardian tab is read-only and shows full progress
+PASS large-button easy view is one tab away
+PASS tab switching preserves the exact same trip and does not write events
+PASS arrow and Home/End keys change the focused role accessibly
+PASS role tabs remain usable at 320 px width with 200 percent text
+PASS no uncaught JavaScript errors
