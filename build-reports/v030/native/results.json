@@ -1,0 +1,13 @@
+{
+  "apk": "ansim-platform-0.3.0-preview.apk",
+  "checks": [
+    "choose a role and save a destination before departure",
+    "native mapping intent opens from the saved destination",
+    "sender confirmation changes only its own handoff state",
+    "facility view exposes reception work without the full journey history",
+    "facility confirmation completes handoff on release APK",
+    "new visit reuses the saved destination",
+    "easy arrival workflow remains usable on release APK"
+  ],
+  "passed": 7
+}
