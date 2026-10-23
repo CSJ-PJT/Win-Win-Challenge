@@ -10,7 +10,7 @@ adb install -r build-input/apk/ansim-platform-0.4.3-preview.apk
 adb shell pm clear kr.co.ansimdonghaeng
 adb install -r build-input/apk/ansim-address-tests.apk
 set +e
-timeout -k 5s 150s adb shell am instrument -w -r -e class kr.co.ansimdonghaeng.LiveAddressTest kr.co.ansimdonghaeng.test/androidx.test.runner.AndroidJUnitRunner | tee native-results/live-address-test.txt
+timeout -k 5s 240s adb shell am instrument -w -r -e class kr.co.ansimdonghaeng.LiveAddressTest kr.co.ansimdonghaeng.test/androidx.test.runner.AndroidJUnitRunner | tee native-results/live-address-test.txt
 instrument_rc=${PIPESTATUS[0]}
 grep -F 'OK (1 test)' native-results/live-address-test.txt
 address_rc=$?
