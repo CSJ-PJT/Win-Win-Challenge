@@ -2,6 +2,7 @@ name: Verify and build Ansim preview
 on:
   workflow_dispatch:
   push:
+    branches: [feature/easy-ui-0.2]
     paths:
       - 'web/**'
       - 'server.js'
