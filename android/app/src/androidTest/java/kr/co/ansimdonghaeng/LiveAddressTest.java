@@ -78,7 +78,7 @@ public final class LiveAddressTest {
             }
             assertTrue("Selected address not returned: "+value,value.contains("세종대로 110"));
             scrollFind("04524");shot("02-returned-address");
-            tap("도착지 저장");find("방문 시작하기",false);scrollFind("세종대로 110");
+            tap("도착지 저장");scrollFind("세종대로 110");scrollFind("방문 시작하기");
             shot("03-saved-address");
             device.pressHome();context.startActivity(launch);SystemClock.sleep(1200);
             scrollFind("세종대로 110");scrollFind("04524");shot("04-restored-address");

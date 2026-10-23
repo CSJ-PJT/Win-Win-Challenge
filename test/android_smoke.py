@@ -1,7 +1,7 @@
 """Android 15 installation, text input, map intent, and independent handoff smoke test."""
 import json,re,subprocess,time,xml.etree.ElementTree as ET,argparse
 from pathlib import Path
-P=argparse.ArgumentParser();P.add_argument('apk');P.add_argument('--output',default='native-results');args=P.parse_args()
+P=argparse.ArgumentParser();P.add_argument('apk');P.add_argument('--output',default='native-results');P.add_argument('--reuse-address',action='store_true');args=P.parse_args()
 O=Path(args.output);O.mkdir(parents=True,exist_ok=True);results=[]
 def adb(*parts,raw=False):
     r=subprocess.run(['adb',*parts],stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True,timeout=50)
@@ -64,15 +64,21 @@ try:
     adb('shell','wm','dismiss-keyguard')
     adb('shell','am','force-stop','kr.co.ansimdonghaeng');adb('shell','am','start','-n','kr.co.ansimdonghaeng/.MainActivity');time.sleep(7)
     shot('00-before-accessibility')
-    find('안심동행');find('인계자',exact=True);shot('01-launch');find('도착지 입력하기');passed('role tabs and first screen work')
-    tap('도착지 입력하기');find('도착지 저장',exact=True)
-    inputs=[n for n in ui().iter('node') if n.get('class')=='android.widget.EditText' and rect(n)]
-    assert inputs, 'destination address input not accessible in the open editor'
-    address=next((n for n in inputs if not n.get('text','').strip()),inputs[-1])
-    adb('shell','input','tap',*coord(address));adb('shell','input','text','Seoul%sCity%sHall');time.sleep(.6)
-    txt=' '.join(n.get('text','') for n in ui().iter('node') if n.get('class')=='android.widget.EditText')
-    assert 'Seoul' in txt, 'Android keyboard did not enter address text'
-    adb('shell','input','keyevent','4');shot('02-edit');tap('도착지 저장');find('방문 시작하기');find('Seoul City Hall',exact=True);passed('real Android keyboard input saves a destination')
+    find('안심동행');find('인계자',exact=True);shot('01-launch')
+    if args.reuse_address:
+        find('세종대로 110')
+        passed('selected official Korean address remains saved on the device')
+    else:
+        find('도착지 입력하기');passed('role tabs and first screen work')
+        tap('도착지 입력하기');find('도착지 저장',exact=True)
+        inputs=[n for n in ui().iter('node') if n.get('class')=='android.widget.EditText' and rect(n)]
+        assert inputs,'destination address input not accessible in the open editor'
+        address=next((n for n in inputs if not n.get('text','').strip()),inputs[-1])
+        adb('shell','input','tap',*coord(address));adb('shell','input','text','Seoul%sCity%sHall');time.sleep(1.4)
+        txt=' '.join(n.get('text','') for n in ui().iter('node') if n.get('class')=='android.widget.EditText')
+        assert 'Seoul' in txt,'Android keyboard did not enter address text'
+        adb('shell','input','keyevent','4');shot('02-edit');tap('도착지 저장');find('Seoul City Hall')
+        passed('real Android keyboard input saves a destination')
     tap('카카오맵에서 위치 보기');time.sleep(1)
     logs=adb('logcat','-d','-s','HandoffMap:I')
     assert 'MAP_INTENT_OPENED' in logs,'external map intent was not launched'

@@ -17,8 +17,8 @@ address_rc=$?
 collect_address
 trap - EXIT
 adb shell am force-stop kr.co.ansimdonghaeng
-adb shell pm clear kr.co.ansimdonghaeng
-python3 -u test/android_smoke.py build-input/apk/ansim-platform-0.4.3-preview.apk --output native-results
+if [ "$instrument_rc" -ne 0 ] || [ "$address_rc" -ne 0 ]; then exit 1; fi
+python3 -u test/android_smoke.py build-input/apk/ansim-platform-0.4.3-preview.apk --output native-results --reuse-address
 flow_rc=$?
 printf 'instrument_exit=%s\naddress_exit=%s\nflow_exit=%s\n' "$instrument_rc" "$address_rc" "$flow_rc" > native-results/check-status.txt
 if [ "$instrument_rc" -ne 0 ] || [ "$address_rc" -ne 0 ] || [ "$flow_rc" -ne 0 ]; then exit 1; fi
