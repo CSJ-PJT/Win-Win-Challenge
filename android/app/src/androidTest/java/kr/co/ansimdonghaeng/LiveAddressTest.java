@@ -1,5 +1,4 @@
 package kr.co.ansimdonghaeng;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
@@ -15,7 +14,7 @@ import java.io.File;
 import java.util.List;
 import static org.junit.Assert.*;
 
-/** Real provider network. All text entry and selection use Android accessibility, not JS hooks. */
+/** Uses the real provider and Android accessibility, not a JS test hook. */
 @RunWith(AndroidJUnit4.class)
 public final class LiveAddressTest {
     private UiDevice device;
@@ -49,8 +48,6 @@ public final class LiveAddressTest {
             }
             assertNotNull("Address input not found",address);
             address.setText("세종대로 110");SystemClock.sleep(500);
-            // Hide the IME without dismissing the editor when the IME is absent.
-            device.executeShellCommand("input keyevent KEYCODE_ESCAPE");
             tap("주소 검색");
             UiObject2 selected=find("서울 중구 세종대로 110",true);
             shot("01-official-results");selected.click();
@@ -63,10 +60,7 @@ public final class LiveAddressTest {
             assertTrue("Selected address not returned: "+value,value.contains("세종대로 110"));
             find("04524",true);shot("02-returned-address");
             tap("도착지 저장");find("방문 시작하기",false);find("세종대로 110",true);
-            shot("03-saved-address");
-            Log.i("HandoffAddress","LIVE_POSTCODE_ROUNDTRIP_OK");
-        } finally {
-            shot("last-screen");device.dumpWindowHierarchy(new File(output,"window.xml"));
-        }
+            shot("03-saved-address");Log.i("HandoffAddress","LIVE_POSTCODE_ROUNDTRIP_OK");
+        } finally {shot("last-screen");device.dumpWindowHierarchy(new File(output,"window.xml"));}
     }
 }
