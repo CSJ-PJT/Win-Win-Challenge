@@ -6,451 +6,451 @@ TAP version 13
 # Subtest: starts without an invented safe vehicle signal
 ok 1 - starts without an invented safe vehicle signal
   ---
-  duration_ms: 2.782504
+  duration_ms: 1.540577
   type: 'test'
   ...
 # Subtest: rejects unsupported scenario
 ok 2 - rejects unsupported scenario
   ---
-  duration_ms: 0.594292
+  duration_ms: 0.340841
   type: 'test'
   ...
 # Subtest: departure requires a fresh parked UX-allowed signal
 ok 3 - departure requires a fresh parked UX-allowed signal
   ---
-  duration_ms: 0.903139
+  duration_ms: 0.351496
   type: 'test'
   ...
 # Subtest: arrival is not completion
 ok 4 - arrival is not completion
   ---
-  duration_ms: 0.343252
+  duration_ms: 0.14015
   type: 'test'
   ...
 # Subtest: arrival cannot happen before departure
 ok 5 - arrival cannot happen before departure
   ---
-  duration_ms: 0.223919
+  duration_ms: 0.108492
   type: 'test'
   ...
 # Subtest: a missing receiver blocks code issuance
 ok 6 - a missing receiver blocks code issuance
   ---
-  duration_ms: 0.351357
+  duration_ms: 0.14683
   type: 'test'
   ...
 # Subtest: only the assigned facility account may mark readiness
 ok 7 - only the assigned facility account may mark readiness
   ---
-  duration_ms: 0.327252
+  duration_ms: 0.161773
   type: 'test'
   ...
 # Subtest: an observer cannot claim a handoff
 ok 8 - an observer cannot claim a handoff
   ---
-  duration_ms: 0.577901
+  duration_ms: 0.296694
   type: 'test'
   ...
 # Subtest: a sender account cannot also receive
 ok 9 - a sender account cannot also receive
   ---
-  duration_ms: 0.587449
+  duration_ms: 0.287741
   type: 'test'
   ...
 # Subtest: code possession does not bypass receiver assignment
 ok 10 - code possession does not bypass receiver assignment
   ---
-  duration_ms: 0.600653
+  duration_ms: 0.332388
   type: 'test'
   ...
 # Subtest: in-person acknowledgement is mandatory
 ok 11 - in-person acknowledgement is mandatory
   ---
-  duration_ms: 1.455472
+  duration_ms: 0.231677
   type: 'test'
   ...
 # Subtest: one confirmation cannot complete
 ok 12 - one confirmation cannot complete
   ---
-  duration_ms: 0.218229
+  duration_ms: 0.153209
   type: 'test'
   ...
 # Subtest: both independent confirmations complete
 ok 13 - both independent confirmations complete
   ---
-  duration_ms: 0.279743
+  duration_ms: 0.141161
   type: 'test'
   ...
 # Subtest: receiver-first confirmation is supported
 ok 14 - receiver-first confirmation is supported
   ---
-  duration_ms: 0.198501
+  duration_ms: 0.083826
   type: 'test'
   ...
 # Subtest: incorrect codes never confirm receiver
 ok 15 - incorrect codes never confirm receiver
   ---
-  duration_ms: 0.243736
+  duration_ms: 0.078097
   type: 'test'
   ...
 # Subtest: five incorrect attempts destroy the challenge
 ok 16 - five incorrect attempts destroy the challenge
   ---
-  duration_ms: 0.599612
+  duration_ms: 0.114761
   type: 'test'
   ...
 # Subtest: expired challenge clears both confirmations
 ok 17 - expired challenge clears both confirmations
   ---
-  duration_ms: 0.220222
+  duration_ms: 0.080681
   type: 'test'
   ...
 # Subtest: renewing a code requires both confirmations again
 ok 18 - renewing a code requires both confirmations again
   ---
-  duration_ms: 0.194715
+  duration_ms: 0.071578
   type: 'test'
   ...
 # Subtest: moving invalidates an ongoing challenge
 ok 19 - moving invalidates an ongoing challenge
   ---
-  duration_ms: 0.213719
+  duration_ms: 0.058948
   type: 'test'
   ...
 # Subtest: zero speed alone does not authorize interaction
 ok 20 - zero speed alone does not authorize interaction
   ---
-  duration_ms: 0.124222
+  duration_ms: 0.032899
   type: 'test'
   ...
 # Subtest: unknown vehicle data fails closed
 ok 21 - unknown vehicle data fails closed
   ---
-  duration_ms: 0.226383
+  duration_ms: 0.114532
   type: 'test'
   ...
 # Subtest: stale vehicle signals block completion and invalidate the challenge
 ok 22 - stale vehicle signals block completion and invalidate the challenge
   ---
-  duration_ms: 0.212508
+  duration_ms: 0.095133
   type: 'test'
   ...
 # Subtest: future-dated signals do not authorize interaction
 ok 23 - future-dated signals do not authorize interaction
   ---
-  duration_ms: 0.112461
+  duration_ms: 0.035864
   type: 'test'
   ...
 # Subtest: readiness expires
 ok 24 - readiness expires
   ---
-  duration_ms: 0.260487
+  duration_ms: 0.072469
   type: 'test'
   ...
 # Subtest: receiver absence invalidates prior sender confirmation
 ok 25 - receiver absence invalidates prior sender confirmation
   ---
-  duration_ms: 0.187791
+  duration_ms: 0.065749
   type: 'test'
   ...
 # Subtest: leaving the assigned area invalidates the handoff
 ok 26 - leaving the assigned area invalidates the handoff
   ---
-  duration_ms: 0.163676
+  duration_ms: 0.064336
   type: 'test'
   ...
 # Subtest: adults start without assumed consent
 ok 27 - adults start without assumed consent
   ---
-  duration_ms: 0.153267
+  duration_ms: 0.051197
   type: 'test'
   ...
 # Subtest: consent withdrawal destroys an active challenge
 ok 28 - consent withdrawal destroys an active challenge
   ---
-  duration_ms: 0.189304
+  duration_ms: 0.070715
   type: 'test'
   ...
 # Subtest: unassigned community visit cannot create an alleged handoff
 ok 29 - unassigned community visit cannot create an alleged handoff
   ---
-  duration_ms: 0.310388
+  duration_ms: 0.077867
   type: 'test'
   ...
 # Subtest: child handoff cannot fall back to arrival-only completion
 ok 30 - child handoff cannot fall back to arrival-only completion
   ---
-  duration_ms: 0.671927
+  duration_ms: 0.057486
   type: 'test'
   ...
 # Subtest: terminal journeys reject further mutations
 ok 31 - terminal journeys reject further mutations
   ---
-  duration_ms: 0.166822
+  duration_ms: 0.109985
   type: 'test'
   ...
 # Subtest: guardian and receiver projections do not disclose the challenge code
 ok 32 - guardian and receiver projections do not disclose the challenge code
   ---
-  duration_ms: 0.228968
+  duration_ms: 0.10672
   type: 'test'
   ...
 # Subtest: audit messages never contain a challenge code
 ok 33 - audit messages never contain a challenge code
   ---
-  duration_ms: 0.158757
+  duration_ms: 0.062303
   type: 'test'
   ...
 # Subtest: invalid events leave the original state unchanged
 ok 34 - invalid events leave the original state unchanged
   ---
-  duration_ms: 0.158847
+  duration_ms: 0.055714
   type: 'test'
   ...
 # Subtest: boolean-like strings are rejected
 ok 35 - boolean-like strings are rejected
   ---
-  duration_ms: 0.238396
+  duration_ms: 0.090446
   type: 'test'
   ...
 # Subtest: easy mode requires explicit adult consent
 ok 36 - easy mode requires explicit adult consent
   ---
-  duration_ms: 2.333094
+  duration_ms: 1.077433
   type: 'test'
   ...
 # Subtest: self reported arrival does not change vehicle, location or handoff state
 ok 37 - self reported arrival does not change vehicle, location or handoff state
   ---
-  duration_ms: 0.952732
+  duration_ms: 0.58104
   type: 'test'
   ...
 # Subtest: a second arrival notification is rejected
 ok 38 - a second arrival notification is rejected
   ---
-  duration_ms: 0.307485
+  duration_ms: 0.167661
   type: 'test'
   ...
 # Subtest: staff acknowledgment is not handoff confirmation
 ok 39 - staff acknowledgment is not handoff confirmation
   ---
-  duration_ms: 0.280294
+  duration_ms: 0.155703
   type: 'test'
   ...
 # Subtest: only the assigned staff may acknowledge an arrival notice
 ok 40 - only the assigned staff may acknowledge an arrival notice
   ---
-  duration_ms: 0.413974
+  duration_ms: 0.210936
   type: 'test'
   ...
 # Subtest: visitor cannot issue handoff codes or confirm receipt
 ok 41 - visitor cannot issue handoff codes or confirm receipt
   ---
-  duration_ms: 0.393767
+  duration_ms: 0.152278
   type: 'test'
   ...
 # Subtest: guardian cannot report arrival as the visitor
 ok 42 - guardian cannot report arrival as the visitor
   ---
-  duration_ms: 0.290824
+  duration_ms: 0.13332
   type: 'test'
   ...
 # Subtest: child trips cannot use adult self consent
 ok 43 - child trips cannot use adult self consent
   ---
-  duration_ms: 0.274814
+  duration_ms: 0.124095
   type: 'test'
   ...
 # Subtest: community arrival notice does not claim designated handoff
 ok 44 - community arrival notice does not claim designated handoff
   ---
-  duration_ms: 0.412812
+  duration_ms: 0.239679
   type: 'test'
   ...
 # Subtest: sharing withdrawal blocks a new notice
 ok 45 - sharing withdrawal blocks a new notice
   ---
-  duration_ms: 0.588341
+  duration_ms: 0.298297
   type: 'test'
   ...
 # Subtest: cancelled visit cannot be reported
 ok 46 - cancelled visit cannot be reported
   ---
-  duration_ms: 0.280434
+  duration_ms: 0.143315
   type: 'test'
   ...
 # Subtest: acknowledgment requires a notice
 ok 47 - acknowledgment requires a notice
   ---
-  duration_ms: 0.190827
+  duration_ms: 0.083616
   type: 'test'
   ...
 # Subtest: phone normalization rejects USSD, scripts and invalid punctuation
 ok 48 - phone normalization rejects USSD, scripts and invalid punctuation
   ---
-  duration_ms: 0.197269
+  duration_ms: 0.126178
   type: 'test'
   ...
 # Subtest: phone normalization permits a dialable number only
 ok 49 - phone normalization permits a dialable number only
   ---
-  duration_ms: 0.190447
+  duration_ms: 0.135192
   type: 'test'
   ...
 # Subtest: settings only retain supported text sizes and roles
 ok 50 - settings only retain supported text sizes and roles
   ---
-  duration_ms: 0.163826
+  duration_ms: 0.08723
   type: 'test'
   ...
 # Subtest: easy view settings survive serialization
 ok 51 - easy view settings survive serialization
   ---
-  duration_ms: 0.148818
+  duration_ms: 0.057216
   type: 'test'
   ...
 # Subtest: completion copy follows actual two-party state
 ok 52 - completion copy follows actual two-party state
   ---
-  duration_ms: 0.968391
+  duration_ms: 0.130094
   type: 'test'
   ...
 # Subtest: error messages never expose raw exceptions
 ok 53 - error messages never expose raw exceptions
   ---
-  duration_ms: 0.135904
+  duration_ms: 0.075903
   type: 'test'
   ...
 # Subtest: release uses one public product name
 ok 54 - release uses one public product name
   ---
-  duration_ms: 1.095279
+  duration_ms: 0.664555
   type: 'test'
   ...
 # Subtest: reset invalidates old synthetic sessions and provides new sessions
 ok 55 - reset invalidates old synthetic sessions and provides new sessions
   ---
-  duration_ms: 93.394163
+  duration_ms: 160.801433
   type: 'test'
   ...
 # Subtest: oversized mutation is rejected without a state change
 ok 56 - oversized mutation is rejected without a state change
   ---
-  duration_ms: 31.147488
+  duration_ms: 38.870149
   type: 'test'
   ...
 # Subtest: unsupported scenario is rejected during reset
 ok 57 - unsupported scenario is rejected during reset
   ---
-  duration_ms: 12.431633
+  duration_ms: 22.17924
   type: 'test'
   ...
 # Subtest: private data store cannot be fetched from the web server
 ok 58 - private data store cannot be fetched from the web server
   ---
-  duration_ms: 10.64398
+  duration_ms: 16.291697
   type: 'test'
   ...
 # Subtest: HTML responses prevent embedding and caching
 ok 59 - HTML responses prevent embedding and caching
   ---
-  duration_ms: 7.258286
+  duration_ms: 10.567024
   type: 'test'
   ...
 # Subtest: server rejects unauthenticated reads
 ok 60 - server rejects unauthenticated reads
   ---
-  duration_ms: 109.666259
+  duration_ms: 37.496596
   type: 'test'
   ...
 # Subtest: role cannot be forged in a payload
 ok 61 - role cannot be forged in a payload
   ---
-  duration_ms: 34.945251
+  duration_ms: 32.689013
   type: 'test'
   ...
 # Subtest: idempotency suppresses duplicate events
 ok 62 - idempotency suppresses duplicate events
   ---
-  duration_ms: 39.048191
+  duration_ms: 42.495097
   type: 'test'
   ...
 # Subtest: idempotency key reuse with changed payload is rejected
 ok 63 - idempotency key reuse with changed payload is rejected
   ---
-  duration_ms: 36.784675
+  duration_ms: 42.112594
   type: 'test'
   ...
 # Subtest: optimistic version rejects stale writes
 ok 64 - optimistic version rejects stale writes
   ---
-  duration_ms: 37.413159
+  duration_ms: 28.734019
   type: 'test'
   ...
 # Subtest: concurrent writes at the same version cannot both succeed
 ok 65 - concurrent writes at the same version cannot both succeed
   ---
-  duration_ms: 30.16932
+  duration_ms: 22.259664
   type: 'test'
   ...
 # Subtest: persisted state survives a new server instance
 ok 66 - persisted state survives a new server instance
   ---
-  duration_ms: 24.078478
+  duration_ms: 18.228167
   type: 'test'
   ...
 # Subtest: cross-origin state mutations are rejected
 ok 67 - cross-origin state mutations are rejected
   ---
-  duration_ms: 5.682018
+  duration_ms: 6.395497
   type: 'test'
   ...
 # Subtest: public host names are rejected
 ok 68 - public host names are rejected
   ---
-  duration_ms: 9.292291
+  duration_ms: 7.459902
   type: 'test'
   ...
 # Subtest: stale trip references cannot mutate a new journey
 ok 69 - stale trip references cannot mutate a new journey
   ---
-  duration_ms: 5.527128
+  duration_ms: 6.303319
   type: 'test'
   ...
 # Subtest: observer cannot reset the presentation
 ok 70 - observer cannot reset the presentation
   ---
-  duration_ms: 4.450655
+  duration_ms: 5.22867
   type: 'test'
   ...
 # Subtest: invalid JSON is rejected without state change
 ok 71 - invalid JSON is rejected without state change
   ---
-  duration_ms: 8.457199
+  duration_ms: 6.996958
   type: 'test'
   ...
 # Subtest: server never exposes arbitrary filesystem paths
 ok 72 - server never exposes arbitrary filesystem paths
   ---
-  duration_ms: 6.033976
+  duration_ms: 4.503995
   type: 'test'
   ...
 # Subtest: visitor token is scoped to adult self reporting
 ok 73 - visitor token is scoped to adult self reporting
   ---
-  duration_ms: 9.699102
+  duration_ms: 7.560762
   type: 'test'
   ...
 # Subtest: visitor role is added when loading a 0.1.x demo store
 ok 74 - visitor role is added when loading a 0.1.x demo store
   ---
-  duration_ms: 12.131091
+  duration_ms: 9.767868
   type: 'test'
   ...
 # Subtest: visitor route and pure UI module are served with CSP
 ok 75 - visitor route and pure UI module are served with CSP
   ---
-  duration_ms: 8.068942
+  duration_ms: 3.982794
   type: 'test'
   ...
 1..75
@@ -461,4 +461,4 @@ ok 75 - visitor route and pure UI module are served with CSP
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 1030.721938
+# duration_ms 731.237811
