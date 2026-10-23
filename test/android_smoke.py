@@ -84,7 +84,15 @@ try:
     assert 'MAP_INTENT_OPENED' in logs,'external map intent was not launched'
     passed('maps intent opens from a saved address without an API key')
     adb('shell','am','start','-n','kr.co.ansimdonghaeng/.MainActivity');time.sleep(.8)
-    tap('방문 시작하기');tap('도착했어요');tap('연결번호 받기');tap('직접 인계했어요')
+    tap('방문 시작하기');tap('도착했어요')
+    # Readiness may have expired while the official address picker was open.
+    # Only an independent facility confirmation can renew it.
+    tap('시설',exact=True)
+    if any(n.get('text','')=='맞이할 준비 완료' or n.get('content-desc','')=='맞이할 준비 완료' for n in ui().iter('node')):
+        tap('맞이할 준비 완료')
+        passed('facility renewed an expired reception-ready status')
+    tap('인계자',exact=True)
+    tap('연결번호 받기');tap('직접 인계했어요')
     find('인계자가 확인했어요');passed('sender confirmation is independently recorded');shot('03-sender')
     tap('시설',exact=True);find('연결번호 6자리');passed('facility tab displays its independent reception screen')
     tap('시연 도구');tap('연결번호 입력하기');tap('직접 인수했어요');find('인수를 완료했어요');passed('receiver finishes the handoff');shot('04-received')

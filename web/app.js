@@ -157,7 +157,7 @@
     if(st==='EN_ROUTE')return `<section class="panel action-panel"><div class="eyebrow">02 · 이동 중</div><h2>목적지로 이동 중이에요</h2><p class="hint">도착 후 안전하게 정차한 다음 확인해 주세요.</p>${mapLink('지도 길안내')}${btn('arrive','도착했어요','primary')}</section>`;
     if(info.mode==='ARRIVAL_ONLY')return `<section class="panel action-panel"><h2>도착 소식을 남겨주세요</h2>${btn('report','도착 알림 남기기','primary',safe()&&state.consent)}</section>`;
     const reasons=H.handoffReasons(state,Date.now());
-    return `<section class="panel action-panel"><div class="eyebrow">03 · 대면 인계</div><h2>담당자에게 직접 인계해 주세요</h2>${reasons.length?`<p class="hint">${escapeHTML(reasons[0])}</p>`:''}${state.challenge?`<div class="pin-code"><span>담당자에게 보여줄 번호</span><strong>${escapeHTML(state.challenge.code||'••••••')}</strong><small id="codeSeconds"></small></div>`:''}${state.senderConfirmed?'<div class="confirmed">✓ 인계자가 확인했어요. 시설 담당자의 확인을 기다려요.</div>':state.challenge?btn('sender','직접 인계했어요','primary',!reasons.length):btn('issue','연결번호 받기','primary',!reasons.length)}${state.challenge?btn('issue','번호 다시 받기','light',!reasons.length):''}${!safe()?btn('park','정차 상태 다시 확인','light'):''}${!H.readyNow(state,Date.now())?'<p class="hint">시설 담당자에게 준비 확인을 요청해 주세요.</p>':''}</section>`;
+    return `<section class="panel action-panel"><div class="eyebrow">03 · 대면 인계</div><h2>담당자에게 직접 인계해 주세요</h2>${reasons.length?`<p class="hint">${escapeHTML(reasons[0])}</p>`:''}${state.challenge?`<div class="pin-code"><span>담당자에게 보여줄 번호</span><strong>${escapeHTML(state.challenge.code||'••••••')}</strong><small id="codeSeconds"></small></div>`:''}${state.senderConfirmed?'<div class="confirmed">✓ 인계자가 확인했어요. 시설 담당자의 확인을 기다려요.</div>':state.challenge?btn('sender','직접 인계했어요','primary',!reasons.length):btn('issue','연결번호 받기','primary',!reasons.length)}${state.challenge?btn('issue','번호 다시 받기','light',!reasons.length):''}${!safe()?btn('park','정차 상태 다시 확인','light'):''}${!H.readyNow(state,Date.now())?`<p class="hint">시설 담당자의 맞이할 준비 확인이 필요해요.</p>${btn('select-role','시설에서 준비 확인하기','outlined',true,'data-role="facility"')}`:''}</section>`;
   }
   function vehicleView(){return `<section class="hero"><span class="eyebrow">보호자 · 인계자</span><h1>${state.state==='PLANNED'?'오늘의 동행을 준비해요':state.state==='COMPLETED'?'잘 인계했어요':state.state==='EN_ROUTE'?'목적지로 이동 중이에요':'안전하게 인계해요'}</h1><p>${escapeHTML(state.info.subject||'이용자')}님의 ${escapeHTML(state.info.title)}</p></section>${steps()}<div class="main-grid"><div>${mainActions()}</div><div>${locationCard()}<section class="panel compact"><h3>연락하기</h3><p class="hint">${escapeHTML(state.info.receiver||'시설 담당자')}</p>${contactBtn()}</section></div></div>${history()}`;}
   function facilityView(){const s=state,info=s.info,ready=H.readyNow(s,Date.now());
@@ -217,8 +217,8 @@
     if(!draft||!result||typeof result.address!=='string'||!result.address.trim())return;
     draft.address=result.address.trim().slice(0,180);draft.postcode=/^\d{5}$/.test(result.postcode||'')?result.postcode:'';
     draft.latitude=null;draft.longitude=null;draft.detailAddress='';
-    // Do not replace a facility name that the user already edited.
-    if(result.buildingName&&(!draft.facility||draft.facility===H.SCENARIOS[state.scenario]?.facility))draft.facility=String(result.buildingName).slice(0,80);
+    // A location search cannot change which facility is responsible for the handoff.
+    // Facility identity is edited deliberately in Visit Settings.
     searchMessage='주소를 불러왔어요.';searchResults=[];
     returnFromAddress();$('field-detailAddress')?.focus();toast('주소를 불러왔어요.');
   }

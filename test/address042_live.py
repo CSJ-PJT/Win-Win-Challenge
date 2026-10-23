@@ -25,8 +25,17 @@ with sync_playwright() as pw:
    if not frame or result is None:raise AssertionError('Official postcode frame did not load: '+p.locator('body').inner_text())
    (O/(mode+'-provider-text.txt')).write_text(frame.locator('body').inner_text(),encoding='utf-8')
    p.screenshot(path=str(O/(mode+'-01-live-results.png')),full_page=True)
-   result.click()
-   expect(p.locator('#field-address')).to_have_value(re.compile('.*'+expected+'.*'))
+   # The provider iframe can still be taking focus after search results paint.
+   # A click that was ignored must not be interpreted as an address selection.
+   for attempt in range(3):
+    result.click()
+    try:
+     expect(p.locator('#field-address')).to_have_value(re.compile('.*'+expected+'.*'),timeout=3200)
+     break
+    except AssertionError:
+     if attempt==2:raise
+     p.wait_for_timeout(400)
+     result=frame.locator('button.link_post:has(.txt_addr)').filter(has_text=expected).first
    expect(p.locator('.postcode-tag')).to_be_visible()
    selected=p.locator('#field-address').input_value();p.fill('#field-detailAddress','정문')
    p.locator('#visitForm button[type=submit]').click();expect(p.locator('.dialog')).to_have_count(0)
