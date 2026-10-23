@@ -23,7 +23,6 @@ function createApp(options = {}) {
     try { fs.writeFileSync(fd, JSON.stringify(next)); fs.fsyncSync(fd); } finally { fs.closeSync(fd); }
     fs.renameSync(temp, dataFile); record = next;
   }
-  // Preserve existing synthetic visits when upgrading from 0.1.x.
   if (!record.tokens.visitor) {
     persist({ ...record, tokens: { ...record.tokens, visitor: crypto.randomBytes(24).toString('hex') } });
   }
@@ -106,7 +105,9 @@ function createApp(options = {}) {
       if (!filename) return json(res, 404, { error: 'NOT_FOUND' });
       const contents = fs.readFileSync(path.join(WEB, filename));
       const type = filename.endsWith('.js') ? 'text/javascript' : filename.endsWith('.css') ? 'text/css' : 'text/html';
-      res.writeHead(200, { 'Content-Type': type + '; charset=utf-8', 'Content-Security-Policy': "default-src 'self'; script-src 'self' https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://t1.kakaocdn.net; connect-src 'self'; frame-src https://postcode.map.kakao.com https://postcode.map.daum.net; child-src https://postcode.map.kakao.com https://postcode.map.daum.net; frame-ancestors 'none'; base-uri 'none'; form-action 'none'", 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer', 'Cache-Control': 'no-store' });
+      // On HTTP loopback pages the official SDK chooses an HTTP iframe URL.
+      // Upgrade that request, rather than permitting unencrypted remote frames.
+      res.writeHead(200, { 'Content-Type': type + '; charset=utf-8', 'Content-Security-Policy': "upgrade-insecure-requests; default-src 'self'; script-src 'self' https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://t1.kakaocdn.net; connect-src 'self'; frame-src https://postcode.map.kakao.com https://postcode.map.daum.net; child-src https://postcode.map.kakao.com https://postcode.map.daum.net; frame-ancestors 'none'; base-uri 'none'; form-action 'none'", 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer', 'Cache-Control': 'no-store' });
       res.end(req.method === 'HEAD' ? undefined : contents);
     } catch (e) {
       if (!(e instanceof H.DomainError)) console.error('Request failed:', e.message);
