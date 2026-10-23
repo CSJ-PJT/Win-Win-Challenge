@@ -27,7 +27,7 @@
   const terminal=()=>['COMPLETED','ARRIVAL_REPORTED','CANCELLED'].includes(state?.state);
   const canWrite=()=>state?.state==='PLANNED'&&!state?.arrivalNotice;
   const safe=()=>H.safeVehicle(state,Date.now());
-  const btn=(a,t,kind='primary',enabled=true,attrs='')=>`<button type="button" class="button ${kind}" data-action="${a}" ${!enabled||busy?'disabled':''} ${attrs}>${t}</button>`;
+  const btn=(a,t,kind='primary',enabled=true,attrs='')=>`<button type="button" class="button ${kind}" data-action="${a}" ${!enabled?'disabled':''} ${attrs}>${t}</button>`;
   const icon=(name)=>{
     const svg={shield:'<path d="M12 2 20 5v7c0 5-8 10-8 10S4 17 4 12V5l8-3Z"/><path d="m8 12 3 3 5-6"/>',pin:'<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/>',check:'<path d="m5 12 4 4L19 6"/>',arrow:'<path d="M4 12h15m-6-6 6 6-6 6"/>',person:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 3-8 8-8s8 3 8 8"/>',phone:'<path d="m5 3 4 5-2 3c2 3 3 4 6 6l3-2 5 4c-2 4-5 3-9 1C7 17 3 13 2 8c-1-3 1-5 3-5Z"/>',car:'<path d="M4 10 6 5h12l2 5 1 3v6H3v-6l1-3Z"/><path d="M4 10h16M7 15h2m6 0h2"/>',building:'<path d="M4 21V5l8-3 8 3v16M2 21h20M9 21v-6h6v6M8 7h1m6 0h1"/>',settings:'<path d="M4 7h16M4 17h16"/><circle cx="8" cy="7" r="3"/><circle cx="16" cy="17" r="3"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',route:'<circle cx="6" cy="19" r="2"/><path d="M7 17V7a4 4 0 0 1 4-4h4m-3-2 3 2-3 2"/><circle cx="17" cy="5" r="2"/>',edit:'<path d="m4 20 4-.7L20 7l-3-3L5 16Z"/>',close:'<path d="M18 6 6 18M6 6l12 12"/>',calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18"/'};
     return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svg[name]||svg.check}</svg>`;
@@ -37,7 +37,7 @@
   function showError(msg){error=msg;if(panel==='editor')editorError=msg;render(true);}
   function clearError(){error='';editorError='';}
   function recordState(next){if(!storageWrite(localStorage,STATE_KEY,next))throw new Error('기기에 저장하지 못했어요. 저장 공간을 확인해 주세요.');state=next;}
-  async function api(path,opts={}){if(offline)throw new Error('연결되지 않았어요.');const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);try{const res=await fetch(path,{...opts,signal:c.signal});const d=await res.json();if(!res.ok){const e=new Error(d.message||'서버 응답을 확인해 주세요.');e.code=d.code||d.error;e.status=res.status;throw e;}return d;}finally{clearTimeout(t);}}
+  async function api(path,opts={}){if(offline)throw new Error('연결되지 않았어요.');const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);try{const res=await fetch(path,{...opts,signal:c.signal});const d=await res.json();if(!res.ok){const e=new Error(d.message||'서버 응답을 확인해 주세요.');e.code=d.code||d.error;e.status=res.status;e.data=d;throw e;}return d;}finally{clearTimeout(t);}}
   async function connect(){const b=await api('/api/bootstrap');tokens=b.tokens;const d=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[role()]}});state=d.state;state.info={...C.defaults(),...state.info};connected=true;render();}
   function setPending(x){pending=x;storageWrite(sessionStorage,PENDING_KEY,x);}
   async function send(type,payload={},asRole=role(),quiet=false){
@@ -53,10 +53,16 @@
         if(result.rejected){const e=new Error(result.rejected.message);e.code=result.rejected.code;throw e;}
       }
       return true;
-    }catch(e){if(!quiet)error=e.message||U.publicError(e.code);return false;}
-    finally{busy=false;if(!quiet)render();}
+    }catch(e){
+      // A rejected verification may still advance the server version (wrong-code attempts).
+      // Adopt the returned authoritative state before the next confirmation.
+      if(e.data?.state)state=e.data.state;
+      if(e.status)setPending(null);
+      if(!quiet||type!=='VEHICLE')error=e.message||U.publicError(e.code);
+      return false;
+    }finally{busy=false;if(!quiet)render();}
   }
-  async function renewVehicle(){if(!state||terminal()||!state.vehicle.known||busy||offline||!connected)return;
+  async function renewVehicle(){if(!state||terminal()||!state.vehicle.known||busy||offline||!connected||serverMode&&role()!=='vehicle')return;
     if(Date.now()-heartbeatAt<10000)return;heartbeatAt=Date.now();await send('VEHICLE',{known:state.vehicle.known,restricted:state.vehicle.restricted,gear:state.vehicle.gear,speed:state.vehicle.speed},'simulator',true);
   }
   async function initialConditions(){if(!state||!connected)return;for(const [type,payload,by] of U.initialPresentationEvents(state)){await send(type,payload,by,true);}}
@@ -68,7 +74,7 @@
     panel=null;draft=null;codeInput='';savePrefs();render();toast('새 방문을 시작했어요.');
   }
   async function refresh(){if(!serverMode||offline||busy||refreshing||!tokens)return;refreshing=true;
-    try{const result=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[role()]}});if(state?.id!==result.state.id||result.state.version>state.version){state=result.state;render();}connected=true;}
+    try{const result=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[role()]}});if(busy)return;if(state?.id!==result.state.id||result.state.version>state.version){state=result.state;render();}connected=true;}
     catch(e){if(e.status===401){try{await connect();}catch{connected=false;render();}}else{connected=false;render();}}
     finally{refreshing=false;}
   }
@@ -117,7 +123,7 @@
   function demoMenu(){return `<div class="modal-title"><span class="eyebrow">시연</span><h2>화면 전환</h2></div><div class="choice-list">${Object.entries(ROLE_LABELS).map(([k,label])=>`<button class="role-option" data-action="select-role" data-role="${k}"><strong>${label}</strong>${icon('arrow')}</button>`).join('')}</div><div class="demo-actions">${state.challenge&&role()==='facility'?btn('use-demo-code','연결번호 입력하기','outlined'):''}${btn('new-visit','새 방문 시작','light')}${btn('open-visits','방문 종류 바꾸기','light')}</div>`;}
   function render(force=false){if(!state)return;
     // Never unmount an active form because of a background poll or heartbeat.
-    if(panel==='editor'&&!force){return;}
+    if(!force&&(panel==='editor'||document.activeElement?.id==='codeInput'))return;
     document.documentElement.className='text-'+prefs.text;
     const body=!prefs.roleChosen?rolePicker():prefs.mode==='easy'?easyView():role()==='facility'?facilityView():role()==='guardian'?guardianView():vehicleView();
     const overlays=panel==='editor'?editor():panel==='demo'?demoMenu():panel==='visits'?visitPicker():'';
@@ -174,7 +180,7 @@
       else if(a.hasAttribute('data-phone-link')&&window.VehicleBridge?.openDialer){e.preventDefault();window.VehicleBridge.openDialer(a.href.slice(4));}
       return;
     }
-    const button=e.target.closest('[data-action]');if(!button||button.disabled)return;const action=button.dataset.action;
+    const button=e.target.closest('[data-action]');if(!button||button.disabled||busy)return;const action=button.dataset.action;
     if(!C.can(action,role())){toast('현재 화면에서는 사용할 수 없는 기능이에요.');return;}
     if(action==='select-role'){setRole(button.dataset.role);return;}
     if(action==='open-editor'){openPanel('editor');return;}
