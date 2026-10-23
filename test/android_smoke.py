@@ -40,9 +40,9 @@ def coord(node):
     assert a is not None, 'Cannot tap an off-screen or zero-sized accessibility element'
     return str((a[0]+a[2])//2),str((a[1]+a[3])//2)
 def shot(n):(O/(n+'.png')).write_bytes(adb('exec-out','screencap','-p',raw=True))
-def find(text,click=False):
+def find(text,click=False,exact=False):
     for i in range(15):
-        root=ui();hits=[n for n in root.iter('node') if text in (n.get('text','')+' '+n.get('content-desc',''))]
+        root=ui();hits=[n for n in root.iter('node') if (n.get('text','')==text or n.get('content-desc','')==text) if exact] if exact else [n for n in root.iter('node') if text in (n.get('text','')+' '+n.get('content-desc',''))]
         hits.sort(key=lambda n:n.get('clickable')!='true')
         for n in hits:
             if rect(n) is None:continue
@@ -65,12 +65,14 @@ try:
     adb('shell','am','force-stop','kr.co.ansimdonghaeng');adb('shell','am','start','-n','kr.co.ansimdonghaeng/.MainActivity');time.sleep(7)
     shot('00-before-accessibility')
     find('안심동행');shot('01-launch');tap('방문 준비와 인계 확인');find('도착지 입력하기');passed('role onboarding and first screen work')
-    tap('도착지 입력하기');find('도착지 주소')
-    inputs=[n for n in ui().iter('node') if n.get('class')=='android.widget.EditText'];assert len(inputs)>=2,'destination address EditText missing'
-    adb('shell','input','tap',*coord(inputs[1]));adb('shell','input','text','Seoul%sCity%sHall');time.sleep(.6)
+    tap('도착지 입력하기');find('도착지 주소',exact=True)
+    inputs=[n for n in ui().iter('node') if n.get('class')=='android.widget.EditText' and rect(n)]
+    assert inputs, 'destination address input not accessible in the open editor'
+    address=next((n for n in inputs if not n.get('text','').strip()),inputs[-1])
+    adb('shell','input','tap',*coord(address));adb('shell','input','text','Seoul%sCity%sHall');time.sleep(.6)
     txt=' '.join(n.get('text','') for n in ui().iter('node') if n.get('class')=='android.widget.EditText')
     assert 'Seoul' in txt, 'Android keyboard did not enter address text'
-    adb('shell','input','keyevent','4');shot('02-edit');tap('도착지 저장');find('방문 시작하기');passed('real Android keyboard input saves a destination')
+    adb('shell','input','keyevent','4');shot('02-edit');tap('도착지 저장');find('방문 시작하기');find('Seoul City Hall',exact=True);passed('real Android keyboard input saves a destination')
     tap('길안내 열기');time.sleep(1)
     logs=adb('logcat','-d','-s','HandoffMap:I')
     assert 'MAP_INTENT_OPENED' in logs,'external map intent was not launched'
