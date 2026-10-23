@@ -22,3 +22,9 @@
 .postcode-tag{font-size:.88rem;color:var(--muted);margin:8px 0}
 #addressRetry[hidden],#addressLoadStatus[hidden]{display:none}
 @media(max-width:600px){.address-dialog{height:calc(100dvh - 24px);max-height:calc(100dvh - 24px)}.address-dialog .dialog-body{flex:1}.address-widget{height:400px;min-height:280px}.address-dialog .modal-title p{font-size:15px}}
+
+/* Keep address search visible next to the active input, including with the keyboard open. */
+.address-field{grid-column:1/-1}
+.address-field-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.address-field-heading label{flex:1;min-width:0}
+.address-field-heading .button{width:auto;flex:none;min-height:44px;padding:8px 14px;border-radius:10px;font-size:.9em;margin:0}
