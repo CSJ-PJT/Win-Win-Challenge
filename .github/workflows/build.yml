@@ -34,6 +34,9 @@ jobs:
           npm run bundle
       - name: Test UI and real browser synchronization
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk > /dev/null
+          fc-match 'Noto Sans CJK KR'
           python3 -m pip install --quiet playwright==1.57.0
           python3 test/browser_smoke.py --output build-reports/v020/browser
       - uses: actions/setup-java@v4
