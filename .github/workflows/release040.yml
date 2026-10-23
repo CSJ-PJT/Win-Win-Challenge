@@ -1,4 +1,4 @@
-name: Verify and release Ansim 0.4.0 (Android retry)
+name: Verify and release Ansim 0.4.0 (verified archive)
 on:
   workflow_dispatch:
   push:
@@ -88,7 +88,8 @@ jobs:
           git rev-parse HEAD > build-reports/v040/ci/source-revision.txt
           git add apk/ansim-platform-0.4.0-preview.apk build-reports/v040/ci dist android/app/src/main/assets
           git diff --cached --quiet || git commit -m 'build: archive 0.4.0 checks and release [skip ci]'
-          git push
+          git pull --rebase origin feature/ux-stable-0.4
+          git push origin HEAD:feature/ux-stable-0.4
           git archive --format=zip HEAD web android test tools docs server.js package.json README.md .github .gitignore start-demo.cmd start-demo.sh -o ansim-platform-0.4.0-source.zip
       - uses: actions/upload-artifact@v4
         if: always()
