@@ -30,7 +30,7 @@ function navigation(info,provider='google',search=false){
  const encode=encodeURIComponent;
  if(!search&&!hasDestination(info))return null;
  // An address-only Kakao link is search, not turn-by-turn directions. Use Maps URLs for directions instead.
- if(provider==='google'||!coord)return search?'https://www.google.com/maps/search/?api=1&query='+encode(query):'https://www.google.com/maps/dir/?api=1&destination='+encode(coord?`${info.latitude},${info.longitude}`:query)+'&travelmode=driving';
+ if(provider==='google'||!coord)return search?'https://www.google.com/maps/search/?api=1&query='+encode(query):'https://www.google.com/maps/dir/?api=1&destination='+encode(coord?`${info.latitude},${info.longitude}`:query)+'&travelmode=driving&dir_action=navigate';
  if(search)return 'https://map.kakao.com/link/search/'+encode(query);
  return 'https://map.kakao.com/link/to/'+encode(label)+','+info.latitude+','+info.longitude;
 }

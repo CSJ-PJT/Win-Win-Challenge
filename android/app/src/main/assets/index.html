@@ -51,7 +51,7 @@ function navigation(info,provider='google',search=false){
  const encode=encodeURIComponent;
  if(!search&&!hasDestination(info))return null;
  // An address-only Kakao link is search, not turn-by-turn directions. Use Maps URLs for directions instead.
- if(provider==='google'||!coord)return search?'https://www.google.com/maps/search/?api=1&query='+encode(query):'https://www.google.com/maps/dir/?api=1&destination='+encode(coord?`${info.latitude},${info.longitude}`:query)+'&travelmode=driving';
+ if(provider==='google'||!coord)return search?'https://www.google.com/maps/search/?api=1&query='+encode(query):'https://www.google.com/maps/dir/?api=1&destination='+encode(coord?`${info.latitude},${info.longitude}`:query)+'&travelmode=driving&dir_action=navigate';
  if(search)return 'https://map.kakao.com/link/search/'+encode(query);
  return 'https://map.kakao.com/link/to/'+encode(label)+','+info.latitude+','+info.longitude;
 }
@@ -440,7 +440,7 @@ return {TEXT,PHONES,PERSONAL,PLACE,FIELDS,fieldsFor,cleanPatch,phone,can,hasCoor
   function mainActions(){
     const info=state.info,st=state.state;
     if(terminal())return `<section class="panel action-panel"><span class="success-mark">${icon('check')}</span><h2>${st==='COMPLETED'?'인계 확인 완료':st==='ARRIVAL_REPORTED'?'도착 알림 완료':'방문이 취소됐어요'}</h2><p class="hint">${time(state.completedAt)||'새 방문을 준비할 수 있어요.'}</p>${btn('new-visit','다음 방문 준비하기')}</section>`;
-    if(st==='PLANNED')return `<section class="panel action-panel"><div class="eyebrow">01 · 방문 준비</div><h2>방문을 시작할까요?</h2><p class="hint">${C.hasDestination(info)?'방문할 장소를 확인했어요.':'먼저 도착지 주소를 등록해 주세요.'}</p>${!state.consent?btn('easy-screen','본인 동의 확인하기','outlined'):C.hasDestination(info)?btn('depart','방문 시작하기','primary',safe()):btn('edit-destination','도착지 입력하기','primary')}${!safe()?btn('park','정차 상태 확인','light'):''}</section>`;
+    if(st==='PLANNED')return `<section class="panel action-panel"><div class="eyebrow">01 · 방문 준비</div><h2>방문을 시작할까요?</h2><p class="hint">${C.hasDestination(info)?'방문할 장소를 확인했어요.':'먼저 도착지 주소를 등록해 주세요.'}</p>${C.hasDestination(info)?mapLink('길안내 열기'):''}${!state.consent?btn('easy-screen','본인 동의 확인하기','outlined'):C.hasDestination(info)?btn('depart','방문 시작하기','primary',safe()):btn('edit-destination','도착지 입력하기','primary')}${!safe()?btn('park','정차 상태 확인','light'):''}</section>`;
     if(st==='EN_ROUTE')return `<section class="panel action-panel"><div class="eyebrow">02 · 이동 중</div><h2>목적지로 이동 중이에요</h2><p class="hint">도착 후 안전하게 정차한 다음 확인해 주세요.</p>${mapLink('지도 길안내')}${btn('arrive','도착했어요','primary')}</section>`;
     if(info.mode==='ARRIVAL_ONLY')return `<section class="panel action-panel"><h2>도착 소식을 남겨주세요</h2>${btn('report','도착 알림 남기기','primary',safe()&&state.consent)}</section>`;
     const reasons=H.handoffReasons(state,Date.now());
