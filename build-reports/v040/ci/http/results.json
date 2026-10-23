@@ -4,6 +4,7 @@
     "vehicle departure works through the real API",
     "independent facility page opens only reception actions",
     "facility rejects wrong codes through HTTP service",
+    "receiver confirmation survives a concurrent telemetry version change",
     "independent actor confirmation completes via HTTP",
     "read-only guardian page shows the completed status",
     "no client-side JavaScript exceptions"

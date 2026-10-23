@@ -46,7 +46,21 @@
     busy=true;clearError();
     try{
       if(serverMode){const intent={key:uid(),tripId:state.id,expectedVersion:state.version,event:{type,payload},role:asRole};setPending(intent);
-        const data=await api('/api/events',{method:'POST',headers:{Authorization:'Bearer '+tokens[asRole],'Content-Type':'application/json'},body:JSON.stringify(intent)});state=data.state;setPending(null);
+        const submit=()=>api('/api/events',{method:'POST',headers:{Authorization:'Bearer '+tokens[asRole],'Content-Type':'application/json'},body:JSON.stringify(intent)});
+        let data;
+        try {data=await submit();}
+        catch(e){
+          // Vehicle telemetry and a human confirmation can arrive at the same state version.
+          // A rejected VERSION write has not been applied. Refresh and retry once.
+          if(e.code!=='VERSION')throw e;
+          const latest=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[asRole]}});
+          state=latest.state;
+          if(state.id!==intent.tripId)throw e;
+          intent.expectedVersion=state.version;
+          setPending(intent);
+          data=await submit();
+        }
+        state=data.state;setPending(null);
       }else{
         const result=H.apply(state,{type,payload},{role:asRole,id:asRole==='facility'?'staff-001':asRole==='vehicle'?'sender-001':asRole==='visitor'?'visitor-001':asRole},{now:Date.now(),code:code()});
         recordState(result.state);
