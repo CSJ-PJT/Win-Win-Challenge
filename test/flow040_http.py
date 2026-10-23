@@ -26,7 +26,7 @@ try:
   v.get_by_role('button',name='도착지 입력하기').click()
   v.fill('#field-address','서울특별시 중구 세종대로 110');v.locator('#visitForm button[type="submit"]').click()
   expect(v.get_by_role('button',name='방문 시작하기')).to_be_enabled()
-  v.reload();expect(v.get_by_text('서울특별시 중구 세종대로 110')).to_be_visible()
+  v.reload();expect(v.locator('.prepared-address')).to_contain_text('서울특별시 중구 세종대로 110')
   passed('HTTP server saves configured destination across a browser reload')
   v.locator('[data-action="depart"]').click();expect(v.get_by_role('button',name='도착했어요')).to_be_enabled()
   passed('vehicle departure works through the real API')
