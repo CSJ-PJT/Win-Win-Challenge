@@ -1,4 +1,4 @@
 V2 Signer: certificate DN: CN=Ansim Preview, O=Contest Prototype, C=KR
-V2 Signer: certificate SHA-256 digest: 96e0a626ed6d43e629405aee7e3e88de6941ac646bc41ddcaf44fe381059478f
-V2 Signer: certificate SHA-1 digest: 5c9f29a2d92c16b727f80d85ba9bc1613371a0b7
-V2 Signer: certificate MD5 digest: c5d867910f0bd2ebd92febd8f40a57ca
+V2 Signer: certificate SHA-256 digest: 9022fe25b961a2f1a8f2cb8770904bf37e9dceb22ac46a8aecb81f70c03fe376
+V2 Signer: certificate SHA-1 digest: 963826d1e8db3c8016dee421c41fdf42a9d82af3
+V2 Signer: certificate MD5 digest: 7e2a5bd855ca7ed396a71d4396eed6fc

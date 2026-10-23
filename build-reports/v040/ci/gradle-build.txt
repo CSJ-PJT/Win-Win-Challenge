@@ -22,8 +22,8 @@ Daemon will be stopped at the end of the build
 > Task :app:packageReleaseResources
 > Task :app:parseReleaseLocalResources
 > Task :app:processReleaseManifest
-> Task :app:javaPreCompileRelease
 > Task :app:processReleaseManifestForPackage
+> Task :app:javaPreCompileRelease
 > Task :app:desugarReleaseFileDependencies
 > Task :app:mergeReleaseStartupProfile
 > Task :app:processReleaseResources
@@ -61,8 +61,8 @@ Note: Recompile with -Xlint:deprecation for details.
 > Task :app:packageRelease
 > Task :app:createReleaseApkListingFileRedirect
 > Task :app:assembleRelease
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_4-1792738836522.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_4-1792739440835.json
 [Incubating] Problems report is available at: file:///home/runner/work/Win-Win-Challenge/Win-Win-Challenge/android/build/reports/problems/problems-report.html
 
-BUILD SUCCESSFUL in 31s
+BUILD SUCCESSFUL in 51s
 47 actionable tasks: 47 executed
