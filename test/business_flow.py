@@ -40,7 +40,7 @@ with sync_playwright() as pw:
   # Close without saving to test cancellation and new drafts.
   click('close-panel');assert state()['info']['address']==''
   passed('address results are selectable and cancellation does not persist them')
-  click('settings');p.fill('#field-subject','이용자 테스트');p.fill('#field-senderName','인계자 테스트');p.fill('#field-senderPhone','010-1234-5678');p.fill('#field-guardianName','보호자 테스트');p.fill('#field-guardianPhone','010-8765-4321');p.fill('#field-facilityPhone','02-123-4567');p.fill('#field-supportNote','정문에서 만나기');p.select_option('#mapProvider','google');click('save-settings')
+  click('settings');p.fill('#field-subject','이용자 테스트');p.fill('#field-senderName','인계자 테스트');p.fill('#field-senderPhone','010-1234-5678');p.fill('#field-guardianName','보호자 테스트');p.fill('#field-guardianPhone','010-8765-4321');p.fill('#field-facilityPhone','02-123-4567');p.fill('#field-supportNote','정문에서 만나기');p.select_option('#mapProvider','google');click('save-settings');expect(p.locator('.modal')).to_have_count(0)
   s=state();assert s['info']['subject']=='이용자 테스트' and s['info']['senderPhone']=='01012345678'
   passed('subject, handoff contact, guardian contact, facility phone and support request save')
   click('navigate');p.fill('#field-address','서울특별시 중구 세종대로 110');click('search-address');click('select-address');click('save-destination');click('navigate')
@@ -64,9 +64,9 @@ with sync_playwright() as pw:
   p.fill('#codeInput','000000' if code!='000000' else '111111');click('receiver');expect(p.locator('#inlineError')).to_contain_text('연결번호가 맞지');assert not state()['receiverConfirmed']
   p.fill('#codeInput',code);click('receiver');assert state()['state']=='COMPLETED';shot('05-received')
   passed('incorrect code fails and correct facility confirmation completes the handoff')
-  role('vehicle');click('restart');assert state()['info']['address']=='서울특별시 중구 세종대로 110';assert state()['info']['senderPhone']=='01012345678';expect(p.locator('[data-action="depart"]')).to_be_enabled()
+  role('vehicle');click('restart');expect(p.locator('[data-action="depart"]')).to_have_text('이 목적지로 출발하기');expect(p.locator('[data-action="depart"]')).to_be_enabled();assert state()['info']['address']=='서울특별시 중구 세종대로 110';assert state()['info']['senderPhone']=='01012345678'
   passed('next visit restores the configured destination and contacts')
-  click('settings');click('destination');p.fill('#field-address','서울 종로구 세종대로 175');click('save-destination');assert state()['info']['latitude'] is None and state()['info']['longitude'] is None
+  click('settings');click('destination');p.fill('#field-address','서울 종로구 세종대로 175');click('save-destination');expect(p.locator('.modal')).to_have_count(0);assert state()['info']['latitude'] is None and state()['info']['longitude'] is None
   passed('editing an address clears stale coordinates')
   click('settings');p.fill('#field-facilityPhone','*123#');click('save-settings');expect(p.locator('#settingsError')).to_contain_text('전화번호');assert state()['info']['facilityPhone']=='021234567';click('close-panel')
   passed('invalid telephone input cannot overwrite a saved contact')
