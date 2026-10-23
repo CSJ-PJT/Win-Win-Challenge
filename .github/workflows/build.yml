@@ -21,24 +21,40 @@ defaults:
 jobs:
   verify-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
+    outputs:
+      source_sha: ${{ steps.source.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
+      - name: Apply checked source update
+        id: source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if [ -f tools/update-demo021.py ]; then
+            python3 tools/update-demo021.py
+            rm tools/update-demo021.py
+            git add -A
+            git diff --cached --quiet || git commit -m 'fix: make 0.2.1 demonstration usable from the first screen [skip ci]'
+            git push
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Test domain and HTTP service
         run: |
-          mkdir -p build-reports/v020
-          npm test | tee build-reports/v020/node-tests.txt
+          mkdir -p build-reports/v021
+          git rev-parse HEAD > build-reports/v021/source-revision.txt
+          npm test | tee build-reports/v021/node-tests.txt
           npm run bundle
-      - name: Test UI and real browser synchronization
+      - name: Test browser synchronization and direct demonstration
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends fonts-noto-cjk > /dev/null
-          fc-match 'Noto Sans CJK KR'
           python3 -m pip install --quiet playwright==1.57.0
-          python3 test/browser_smoke.py --output build-reports/v020/browser
+          python3 test/browser_smoke.py --output build-reports/v021/browser
+          python3 test/demo_flow.py --output build-reports/v021/direct-flow
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -51,33 +67,68 @@ jobs:
           cp web/*.js web/style.css android/app/src/main/assets/
           cp dist/handoff-demo.html android/app/src/main/assets/index.html
           keytool -genkeypair -keystore "$RUNNER_TEMP/preview.jks" -storepass preview-ci-only -keypass preview-ci-only -alias demo -keyalg RSA -keysize 3072 -validity 3650 -dname 'CN=Ansim Preview, O=Contest Prototype, C=KR'
-      - name: Build preview APK without an emulator
+      - name: Build and verify signed release APK
         env:
           DEMO_KEYSTORE: ${{ runner.temp }}/preview.jks
           DEMO_STORE_PASSWORD: preview-ci-only
         run: |
-          gradle -p android --no-daemon --max-workers=2 assembleRelease 2>&1 | tee build-reports/v020/gradle-build.txt
+          gradle -p android --no-daemon --max-workers=2 assembleRelease 2>&1 | tee build-reports/v021/gradle-build.txt
           mkdir -p apk
-          cp android/app/build/outputs/apk/release/app-release.apk apk/ansim-platform-0.2.0-preview.apk
-          "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/ansim-platform-0.2.0-preview.apk | tee build-reports/v020/apk-signature.txt
-          sha256sum apk/ansim-platform-0.2.0-preview.apk > build-reports/v020/apk-sha256.txt
-          echo 'This run builds and verifies the APK signature. Android/Pleos runtime testing is not included.' > build-reports/v020/native-scope.txt
-      - name: Preserve preview and source revision
+          cp android/app/build/outputs/apk/release/app-release.apk apk/ansim-platform-0.2.1-preview.apk
+          "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/ansim-platform-0.2.1-preview.apk | tee build-reports/v021/apk-signature.txt
+          sha256sum apk/ansim-platform-0.2.1-preview.apk > build-reports/v021/apk-sha256.txt
+      - name: Preserve source and build output
         run: |
-          git rev-parse HEAD > build-reports/v020/source-revision.txt
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add apk/ansim-platform-0.2.0-preview.apk build-reports/v020 dist android/app/src/main/assets
-          git diff --cached --quiet || git commit -m 'build: archive 0.2.0 preview and verification [skip ci]'
+          git add apk/ansim-platform-0.2.1-preview.apk build-reports/v021 dist android/app/src/main/assets
+          git diff --cached --quiet || git commit -m 'build: archive 0.2.1 preview and verification [skip ci]'
           git push
-          git archive --format=zip HEAD -o ansim-platform-0.2.0-source.zip
+          git archive --format=zip HEAD -o ansim-platform-0.2.1-source.zip
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ansim-platform-0.2.0-preview
+          name: ansim-platform-0.2.1-preview
           path: |
-            apk/ansim-platform-0.2.0-preview.apk
+            apk/ansim-platform-0.2.1-preview.apk
             dist/handoff-demo.html
-            build-reports/v020/
-            ansim-platform-0.2.0-source.zip
+            build-reports/v021/
+            ansim-platform-0.2.1-source.zip
+          retention-days: 14
+  native-smoke:
+    needs: verify-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.verify-build.outputs.source_sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: ansim-platform-0.2.1-preview
+          path: build-input
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Enable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Touch the signed release APK
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: python3 test/android_smoke.py build-input/apk/ansim-platform-0.2.1-preview.apk --output native-results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ansim-platform-0.2.1-native-check
+          path: native-results/
           retention-days: 14
