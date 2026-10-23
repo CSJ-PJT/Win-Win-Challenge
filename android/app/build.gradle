@@ -4,7 +4,8 @@ android {
   compileSdk 35
   buildFeatures { buildConfig true }
   useLibrary 'android.car', false
-  defaultConfig { applicationId 'kr.co.ansimdonghaeng'; minSdk 28; targetSdk 35; versionCode 8; versionName '0.4.2' }
+  defaultConfig { applicationId 'kr.co.ansimdonghaeng'; minSdk 28; targetSdk 35; versionCode 8; versionName '0.4.2'; testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' }
+  testBuildType 'release'
   signingConfigs {
     demoRelease {
       if (System.getenv('DEMO_KEYSTORE')) {
@@ -19,4 +20,9 @@ android {
   compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
 kotlin { jvmToolchain(17) }
-dependencies { implementation 'ai.pleos.playground:NaviHelper:3.0.5' }
+dependencies {
+  implementation 'ai.pleos.playground:NaviHelper:3.0.5'
+  androidTestImplementation 'androidx.test:runner:1.6.2'
+  androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+  androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'
+}
