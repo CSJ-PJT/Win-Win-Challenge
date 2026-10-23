@@ -1,0 +1,21 @@
+{
+  "fixture": false,
+  "passed": 13,
+  "results": [
+    "standalone startup is enabled without a server, setup menu, or API request",
+    "repetitive demonstration disclaimers are absent",
+    "vehicle handoff remains incomplete until the facility confirms",
+    "empty verification number gives a usable validation message",
+    "complete handoff uses visible next-step buttons only",
+    "restart restores an immediately usable departure",
+    "easy arrival and facility read confirmation work without hidden controls",
+    "contact can be saved and passed to the dialer from the contact screen",
+    "320px screen with 200 percent text remains within the viewport",
+    "community visit has arrival/read actions, not a fabricated handoff",
+    "daycare scenario is also ready on selection",
+    "unsafe simulation stays blocked with an explicit visible recovery action",
+    "no uncaught JavaScript errors"
+  ],
+  "errors": [],
+  "apiRequests": []
+}

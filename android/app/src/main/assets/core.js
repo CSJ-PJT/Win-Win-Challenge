@@ -5,7 +5,7 @@
   else root.Handoff = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
-  const VERSION = '0.2.0';
+  const VERSION = '0.2.1';
   const TELEMETRY_TTL = 30000, READY_TTL = 600000, CODE_TTL = 120000;
   const SCENARIOS = {
     kindergarten: { title: '유치원 등원', facility: '햇살유치원 · 가상 시설', subject: '도담 · 가상 원아', receiver: '햇살반 담당 교사', place: '시설 내 지정 승하차 구역 A', mode: 'HANDOFF', adult: false },
@@ -27,7 +27,7 @@
       readyAt: null, ready: false, locationInside: false,
       vehicle: { source: 'SIMULATOR', known: false, restricted: true, gear: 'UNKNOWN', speed: null, at: null },
       challenge: null, senderConfirmed: false, receiverConfirmed: false, blockReason: null,
-      arrivalNotice: null, completedAt: null, createdAt: now, events: [{ seq: 0, at: now, type: 'CREATED', actor: 'simulator', message: '가상 이동 건을 만들었습니다. 실제 시설·이용자 데이터가 아닙니다.' }]
+      arrivalNotice: null, completedAt: null, createdAt: now, events: [{ seq: 0, at: now, type: 'CREATED', actor: 'simulator', message: '방문을 등록했습니다.' }]
     };
   }
   function safeVehicle(s, now) {
@@ -70,7 +70,7 @@
         requireThat(typeof p.accepted === 'boolean', 'INPUT', '동의 여부가 필요합니다.', 400);
         s.consent = p.accepted;
         if (!s.consent) invalidate(s, '이용자가 동의를 철회했습니다.');
-        message = s.consent ? '이용자 동의 확인을 모의 입력했습니다.' : '동의 철회로 진행 중인 인계 확인을 취소했습니다.';
+        message = s.consent ? '이용자 동의를 확인했습니다.' : '동의 철회로 진행 중인 인계 확인을 취소했습니다.';
         break;
       case 'SELF_CONSENT':
         assertActor(actor, ['visitor']);
@@ -105,7 +105,7 @@
         s.ready = p.ready; s.readyAt = p.ready ? now : null;
         if (!p.ready) invalidate(s, '인수 담당자가 준비 상태를 해제했습니다.');
         else s.blockReason = null;
-        message = p.ready ? '지정 담당자가 인수 준비를 확인했습니다.' : '담당자 부재 상태입니다. 인계 완료로 처리하지 않습니다.';
+        message = p.ready ? '지정 담당자가 인수 준비를 확인했습니다.' : '담당자가 인수 어려움을 알렸습니다.';
         break;
       case 'VEHICLE':
         assertActor(actor, ['simulator']);
@@ -113,20 +113,25 @@
           (p.speed === null || (Number.isFinite(p.speed) && p.speed >= 0)), 'INPUT', '차량 모의 신호 형식이 올바르지 않습니다.', 400);
         s.vehicle = { source: 'SIMULATOR', known: p.known, restricted: p.restricted, gear: p.gear, speed: p.speed, at: now };
         if (!safeVehicle(s, now) && s.challenge) invalidate(s, '차량 조건이 변경되어 재확인이 필요합니다.');
-        message = safeVehicle(s, now) ? '정차·UX 허용 신호를 모의 입력했습니다.' : '주행 중이거나 차량 신호가 불명확합니다.';
+        message = safeVehicle(s, now) ? '정차 상태를 확인했습니다.' : '주행 중이거나 차량 신호가 불명확합니다.';
         break;
       case 'DEPART':
         assertActor(actor, ['vehicle']);
         requireThat(s.state === 'PLANNED', 'STATE', '출발 준비 단계에서만 시작할 수 있습니다.');
         requireThat(s.consent, 'CONSENT', '이용자 동의를 먼저 확인해 주세요.');
         requireThat(safeVehicle(s, now), 'VEHICLE_UNSAFE', '정차 상태에서 출발 계획을 선택해 주세요.');
-        s.state = 'EN_ROUTE'; message = '이동을 시작했습니다. 도착은 아직 인계 완료가 아닙니다.';
+        s.state = 'EN_ROUTE'; message = '목적지로 출발했습니다.';
         break;
       case 'ARRIVE':
         assertActor(actor, ['simulator']);
         requireThat(s.state === 'EN_ROUTE', 'STATE', '이동 중에만 도착을 입력할 수 있습니다.');
         s.state = 'ARRIVED'; s.locationInside = true;
-        message = '지정 구역 도착을 모의 입력했습니다. 사람의 인수는 별도 확인합니다.';
+        message = '지정 승하차 구역에 도착했습니다.';
+        break;
+      case 'RETURN_AREA':
+        assertActor(actor, ['simulator']);
+        requireThat(['ARRIVED','VERIFYING'].includes(s.state), 'STATE', '도착 단계에서만 구역을 확인할 수 있습니다.');
+        s.locationInside = true; message = '지정 구역 도착을 확인했습니다.';
         break;
       case 'LEAVE_AREA':
         assertActor(actor, ['simulator']);
@@ -139,7 +144,7 @@
         requireThat(/^\d{6}$/.test(ctx.code || ''), 'CODE_SOURCE', '확인번호 생성에 실패했습니다.', 500);
         s.challenge = { code: ctx.code, expiresAt: now + CODE_TTL, attempts: 0 };
         s.senderConfirmed = false; s.receiverConfirmed = false; s.state = 'VERIFYING'; s.blockReason = null;
-        message = '2분간 유효한 대면 연결번호를 발급했습니다. 번호만으로 인수 자격이 생기지 않습니다.';
+        message = '연결번호를 발급했습니다.';
         break;
       case 'SENDER_CONFIRM':
       case 'RECEIVER_CONFIRM': {
@@ -169,12 +174,12 @@
         assertActor(actor, ['vehicle']);
         requireThat(s.info.mode === 'ARRIVAL_ONLY', 'MODE', '이 이동에는 양측 인계 확인이 필요합니다.');
         requireThat(s.state === 'ARRIVED' && s.locationInside && s.consent && safeVehicle(s, now), 'NOT_READY', '동의·도착·최신 정차 상태를 확인해 주세요.');
-        s.state = 'ARRIVAL_REPORTED'; s.completedAt = now; message = '본인 선택에 따라 도착을 기록했습니다. 인계 완료를 의미하지 않습니다.';
+        s.state = 'ARRIVAL_REPORTED'; s.completedAt = now; message = '도착 알림을 남겼습니다.';
         break;
       case 'CANCEL':
         assertActor(actor, ['vehicle', 'facility']);
         if (actor.role === 'facility') requireThat(actor.id === s.assignedReceiver, 'RECEIVER', '지정된 담당자가 아닙니다.', 403);
-        invalidate(s, '이동이 취소되었습니다.'); s.state = 'CANCELLED'; message = '이동을 취소했습니다. 인계 완료로 처리하지 않습니다.';
+        invalidate(s, '이동이 취소되었습니다.'); s.state = 'CANCELLED'; message = '방문을 취소했습니다.';
         break;
       default: throw new DomainError('UNKNOWN_EVENT', '지원하지 않는 작업입니다.', 400);
     }

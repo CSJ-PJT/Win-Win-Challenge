@@ -1,0 +1,67 @@
+{
+  "mode": "real loopback HTTP / browser storage",
+  "cases": [
+    {
+      "name": "home hides developer controls and unnecessary inputs",
+      "passed": true
+    },
+    {
+      "name": "adult sharing consent is explicit",
+      "passed": true
+    },
+    {
+      "name": "easy primary control is at least 72 CSS pixels high with 22px text",
+      "passed": true
+    },
+    {
+      "name": "arrival confirmation shows recipient without a code input",
+      "passed": true
+    },
+    {
+      "name": "arrival record leaves handoff incomplete",
+      "passed": true
+    },
+    {
+      "name": "320px viewport and 200 percent text has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "view settings and arrival record restored on a new app instance",
+      "passed": true
+    },
+    {
+      "name": "contact can be entered directly without opening a dialer first",
+      "passed": true
+    },
+    {
+      "name": "offline arrival is not saved and contact stays reachable",
+      "passed": true
+    },
+    {
+      "name": "settings modal traps focus and Escape closes it",
+      "passed": true
+    },
+    {
+      "name": "normal handoff still requires both in-person confirmations",
+      "passed": true
+    },
+    {
+      "name": "wrong verification number cannot complete handoff",
+      "passed": true
+    },
+    {
+      "name": "real two-tab arrival delivery and read acknowledgment",
+      "passed": true
+    },
+    {
+      "name": "lost response is retried with the same idempotency key",
+      "passed": true
+    },
+    {
+      "name": "no unhandled browser JavaScript exceptions",
+      "passed": true
+    }
+  ],
+  "jsErrors": [],
+  "passed": 15
+}
