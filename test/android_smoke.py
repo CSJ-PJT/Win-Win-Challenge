@@ -82,7 +82,7 @@ try:
     find('인계자가 확인했어요');passed('sender confirmation is independently recorded');shot('03-sender')
     tap('화면 전환');tap('시설 담당자');find('연결번호 6자리');passed('facility has its own reception screen')
     tap('화면 전환');tap('연결번호 입력하기');tap('직접 인수했어요');find('인수를 완료했어요');passed('receiver finishes the handoff');shot('04-received')
-    tap('화면 전환');tap('보호자 · 진행 조회');find('인계를 마쳤어요');passed('guardian sees completed status')
+    tap('화면 전환');tap('보호자 · 조회');find('인계를 마쳤어요');passed('guardian sees completed status')
     tap('화면 전환');tap('쉬운 화면');tap('주야간보호센터');tap('동의하고 계속');tap('도착 알리기');find('도착 소식을');passed('large-button arrival flow works');shot('05-easy')
 finally:
     try:(O/'logcat.txt').write_text(adb('logcat','-d','-t','1000'))
