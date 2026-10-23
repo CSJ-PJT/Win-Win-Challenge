@@ -47,6 +47,7 @@ with sync_playwright() as pw:
         return page.evaluate("async () => {const b=await (await fetch('/api/bootstrap')).json(); return (await (await fetch('/api/state',{headers:{Authorization:'Bearer '+b.tokens.vehicle}})).json()).state;}")
     def fresh(page,scenario,mode='standard'):
         demo(page);page.select_option('#scenario',scenario);click(page,'reset')
+        expect(page.locator('.modal')).to_have_count(0)
         if mode=='standard':
             if page.locator('[data-action="mode-standard"]').count():click(page,'mode-standard')
         else:

@@ -342,6 +342,8 @@
     refreshing=true;
     try {
       const data=await request('/api/state',{headers:{Authorization:'Bearer '+tokens[role()]}});
+      // Never replace a newer write with an older poll that was already in flight.
+      if(busy || (state?.id===data.state.id && state.version>data.state.version)) return;
       const changed=!state || state.id!==data.state.id || state.version!==data.state.version || !connected;
       if(state && state.id!==data.state.id) { codeInput=''; senderCheck=false; receiverCheck=false; easyStep='home'; }
       state=data.state; connected=true; reconcileTrip();
@@ -383,6 +385,7 @@
   }
   async function reset(scenario, mode=prefs.mode) {
     if(busy) return;
+    busy=true; render();
     try {
       if(serverMode) {
         await request('/api/reset',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tokens.simulator},body:JSON.stringify({scenario})});
@@ -395,6 +398,7 @@
       setPending(null); easyStep='home'; codeInput=''; senderCheck=false; receiverCheck=false; errorText=''; heartbeat=true; lastBeat=0;
       savePrefs(); panel=null; render(true); notify('새 체험을 시작했어요.');
     } catch { errorText='체험을 새로 시작하지 못했어요. 연결을 확인해 주세요.'; render(); }
+    finally { busy=false; render(); }
   }
   function button(action,label,kind='primary',allow=true,extra='') { return `<button type="button" class="${kind}" data-action="${action}" ${blocked(allow)} ${extra}>${label}</button>`; }
   function contact() { return `<button type="button" class="contact-button" data-action="phone">${icon('phone')}<span>담당자에게 전화</span>${icon('arrow')}</button>`; }
