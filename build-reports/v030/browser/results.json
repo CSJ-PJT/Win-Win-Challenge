@@ -1,0 +1,26 @@
+{
+  "mode": "HTTP",
+  "passed": 19,
+  "cases": [
+    "chosen role persists; normal screen has no role-switch tabs",
+    "departure without a destination opens address setup rather than fake routing",
+    "address results are selectable and cancellation does not persist them",
+    "subject, handoff contact, guardian contact, facility phone and support request save",
+    "saved destination is passed to mapping without personal names or phone numbers",
+    "saved facility phone is used by the main contact action",
+    "settings remain usable at 320px width and 200 percent text",
+    "sender action changes only sender confirmation, not completion",
+    "guardian can inspect the whole process but cannot confirm on behalf of the sender",
+    "facility sees its reception task without driving controls or full journey history",
+    "injected foreign-role action is rejected by the UI capability guard",
+    "facility settings exclude visitor identity and lock an already started visit",
+    "incorrect code fails and correct facility confirmation completes the handoff",
+    "next visit restores the configured destination and contacts",
+    "editing an address clears stale coordinates",
+    "invalid telephone input cannot overwrite a saved contact",
+    "easy arrival and facility read confirmation remain separate from handoff",
+    "independent browser role observes server-side read confirmation",
+    "no uncaught JavaScript errors"
+  ],
+  "errors": []
+}

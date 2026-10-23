@@ -28,3 +28,16 @@
 :root.text-200 .visit-choice{flex-wrap:wrap}
 .toast{pointer-events:none}
 @media(max-width:700px){.standard-main .main-grid>div:first-child{order:2}.standard-main .main-grid>div:last-child{order:1}}
+/* Role-focused visit and destination settings. */
+.map-link{display:flex;align-items:center;gap:8px;margin-top:14px;background:var(--green);color:white;padding:12px 18px;border-radius:12px;min-height:48px}
+.map-link svg{width:20px;height:20px}
+.settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:8px;margin:12px 0;font-size:1rem;min-width:0}
+.field input,.field select{display:block;width:100%;min-width:0;box-sizing:border-box;padding:13px;border:1px solid var(--line);border-radius:10px;font:inherit;background:white;color:var(--ink)}
+.field input:disabled{background:var(--soft);color:var(--muted)}
+.settings-save{position:sticky;bottom:0;padding:14px 0 4px;background:white;margin-top:20px}
+.settings-save button{width:100%}
+.search-results{display:grid;gap:10px;margin:14px 0}.search-results .visit-choice{font-size:1rem}
+.modal .inline-error[hidden]{display:none}.support-note{padding:12px;background:var(--soft);border-radius:10px}
+@media(max-width:540px){.settings-grid{grid-template-columns:1fr}}
+.text-200 .settings-grid{grid-template-columns:1fr}

@@ -1,7 +1,7 @@
 /* Synthetic-data presentation. Self-reported arrival never completes a handoff. */
 (function() {
   'use strict';
-  const H = window.Handoff, U = window.HandoffUI;
+  const H = window.Handoff, U = window.HandoffUI, C=window.VisitConfig;
   const STATE_KEY = 'ansim-synthetic-demo-v1', PENDING_KEY = 'ansim-pending-v2';
   const $ = id => document.getElementById(id);
   const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -11,9 +11,12 @@
   let connected = !serverMode, offline = false, busy = false, refreshing = false;
   let pending = read(sessionStorage, PENDING_KEY), panel = null, easyStep = 'home', errorText = '';
   let codeInput = '', heartbeat = true, lastBeat = 0;
+  let draft=null, searchResults=[], searchMessage='', searchId=null, searchTimer=null, afterDestination=null;
+  const PROFILE_KEY='ansim-visit-profiles-v3';
+  let profiles=read(localStorage,PROFILE_KEY)||{};
   let nativeStatus = '일반 기기 체험', toastTimer, lastFocused;
-  if (['vehicle', 'facility', 'guardian'].includes(pathRole)) { prefs.mode = 'standard'; prefs.role = pathRole; }
-  if (pathRole === 'visitor') prefs.mode = 'easy';
+  if (['vehicle', 'facility', 'guardian'].includes(pathRole)) { prefs.mode = 'standard'; prefs.role = pathRole; prefs.roleChosen=true; }
+  if (pathRole === 'visitor') {prefs.mode = 'easy';prefs.roleChosen=true;}
   const icons = {
     shield: '<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/>',
     pin: '<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/>',
@@ -123,7 +126,12 @@
       savePrefs(); panel=null; render(true); notify('새 방문을 시작했어요.');
     } catch { errorText='새 방문을 열지 못했어요. 다시 연결해 주세요.'; render(); }
     finally { busy=false; }
-    await prepareNewVisit(); render(true);
+    await prepareNewVisit();
+    if(profiles[state.scenario]) {
+      const patch=Object.fromEntries(Object.entries(profiles[state.scenario]).filter(([k])=>C.fieldsFor(role()).includes(k)));
+      if(Object.keys(patch).length)await send('CONFIGURE_VISIT',patch,role(),true);
+    }
+    render(true);
   }
   async function prepareNewVisit() {
     if(!state || !connected || offline || pending) return;
@@ -133,19 +141,21 @@
     }
   }
   function button(action,label,kind='primary',allow=true,extra='') {
-    const local=['resolve-pending','reset','restart','visit-picker','show-facility','show-vehicle','show-guardian','phone','start-easy-demo','start-community'].includes(action);
+    if(!C.can(action,role()))return '';
+    const local=['resolve-pending','reset','restart','visit-picker','show-facility','show-vehicle','show-guardian','phone','start-easy-demo','start-community','navigate','destination','settings','save-settings','search-address','external-search'].includes(action);
     return `<button type="button" class="${kind}" data-action="${action}" ${local?(!allow||busy?'disabled':''):blocked(allow)} ${extra}>${label}</button>`;
   }
-  function contact() { return `<button type="button" class="contact-button" data-action="phone">${icon('phone')}<span>담당자에게 전화</span>${icon('arrow')}</button>`; }
+  function contactValue(){return prefs.role==='facility'&&prefs.mode!=='easy'?(state.info.senderPhone||state.info.guardianPhone||''):(state.info.facilityPhone||'');}
+  function contact() { return `<button type="button" class="contact-button" data-action="phone">${icon('phone')}<span>${role()==='facility'?'인계자에게 전화':'담당자에게 전화'}</span>${icon('arrow')}</button>`; }
   function destination(compact=false) {
-    return `<section class="destination-card ${compact?'compact':''}" aria-label="방문 정보"><span class="place-icon">${icon('building')}</span><div><p class="eyebrow">오늘 방문할 곳</p><h2>${esc(U.facility(state))}</h2><p>${esc(state.info.place)}</p><p class="recipient">${icon('person')}<span>${esc(U.recipient(state))}</span></p></div></section>`;
+    return `<section class="destination-card ${compact?'compact':''}" aria-label="방문 정보"><span class="place-icon">${icon('building')}</span><div><p class="eyebrow">${role()==='facility'?'우리 시설':'오늘 방문할 곳'}</p><h2>${esc(U.facility(state))}</h2>${state.info.address?`<p>${esc(state.info.address)}</p>`:''}<p>${esc(state.info.place)}</p><p class="recipient">${icon('person')}<span>${esc(U.recipient(state))}</span></p>${role()!=='facility'?`<button class="map-link" data-action="navigate">${icon('pin')}${C.hasDestination(state.info)?'길 안내':'도착지 정하기'}</button>`:''}${state.info.scheduledAt?`<p>${esc(state.info.scheduledAt.replace('T',' '))}</p>`:''}</div></section>`;
   }
   function easyView() {
     const notice=state.arrivalNotice;
     if(!state.info.adult) return `<main id="main" tabindex="-1" class="easy-main"><p class="eyebrow">오늘의 방문</p><h1>어디로 가시나요?</h1><div class="action-stack">${button('start-easy-demo',icon('building')+'<span>돌봄센터 방문</span>','primary large')}${button('start-community',icon('person')+'<span>경로당 방문</span>','secondary large')}</div></main>`;
     if(done() && !notice) return `<main id="main" tabindex="-1" class="easy-main"><h1>${state.state==='CANCELLED'?'취소된 방문이에요':'방문을 마쳤어요'}</h1>${destination()}${button('restart','새 방문 시작하기','primary large')}${contact()}</main>`;
     if(!state.consent) return `<main id="main" tabindex="-1" class="easy-main"><p class="eyebrow">도착 알림</p><h1>도착 소식을<br>공유할까요?</h1>${destination()}<p class="lead">도착 시각을 담당자에게 알려요.</p><div class="action-stack">${button('consent-yes','동의하고 계속','primary large')}<button type="button" class="secondary large" data-action="phone">전화로 연락하기</button></div></main>`;
-    if(notice && !pending) return `<main id="main" tabindex="-1" class="easy-main"><div class="result-mark">${icon('check')}</div><h1>도착 알림을<br>남겼어요</h1><section class="receipt-card"><dl><div><dt>방문 장소</dt><dd>${esc(U.facility(state))}</dd></div><div><dt>받는 사람</dt><dd>${esc(notice.recipient)}</dd></div><div><dt>알림 시각</dt><dd>${time(notice.at)}</dd></div></dl><p class="read-status">${notice.acknowledgedAt?'담당자가 '+time(notice.acknowledgedAt)+'에 읽었어요.':'담당자 확인 전'}</p></section><div class="action-stack">${contact()}${button('show-facility','담당자 화면 보기','secondary large')}${button('restart','다시 시작하기','text-button')}</div></main>`;
+    if(notice && !pending) return `<main id="main" tabindex="-1" class="easy-main"><div class="result-mark">${icon('check')}</div><h1>도착 알림을<br>남겼어요</h1><section class="receipt-card"><dl><div><dt>방문 장소</dt><dd>${esc(U.facility(state))}</dd></div><div><dt>받는 사람</dt><dd>${esc(notice.recipient)}</dd></div><div><dt>알림 시각</dt><dd>${time(notice.at)}</dd></div></dl><p class="read-status">${notice.acknowledgedAt?'담당자가 '+time(notice.acknowledgedAt)+'에 읽었어요.':'담당자 확인 전'}</p></section><div class="action-stack">${contact()}${button('restart','다시 시작하기','text-button')}</div></main>`;
     if(easyStep==='confirm' || easyStep==='error' || pending) return `<main id="main" tabindex="-1" class="easy-main"><button class="back-button" data-action="easy-back">${icon('back')}이전 화면</button><h1>${easyStep==='error'?'아직 보내지<br>못했어요':'이곳에 도착했다고<br>알릴까요?'}</h1>${destination()}<div class="action-stack">${pending?button('resolve-pending','전송 결과 확인하기','primary large'):button('easy-send',busy?'보내고 있어요…':'도착 소식 보내기','primary large')}${contact()}</div></main>`;
     return `<main id="main" tabindex="-1" class="easy-main"><p class="eyebrow">오늘의 동행</p><h1>${esc(U.facility(state))}에<br>도착하셨나요?</h1>${destination()}<div class="action-stack">${button('easy-arrive',icon('pin')+'<span>도착 알리기</span>','primary large')}${contact()}</div></main>`;
   }
@@ -156,65 +166,74 @@
   }
   function vehicleActions() {
     const safe=H.safeVehicle(state,Date.now()), ready=H.readyNow(state,Date.now());
-    if(done())return `<section class="action-card"><div class="receipt-inline">${icon('check')}<span>${state.state==='CANCELLED'?'방문을 취소했어요':time(state.completedAt)+'에 확인을 마쳤어요'}</span></div>${button('show-guardian','보호자 화면 보기','secondary')}${button('restart','다시 시작하기')}</section>`;
-    if(state.state==='PLANNED')return `<section class="action-card"><h2>이동을 준비해요</h2><div class="status-row"><span>차량 정차</span><strong>${safe?'확인됨':'확인 전'}</strong></div><div class="status-row"><span>담당자 준비</span><strong>${ready?'준비됨':state.info.mode==='ARRIVAL_ONLY'?'도착 알림':'확인 전'}</strong></div>${!safe?button('park','정차 상태 확인','secondary'):''}${!state.consent?button('mode-easy','본인 동의 확인하기','secondary'):button('depart','이 목적지로 출발하기','primary',safe)}</section>`;
-    if(state.state==='EN_ROUTE')return `<section class="action-card travel"><span class="travel-icon">${icon('car')}</span><h2>목적지로 이동 중이에요</h2><p>${esc(state.info.place)}</p>${button('arrive','도착·정차하기')}</section>`;
+    if(done())return `<section class="action-card"><div class="receipt-inline">${icon('check')}<span>${state.state==='CANCELLED'?'방문을 취소했어요':time(state.completedAt)+'에 확인을 마쳤어요'}</span></div>${button('restart','다시 시작하기')}</section>`;
+    if(state.state==='PLANNED')return `<section class="action-card"><h2>이동을 준비해요</h2><div class="status-row"><span>차량 정차</span><strong>${safe?'확인됨':'확인 전'}</strong></div><div class="status-row"><span>담당자 준비</span><strong>${ready?'준비됨':state.info.mode==='ARRIVAL_ONLY'?'도착 알림':'확인 전'}</strong></div>${!safe?button('park','정차 상태 확인','secondary'):''}${!state.consent?button('mode-easy','본인 동의 확인하기','secondary'):button('depart',C.hasDestination(state.info)?'이 목적지로 출발하기':'도착지 정하고 출발','primary',safe)}</section>`;
+    if(state.state==='EN_ROUTE')return `<section class="action-card travel"><span class="travel-icon">${icon('car')}</span><h2>목적지로 이동 중이에요</h2><p>${esc(state.info.place)}</p>${button('navigate','길 안내','secondary')}${button('arrive','도착·정차하기')}</section>`;
     if(state.info.mode==='ARRIVAL_ONLY')return `<section class="action-card"><h2>도착을 알려주세요</h2>${!safe?button('park','정차 상태 확인','secondary'):''}${button('report','도착 소식 남기기','primary',safe&&state.consent&&state.locationInside)}</section>`;
     const reasons=H.handoffReasons(state,Date.now());
-    const recovery=(!safe?button('park','정차 상태 확인','secondary'):'')+(!ready?button('ready','담당자 준비 확인','secondary'):'')+(!state.consent?button('mode-easy','본인 동의 확인하기','secondary'):'')+(!state.locationInside?button('return-area','지정 구역 도착 확인','secondary'):'');
-    return `<section class="action-card"><h2>직접 만나 확인해요</h2>${recovery}${state.challenge?`<div class="connection-code"><span>담당자에게 보여줄 번호</span><strong aria-label="연결번호 ${esc((state.challenge.code||'').split('').join(' '))}">${esc(state.challenge.code||'••••••')}</strong><span id="codeSeconds"></span></div>${state.senderConfirmed?'<p class="read-status">인계자 확인 완료</p>'+button('show-facility','시설 화면에서 확인하기'):button('sender','직접 인계했어요','primary',reasons.length===0)}${button('issue','연결번호 새로 받기','text-button',reasons.length===0)}`:button('issue','연결번호 받기','primary',reasons.length===0)}</section>`;
+    const recovery=(!safe?button('park','정차 상태 확인','secondary'):'')+(!ready?'<p class="read-status">담당자의 준비 확인을 기다리고 있어요.</p>':'')+(!state.consent?button('mode-easy','본인 동의 확인하기','secondary'):'')+(!state.locationInside?button('return-area','지정 구역 도착 확인','secondary'):'');
+    return `<section class="action-card"><h2>직접 만나 확인해요</h2>${recovery}${state.challenge?`<div class="connection-code"><span>담당자에게 보여줄 번호</span><strong aria-label="연결번호 ${esc((state.challenge.code||'').split('').join(' '))}">${esc(state.challenge.code||'••••••')}</strong><span id="codeSeconds"></span></div>${state.senderConfirmed?'<p class="read-status">직접 인계 확인 완료 · 담당자 확인을 기다려요</p>':button('sender','직접 인계했어요','primary',reasons.length===0)}${button('issue','연결번호 새로 받기','text-button',reasons.length===0)}`:button('issue','연결번호 받기','primary',reasons.length===0)}</section>`;
   }
   function facilityActions() {
-    const ready=H.readyNow(state,Date.now()), canConfirm=state.state==='VERIFYING'&&!state.receiverConfirmed;
-    const notice=state.arrivalNotice?`<section class="arrival-card"><p class="eyebrow">도착 소식</p><h2>${esc(U.subject(state))}님이 도착을 알렸어요</h2><p>${time(state.arrivalNotice.at)}</p>${state.arrivalNotice.acknowledgedAt?'<p class="read-status">확인한 소식이에요.</p>':button('ack','도착 소식 확인했어요','secondary',!done())}</section>`:'';
-    if(state.info.mode==='ARRIVAL_ONLY')return notice+`<section class="action-card"><h2>경로당 방문</h2>${button('mode-easy','이용자 화면 보기','secondary')}${button('restart','다시 시작하기','text-button')}</section>`;
-    if(done())return notice+`<section class="action-card"><h2>${state.state==='COMPLETED'?'인수 확인을 마쳤어요':'방문이 종료됐어요'}</h2><p>${state.completedAt?time(state.completedAt):''}</p>${button('show-guardian','보호자 화면 보기','secondary')}${button('restart','다시 시작하기')}</section>`;
-    return notice+`<section class="action-card"><p class="eyebrow">방문 예정</p><h2>${esc(U.subject(state))}</h2><p>${esc(state.info.receiver)}</p><div class="button-row">${button('ready',ready?'준비 상태 갱신':'맞이할 준비가 됐어요','secondary')}${button('absent','지금은 인수 어려움','text-button')}</div>${state.state==='VERIFYING'?`<div class="input-section"><label for="codeInput">연결번호</label><div class="code-entry"><input id="codeInput" type="text" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="6자리 번호" value="${esc(codeInput)}">${button('load-code','번호 불러오기','secondary')}</div>${state.receiverConfirmed?'<p class="read-status">담당자 확인 완료 · 인계자 확인 대기</p>':button('receiver','직접 인수했어요','primary',canConfirm)}${button('show-vehicle','차량 화면 보기','text-button')}</div>`:button('show-vehicle','차량 화면으로 이동','primary')}</section>`;
+    const ready=H.readyNow(state,Date.now());
+    const notice=state.arrivalNotice?`<section class="arrival-card"><p class="eyebrow">도착 소식</p><h2>${esc(U.subject(state))}님이 도착했어요</h2><p>${time(state.arrivalNotice.at)}</p>${state.arrivalNotice.acknowledgedAt?'<p class="read-status">읽음 확인 완료</p>':button('ack','도착 소식 확인','secondary',!done())}</section>`:'';
+    if(done())return notice+`<section class="action-card"><h2>${state.state==='COMPLETED'?'인수 확인 완료':'방문 종료'}</h2>${state.completedAt?`<p>${time(state.completedAt)}</p>`:''}</section>`;
+    if(state.info.mode==='ARRIVAL_ONLY')return notice+`<section class="action-card"><h2>${esc(U.subject(state))}님의 방문</h2><p>${state.arrivalNotice?'도착 소식을 확인해 주세요.':'도착 소식을 기다리고 있어요.'}</p></section>`;
+    return notice+`<section class="action-card"><p class="eyebrow">${state.state==='PLANNED'?'방문 예정':state.state==='EN_ROUTE'?'방문자 이동 중':'도착 · 인수 대기'}</p><h2>${esc(U.subject(state))}</h2><p>${esc(state.info.receiver)}</p>${state.info.supportNote?`<p class="support-note">${esc(state.info.supportNote)}</p>`:''}<div class="button-row">${button('ready',ready?'준비 상태 갱신':'맞이할 준비가 됐어요','secondary')}${button('absent','지금은 인수 어려움','text-button')}</div>${state.state==='VERIFYING'?`<div class="input-section"><p class="read-status">${state.senderConfirmed?'인계자가 직접 인계했음을 확인했어요.':'인계자의 대면 확인을 기다리고 있어요.'}</p><label for="codeInput">인계자가 보여주는 연결번호</label><div class="code-entry"><input id="codeInput" type="text" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="6자리 번호" value="${esc(codeInput)}"></div>${state.receiverConfirmed?'<p class="read-status">담당자 확인 완료</p>':button('receiver','직접 인수했어요','primary',!state.receiverConfirmed)}</div>`:'<p class="help">도착 후 인계자와 연결번호를 확인해 주세요.</p>'}</section>`;
   }
   function guardianActions() {
     const checks=[[state.locationInside,'지정 구역 도착'],[state.senderConfirmed,'인계자 대면 확인'],[state.receiverConfirmed,'담당자 대면 확인']];
-    return `<section class="action-card"><h2>${esc(U.subject(state))}님의 이동</h2><ul class="checklist">${checks.map(([ok,text])=>`<li><span class="check-symbol ${ok?'done':''}">${ok?'✓':'·'}</span><span>${text}</span><strong>${ok?'확인됨':'대기 중'}</strong></li>`).join('')}</ul>${state.arrivalNotice?`<p class="notice">${time(state.arrivalNotice.at)}에 본인이 도착 소식을 남겼어요.</p>`:''}</section>`;
+    return `<section class="action-card"><h2>${esc(U.subject(state))}님의 이동</h2><ul class="checklist">${checks.map(([ok,text])=>`<li><span class="check-symbol ${ok?'done':''}">${ok?'✓':'·'}</span><span>${text}</span><strong>${ok?'확인됨':'대기 중'}</strong></li>`).join('')}</ul>${!state.senderConfirmed&&state.info.mode==='HANDOFF'?'<p class="help">인계자가 본인 화면에서 ‘직접 인계했어요’를 누르면 확인돼요.</p>':''}${state.arrivalNotice?`<p class="notice">${time(state.arrivalNotice.at)}에 본인이 도착 소식을 남겼어요.</p>`:''}</section>`;
   }
   function timeline() {
     const visible=state.events.filter(e=>!['VEHICLE','CREATED'].includes(e.type));
     return `<details class="history"><summary>${icon('clock')}방문 기록 보기</summary><ol>${visible.slice(-8).reverse().map(e=>`<li><time>${time(e.at)}</time><span>${esc(e.message)}</span></li>`).join('') || '<li>아직 방문 기록이 없어요.</li>'}</ol></details>`;
   }
   function standardView() {
-    const [title,desc]=U.nextStep(state,prefs.role);
-    const action=prefs.role==='facility'?facilityActions():prefs.role==='guardian'?guardianActions():vehicleActions();
-    return `<main id="main" tabindex="-1" class="standard-main"><section class="intro"><p class="eyebrow">${prefs.role==='vehicle'?'차량 · 인계자':prefs.role==='facility'?'시설 · 담당자':'보호자'}</p><h1>${esc(title)}</h1><p class="lead">${esc(desc)}</p></section>${handoffProgress()}<div class="main-grid"><div>${destination()}${contact()}</div><div>${action}</div></div>${prefs.role==='guardian'&&done()?button('restart','다시 시작하기'):''}${timeline()}</main>`;
+    const [title,desc]=U.nextStep(state,prefs.role), facility=prefs.role==='facility';
+    const action=facility?facilityActions():prefs.role==='guardian'?guardianActions():vehicleActions();
+    return `<main id="main" tabindex="-1" class="standard-main"><section class="intro"><p class="eyebrow">${facility?'시설 · 담당자':prefs.role==='guardian'?'보호자 · 진행 조회':'보호자 · 인계자'}</p><h1>${esc(title)}</h1><p class="lead">${esc(desc)}</p></section>${facility?'':handoffProgress()}<div class="main-grid"><div>${destination()}${contact()}</div><div>${action}</div></div>${!facility?timeline():''}</main>`;
   }
+  const FIELD_LABELS={facility:'시설 이름',subject:'이용자 이름',receiver:'인수 담당자',place:'승하차 장소',address:'도착지 주소',latitude:'위도',longitude:'경도',facilityPhone:'시설 연락처',senderName:'인계자 이름',senderPhone:'인계자 연락처',guardianName:'보호자 이름',guardianPhone:'보호자 연락처',scheduledAt:'방문 예정 일시',supportNote:'이동 도움 요청'};
+  function captureDraft(){if(!draft)return;document.querySelectorAll('[data-field]').forEach(el=>{draft[el.dataset.field]=el.value;});}
+  function field(key){const type=key.endsWith('Phone')?'tel':key==='scheduledAt'?'datetime-local':'text';const v=draft?.[key]??state.info[key]??'';return `<label class="field" for="field-${key}"><span>${FIELD_LABELS[key]}</span><input id="field-${key}" data-field="${key}" type="${type}" ${['latitude','longitude'].includes(key)?'inputmode="decimal"':''} maxlength="${C.TEXT[key]||25}" autocomplete="off" value="${esc(v)}" ${state.state!=='PLANNED'||state.arrivalNotice?'disabled':''}></label>`;}
+  function settingsFields(keys){return keys.filter(k=>C.fieldsFor(role()).includes(k)).map(field).join('');}
   function settingsPanel() {
-    return `<h2 id="panelTitle">화면 설정</h2><fieldset><legend>화면 방식</legend><div class="choice-row"><button data-action="mode-standard" aria-pressed="${prefs.mode==='standard'}">기본 화면</button><button data-action="mode-easy" aria-pressed="${prefs.mode==='easy'}">쉬운 화면</button></div></fieldset><fieldset><legend>글씨 크기</legend><div class="choice-row wrap">${[100,125,150,200].map(n=>`<button data-action="text-size" data-size="${n}" aria-pressed="${prefs.text===n}">${n}%</button>`).join('')}</div></fieldset>${state.info.adult&&state.consent&&!done()?button('consent-no','방문 상태 공유 중단','secondary'):''}`;
+    const locked=state.state!=='PLANNED'||!!state.arrivalNotice;
+    return `<h2 id="panelTitle">설정</h2><div id="settingsError" class="inline-error" role="alert" ${errorText?'':'hidden'}>${esc(errorText)}</div>${locked?'<p class="notice">진행 중인 방문 정보는 유지돼요. 새 방문에서 변경해 주세요.</p>':''}${role()!=='facility'?`<fieldset><legend>이용자와 연락처</legend><div class="settings-grid">${settingsFields(C.PERSONAL)}</div></fieldset>`:''}${role()!=='guardian'?`<fieldset><legend>${role()==='facility'?'우리 시설':'방문 시설'}</legend><div class="settings-grid">${settingsFields(['facility','receiver','facilityPhone','place'])}</div><button class="secondary" data-action="destination" ${locked?'disabled':''}>도착지 설정</button></fieldset>`:''}<fieldset><legend>길 안내</legend><label class="field" for="mapProvider"><span>사용할 지도</span><select id="mapProvider"><option value="kakao" ${prefs.mapProvider==='kakao'?'selected':''}>카카오맵</option><option value="google" ${prefs.mapProvider==='google'?'selected':''}>Google 지도</option></select></label></fieldset><fieldset><legend>글씨 크기</legend><div class="choice-row wrap">${[100,125,150,200].map(n=>`<button data-action="text-size" data-size="${n}" aria-pressed="${prefs.text===n}">${n}%</button>`).join('')}</div></fieldset><div class="settings-save"><button class="primary" data-action="save-settings">저장</button></div>${role()==='visitor'&&state.consent&&!done()?button('consent-no','방문 상태 공유 중단','text-button'):''}`;
   }
+  function destinationPanel(){return `<h2 id="panelTitle">도착지 설정</h2><div id="settingsError" class="inline-error" role="alert" ${errorText?'':'hidden'}>${esc(errorText)}</div>${settingsFields(['facility','address','place'])}<div class="button-row"><button class="secondary" data-action="search-address">주소 찾기</button><button class="text-button" data-action="external-search">지도에서 검색</button></div><p id="searchStatus" role="status">${esc(searchMessage)}</p><div class="search-results">${searchResults.map((r,i)=>`<button class="visit-choice" data-action="select-address" data-index="${i}"><span><strong>${esc(r.name||r.address)}</strong><small>${esc(r.address)}</small></span>${icon('arrow')}</button>`).join('')}</div><details><summary>좌표 직접 입력</summary><div class="settings-grid">${settingsFields(['latitude','longitude'])}</div></details><div class="settings-save"><button class="primary" data-action="save-destination">${afterDestination==='depart'?'저장하고 출발':'도착지 저장'}</button></div>`;}
+  function rolePicker(){return `<main id="main" tabindex="-1" class="easy-main"><p class="eyebrow">안심동행 시작하기</p><h1>어떻게<br>이용하시나요?</h1><div class="visit-choices">${[['vehicle','보호자 · 인계자','방문 준비부터 인계 확인까지'],['guardian','보호자 · 진행 조회','이동과 인계 결과 확인'],['facility','시설 담당자','방문자 맞이와 인수 확인'],['visitor','쉬운 화면','도착 알림과 전화']].map(([r,t,d])=>`<button class="visit-choice" data-action="choose-role" data-role="${r}"><span><strong>${t}</strong><small>${d}</small></span>${icon('arrow')}</button>`).join('')}</div></main>`;}
   function demoPanel() {
-    return `<h2 id="panelTitle">시연 도구</h2><fieldset><legend>이 기기의 역할</legend><div class="choice-row wrap">${[['vehicle','차량'],['facility','시설'],['guardian','보호자']].map(([r,label])=>`<button data-action="role" data-role="${r}" aria-pressed="${prefs.role===r&&prefs.mode==='standard'}">${label}</button>`).join('')}<button data-action="mode-easy">쉬운 화면</button></div></fieldset><fieldset><legend>방문 선택</legend><label class="sr-only" for="scenario">방문 종류</label><select id="scenario">${Object.entries(H.SCENARIOS).map(([key,s])=>`<option value="${key}" ${state.scenario===key?'selected':''}>${esc(s.title)}</option>`).join('')}</select>${button('reset','선택한 방문으로 새로 시작','secondary')}</fieldset><fieldset><legend>차량과 연결 상태</legend><div class="demo-grid">${button('park','P · 정차','secondary',!done())}${button('drive','D · 주행','secondary',!done())}${button('arrive','도착·정차','secondary',state.state==='EN_ROUTE')}${button('ready','담당자 준비','secondary',!done()&&state.info.mode==='HANDOFF')}<button class="secondary" data-action="offline">${offline?'연결 복구':'통신 끊김'}</button>${button('unknown','차량 신호 없음','secondary',!done())}${button('leave','구역 이탈','secondary',!done())}<button class="secondary" data-action="heartbeat">${heartbeat?'신호 갱신 중단':'신호 갱신 재개'}</button>${button('cancel','방문 취소','secondary',!done())}</div></fieldset>${state.info.adult&&!done()?`<label class="checkline"><input id="consentCheck" type="checkbox" ${state.consent?'checked':''}><span>본인 동의</span></label>`:''}<fieldset><legend>담당자 연락처</legend><label for="demoPhone">전화번호</label><input id="demoPhone" type="tel" autocomplete="off" placeholder="전화번호 입력" value="${esc(prefs.phone)}"><button class="secondary" data-action="save-phone">연락처 저장</button><p class="help"></p></fieldset><details><summary>개발 연결 상태</summary><p>${serverMode?'로컬 서버 동기화':'이 기기 내 체험'}</p><p>${esc(nativeStatus)}</p>${window.VehicleBridge?'<button class="secondary" data-action="navi">NaviHelper 연결 확인</button><button class="secondary" data-action="route">공식 예제 경로 시험</button>':''}<p>화면 버전 ${H.VERSION}</p></details>`;
+    return `<h2 id="panelTitle">시연 도구</h2>${role()==='facility'&&state.challenge?button('load-code','연결번호 채우기','secondary'):''}<fieldset><legend>다른 역할로 보기</legend><div class="choice-row wrap">${[['vehicle','차량'],['facility','시설'],['guardian','보호자']].map(([r,label])=>`<button data-action="role" data-role="${r}" aria-pressed="${prefs.role===r&&prefs.mode==='standard'}">${label}</button>`).join('')}<button data-action="mode-easy">쉬운 화면</button></div></fieldset><fieldset><legend>방문 선택</legend><label class="sr-only" for="scenario">방문 종류</label><select id="scenario">${Object.entries(H.SCENARIOS).map(([key,s])=>`<option value="${key}" ${state.scenario===key?'selected':''}>${esc(s.title)}</option>`).join('')}</select>${button('reset','선택한 방문으로 새로 시작','secondary')}</fieldset><fieldset><legend>차량과 연결 상태</legend><div class="demo-grid">${button('park','P · 정차','secondary',!done())}${button('drive','D · 주행','secondary',!done())}${button('arrive','도착·정차','secondary',state.state==='EN_ROUTE')}${button('ready','담당자 준비','secondary',!done()&&state.info.mode==='HANDOFF')}<button class="secondary" data-action="offline">${offline?'연결 복구':'통신 끊김'}</button>${button('unknown','차량 신호 없음','secondary',!done())}${button('leave','구역 이탈','secondary',!done())}<button class="secondary" data-action="heartbeat">${heartbeat?'신호 갱신 중단':'신호 갱신 재개'}</button>${button('cancel','방문 취소','secondary',!done())}</div></fieldset>${state.info.adult&&!done()?`<label class="checkline"><input id="consentCheck" type="checkbox" ${state.consent?'checked':''}><span>본인 동의</span></label>`:''}<fieldset><legend>담당자 연락처</legend><label for="demoPhone">전화번호</label><input id="demoPhone" type="tel" autocomplete="off" placeholder="전화번호 입력" value="${esc(prefs.phone)}"><button class="secondary" data-action="save-phone">연락처 저장</button><p class="help"></p></fieldset><details><summary>개발 연결 상태</summary><p>${serverMode?'로컬 서버 동기화':'이 기기 내 체험'}</p><p>${esc(nativeStatus)}</p>${window.VehicleBridge?'<button class="secondary" data-action="navi">NaviHelper 연결 확인</button><button class="secondary" data-action="route">공식 예제 경로 시험</button>':''}<p>화면 버전 ${H.VERSION}</p></details>`;
   }
   function visitPanel() {
     return `<h2 id="panelTitle">방문 선택</h2><div class="visit-choices">${Object.entries(H.SCENARIOS).map(([key,v])=>`<button class="visit-choice" data-action="select-visit" data-scenario="${key}"><span>${icon(v.adult?'person':'building')}</span><span><strong>${esc(v.title)}</strong><small>${esc(v.facility.split(' · ')[0])}</small></span>${icon('arrow')}</button>`).join('')}</div>`;
   }
   function phonePanel() {
-    return `<h2 id="panelTitle">담당자에게 전화</h2><p class="lead">${esc(U.recipient(state))}</p>${prefs.phone?`<p class="phone-number">${esc(prefs.phone)}</p><button class="primary large" data-action="open-dialer">전화 화면 열기</button>`:''}<fieldset><legend>${prefs.phone?'연락처 변경':'담당자 연락처'}</legend><label for="contactPhone">전화번호</label><input id="contactPhone" type="tel" inputmode="tel" autocomplete="off" placeholder="전화번호 입력" value="${esc(prefs.phone)}"><button class="${prefs.phone?'secondary':'primary'}" data-action="save-contact">${prefs.phone?'번호 저장':'저장하고 전화 화면 열기'}</button></fieldset>`;
+    const number=contactValue(), facility=role()==='facility';
+    return `<h2 id="panelTitle">${facility?'인계자에게 전화':'담당자에게 전화'}</h2><p class="lead">${esc(facility?(state.info.senderName||state.info.guardianName||'인계자'):U.recipient(state))}</p>${number?`<p class="phone-number">${esc(number)}</p><button class="primary large" data-action="open-dialer">전화 화면 열기</button>`:`<p>연락처를 등록해 주세요.</p><button class="primary" data-action="settings">설정 열기</button>`}`;
   }
   function render(focusMain=false) {
     if(!state) return;
+    if(panel==='settings'||panel==='destination')captureDraft();
     const active=document.activeElement;
     const focused=active?.id ? '#'+active.id : active?.dataset?.action ? `[data-action="${active.dataset.action}"]${active.dataset.size?`[data-size="${active.dataset.size}"]`:active.dataset.role?`[data-role="${active.dataset.role}"]`:''}` : null;
     const selection=typeof active?.selectionStart==='number'?active.selectionStart:null;
     const detailsOpen=!!document.querySelector('.history[open]');
     document.documentElement.className='text-'+prefs.text;
     document.body.className=prefs.mode==='easy'?'easy-mode':'standard-mode';
-    const body=panel==='settings'?settingsPanel():panel==='demo'?demoPanel():panel==='phone'?phonePanel():panel==='visits'?visitPanel():'';
-    $('app').innerHTML=`<div class="app-shell" ${panel?'inert aria-hidden="true"':''}><header class="app-header"><div class="brand"><span class="brand-mark">${icon('shield')}</span><div class="brand-name">안심동행 <span>플랫폼</span></div></div><button class="settings-button" data-action="settings" aria-label="화면 설정">${icon('settings')}<span>설정</span></button></header><div class="mode-bar"><span>${prefs.mode==='easy'?'쉬운 화면':'기본 화면'}</span><button class="mode-toggle" data-action="${prefs.mode==='easy'?'mode-standard':'mode-easy'}">${prefs.mode==='easy'?'기본 화면으로':'큰 글씨 · 쉬운 화면'}</button></div><div class="visit-switch"><span>${esc(state.info.title)}</span><button data-action="visit-picker">방문 변경</button></div>${prefs.mode==='standard'?`<nav class="role-tabs" aria-label="역할 선택">${[['vehicle','차량'],['facility','시설'],['guardian','보호자']].map(([r,label])=>`<button data-action="role" data-role="${r}" aria-pressed="${prefs.role===r}">${icon(r==='vehicle'?'car':r==='facility'?'building':'person')}<span>${label}</span></button>`).join('')}</nav>`:''}${!connected||offline?`<div class="connection-warning" role="status"><strong>연결을 확인해 주세요</strong><p>마지막으로 확인한 내용만 보여드려요.</p><button class="secondary" data-action="reconnect">다시 연결하기</button></div>`:''}${errorText?`<div id="inlineError" class="inline-error" role="alert">${esc(errorText)}${pending?'<button class="secondary" data-action="resolve-pending">전송 결과 확인하기</button>':''}</div>`:''}${prefs.mode==='easy'?easyView():standardView()}<footer class="app-footer"><span>v${H.VERSION}</span><button data-action="demo">시연 도구</button></footer></div>${panel?`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="panelTitle" tabindex="-1"><header><span>안심동행</span><button data-action="close-panel" aria-label="닫기">닫기</button></header>${body}</section></div>`:''}`;
+    const body=panel==='settings'?settingsPanel():panel==='demo'?demoPanel():panel==='phone'?phonePanel():panel==='visits'?visitPanel():panel==='destination'?destinationPanel():'';
+    $('app').innerHTML=`<div class="app-shell" ${panel?'inert aria-hidden="true"':''}><header class="app-header"><div class="brand"><span class="brand-mark">${icon('shield')}</span><div class="brand-name">안심동행 <span>플랫폼</span></div></div><button class="settings-button" data-action="settings" aria-label="화면 설정">${icon('settings')}<span>설정</span></button></header><div class="mode-bar"><span>${role()==='facility'?'시설 담당자':role()==='visitor'?'쉬운 화면':role()==='guardian'?'보호자 · 조회':'보호자 · 인계자'}</span>${role()!=='facility'?`<button class="mode-toggle" data-action="${prefs.mode==='easy'?'mode-standard':'mode-easy'}">${prefs.mode==='easy'?'기본 화면으로':'큰 글씨 · 쉬운 화면'}</button>`:''}</div><div class="visit-switch"><span>${esc(state.info.title)}</span>${role()!=='facility'?'<button data-action="visit-picker">방문 변경</button>':''}</div>${!connected||offline?`<div class="connection-warning" role="status"><strong>연결을 확인해 주세요</strong><p>마지막으로 확인한 내용만 보여드려요.</p><button class="secondary" data-action="reconnect">다시 연결하기</button></div>`:''}${errorText?`<div id="inlineError" class="inline-error" role="alert">${esc(errorText)}${pending?'<button class="secondary" data-action="resolve-pending">전송 결과 확인하기</button>':''}</div>`:''}${!prefs.roleChosen?rolePicker():prefs.mode==='easy'?easyView():standardView()}<footer class="app-footer"><span>v${H.VERSION}</span><button data-action="demo">시연 도구</button></footer></div>${panel?`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="panelTitle" tabindex="-1"><header><span>안심동행</span><button data-action="close-panel" aria-label="닫기">닫기</button></header>${body}</section></div>`:''}`;
     if(detailsOpen) document.querySelector('.history')?.setAttribute('open','');
     if(focusMain) { (panel?document.querySelector('.modal'):$('main'))?.focus({preventScroll:true}); window.scrollTo(0,0); }
     else if(focused) { const el=document.querySelector(focused); if(el && !el.closest('[inert]')) { el.focus({preventScroll:true}); if(selection!==null && el.setSelectionRange)try{el.setSelectionRange(selection,selection);}catch{} } }
     countdown();
   }
   function countdown() { const el=$('codeSeconds'); if(el&&state?.challenge) { const n=Math.max(0,Math.ceil((state.challenge.expiresAt-Date.now())/1000)); el.textContent=n?'유효 시간 '+n+'초':'시간이 지났어요. 새 번호를 받아주세요.'; } }
-  function openPanel(kind) { lastFocused=document.activeElement?.dataset?.action; panel=kind; render(true); }
-  function closePanel() { panel=null; render(); const el=lastFocused?document.querySelector(`[data-action="${lastFocused}"]`):null; (el||$('main'))?.focus({preventScroll:true}); }
-  function switchMode(mode) { prefs.mode=mode; savePrefs(); panel=null; errorText=''; easyStep='home'; render(true); if(serverMode)refresh(); }
+  function openPanel(kind) { if(['settings','destination'].includes(panel))captureDraft(); if(['settings','destination'].includes(kind)&&!draft)draft={...C.defaults(),...state.info}; if(!['settings','destination'].includes(kind))draft=null; errorText=''; lastFocused=document.activeElement?.dataset?.action; panel=kind; render(true); }
+  function closePanel() { panel=null;draft=null;afterDestination=null;searchId=null;clearTimeout(searchTimer); render(); const el=lastFocused?document.querySelector(`[data-action="${lastFocused}"]`):null; (el||$('main'))?.focus({preventScroll:true}); }
+  function switchMode(mode) { prefs.mode=mode;prefs.roleChosen=true; savePrefs(); panel=null; errorText=''; easyStep='home'; render(true); if(serverMode)refresh(); }
   async function retryPending() {
     if(!pending) { await refresh(); return; }
     const intent=pending;
@@ -224,7 +243,38 @@
     if(ok) { easyStep='home'; render(true); }
     else await refresh();
   }
+  async function saveSettings(destinationOnly=false){
+    captureDraft();const chosenMap=$('mapProvider')?.value;const info={...draft};const fields=destinationOnly?C.PLACE:C.fieldsFor(role());
+    const raw=Object.fromEntries(fields.filter(k=>C.fieldsFor(role()).includes(k)).map(k=>[k,info[k]??'']));
+    try {
+      if(state.state==='PLANNED'&&!state.arrivalNotice){
+        const patch=C.cleanPatch(raw,role(),state.info);
+        if(destinationOnly&&!C.hasDestination({...state.info,...patch}))throw new Error('도착지 주소를 입력하거나 검색 결과를 선택해 주세요.');
+        if(!await send('CONFIGURE_VISIT',patch,role()))return;
+        profiles[state.scenario]={...(profiles[state.scenario]||{}),...patch};write(localStorage,PROFILE_KEY,profiles);
+      }
+      if(chosenMap)prefs.mapProvider=chosenMap==='google'?'google':'kakao';savePrefs();
+      const next=afterDestination;afterDestination=null;closePanel();notify('저장했어요.');
+      if(next==='depart')await send('DEPART',{},'vehicle');
+    } catch(e){errorText=e.message;render();}
+  }
+  function openMap(info,search=false){
+    const url=C.navigation(info,prefs.mapProvider,search);if(!url){openPanel('destination');return;}
+    if(window.VehicleBridge?.openMap)window.VehicleBridge.openMap(url);
+    else {const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.click();}
+  }
+  async function searchAddress(){
+    captureDraft();const q=String(draft.address||draft.facility||'').trim();
+    if(q.length<2){errorText='주소나 시설 이름을 두 글자 이상 입력해 주세요.';render();return;}
+    const id=uid();searchId=id;searchResults=[];searchMessage='주소를 찾고 있어요.';render();
+    clearTimeout(searchTimer);searchTimer=setTimeout(()=>{if(searchId===id){searchId=null;searchMessage='지도에서 검색하거나 주소를 직접 입력해 주세요.';render();}},8000);
+    if(window.VehicleBridge?.searchAddress){window.VehicleBridge.searchAddress(q,id);return;}
+    if(serverMode){try{const d=await request('/api/places?query='+encodeURIComponent(q),{headers:{Authorization:'Bearer '+tokens[role()]}});window.onAddressResults(id,d.places,'');return;}catch{}}
+    window.onAddressResults(id,[],'지도에서 검색하거나 주소를 직접 입력해 주세요.');
+  }
+  window.onAddressResults=function(id,places,message){if(id!==searchId||panel!=='destination')return;clearTimeout(searchTimer);searchId=null;searchResults=(Array.isArray(places)?places:[]).slice(0,5).filter(r=>C.hasCoordinates(r));searchMessage=searchResults.length?'방문할 주소를 선택해 주세요.':message||'주소를 찾지 못했어요. 지도에서 검색해 주세요.';render();};
   document.addEventListener('input',e=>{
+    if(e.target.dataset.field&&draft){draft[e.target.dataset.field]=e.target.value;if(e.target.dataset.field==='address'){draft.latitude=null;draft.longitude=null;const lat=$('field-latitude'),lng=$('field-longitude');if(lat)lat.value='';if(lng)lng.value='';searchId=null;}}
     if(e.target.id==='codeInput') {
       codeInput=e.target.value.replace(/\D/g,'').slice(0,6); e.target.value=codeInput;
 
@@ -244,6 +294,16 @@
   });
   document.addEventListener('click',async e=>{
     const b=e.target.closest('[data-action]');if(!b||b.disabled)return;const action=b.dataset.action;
+    if(!C.can(action,role())){notify('현재 역할에서 할 수 없는 작업이에요.');return;}
+    if(action==='choose-role'){prefs.roleChosen=true;if(b.dataset.role==='visitor'){prefs.mode='easy';prefs.role='vehicle';}else{prefs.mode='standard';prefs.role=b.dataset.role;}savePrefs();render(true);if(serverMode)await refresh();return;}
+    if(action==='destination'){openPanel('destination');return;}
+    if(action==='navigate'){if(!C.hasDestination(state.info)){afterDestination=null;openPanel('destination');}else openMap(state.info);return;}
+    if(action==='depart'&&!C.hasDestination(state.info)){afterDestination='depart';openPanel('destination');return;}
+    if(action==='save-settings'){await saveSettings();return;}
+    if(action==='save-destination'){await saveSettings(true);return;}
+    if(action==='search-address'){await searchAddress();return;}
+    if(action==='external-search'){captureDraft();openMap({...draft},true);return;}
+    if(action==='select-address'){const result=searchResults[Number(b.dataset.index)];if(result){captureDraft();draft={...draft,address:result.address,latitude:result.latitude,longitude:result.longitude};document.querySelectorAll('[data-field]').forEach(el=>{el.value=draft[el.dataset.field]??'';});searchResults=[];searchMessage='선택한 주소를 저장해 주세요.';render();}return;}
     if(['settings','demo','phone'].includes(action)){openPanel(action);return;}
     if(action==='close-panel'){closePanel();return;}
     if(action==='visit-picker'){openPanel('visits');return;}
@@ -275,12 +335,12 @@
       try {
         const source=serverMode?(await request('/api/state',{headers:{Authorization:'Bearer '+tokens.vehicle}})).state:state;
         if(!source.challenge?.code)throw new Error('NO_CODE');
-        codeInput=source.challenge.code;errorText='';render();$('codeInput')?.focus();
+        codeInput=source.challenge.code;errorText='';panel=null;render();$('codeInput')?.focus();
       } catch {errorText='차량 화면에서 새 연결번호를 받아주세요.';render();}return;
     }
     if(action==='receiver' && !/^\d{6}$/.test(codeInput)){errorText='6자리 연결번호를 입력해 주세요.';render();$('codeInput')?.focus();return;}
     if(action==='open-dialer'){
-      const phone=U.normalizePhone(prefs.phone);if(!phone){notify('등록된 연락처가 없어요.');return;}
+      const phone=U.normalizePhone(contactValue());if(!phone){notify('등록된 연락처가 없어요.');return;}
       if(window.VehicleBridge?.openDialer)window.VehicleBridge.openDialer(phone);
       else { const a=document.createElement('a');a.href='tel:'+phone;a.click(); }
       return;
@@ -301,7 +361,7 @@
   window.addEventListener('storage',e=>{if(!serverMode&&e.key===STATE_KEY&&e.newValue){try{state=JSON.parse(e.newValue);reconcileTrip();render();}catch{}}});
   async function init() {
     if(serverMode){try{await connect();}catch{connected=false;state=H.createTrip('kindergarten',Date.now(),uid());render();}}
-    else {state=read(localStorage,STATE_KEY);if(!state||state.schema!==1)state=H.createTrip('kindergarten',Date.now(),uid());render();}
+    else {state=read(localStorage,STATE_KEY);if(!state||state.schema!==1)state=H.createTrip('kindergarten',Date.now(),uid());state.info={...C.defaults(),...state.info};render();}
     await prepareNewVisit();
     if(state.vehicle.known&&!done()&&connected&&!offline&&!pending)await send('VEHICLE',{known:state.vehicle.known,restricted:state.vehicle.restricted,gear:state.vehicle.gear,speed:state.vehicle.speed},'simulator',true);
     render();
