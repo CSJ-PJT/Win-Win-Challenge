@@ -7,7 +7,29 @@ def adb(*parts,raw=False):
     r=subprocess.run(['adb',*parts],stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True,timeout=50)
     return r.stdout if raw else r.stdout.decode('utf-8','replace')
 def ui():
-    adb('shell','uiautomator','dump','/sdcard/ansim-window.xml');s=adb('shell','cat','/sdcard/ansim-window.xml');(O/'window.xml').write_text(s);return ET.fromstring(s)
+    # An emulator can report boot-complete before the UiAutomator service and
+    # emulated shared storage are usable. Do not mistake this startup race for
+    # an application failure, but fail with real diagnostics if it persists.
+    last=''
+    for attempt in range(12):
+        for target in ('/sdcard/ansim-window.xml','/data/local/tmp/ansim-window.xml'):
+            try:
+                output=adb('shell','uiautomator','dump',target)
+                text=adb('shell','cat',target)
+                if '<hierarchy' not in text:
+                    last=(output+' / '+text)[:500]
+                    continue
+                root=ET.fromstring(text)
+                if not list(root.iter('node')):
+                    last='The accessibility tree is empty'
+                    continue
+                (O/'window.xml').write_text(text)
+                return root
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired, ET.ParseError) as exc:
+                last=repr(exc)
+        time.sleep(1)
+    (O/'uiautomator-error.txt').write_text(last)
+    raise RuntimeError('Android accessibility dump unavailable after retries: '+last)
 def coord(node):
     a=list(map(int,re.findall(r'\d+',node.get('bounds',''))));assert len(a)==4
     return str((a[0]+a[2])//2),str((a[1]+a[3])//2)
@@ -31,7 +53,11 @@ def tap(t):find(t,True)
 def passed(s):results.append(s);print('PASS',s,flush=True)
 try:
     adb('install','-r',str(Path(args.apk).resolve()))
-    adb('shell','am','force-stop','kr.co.ansimdonghaeng');adb('shell','am','start','-n','kr.co.ansimdonghaeng/.MainActivity');time.sleep(4)
+    adb('wait-for-device')
+    adb('shell','input','keyevent','KEYCODE_WAKEUP')
+    adb('shell','wm','dismiss-keyguard')
+    adb('shell','am','force-stop','kr.co.ansimdonghaeng');adb('shell','am','start','-n','kr.co.ansimdonghaeng/.MainActivity');time.sleep(7)
+    shot('00-before-accessibility')
     find('안심동행');shot('01-launch');tap('방문 준비와 인계 확인');find('도착지 입력하기');passed('role onboarding and first screen work')
     tap('도착지 입력하기');find('도착지 주소')
     inputs=[n for n in ui().iter('node') if n.get('class')=='android.widget.EditText'];assert len(inputs)>=2,'destination address EditText missing'
