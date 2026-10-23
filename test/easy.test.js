@@ -20,7 +20,7 @@ test('cancelled visit cannot be reported',()=>{const s=apply(agreed(),'CANCEL',{
 test('acknowledgment requires a notice',()=>{assert.throws(()=>apply(agreed(),'ACK_ARRIVAL_NOTICE',{},staff),e=>e.code==='NO_NOTICE');});
 test('phone normalization rejects USSD, scripts and invalid punctuation',()=>{for(const v of ['*123#','javascript:alert(1)','tel:01000000000','010;1234','123',null,{}])assert.equal(U.normalizePhone(v),'');});
 test('phone normalization permits a dialable number only',()=>{assert.equal(U.normalizePhone('02-123-4567'),'021234567');assert.equal(U.normalizePhone('+82 10 0000 0000'),'+821000000000');});
-test('settings only retain supported text sizes and roles',()=>{assert.deepEqual(U.settings({mode:'invalid',role:'administrator',text:1000,phone:'*123#'}),{mode:'standard',role:'vehicle',text:100,phone:'',theme:'light',mapProvider:'google',roleChosen:false});});
+test('settings only retain supported text sizes and roles',()=>{assert.deepEqual(U.settings({mode:'invalid',role:'administrator',text:1000,phone:'*123#'}),{mode:'standard',role:'vehicle',text:100,phone:'',theme:'light',mapProvider:'kakao',roleChosen:false});});
 test('easy view settings survive serialization',()=>{const s=U.settings({mode:'easy',text:200,role:'guardian'});assert.deepEqual(U.settings(JSON.parse(JSON.stringify(s))),s);});
 test('completion copy follows actual two-party state',()=>{const s=agreed();s.state='VERIFYING';s.senderConfirmed=true;assert.equal(U.nextStep(s,'vehicle')[0],'담당자의 확인을 기다려요');});
 test('error messages never expose raw exceptions',()=>{assert.equal(U.publicError('internal stack trace with secrets'),'지금은 처리하지 못했어요. 연결과 현재 상태를 확인한 뒤 다시 눌러주세요.');});

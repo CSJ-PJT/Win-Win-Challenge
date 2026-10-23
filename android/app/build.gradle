@@ -4,7 +4,7 @@ android {
   compileSdk 35
   buildFeatures { buildConfig true }
   useLibrary 'android.car', false
-  defaultConfig { applicationId 'kr.co.ansimdonghaeng'; minSdk 28; targetSdk 35; versionCode 7; versionName '0.4.1' }
+  defaultConfig { applicationId 'kr.co.ansimdonghaeng'; minSdk 28; targetSdk 35; versionCode 8; versionName '0.4.2' }
   signingConfigs {
     demoRelease {
       if (System.getenv('DEMO_KEYSTORE')) {

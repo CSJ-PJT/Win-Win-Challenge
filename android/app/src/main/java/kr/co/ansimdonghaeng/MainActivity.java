@@ -24,11 +24,12 @@ import java.util.Set;
 /** Native container for the bundled, synthetic-data presentation. */
 public final class MainActivity extends Activity {
     private static final String HOST = "appassets.androidplatform.net";
-    private static final Set<String> ASSETS = new java.util.HashSet<>(java.util.Arrays.asList("index.html", "config.js", "core.js", "ui.js", "app.js", "style.css"));
+    private static final Set<String> ASSETS = new java.util.HashSet<>(java.util.Arrays.asList("index.html", "address.js", "config.js", "core.js", "ui.js", "app.js", "style.css"));
     private WebView web;
     private TextView blocker;
     private CarRestrictionMonitor carMonitor;
     private NavigationAdapter navigation;
+    private AddressPickerDialog addressPicker;
     private boolean automotive;
     private final java.util.concurrent.ExecutorService geocoding = java.util.concurrent.Executors.newSingleThreadExecutor();
     private boolean uxKnown = false;
@@ -124,10 +125,24 @@ public final class MainActivity extends Activity {
             web.evaluateJavascript("window.onAddressResults && window.onAddressResults("+JSONObject.quote(id)+","+places.toString()+","+JSONObject.quote(message)+");", null);
         });
     }
+    private void postcodeResult(String id,JSONObject data,String error) {
+        if(web==null||isFinishing()||isDestroyed())return;
+        web.evaluateJavascript("window.onPostcodeResult && window.onPostcodeResult("+JSONObject.quote(id)+","+(data==null?"null":data.toString())+","+JSONObject.quote(error)+");",null);
+    }
     private void mapStatus(String message) {
         if(web!=null) web.evaluateJavascript("window.onMapStatus && window.onMapStatus("+JSONObject.quote(message)+");",null);
     }
     public final class Bridge {
+        @JavascriptInterface public void openAddressSearch(String query,String requestId) {
+            if(query==null||query.length()>180||requestId==null||!requestId.matches("[A-Za-z0-9-]{1,80}"))return;
+            runOnUiThread(()->{
+                if(automotive&&!mayUseNativeNavigation()){postcodeResult(requestId,null,"정차 후 주소를 검색해 주세요.");return;}
+                if(addressPicker!=null&&addressPicker.isShowing())return;
+                addressPicker=new AddressPickerDialog(MainActivity.this,query,requestId,(data,error)->postcodeResult(requestId,data,error));
+                addressPicker.show();
+            });
+        }
+
         @JavascriptInterface public void searchAddress(String query, String requestId) {
             if(query==null || query.trim().length()<2 || query.length()>180 || requestId==null || !requestId.matches("[A-Za-z0-9-]{1,80}"))return;
             runOnUiThread(() -> {
@@ -210,5 +225,5 @@ public final class MainActivity extends Activity {
         if(web!=null)web.getSettings().setTextZoom(Math.round(getResources().getConfiguration().fontScale * 100));
         if(carMonitor!=null)carMonitor.refresh();
     }
-    @Override protected void onDestroy(){if(carMonitor!=null)carMonitor.close();if(navigation!=null)navigation.close();geocoding.shutdownNow();if(web!=null){web.removeJavascriptInterface("VehicleBridge");web.destroy();}super.onDestroy();}
+    @Override protected void onDestroy(){if(carMonitor!=null)carMonitor.close();if(addressPicker!=null)addressPicker.dismiss();if(navigation!=null)navigation.close();geocoding.shutdownNow();if(web!=null){web.removeJavascriptInterface("VehicleBridge");web.destroy();}super.onDestroy();}
 }

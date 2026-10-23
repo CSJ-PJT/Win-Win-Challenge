@@ -73,7 +73,7 @@ try:
     txt=' '.join(n.get('text','') for n in ui().iter('node') if n.get('class')=='android.widget.EditText')
     assert 'Seoul' in txt, 'Android keyboard did not enter address text'
     adb('shell','input','keyevent','4');shot('02-edit');tap('도착지 저장');find('방문 시작하기');find('Seoul City Hall',exact=True);passed('real Android keyboard input saves a destination')
-    tap('길안내 열기');time.sleep(1)
+    tap('카카오맵에서 위치 보기');time.sleep(1)
     logs=adb('logcat','-d','-s','HandoffMap:I')
     assert 'MAP_INTENT_OPENED' in logs,'external map intent was not launched'
     passed('maps intent opens from a saved address without an API key')
@@ -82,7 +82,7 @@ try:
     find('인계자가 확인했어요');passed('sender confirmation is independently recorded');shot('03-sender')
     tap('시설',exact=True);find('연결번호 6자리');passed('facility tab displays its independent reception screen')
     tap('시연 도구');tap('연결번호 입력하기');tap('직접 인수했어요');find('인수를 완료했어요');passed('receiver finishes the handoff');shot('04-received')
-    tap('화면 전환');tap('보호자 · 진행 조회');find('인계를 마쳤어요');passed('guardian sees completed status')
+    tap('보호자',exact=True);find('인계를 마쳤어요');passed('guardian sees completed status')
     tap('쉬운 화면',exact=True);tap('주야간보호센터');tap('동의하고 계속');tap('도착 알리기');find('도착 소식을');passed('large-button arrival flow works');shot('05-easy')
 finally:
     try:(O/'logcat.txt').write_text(adb('logcat','-d','-t','1000'))
