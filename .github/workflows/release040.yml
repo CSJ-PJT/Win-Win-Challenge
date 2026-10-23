@@ -1,4 +1,4 @@
-name: Verify and release Ansim 0.4.0 (state consistency)
+name: Verify and release Ansim 0.4.0 (Android retry)
 on:
   workflow_dispatch:
   push:
@@ -130,7 +130,7 @@ jobs:
           profile: pixel_2
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: python3 test/android_smoke.py build-input/apk/ansim-platform-0.4.0-preview.apk --output native-results
+          script: python3 -u test/android_smoke.py build-input/apk/ansim-platform-0.4.0-preview.apk --output native-results
       - uses: actions/upload-artifact@v4
         if: always()
         with:
