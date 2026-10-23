@@ -1,17 +1,17 @@
 /* Shared domain model. No UI, network, GPS or identity inference lives here. */
 (function (root, factory) {
-  const api = factory();
+  const api = factory(typeof module === 'object' && module.exports ? require('./config') : root.VisitConfig);
   if (typeof module === 'object' && module.exports) module.exports = api;
   else root.Handoff = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (C) {
   'use strict';
-  const VERSION = '0.2.1';
+  const VERSION = '0.3.0';
   const TELEMETRY_TTL = 30000, READY_TTL = 600000, CODE_TTL = 120000;
   const SCENARIOS = {
-    kindergarten: { title: '유치원 등원', facility: '햇살유치원 · 가상 시설', subject: '도담 · 가상 원아', receiver: '햇살반 담당 교사', place: '시설 내 지정 승하차 구역 A', mode: 'HANDOFF', adult: false },
-    daycare: { title: '어린이집 등원', facility: '새봄어린이집 · 가상 시설', subject: '하늘 · 가상 원아', receiver: '새봄반 담당 교사', place: '시설 내 지정 승하차 구역 B', mode: 'HANDOFF', adult: false },
-    senior: { title: '주야간보호센터 방문', facility: '온유돌봄센터 · 가상 시설', subject: '이용자 A · 가상 인물', receiver: '지정 돌봄 담당자', place: '시설 내 이동 지원 구역', mode: 'HANDOFF', adult: true, notificationRecipient: '온유돌봄센터 담당자' },
-    community: { title: '경로당 자율 방문', facility: '함께경로당 · 가상 시설', subject: '이용자 B · 가상 인물', receiver: '지정 인수자 없음', place: '방문지 도착 확인 구역', mode: 'ARRIVAL_ONLY', adult: true, notificationRecipient: '함께경로당 연락 담당자' }
+    kindergarten: { title: '유치원 등원', facility: '햇살유치원', subject: '도담', receiver: '햇살반 담당 교사', place: '시설 내 지정 승하차 구역 A', mode: 'HANDOFF', adult: false },
+    daycare: { title: '어린이집 등원', facility: '새봄어린이집', subject: '하늘', receiver: '새봄반 담당 교사', place: '시설 내 지정 승하차 구역 B', mode: 'HANDOFF', adult: false },
+    senior: { title: '주야간보호센터 방문', facility: '온유돌봄센터', subject: '이용자 A', receiver: '지정 돌봄 담당자', place: '시설 내 이동 지원 구역', mode: 'HANDOFF', adult: true, notificationRecipient: '온유돌봄센터 담당자' },
+    community: { title: '경로당 자율 방문', facility: '함께경로당', subject: '이용자 B', receiver: '지정 인수자 없음', place: '방문지 도착 확인 구역', mode: 'ARRIVAL_ONLY', adult: true, notificationRecipient: '함께경로당 연락 담당자' }
   };
   const LABELS = { PLANNED: '출발 준비', EN_ROUTE: '이동 중', ARRIVED: '도착 · 인계 전', VERIFYING: '대면 확인 중', COMPLETED: '양측 인계 확인 완료', ARRIVAL_REPORTED: '도착 알림 · 인계 아님', CANCELLED: '이동 취소' };
   class DomainError extends Error {
@@ -22,7 +22,7 @@
   function createTrip(scenario, now, id) {
     requireThat(Object.hasOwn(SCENARIOS, scenario), 'SCENARIO', '지원하지 않는 시연입니다.', 400);
     return {
-      schema: 1, id: id || 'local-demo', version: 0, scenario, info: copy(SCENARIOS[scenario]),
+      schema: 1, id: id || 'local-demo', version: 0, scenario, info: { ...C.defaults(), ...copy(SCENARIOS[scenario]) },
       state: 'PLANNED', consent: !SCENARIOS[scenario].adult, assignedReceiver: 'staff-001',
       readyAt: null, ready: false, locationInside: false,
       vehicle: { source: 'SIMULATOR', known: false, restricted: true, gear: 'UNKNOWN', speed: null, at: null },
@@ -65,6 +65,19 @@
     let message = '', rejected = null;
     const p = event.payload || {};
     switch (event.type) {
+      case 'CONFIGURE_VISIT': {
+        assertActor(actor, ['vehicle','facility','guardian','visitor']);
+        if(actor.role==='facility')requireThat(actor.id===s.assignedReceiver,'RECEIVER','담당 시설의 정보만 변경할 수 있습니다.',403);
+        requireThat(s.state==='PLANNED'&&!s.arrivalNotice,'VISIT_STARTED','시작한 방문의 정보는 바꿀 수 없습니다. 새 방문에서 변경해 주세요.');
+        let patch;try{patch=C.cleanPatch(p,actor.role,s.info);}catch(e){throw new DomainError('SETTINGS',e.message,400);}
+        const personChanged=Object.hasOwn(patch,'subject')&&patch.subject!==s.info.subject;
+        const facilityChanged=['facility','receiver'].some(k=>Object.hasOwn(patch,k)&&patch[k]!==s.info[k]);
+        if(facilityChanged){s.ready=false;s.readyAt=null;}
+        s.info={...s.info,...patch};
+        if(Object.hasOwn(patch,'receiver'))s.info.notificationRecipient=patch.receiver;
+        if(personChanged&&s.info.adult)s.consent=false;
+        message='방문 정보를 저장했습니다.';break;
+      }
       case 'CONSENT':
         assertActor(actor, ['simulator']);
         requireThat(typeof p.accepted === 'boolean', 'INPUT', '동의 여부가 필요합니다.', 400);
@@ -189,6 +202,7 @@
   }
   function project(state, role) {
     const s = copy(state);
+    if(role==='facility'){s.events=s.events.filter(e=>['CREATED','CONFIGURE_VISIT','DEPART','ARRIVE','READY','ISSUE_CODE','SENDER_CONFIRM','RECEIVER_CONFIRM','NOTIFY_ARRIVAL','ACK_ARRIVAL_NOTICE','CANCEL'].includes(e.type));}
     if (s.challenge && role !== 'vehicle' && role !== 'simulator') delete s.challenge.code;
     return s;
   }

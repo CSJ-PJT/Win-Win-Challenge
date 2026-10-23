@@ -24,12 +24,13 @@ import java.util.Set;
 /** Native container for the bundled, synthetic-data presentation. */
 public final class MainActivity extends Activity {
     private static final String HOST = "appassets.androidplatform.net";
-    private static final Set<String> ASSETS = new java.util.HashSet<>(java.util.Arrays.asList("index.html", "core.js", "ui.js", "app.js", "style.css"));
+    private static final Set<String> ASSETS = new java.util.HashSet<>(java.util.Arrays.asList("index.html", "config.js", "core.js", "ui.js", "app.js", "style.css"));
     private WebView web;
     private TextView blocker;
     private CarRestrictionMonitor carMonitor;
     private NavigationAdapter navigation;
     private boolean automotive;
+    private final java.util.concurrent.ExecutorService geocoding = java.util.concurrent.Executors.newSingleThreadExecutor();
     private boolean uxKnown = false;
     private boolean uxRestricted = true;
     @Override public void onCreate(Bundle saved) {
@@ -117,7 +118,55 @@ public final class MainActivity extends Activity {
             navigation.connect();
         } catch(Throwable e) { report("NaviHelper 연결 실패: " + e.getClass().getSimpleName()); }
     }
+    private void addressResults(String id, org.json.JSONArray places, String message) {
+        runOnUiThread(() -> {
+            if(web==null || isFinishing() || isDestroyed())return;
+            web.evaluateJavascript("window.onAddressResults && window.onAddressResults("+JSONObject.quote(id)+","+places.toString()+","+JSONObject.quote(message)+");", null);
+        });
+    }
+    private void mapStatus(String message) {
+        if(web!=null) web.evaluateJavascript("window.onNativeDialerStatus && window.onNativeDialerStatus("+JSONObject.quote(message)+");",null);
+    }
     public final class Bridge {
+        @JavascriptInterface public void searchAddress(String query, String requestId) {
+            if(query==null || query.trim().length()<2 || query.length()>180 || requestId==null || !requestId.matches("[A-Za-z0-9-]{1,80}"))return;
+            runOnUiThread(() -> {
+                if(automotive && !mayUseNativeNavigation()) {addressResults(requestId,new org.json.JSONArray(),"정차 후 주소를 찾을 수 있어요.");return;}
+                if(!android.location.Geocoder.isPresent()) {addressResults(requestId,new org.json.JSONArray(),"지도에서 검색하거나 주소를 직접 입력해 주세요.");return;}
+                geocoding.execute(() -> {
+                    org.json.JSONArray result=new org.json.JSONArray();
+                    try {
+                        android.location.Geocoder geocoder=new android.location.Geocoder(MainActivity.this,java.util.Locale.KOREA);
+                        java.util.List<android.location.Address> addresses=geocoder.getFromLocationName(query.trim(),5);
+                        if(addresses!=null)for(android.location.Address a:addresses) {
+                            if(!a.hasLatitude()||!a.hasLongitude())continue;
+                            JSONObject item=new JSONObject();
+                            item.put("name",a.getFeatureName()==null?query:a.getFeatureName());
+                            item.put("address",a.getMaxAddressLineIndex()>=0?a.getAddressLine(0):query);
+                            item.put("latitude",a.getLatitude());item.put("longitude",a.getLongitude());result.put(item);
+                        }
+                        addressResults(requestId,result,result.length()==0?"주소를 찾지 못했어요. 지도에서 검색해 주세요.":"");
+                    } catch(Exception e){addressResults(requestId,new org.json.JSONArray(),"주소 검색에 연결하지 못했어요. 지도에서 검색해 주세요.");}
+                });
+            });
+        }
+        @JavascriptInterface public void openMap(String value) {
+            if(value==null||value.length()>2048)return;
+            android.net.Uri uri=android.net.Uri.parse(value);
+            boolean allowed="https".equals(uri.getScheme())&&uri.getUserInfo()==null&&uri.getPort()==-1&&(
+                ("map.kakao.com".equals(uri.getHost())&&uri.getPath()!=null&&uri.getPath().startsWith("/link/"))||
+                ("www.google.com".equals(uri.getHost())&&uri.getPath()!=null&&uri.getPath().startsWith("/maps/")));
+            if(!allowed)return;
+            runOnUiThread(() -> {
+                if(automotive&&!mayUseNativeNavigation()){mapStatus("정차 후 길 안내를 열 수 있어요.");return;}
+                try {
+                    startActivity(new android.content.Intent(android.content.Intent.ACTION_VIEW,uri));
+                    Log.i("HandoffMap","MAP_INTENT_OPENED");
+                } catch(android.content.ActivityNotFoundException e){mapStatus("지도나 브라우저 앱을 설치해 주세요.");}
+                catch(SecurityException e){mapStatus("지도 앱을 열지 못했어요.");}
+            });
+        }
+
         @JavascriptInterface public void openDialer(String value) {
             if (value == null || !value.matches("\\+?[0-9]{7,15}")) return;
             runOnUiThread(() -> {
@@ -161,5 +210,5 @@ public final class MainActivity extends Activity {
         if(web!=null)web.getSettings().setTextZoom(Math.round(getResources().getConfiguration().fontScale * 100));
         if(carMonitor!=null)carMonitor.refresh();
     }
-    @Override protected void onDestroy(){if(carMonitor!=null)carMonitor.close();if(navigation!=null)navigation.close();if(web!=null){web.removeJavascriptInterface("VehicleBridge");web.destroy();}super.onDestroy();}
+    @Override protected void onDestroy(){if(carMonitor!=null)carMonitor.close();if(navigation!=null)navigation.close();geocoding.shutdownNow();if(web!=null){web.removeJavascriptInterface("VehicleBridge");web.destroy();}super.onDestroy();}
 }

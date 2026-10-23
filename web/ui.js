@@ -13,7 +13,9 @@
       role: ['vehicle', 'facility', 'guardian'].includes(v.role) ? v.role : 'vehicle',
       text: [100, 125, 150, 200].includes(v.text) ? v.text : 100,
       phone: normalizePhone(v.phone),
-      theme: 'light'
+      theme: 'light',
+      mapProvider: v.mapProvider==='google'?'google':'kakao',
+      roleChosen: v.roleChosen===true
     };
   }
   function initialPresentationEvents(s) {
@@ -54,6 +56,9 @@
   }
   function publicError(code) {
     const map = {
+      SETTINGS: '입력한 주소·연락처·좌표를 확인해 주세요.',
+      VISIT_STARTED: '진행 중인 방문은 변경할 수 없어요. 새 방문에서 설정해 주세요.',
+      FORBIDDEN: '현재 역할에서 할 수 없는 작업이에요.',
       WRONG_CODE: '연결번호가 맞지 않아요. 상대방에게 다시 확인해 주세요.',
       EXPIRED: '연결번호 시간이 지났어요. 차량 화면에서 새 번호를 받아주세요.',
       NO_CHALLENGE: '차량 화면에서 연결번호를 먼저 받아주세요.',

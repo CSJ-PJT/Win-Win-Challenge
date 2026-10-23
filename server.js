@@ -59,6 +59,21 @@ function createApp(options = {}) {
       if (req.method === 'GET' && url.pathname === '/api/state') {
         const a = actor(req); return json(res, 200, { state: H.project(record.state, a.role), serverNow: now() });
       }
+      if(req.method==='GET' && url.pathname==='/api/places') {
+        actor(req);
+        const query=(url.searchParams.get('query')||'').trim();
+        if(query.length<2||query.length>180)return json(res,400,{error:'QUERY'});
+        const key=options.mapKey||process.env.KAKAO_REST_API_KEY;
+        if(!key)return json(res,503,{error:'MAP_NOT_CONFIGURED'});
+        const endpoint='https://dapi.kakao.com/v2/local/search/keyword.json?size=5&query='+encodeURIComponent(query);
+        try {
+          const response=await (options.mapFetch||fetch)(endpoint,{headers:{Authorization:'KakaoAK '+key},signal:AbortSignal.timeout(5000)});
+          if(!response.ok)return json(res,502,{error:'MAP_UNAVAILABLE'});
+          const data=await response.json();
+          const places=(data.documents||[]).slice(0,5).filter(d=>Number.isFinite(Number(d.y))&&Number.isFinite(Number(d.x))).map(d=>({name:String(d.place_name||'').slice(0,80),address:String(d.road_address_name||d.address_name||'').slice(0,180),latitude:Number(d.y),longitude:Number(d.x)}));
+          return json(res,200,{places});
+        } catch {return json(res,502,{error:'MAP_UNAVAILABLE'});}
+      }
       if (req.method === 'POST' && url.pathname === '/api/reset') {
         const a = actor(req); if (a.role !== 'simulator') throw new H.DomainError('FORBIDDEN', '시연 제어 권한이 필요합니다.', 403);
         const p = await body(req); const next = fresh(p.scenario || 'kindergarten'); persist(next);
@@ -86,7 +101,7 @@ function createApp(options = {}) {
       }
       if (url.pathname.startsWith('/api/')) return json(res, 404, { error: 'NOT_FOUND' });
       if (!['GET', 'HEAD'].includes(req.method)) return json(res, 405, { error: 'METHOD' });
-      const names = { '/': 'index.html', '/index.html': 'index.html', '/vehicle': 'index.html', '/facility': 'index.html', '/guardian': 'index.html', '/visitor': 'index.html', '/style.css': 'style.css', '/core.js': 'core.js', '/app.js': 'app.js', '/ui.js': 'ui.js' };
+      const names = { '/': 'index.html', '/index.html': 'index.html', '/vehicle': 'index.html', '/facility': 'index.html', '/guardian': 'index.html', '/visitor': 'index.html', '/style.css': 'style.css', '/core.js': 'core.js', '/app.js': 'app.js', '/ui.js': 'ui.js', '/config.js':'config.js' };
       const filename = names[url.pathname];
       if (!filename) return json(res, 404, { error: 'NOT_FOUND' });
       const contents = fs.readFileSync(path.join(WEB, filename));
