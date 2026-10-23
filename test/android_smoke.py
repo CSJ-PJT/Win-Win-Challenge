@@ -30,8 +30,14 @@ def ui():
         time.sleep(1)
     (O/'uiautomator-error.txt').write_text(last)
     raise RuntimeError('Android accessibility dump unavailable after retries: '+last)
+def rect(node):
+    a=list(map(int,re.findall(r'\d+',node.get('bounds',''))))
+    if len(a)!=4 or a[2]<=a[0] or a[3]<=a[1]:return None
+    return a
+
 def coord(node):
-    a=list(map(int,re.findall(r'\d+',node.get('bounds',''))));assert len(a)==4
+    a=rect(node)
+    assert a is not None, 'Cannot tap an off-screen or zero-sized accessibility element'
     return str((a[0]+a[2])//2),str((a[1]+a[3])//2)
 def shot(n):(O/(n+'.png')).write_bytes(adb('exec-out','screencap','-p',raw=True))
 def find(text,click=False):
@@ -39,7 +45,7 @@ def find(text,click=False):
         root=ui();hits=[n for n in root.iter('node') if text in (n.get('text','')+' '+n.get('content-desc',''))]
         hits.sort(key=lambda n:n.get('clickable')!='true')
         for n in hits:
-            if not n.get('bounds'):continue
+            if rect(n) is None:continue
             if click:
                 assert n.get('enabled')!='false',f'{text} disabled'
                 adb('shell','input','tap',*coord(n));time.sleep(.7)
