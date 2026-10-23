@@ -1,4 +1,4 @@
-name: Test and build demonstration APK
+name: Verify and build Ansim preview
 on:
   workflow_dispatch:
   push:
@@ -7,13 +7,13 @@ on:
       - 'server.js'
       - 'test/**'
       - 'android/**'
-      - 'tools/**'
+      - 'tools/bundle.js'
       - 'package.json'
       - '.github/workflows/build.yml'
 permissions:
   contents: write
 concurrency:
-  group: demo-build-${{ github.ref }}
+  group: ansim-preview-${{ github.ref }}
   cancel-in-progress: true
 defaults:
   run:
@@ -21,19 +21,21 @@ defaults:
 jobs:
   verify-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply reviewed submission naming and client repair
-        run: python3 tools/finalize_submission.py
-      - name: Test the shared domain model and HTTP service
+      - name: Test domain and HTTP service
         run: |
-          mkdir -p build-reports
-          npm test | tee build-reports/node-tests.txt
+          mkdir -p build-reports/v020
+          npm test | tee build-reports/v020/node-tests.txt
           npm run bundle
+      - name: Test UI and real browser synchronization
+        run: |
+          python3 -m pip install --quiet playwright==1.57.0
+          python3 test/browser_smoke.py --output build-reports/v020/browser
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -41,80 +43,38 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
-      - name: Prepare bundled assets and a disposable demonstration signing key
+      - name: Prepare Android assets and preview signing key
         run: |
-          mkdir -p android/app/src/main/assets
-          cp web/* android/app/src/main/assets/
+          cp web/*.js web/style.css android/app/src/main/assets/
           cp dist/handoff-demo.html android/app/src/main/assets/index.html
-          keytool -genkeypair -keystore "$RUNNER_TEMP/demo-release.jks" -storepass demo-ci-only -keypass demo-ci-only -alias demo -keyalg RSA -keysize 3072 -validity 3650 -dname 'CN=Ansim Handoff Demonstration, O=Contest Prototype, C=KR'
-      - name: Build signed release variant
+          keytool -genkeypair -keystore "$RUNNER_TEMP/preview.jks" -storepass preview-ci-only -keypass preview-ci-only -alias demo -keyalg RSA -keysize 3072 -validity 3650 -dname 'CN=Ansim Preview, O=Contest Prototype, C=KR'
+      - name: Build preview APK without an emulator
         env:
-          DEMO_KEYSTORE: ${{ runner.temp }}/demo-release.jks
-          DEMO_STORE_PASSWORD: demo-ci-only
+          DEMO_KEYSTORE: ${{ runner.temp }}/preview.jks
+          DEMO_STORE_PASSWORD: preview-ci-only
         run: |
-          gradle -p android --no-daemon assembleRelease 2>&1 | tee build-reports/gradle-build.txt
-      - name: Enable emulator acceleration
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-      - name: Verify rendered application on a standard Android emulator (not Pleos)
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 35
-          arch: x86_64
-          profile: pixel_6
-          disable-animations: true
-          script: |
-            adb install android/app/build/outputs/apk/release/app-release.apk
-            adb logcat -c
-            adb shell am start -W -n kr.co.ansimdonghaeng/.MainActivity
-            sleep 12
-            adb shell pidof kr.co.ansimdonghaeng
-            adb exec-out screencap -p > build-reports/android-launch.png
-            adb logcat -d > build-reports/android-full-log.txt
-            adb logcat -d -s AndroidRuntime HandoffUI > build-reports/android-runtime.txt
-            adb shell dumpsys webviewupdate > build-reports/android-webview.txt
-            cat build-reports/android-runtime.txt
-            grep -q 'HANDOFF_UI_READY' build-reports/android-runtime.txt
-            if grep -q 'FATAL EXCEPTION' build-reports/android-runtime.txt; then exit 1; fi
-      - name: Verify APK and publish repository copy
-        run: |
+          gradle -p android --no-daemon --max-workers=2 assembleRelease 2>&1 | tee build-reports/v020/gradle-build.txt
           mkdir -p apk
-          if [ -f apk/WinWin_안심동행_release.apk ]; then cp apk/WinWin_안심동행_release.apk "$RUNNER_TEMP/previous.apk"; else cp apk/안심동행_안심동행플랫폼_release.apk "$RUNNER_TEMP/previous.apk"; fi
-          cp android/app/build/outputs/apk/release/app-release.apk apk/안심동행_안심동행플랫폼_release.apk
-          "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/안심동행_안심동행플랫폼_release.apk | tee build-reports/apk-signature.txt
-          python3 -m pip install --quiet bsdiff4==1.2.6
-          python3 - <<'PYDELTA'
-          from pathlib import Path
-          import os, json, base64, hashlib, bsdiff4
-          old=Path(os.environ['RUNNER_TEMP'],'previous.apk').read_bytes()
-          new=Path('apk/안심동행_안심동행플랫폼_release.apk').read_bytes()
-          patch=bsdiff4.diff(old,new)
-          assert bsdiff4.patch(old,patch)==new
-          encoded=base64.b64encode(patch).decode()
-          Path('build-reports/release-delta.b64').write_text('\n'.join(encoded[i:i+120] for i in range(0,len(encoded),120)))
-          metadata={'source_sha':os.environ['GITHUB_SHA'],'baseline_sha256':hashlib.sha256(old).hexdigest(),'apk_sha256':hashlib.sha256(new).hexdigest(),'delta_bytes':len(patch),'apk_bytes':len(new),'version':'0.1.1'}
-          Path('build-reports/release-metadata.json').write_text(json.dumps(metadata,indent=2))
-          print(json.dumps(metadata))
-          PYDELTA
-          rm -f apk/WinWin_안심동행_release.apk
-          sha256sum apk/*.apk | tee build-reports/apk-sha256.txt
+          cp android/app/build/outputs/apk/release/app-release.apk apk/ansim-platform-0.2.0-preview.apk
+          "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/ansim-platform-0.2.0-preview.apk | tee build-reports/v020/apk-signature.txt
+          sha256sum apk/ansim-platform-0.2.0-preview.apk > build-reports/v020/apk-sha256.txt
+          echo 'This run builds and verifies the APK signature. Android/Pleos runtime testing is not included.' > build-reports/v020/native-scope.txt
+      - name: Preserve preview and source revision
+        run: |
+          git rev-parse HEAD > build-reports/v020/source-revision.txt
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add apk build-reports web android/app/src/main/AndroidManifest.xml android/app/build.gradle android/app/src/main/assets/index.html package.json README.md .gitignore dist
-          git diff --cached --quiet || git commit -m 'release: finalize platform naming, repair demo reconnect, and publish verified APK'
+          git add apk/ansim-platform-0.2.0-preview.apk build-reports/v020 dist android/app/src/main/assets
+          git diff --cached --quiet || git commit -m 'build: archive 0.2.0 preview and verification [skip ci]'
           git push
-      - name: Package source without local state or signing keys
-        if: always()
-        run: git archive --format=zip HEAD -o handoff-source.zip
+          git archive --format=zip HEAD -o ansim-platform-0.2.0-source.zip
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: handoff-demo-deliverables
+          name: ansim-platform-0.2.0-preview
           path: |
-            apk/
-            dist/
-            build-reports/
-            handoff-source.zip
-          retention-days: 30
+            apk/ansim-platform-0.2.0-preview.apk
+            dist/handoff-demo.html
+            build-reports/v020/
+            ansim-platform-0.2.0-source.zip
+          retention-days: 14

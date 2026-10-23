@@ -6,7 +6,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const H = require('./web/core');
 const WEB = path.join(__dirname, 'web');
-const ROLES = { vehicle: 'sender-001', facility: 'staff-001', guardian: 'observer-001', simulator: 'demo-controller' };
+const ROLES = { vehicle: 'sender-001', facility: 'staff-001', guardian: 'observer-001', visitor: 'visitor-001', simulator: 'demo-controller' };
 function createApp(options = {}) {
   const dataFile = options.dataFile || path.join(__dirname, '.data', 'demo.json');
   const now = options.clock || Date.now;
@@ -22,6 +22,10 @@ function createApp(options = {}) {
     const fd = fs.openSync(temp, 'w', 0o600);
     try { fs.writeFileSync(fd, JSON.stringify(next)); fs.fsyncSync(fd); } finally { fs.closeSync(fd); }
     fs.renameSync(temp, dataFile); record = next;
+  }
+  // Preserve existing synthetic visits when upgrading from 0.1.x.
+  if (!record.tokens.visitor) {
+    persist({ ...record, tokens: { ...record.tokens, visitor: crypto.randomBytes(24).toString('hex') } });
   }
   function json(res, status, obj) {
     res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' });
@@ -82,7 +86,7 @@ function createApp(options = {}) {
       }
       if (url.pathname.startsWith('/api/')) return json(res, 404, { error: 'NOT_FOUND' });
       if (!['GET', 'HEAD'].includes(req.method)) return json(res, 405, { error: 'METHOD' });
-      const names = { '/': 'index.html', '/index.html': 'index.html', '/vehicle': 'index.html', '/facility': 'index.html', '/guardian': 'index.html', '/style.css': 'style.css', '/core.js': 'core.js', '/app.js': 'app.js' };
+      const names = { '/': 'index.html', '/index.html': 'index.html', '/vehicle': 'index.html', '/facility': 'index.html', '/guardian': 'index.html', '/visitor': 'index.html', '/style.css': 'style.css', '/core.js': 'core.js', '/app.js': 'app.js', '/ui.js': 'ui.js' };
       const filename = names[url.pathname];
       if (!filename) return json(res, 404, { error: 'NOT_FOUND' });
       const contents = fs.readFileSync(path.join(WEB, filename));

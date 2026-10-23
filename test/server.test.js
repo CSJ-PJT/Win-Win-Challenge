@@ -17,3 +17,11 @@ test('stale trip references cannot mutate a new journey',async t=>{const a=await
 test('observer cannot reset the presentation',async t=>{const a=await start(t);assert.equal((await fetch(a.base+'/api/reset',{method:'POST',headers:{Authorization:'Bearer '+a.boot.tokens.guardian,'Content-Type':'application/json'},body:'{}'})).status,403);});
 test('invalid JSON is rejected without state change',async t=>{const a=await start(t);const r=await fetch(a.base+'/api/events',{method:'POST',headers:{Authorization:'Bearer '+a.boot.tokens.vehicle,'Content-Type':'application/json'},body:'{'});assert.equal(r.status,400);assert.equal((await a.state()).state.version,0);});
 test('server never exposes arbitrary filesystem paths',async t=>{const a=await start(t);assert.equal((await fetch(a.base+'/server.js')).status,404);assert.equal((await fetch(a.base+'/api/health')).status,200);});
+test('visitor token is scoped to adult self reporting',async t=>{const a=await start(t);assert.ok(a.boot.tokens.visitor);assert.equal((await a.event({type:'READY',payload:{ready:true}},'visitor')).status,403);assert.equal((await a.event({type:'SELF_CONSENT',payload:{accepted:true}},'visitor')).data.error,'ADULT_ONLY');});
+test('visitor role is added when loading a 0.1.x demo store',async t=>{
+const a=await start(t);await a.event({type:'READY',payload:{ready:true}},'facility');
+const old=JSON.parse(fs.readFileSync(a.dataFile,'utf8'));delete old.tokens.visitor;fs.writeFileSync(a.dataFile,JSON.stringify(old));
+const b=createApp({dataFile:a.dataFile});await new Promise(r=>b.listen(0,'127.0.0.1',r));
+try{const boot=await (await fetch('http://127.0.0.1:'+b.address().port+'/api/bootstrap')).json();assert.ok(boot.tokens.visitor);assert.equal(boot.tripId,old.state.id);assert.equal(JSON.parse(fs.readFileSync(a.dataFile,'utf8')).state.ready,true);}finally{await new Promise(r=>b.close(r));}
+});
+test('visitor route and pure UI module are served with CSP',async t=>{const a=await start(t);const r=await fetch(a.base+'/visitor');assert.equal(r.status,200);assert.ok(r.headers.get('content-security-policy'));assert.equal((await fetch(a.base+'/ui.js')).status,200);});

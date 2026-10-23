@@ -5,13 +5,13 @@
   else root.Handoff = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
-  const VERSION = '0.1.1';
+  const VERSION = '0.2.0';
   const TELEMETRY_TTL = 30000, READY_TTL = 600000, CODE_TTL = 120000;
   const SCENARIOS = {
     kindergarten: { title: '유치원 등원', facility: '햇살유치원 · 가상 시설', subject: '도담 · 가상 원아', receiver: '햇살반 담당 교사', place: '시설 내 지정 승하차 구역 A', mode: 'HANDOFF', adult: false },
     daycare: { title: '어린이집 등원', facility: '새봄어린이집 · 가상 시설', subject: '하늘 · 가상 원아', receiver: '새봄반 담당 교사', place: '시설 내 지정 승하차 구역 B', mode: 'HANDOFF', adult: false },
-    senior: { title: '주야간보호센터 방문', facility: '온유돌봄센터 · 가상 시설', subject: '이용자 A · 가상 인물', receiver: '지정 돌봄 담당자', place: '시설 내 이동 지원 구역', mode: 'HANDOFF', adult: true },
-    community: { title: '경로당 자율 방문', facility: '함께경로당 · 가상 시설', subject: '이용자 B · 가상 인물', receiver: '지정 인수자 없음', place: '방문지 도착 확인 구역', mode: 'ARRIVAL_ONLY', adult: true }
+    senior: { title: '주야간보호센터 방문', facility: '온유돌봄센터 · 가상 시설', subject: '이용자 A · 가상 인물', receiver: '지정 돌봄 담당자', place: '시설 내 이동 지원 구역', mode: 'HANDOFF', adult: true, notificationRecipient: '온유돌봄센터 담당자' },
+    community: { title: '경로당 자율 방문', facility: '함께경로당 · 가상 시설', subject: '이용자 B · 가상 인물', receiver: '지정 인수자 없음', place: '방문지 도착 확인 구역', mode: 'ARRIVAL_ONLY', adult: true, notificationRecipient: '함께경로당 연락 담당자' }
   };
   const LABELS = { PLANNED: '출발 준비', EN_ROUTE: '이동 중', ARRIVED: '도착 · 인계 전', VERIFYING: '대면 확인 중', COMPLETED: '양측 인계 확인 완료', ARRIVAL_REPORTED: '도착 알림 · 인계 아님', CANCELLED: '이동 취소' };
   class DomainError extends Error {
@@ -27,7 +27,7 @@
       readyAt: null, ready: false, locationInside: false,
       vehicle: { source: 'SIMULATOR', known: false, restricted: true, gear: 'UNKNOWN', speed: null, at: null },
       challenge: null, senderConfirmed: false, receiverConfirmed: false, blockReason: null,
-      completedAt: null, createdAt: now, events: [{ seq: 0, at: now, type: 'CREATED', actor: 'simulator', message: '가상 이동 건을 만들었습니다. 실제 시설·이용자 데이터가 아닙니다.' }]
+      arrivalNotice: null, completedAt: null, createdAt: now, events: [{ seq: 0, at: now, type: 'CREATED', actor: 'simulator', message: '가상 이동 건을 만들었습니다. 실제 시설·이용자 데이터가 아닙니다.' }]
     };
   }
   function safeVehicle(s, now) {
@@ -71,6 +71,31 @@
         s.consent = p.accepted;
         if (!s.consent) invalidate(s, '이용자가 동의를 철회했습니다.');
         message = s.consent ? '이용자 동의 확인을 모의 입력했습니다.' : '동의 철회로 진행 중인 인계 확인을 취소했습니다.';
+        break;
+      case 'SELF_CONSENT':
+        assertActor(actor, ['visitor']);
+        requireThat(s.info.adult, 'ADULT_ONLY', '본인이 이용하는 방문에서 선택할 수 있습니다.', 403);
+        requireThat(typeof p.accepted === 'boolean', 'INPUT', '동의 여부를 선택해 주세요.', 400);
+        s.consent = p.accepted;
+        if (!s.consent) invalidate(s, '이용자가 도착 정보 공유를 중단했습니다.');
+        message = s.consent ? '이용자가 방문 상태 공유에 동의했습니다.' : '이용자가 방문 상태 공유를 중단했습니다.';
+        break;
+      case 'NOTIFY_ARRIVAL':
+        assertActor(actor, ['visitor']);
+        requireThat(s.info.adult, 'ADULT_ONLY', '본인이 이용하는 방문에서 선택할 수 있습니다.', 403);
+        requireThat(s.consent, 'CONSENT', '도착 소식 공유에 먼저 동의해 주세요.');
+        // Self-reported arrival is deliberately separate from location, vehicle and handoff state.
+        requireThat(!s.arrivalNotice, 'ALREADY_NOTIFIED', '이번 방문의 도착 소식은 이미 남겼어요.');
+        s.arrivalNotice = { at: now, recipient: s.info.notificationRecipient, source: 'SELF_REPORTED', acknowledgedAt: null };
+        message = '이용자가 도착 소식을 남겼습니다.';
+        break;
+      case 'ACK_ARRIVAL_NOTICE':
+        assertActor(actor, ['facility']);
+        requireThat(actor.id === s.assignedReceiver, 'RECEIVER', '지정된 담당자만 확인할 수 있습니다.', 403);
+        requireThat(s.arrivalNotice, 'NO_NOTICE', '확인할 도착 소식이 없습니다.');
+        requireThat(!s.arrivalNotice.acknowledgedAt, 'ALREADY_ACKNOWLEDGED', '이미 확인한 도착 소식입니다.');
+        s.arrivalNotice.acknowledgedAt = now;
+        message = '담당자가 도착 소식을 읽었습니다.';
         break;
       case 'READY':
         assertActor(actor, ['facility']);

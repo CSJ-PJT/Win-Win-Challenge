@@ -2,10 +2,11 @@
 const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 let html=fs.readFileSync(path.join(root,'web/index.html'),'utf8');
-html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+fs.readFileSync(path.join(root,'web/style.css'),'utf8')+'</style>');
-html=html.replace('<script defer src="core.js"></script><script defer src="app.js"></script>','');
+html=html.replace('<link rel="stylesheet" href="style.css">',()=>'<style>'+fs.readFileSync(path.join(root,'web/style.css'),'utf8')+'</style>');
+const scripts=['core.js','ui.js','app.js'];
+for(const name of scripts)html=html.replace(`<script defer src="${name}"></script>`,'');
 const compatibility="if(!Object.hasOwn){Object.defineProperty(Object,'hasOwn',{value:function(o,k){return Object.prototype.hasOwnProperty.call(o,k);},configurable:true,writable:true});}";
-html=html.replace('</body>','<script>'+compatibility+'\n'+fs.readFileSync(path.join(root,'web/core.js'),'utf8')+'</script><script>'+fs.readFileSync(path.join(root,'web/app.js'),'utf8')+'</script></body>');
+html=html.replace('</body>',()=>'<script>'+compatibility+'</script>'+scripts.map(name=>'<script>'+fs.readFileSync(path.join(root,'web',name),'utf8').replace(/<\/script/gi,'<\\/script')+'</script>').join('')+'</body>');
 fs.mkdirSync(path.join(root,'dist'),{recursive:true});
 fs.writeFileSync(path.join(root,'dist/handoff-demo.html'),html);
 console.log('dist/handoff-demo.html');

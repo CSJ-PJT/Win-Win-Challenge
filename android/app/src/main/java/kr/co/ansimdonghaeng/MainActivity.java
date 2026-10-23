@@ -24,7 +24,7 @@ import java.util.Set;
 /** Native container for the bundled, synthetic-data presentation. */
 public final class MainActivity extends Activity {
     private static final String HOST = "appassets.androidplatform.net";
-    private static final Set<String> ASSETS = new java.util.HashSet<>(java.util.Arrays.asList("index.html", "core.js", "app.js", "style.css"));
+    private static final Set<String> ASSETS = new java.util.HashSet<>(java.util.Arrays.asList("index.html", "core.js", "ui.js", "app.js", "style.css"));
     private WebView web;
     private TextView blocker;
     private CarRestrictionMonitor carMonitor;
@@ -38,9 +38,13 @@ public final class MainActivity extends Activity {
         FrameLayout frame = new FrameLayout(this);
         web = new WebView(this);
         WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG);
-        web.setBackgroundColor(Color.rgb(16,27,43));
+        web.setBackgroundColor(Color.rgb(245,247,243));
         web.getSettings().setJavaScriptEnabled(true);
         web.getSettings().setDomStorageEnabled(true);
+        web.getSettings().setTextZoom(Math.round(getResources().getConfiguration().fontScale * 100));
+        web.getSettings().setSupportZoom(true);
+        web.getSettings().setBuiltInZoomControls(true);
+        web.getSettings().setDisplayZoomControls(false);
         web.getSettings().setAllowFileAccess(false);
         web.getSettings().setAllowContentAccess(false);
         web.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
@@ -69,7 +73,7 @@ public final class MainActivity extends Activity {
             }
             @Override public void onPageFinished(WebView view, String url) {
                 report(automotive ? "AAOS 환경: CarUxRestrictions 확인 중. 경로·위치·인계는 별도 검증이 필요합니다." : "일반 Android 로컬 시연. 실제 차량 신호·Pleos 내비게이션은 연결되지 않았습니다.");
-                web.postDelayed(()->web.evaluateJavascript("Boolean(document.querySelector('.brand-name') && document.querySelectorAll('[data-action]').length >= 10)",result->Log.i("HandoffUI","true".equals(result)?"HANDOFF_UI_READY":"HANDOFF_UI_NOT_READY")),2000);
+                web.postDelayed(()->web.evaluateJavascript("Boolean(document.querySelector('.brand-name') && document.querySelector('#main') && document.querySelectorAll('[data-action]').length >= 3)",result->Log.i("HandoffUI","true".equals(result)?"HANDOFF_UI_READY":"HANDOFF_UI_NOT_READY")),2000);
             }
         });
         frame.addView(web, new FrameLayout.LayoutParams(-1,-1));
@@ -114,6 +118,22 @@ public final class MainActivity extends Activity {
         } catch(Throwable e) { report("NaviHelper 연결 실패: " + e.getClass().getSimpleName()); }
     }
     public final class Bridge {
+        @JavascriptInterface public void openDialer(String value) {
+            if (value == null || !value.matches("\\+?[0-9]{7,15}")) return;
+            runOnUiThread(() -> {
+                if (automotive && !mayUseNativeNavigation()) {
+                    dialerStatus("정차 후 전화 화면을 열 수 있어요."); return;
+                }
+                try {
+                    // Opens the system dialer only. Never uses ACTION_CALL or CALL_PHONE.
+                    android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_DIAL,
+                        android.net.Uri.fromParts("tel", value, null));
+                    startActivity(intent);
+                } catch (android.content.ActivityNotFoundException e) {
+                    dialerStatus("이 기기에는 전화 앱이 없어요. 다른 전화로 담당자에게 연락해 주세요.");
+                } catch (SecurityException e) { dialerStatus("전화 앱을 열지 못했어요. 연락처를 확인해 주세요."); }
+            });
+        }
         @JavascriptInterface public void checkNavigation() { runOnUiThread(() -> initializeNavigation()); }
         @JavascriptInterface public void requestSampleRoute() {
             runOnUiThread(() -> {
@@ -127,6 +147,19 @@ public final class MainActivity extends Activity {
             });
         }
     }
-    @Override protected void onResume(){super.onResume();if(carMonitor!=null)carMonitor.refresh();}
+    private void dialerStatus(String status) {
+        if (web != null) web.evaluateJavascript("window.onNativeDialerStatus && window.onNativeDialerStatus("+JSONObject.quote(status)+");", null);
+    }
+    @Override public void onBackPressed() {
+        if (web == null) { super.onBackPressed(); return; }
+        web.evaluateJavascript("window.handleAppBack ? window.handleAppBack() : false", result -> {
+            if (!"true".equals(result)) finish();
+        });
+    }
+    @Override protected void onResume(){
+        super.onResume();
+        if(web!=null)web.getSettings().setTextZoom(Math.round(getResources().getConfiguration().fontScale * 100));
+        if(carMonitor!=null)carMonitor.refresh();
+    }
     @Override protected void onDestroy(){if(carMonitor!=null)carMonitor.close();if(navigation!=null)navigation.close();if(web!=null){web.removeJavascriptInterface("VehicleBridge");web.destroy();}super.onDestroy();}
 }
