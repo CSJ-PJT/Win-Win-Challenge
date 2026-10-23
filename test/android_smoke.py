@@ -55,7 +55,7 @@ def find(text,click=False,exact=False):
         if i%5==4:adb('shell','input','swipe','520','460','520','1500','250')
         time.sleep(.45)
     raise AssertionError('missing accessibility label: '+text)
-def tap(t):find(t,True)
+def tap(t,exact=False):find(t,True,exact)
 def passed(s):results.append(s);print('PASS',s,flush=True)
 try:
     adb('install','-r',str(Path(args.apk).resolve()))
@@ -64,7 +64,7 @@ try:
     adb('shell','wm','dismiss-keyguard')
     adb('shell','am','force-stop','kr.co.ansimdonghaeng');adb('shell','am','start','-n','kr.co.ansimdonghaeng/.MainActivity');time.sleep(7)
     shot('00-before-accessibility')
-    find('안심동행');shot('01-launch');tap('방문 준비와 인계 확인');find('도착지 입력하기');passed('role onboarding and first screen work')
+    find('안심동행');shot('01-launch');find('도착지 입력하기');find('인계자',exact=True);passed('role tabs and first screen work')
     tap('도착지 입력하기');find('도착지 저장',exact=True)
     inputs=[n for n in ui().iter('node') if n.get('class')=='android.widget.EditText' and rect(n)]
     assert inputs, 'destination address input not accessible in the open editor'
@@ -80,10 +80,10 @@ try:
     adb('shell','am','start','-n','kr.co.ansimdonghaeng/.MainActivity');time.sleep(.8)
     tap('방문 시작하기');tap('도착했어요');tap('연결번호 받기');tap('직접 인계했어요')
     find('인계자가 확인했어요');passed('sender confirmation is independently recorded');shot('03-sender')
-    tap('화면 전환');tap('시설 담당자');find('연결번호 6자리');passed('facility has its own reception screen')
-    tap('화면 전환');tap('연결번호 입력하기');tap('직접 인수했어요');find('인수를 완료했어요');passed('receiver finishes the handoff');shot('04-received')
-    tap('화면 전환');tap('보호자 · 조회');find('인계를 마쳤어요');passed('guardian sees completed status')
-    tap('화면 전환');tap('쉬운 화면');tap('주야간보호센터');tap('동의하고 계속');tap('도착 알리기');find('도착 소식을');passed('large-button arrival flow works');shot('05-easy')
+    tap('시설',exact=True);find('연결번호 6자리');passed('facility tab displays its independent reception screen')
+    tap('시연 도구');tap('연결번호 입력하기');tap('직접 인수했어요');find('인수를 완료했어요');passed('receiver finishes the handoff');shot('04-received')
+    tap('화면 전환');tap('보호자 · 진행 조회');find('인계를 마쳤어요');passed('guardian sees completed status')
+    tap('쉬운 화면',exact=True);tap('주야간보호센터');tap('동의하고 계속');tap('도착 알리기');find('도착 소식을');passed('large-button arrival flow works');shot('05-easy')
 finally:
     try:(O/'logcat.txt').write_text(adb('logcat','-d','-t','1000'))
     except Exception:pass

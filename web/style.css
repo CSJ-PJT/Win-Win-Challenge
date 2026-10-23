@@ -4,3 +4,14 @@
 @media(max-width:390px){.inline-actions{flex-direction:column}.role-line{align-items:flex-start}.role-line .text-link{font-size:.82rem}.branding{font-size:1.08rem}.pin-code strong{font-size:2rem}}
 .text-125{font-size:19px}.text-150{font-size:22px}.text-200{font-size:25px}.text-150 .main-grid,.text-200 .main-grid{grid-template-columns:1fr}.text-200 .fields{grid-template-columns:1fr}.text-200 .button{white-space:normal;min-height:72px}.text-200 .role-line,.text-200 .foot{flex-wrap:wrap}.text-200 .checklist li{flex-wrap:wrap}.text-200 .inline-actions{flex-direction:column}
 @media(prefers-reduced-motion:reduce){.toast,.button{transition:none}}
+
+/* Always-visible role selector for a single-device jury demonstration. */
+.demo-role-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:6px;margin:2px 0 12px;max-width:100%;background:#eaf0ec;border:1px solid var(--line);border-radius:16px}
+.demo-role-tab{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:52px;padding:9px 5px;border-radius:11px;background:transparent;color:#53665d;font-weight:730;font-size:.88rem;line-height:1.3;white-space:normal;overflow-wrap:anywhere}
+.demo-role-tab svg{width:19px;height:19px;flex:none}
+.demo-role-tab[aria-selected="true"]{background:#fff;color:var(--green);box-shadow:0 2px 8px #12402a13}
+.demo-role-tab:focus-visible{outline:3px solid #55a88f;outline-offset:-2px}
+@media(max-width:520px){.demo-role-tabs{gap:3px;padding:4px}.demo-role-tab{flex-direction:column;gap:4px;min-height:64px;font-size:.78rem;padding:8px 3px}.demo-role-tab svg{width:21px;height:21px}}
+.text-150 .demo-role-tab,.text-200 .demo-role-tab{font-size:.78rem}
+.text-200 .demo-role-tabs{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin}
+.text-200 .demo-role-tab{flex:0 0 112px;scroll-snap-align:start}

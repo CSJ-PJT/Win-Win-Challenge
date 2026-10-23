@@ -14,7 +14,7 @@ with sync_playwright() as pw:
  def click(a):p.locator(f'[data-action="{a}"]').first.click()
  def state():return p.evaluate("JSON.parse(localStorage.getItem('ansim-synthetic-demo-v1'))")
  try:
-  p.locator('[data-role="vehicle"]').first.click();click('edit-destination')
+  click('edit-destination')
   expect(p.locator('#field-address')).to_be_visible();assert p.locator('#field-subject').count()==0
   passed('quick destination editor asks only for destination details')
   p.fill('#field-address','서울 중구 세종대로 110');click('search-address')
@@ -44,7 +44,7 @@ with sync_playwright() as pw:
   p.set_viewport_size({'width':320,'height':740});assert p.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
   click('open-editor');assert p.evaluate('document.documentElement.scrollWidth<=innerWidth+1');p.screenshot(path=str(out/'01-large-settings.png'),full_page=True)
   passed('200 percent text at 320 px has no horizontal overflow and stores phone edits')
-  click('close');click('open-demo');p.locator('[data-role="facility"]').click();click('open-editor')
+  click('close');p.locator('.demo-role-tab[data-role="facility"]').click();click('open-editor')
   assert p.locator('#field-subject').count()==0;assert p.locator('#field-facility').count()==1
   passed('facility cannot edit private person and guardian fields')
   click('close');assert not events,events;passed('no JavaScript errors')

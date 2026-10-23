@@ -18,10 +18,10 @@ with sync_playwright() as pw:
         selector=f'[data-action="{a}"]';p.locator(('.dialog ' if p.locator('.dialog').count() else '')+selector).first.click()
     def state():return p.evaluate("JSON.parse(localStorage.getItem('ansim-synthetic-demo-v1'))")
     def screenshot(n):p.screenshot(path=str(OUT/(n+'.png')),full_page=True)
-    def role(r):click('open-demo');p.locator(f'.dialog [data-action="select-role"][data-role="{r}"]').click()
+    def role(r):p.locator(f'.demo-role-tab[data-role="{r}"]').click()
     def choose(s):click('open-visits');p.locator(f'.dialog [data-action="choose-visit"][data-scenario="{s}"]').click()
     try:
-        expect(p.locator('[data-action="select-role"][data-role="vehicle"]')).to_be_visible();p.locator('[data-action="select-role"][data-role="vehicle"]').click();passed('role selection works')
+        expect(p.locator('.demo-role-tab[data-role="vehicle"]')).to_have_attribute('aria-selected','true');passed('initial vehicle role opens with visible role tabs')
         screenshot('01-start');expect(p.get_by_role('button',name='도착지 입력하기')).to_be_visible();click('open-editor');expect(p.locator('#field-address')).to_be_visible();passed('unconfigured destination opens an editable form')
         p.fill('#field-address','서울특별시 중구 세종대로 110');p.fill('#field-facility','서울시청');p.fill('#field-subject','테스트 이용자');p.fill('#field-senderName','보호자 테스트');p.fill('#field-senderPhone','010-1234-5678');p.fill('#field-guardianPhone','010-2222-3333');p.fill('#field-facilityPhone','02-123-4567');p.fill('#field-receiver','시설 담당자');p.fill('#field-place','정문 승하차 구역');p.fill('#field-supportNote','보행 지원');
         assert p.locator('#field-address').input_value()=='서울특별시 중구 세종대로 110';passed('all editable fields accept input without dropping focus')
