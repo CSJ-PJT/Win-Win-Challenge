@@ -1,0 +1,11 @@
+Source: 341bc88ce9c86ea3c88b82bba281f0e21da50258
+CI40076247150 / native-smoke job120820970241
+2026-10-24T08:05:08.2696508Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2026-10-24T08:05:10.2857871Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2026-10-24T08:06:46.1407162Z OK (1 test)
+2026-10-24T08:06:46.1727744Z OK (1 test)
+2026-10-24T08:07:09.0033941Z PASS selected official Korean address remains saved on the device
+2026-10-24T08:07:13.7678772Z     assert 'MAP_INTENT_OPENED' in logs,'external map intent was not launched'
+2026-10-24T08:07:13.7706813Z AssertionError: external map intent was not launched
+2026-10-24T08:07:13.7935009Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+Interpretation: verify-build/QA package checks and official address instrumentation passed; native map log assertion failed before handoff/DOM checks. App bug vs harness/emulator cause not determined. AS-P1 artifact build complete; full new-source E2E not passed; AS-Q1 receipt pending.
