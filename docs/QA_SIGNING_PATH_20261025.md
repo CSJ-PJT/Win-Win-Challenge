@@ -1,3 +1,13 @@
+## 2026-10-25 08:57 KST · 실제 오프라인 Gradle 탐색
+
+기존 PM이 IT13 Temp/asdh-toolchains-2026102509에 java 플러그인만 둔 격리 프로젝트를 만들고, 발견된 Gradle8.11.1/bin/gradle.bat -p <격리경로> --offline --no-daemon --max-workers=1 -q javaToolchains를 실행했다. 프로세스 한정 JAVA_HOME=기존 JDK21.0.11을 사용했고 exit0으로 완료됐다. Auto-detection Enabled, 자동 탐색 JDK는 Oracle21.0.11 하나(Location Program Files/Java/jdk-21.0.11, Is JDK true)였다. 도구 설정의 Auto-download Enabled 표시는 다운로드 실행/성공이 아니다. 실제 JDK/SDK 다운로드나 앱 빌드는 하지 않았다.
+
+사용자 .jdks·.gradle/jdks, C:/Android·C:/AndroidSDK, Program Files/Eclipse Adoptium·Android/Android Studio/jbr도 존재하지 않았다. 이것은 확인한 표준 경로/Gradle 자동 탐색 결과이며 PC 전체 JDK17/SDK 부재 증명이 아니다. 원본 프로젝트·미커밋·앱/데이터·키/계정 내용은 조작하지 않았다. USB/화면 조작/새 APK/CI 없음.
+
+PC 결과 Task/Win-Win-Challenge-QA-20261024/AS-Q1-PM-20261025T0900/result.json 및 java-toolchains.txt에 보존. 다음 단일 담당 기존PM: 최신QA 전용 검증ID/지속 비공개QA서명 및 SDK/JDK17을 갖춘 격리 빌드 경로 확보. 새QA의 서명 불일치는 미해결이며 설치/실기기 통과로 판정하지 않는다. 9시 보고에서는 밤사이341 QA 실기기 공식1/DOM1/cold주소와9c277ce CI성공을 구분한다.
+
+---
+
 # 데이터 보존형 최신 QA 경로 조사 · 2026-10-25 08:04 KST
 
 작업 AS-Q1-PM-SIGNER-20261025T0800, 단일 담당 기존 안심동행 PM 임시 AS-Q1. 최신 OPS/PHONE-QA-STANDING/배정·07:00 실기기 결과 및 PR#2/CI를 읽고 원본 기기/소스를 조작하지 않는 서명 경로 검수를 수행했다.
