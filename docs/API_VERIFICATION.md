@@ -1,6 +1,6 @@
 # API 목록과 검증 기록
 
-기준 소스: `0f4946b5026b109ad9c921328abfd5824ee4376c` + 이 문서와 함께 커밋된 변경. 실행일: 2026-10-24. 환경: Linux, Node.js 24.19.0, 임시 파일 저장소, 실제 로컬 HTTP 서버. 운영·실차 연동 시험과 구분한다.
+현재 검증 소스: `38ef02b356f6f1c7edd1c5e8297ccc1e5d0a1e5d`, CI `40063017206` (2026-10-24). Node 22·Android 15 에뮬레이터 결과이며 운영·실차 연동과 구분한다. 최초 로컬 HTTP 검증은 기준 `0f4946b`에 API 본문 수정을 적용한 Linux / Node.js 24.19.0에서 수행했다.
 
 ## HTTP API 전수 목록
 
@@ -27,20 +27,20 @@
 
 | 인터페이스 | 연결·결과 | 현재 검증 범위 |
 | --- | --- | --- |
-| `VehicleBridge.openAddressSearch(query, requestId)` | 공식 주소 dialog → `onPostcodeResult` | 최신 APK 실제 선택·저장·복귀 재검증 필요. UiAutomator 오래된 요소 참조를 재조회하도록 수정 |
+| `VehicleBridge.openAddressSearch(query, requestId)` | 공식 주소 dialog → `onPostcodeResult` | CI 40063017206의 실제 주소 선택·저장·복귀 instrumentation 1개 통과. Android 15 에뮬레이터 범위 |
 | `VehicleBridge.searchAddress(query, requestId)` | Android Geocoder → `onAddressResults` | 소스 확인. 단말 Geocoder 가용성과 실제 결과 재검증 필요 |
-| `VehicleBridge.openMap(value)` | 검증된 지도 URL → 외부 Intent, `onMapStatus` | 최신 APK에서 지도 앱 열기 재검증 필요 |
+| `VehicleBridge.openMap(value)` | 검증된 지도 URL → 외부 Intent, `onMapStatus` | CI 40063017206 APK 조작에서 저장 주소 지도 열기 통과. 실차 경로는 미검증 |
 | `VehicleBridge.openDialer(value)` | 전화번호 → ACTION_DIAL, `onNativeDialerStatus` | 실제 발신은 하지 않음. 전화 앱 유무·주행 제한 재검증 필요 |
 | `VehicleBridge.checkNavigation()` | NaviHelper 연결 상태 | Pleos 서비스 환경 필요, 미검증 |
 | `VehicleBridge.requestSampleRoute()` | 정차 조건·사용자 확인 → 예제 경로 요청 | Pleos/AAOS 환경 필요, 미검증 |
-| 카카오 우편번호 SDK | 주소·우편번호 반환; 좌표 생성 안 함 | 이전 CI live-address 성공. 이번 변경 APK 네이티브 재검증 대기 |
+| 카카오 우편번호 SDK | 주소·우편번호 반환; 좌표 생성 안 함 | CI 40063017206의 PC/HTTP 및 Android 공식 검색·주소/우편번호 왕복 통과 |
 | Kakao Local REST | 서버 `/api/places`에서 호출, 5초 제한 | 키 미제공. fixture 성공은 외부 실동작 완료로 계산하지 않음 |
 | Google Maps / 카카오맵 URL | 저장한 주소 또는 좌표로 외부 지도 열기 | URL 인코딩 단위시험 통과, 실제 자동차 경로 가용성은 별도 확인 |
 | CarUxRestrictionsManager | 차량 주행 제한 → 네이티브 조작 제한 | 실제 차량/AAOS 검증 미수행 |
 
 ## 남은 검증
 
-Android 실패 원본: Actions `39951237430`, `LiveAddressTest.visible:26`의 `StaleObjectException`. 새 테스트는 UI 요소의 bounds 조회·클릭 실패 시 최대 3회 새로 조회하며, 지속 실패는 그대로 실패시킨다. 검증을 건너뛰거나 성공으로 강제하지 않는다. 로컬에 Android SDK·에뮬레이터가 없어 최신 APK 재검증은 CI 결과를 기다린다.
+Android 실패 원본: Actions `39951237430`, `LiveAddressTest.visible:26`의 `StaleObjectException`. 새 테스트는 UI 요소의 bounds 조회·클릭 실패 시 최대 3회 새로 조회하며, 지속 실패는 그대로 실패시킨다. 검증을 건너뛰거나 성공으로 강제하지 않는다. 당시 로컬에는 Android SDK·에뮬레이터가 없었으며, 이후 CI 40063017206에서 최신 APK 재검증이 통과했다.
 
 CI의 브라우저 캡처에는 한글 글꼴을 설치했다. 새 브라우저 캡처에서 한글 표시를 직접 확인했으며 아래 후속 결과에 기록했다. 게시 릴리스 0.3.0-preview와 개발 0.4.3은 아직 별개이며 모든 API 정상·제출 완료로 표시하지 않는다.
 
@@ -48,7 +48,7 @@ CI의 브라우저 캡처에는 한글 글꼴을 설치했다. 새 브라우저 
 
 커밋 `a001ec3`, CI `40062463496`: Node 22 검사 112개·브라우저 회귀·서명 APK 빌드 성공. 실제 공식 주소 선택·저장·복원·지도 표시가 PC 실행기와 HTTP 서버에서 각각 통과했다. 내려받은 APK는 5,170,048바이트이며 SHA-256 `c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54`로 CI 기록과 일치했다. 쉬운 화면 브라우저 캡처의 한글 표시도 직접 확인했다.
 
-Android 작업은 첫 `도착지 입력하기`를 찾지 못해 실패했다. 수집된 화면 구조는 앱이 아닌 `com.google.android.apps.nexuslauncher`를 표시했고 주소 로그는 비어 있었다. 앱 내부 주소 동작의 성공·실패로 단정하지 않는다. 테스트 시작/복원 시 Home 전환 완료를 기다리고 `am start -W`로 Activity를 시작한 뒤 대상 앱이 전면에 나타났는지 확인하도록 보완했다. 실패 시 crash log와 Activity 상태도 수집한다. 이 후속 수정의 최신 CI 통과는 아직 확인 전이다.
+Android 작업은 첫 `도착지 입력하기`를 찾지 못해 실패했다. 수집된 화면 구조는 앱이 아닌 `com.google.android.apps.nexuslauncher`를 표시했고 주소 로그는 비어 있었다. 앱 내부 주소 동작의 성공·실패로 단정하지 않는다. 테스트 시작/복원 시 Home 전환 완료를 기다리고 `am start -W`로 Activity를 시작한 뒤 대상 앱이 전면에 나타났는지 확인하도록 보완했다. 실패 시 crash log와 Activity 상태도 수집한다. 이 후속 수정은 아래 CI 40063017206에서 통과했다. 이 문단의 실패는 과거 실행 기록이다.
 
 ## 최신 APK 재검증 완료
 
@@ -57,3 +57,9 @@ Android 작업은 첫 `도착지 입력하기`를 찾지 못해 실패했다. �
 APK에서 확인한 흐름은 공식 주소 선택·저장·복원, 저장 주소의 지도 열기, 독립 인계자 확인, 시설 화면 인수, 보호자 완료 조회, 큰 버튼 도착 알림이다. 내려받은 최신 APK는 5,170,048바이트, SHA-256 `1264da0e1faadf0be1f97341b0f36aaa3f016ea58117c0706eb018f91d35d39d`이며 CI의 apk-sha256.txt와 일치한다. Android 쉬운 화면 결과 캡처의 한글도 직접 확인했다.
 
 publish는 검증 브랜치 정책에 따라 건너뛰었다. 최신 APK는 이 CI의 `ansim-0.4.3-build` 아티팩트이며 게시 릴리스로 간주하지 않는다. Kakao REST 실키, 실제 기관 인증·클라우드 동기화, Pleos/AAOS·실차 및 단말 전화 앱 호출은 별도 검증이 남아 있다. 모든 외부 API 정상이나 공모전 최종 제출 완료를 의미하지 않는다.
+
+## 실물 Android QA 추가 기록 · 2026-10-24 14:09 KST
+
+별도 QA의 [PR 댓글](https://github.com/CSJ-PJT/Win-Win-Challenge/pull/2#issuecomment-6380210313)에서 Samsung Android 16의 설치·콜드 실행·실제 주소 선택/저장/복원·출발/도착/번호 발급까지 보고됐다. 대상 APK는 이전 CI 40062463496의 a001ec3, SHA-256 `c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54`이다. 최신 에뮬레이터 검증 APK 해시와 다르므로 동일 바이트의 실기기 통과로 합산하지 않는다.
+
+실기기의 UIAutomator는 WebView 하위 HTML 컨트롤을 찾지 못해 `Missing visible control: 도착지 입력하기`로 실패했다. 같은 화면의 ADB 터치는 동작했다는 QA 기록이다. 이 문서 수정에서는 실물 기기를 재조작하거나 원본 캡처를 직접 재검증하지 않았다. 시설의 최종 양측 확인·쉬운 알림 전체 흐름은 미검증이다. DOM 기반 instrumentation 보강 후 동일 APK 해시로 실기기 E2E를 검증해야 한다. 릴리스 WebView 원격 디버깅을 무조건 활성화하지 않는다.
