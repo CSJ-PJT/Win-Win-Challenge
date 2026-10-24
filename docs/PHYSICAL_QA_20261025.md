@@ -35,3 +35,24 @@ official.txt, dom.txt, qa-markers.txt, official-artifacts(7파일), cold-final.p
 
 최신5232b81/CI40081102580의 release faf65621…4140b 에뮬레이터 성공 및 최신 QA2ca2f36f/testd6be68d2와 이번341bc88 QA 실기기 성공은 별도다. APK/서명이 다르며 최신 release 실기기 성공으로 확대하지 않는다.
 API/DOM 문서의5232b81 근거는 Android15 에뮬레이터, 공식 제출 검토 docs/SUBMISSION_REVIEW_20261024.md는14:16의38ef02b/112+1+7 문서 검토다. 원문 DOCX/PDF는 이번에 다시 읽거나 수정하지 않았다. 제출판 연결·외부 Kakao REST/Pleos/AAOS/실차·기관 인증/클라우드, 독립 감사는 남아 있다. PR미병합·공개 배포/공모전 제출 없음.
+
+
+## 실기기 상태 전환 후속 · 2026-10-25 04:00 KST
+
+작업 AS-Q1-PM-STATE-20261025T0355 / 기존 PM 임시 AS-Q1 자체 검증. 앞선 공식주소1·DOM1의 성공 로그와 별도 총괄의03:31 시각 검토를 먼저 읽었다. 재설치·instrumentation 재실행·새 빌드 없이 동일341bc88 QA 바이트의 화면 전환 한 가지를 확인했다.
+
+다른 QA claim/활성 instrumentation을 발견하지 않은 뒤 AS_Q1_DEVICE.lock을 독점 생성했다. QA 앱 전면을 XML로 확인하고 캡처한 다음 실제 터치 입력으로 시설 탭→쉬운 화면 탭을 전환했다. 시설의 ‘알림 확인 완료’와 쉬운 화면의 ‘담당자가 확인했어요’가 유지됐다. 설치 앱/test 해시는2903bc14…a2d0d/c73efa79…5cf84, 원래 앱 해시는c09449f8…de54 그대로다. 기존 앱 삭제/초기화/교체, 개인정보 탐색, 실제 전화/기관 전송은 하지 않았다. 완료 후 자신의 잠금을 반납했다.
+
+**재현된 UI 정리 항목:** 도착 알림 확인 완료 화면에 ‘도착지를 지정해 주세요.’와 사용할 수 없는 ‘정보 수정’/‘도착지 설정’이 함께 남는다. 역할 전환 후에도 동일하다. web/app.js의 easyView arrivalNotice 분기가 locationCard()를 그대로 삽입하며, locationCard는 빈 주소 안내와 canWrite()=false 버튼을 렌더링한다. 이는 실제 화면의 문구/비활성 조작 혼선을 확인한 것이며 도착 알림 ACK 실패, 위치 검증 완료, 실기관 수신 성공을 뜻하지 않는다. 이번에는 원인을 확인·기록했고 **앱 코드를 수정하거나 수정 검증을 완료하지 않았다**.
+
+이전03:13 캡처의 로컬 연결 토스트는 새 before/after 화면에서 보이지 않았다. XML에 toast 텍스트가 남아 있다는 사실만으로 겹침이 계속된다고 판정하지 않았다. 실제 사용자 전체 사용성 승인은 여전히 별도다.
+
+IT13 Task/Win-Win-Challenge-QA-20261024/AS-Q1-PM-20261025T0355/result.json, before/after.png·XML·facility.xml에 상세 기록. 화면은 상태바 등 개인 정보 노출 가능성이 있어 로컬 비공개로 보존하고 저장소에는 해시와 비식별 결과만 남긴다.
+- before.png SHA256 4ea68758eb56f221d50aba476df81300e9509872b2779a51a6becd69641b3171
+- after.png SHA256 17c4de03eddb5066a788d926be16a1d56fa96bcce2891c3702619a9c8f28ce6a
+- before/after.xml SHA256 63701efa29a9655fd1f6065a9704e42550889a2076e635253fce0d3ed2697e41
+- facility.xml SHA256 e96fd0242aff04dc25ade70af543e059d15a893a446b99a45070fe3bba88fc48
+
+다음 단일 담당은 기존 PM 임시 AS-Q1. 쉬운 화면 완료 상태의 불필요한 주소 설정 안내/비활성 버튼 정리가 다음 수정 대상이다. 공식 선택 주소의 process cold 복원은 이번에도 실행하지 않았다. 독립 QA/감사, 최신5232b81 release 실기기 바이트 검증, 외부 API 실연동과 최종 제출 문서 버전 대조는 남아 있다.
+
+04:00 최신 조회: PM HEAD76bd5ff, CI40081102580/5232b81 성공 유지·새 실행 없음, PR Draft/미병합, 공개 게시 v0.3.0-preview만 존재. main/easy/address 원본은 이전 기준 SHA 그대로다. 원문 DOCX/PDF 재열람/수정 없음, 마지막 직접 검토14:16 기준 유지. 지난주 비교 근거와 전체 진척률 분모 없음. 야간 Slack 전송 없음.
