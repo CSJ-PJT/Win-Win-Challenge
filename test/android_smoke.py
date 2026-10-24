@@ -92,10 +92,17 @@ try:
         tap('맞이할 준비 완료')
         passed('facility renewed an expired reception-ready status')
     tap('인계자',exact=True)
-    tap('연결번호 받기');tap('직접 인계했어요')
+    tap('연결번호 받기')
+    code_nodes=[n for n in ui().iter('node') if re.fullmatch(r'\d{6}',n.get('text','').strip()) and rect(n)]
+    assert len(code_nodes)==1,'displayed connection number not uniquely readable'
+    displayed_code=code_nodes[0].get('text').strip()
+    tap('직접 인계했어요')
     find('인계자가 확인했어요');passed('sender confirmation is independently recorded');shot('03-sender')
     tap('시설',exact=True);find('연결번호 6자리');passed('facility tab displays its independent reception screen')
-    tap('시연 도구');tap('연결번호 입력하기');tap('직접 인수했어요');find('인수를 완료했어요');passed('receiver finishes the handoff');shot('04-received')
+    code_fields=[n for n in ui().iter('node') if n.get('class')=='android.widget.EditText' and rect(n)]
+    assert len(code_fields)==1,'facility connection input not uniquely available'
+    adb('shell','input','tap',*coord(code_fields[0]));adb('shell','input','text',displayed_code)
+    adb('shell','input','keyevent','4');tap('직접 인수했어요');find('인수를 완료했어요');passed('receiver finishes the handoff');shot('04-received')
     tap('보호자',exact=True);find('인계를 마쳤어요');passed('guardian sees completed status')
     tap('쉬운 화면',exact=True);tap('주야간보호센터');tap('동의하고 계속');tap('도착 알리기');find('도착 소식을');passed('large-button arrival flow works');shot('05-easy')
 finally:
