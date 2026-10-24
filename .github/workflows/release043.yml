@@ -69,6 +69,7 @@ jobs:
           cp android/app/build/outputs/apk/androidTest/release/app-release-androidTest.apk apk/ansim-address-tests.apk
           "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/ansim-platform-0.4.3-preview.apk > build-reports/v043/signature.txt
           sha256sum apk/ansim-platform-0.4.3-preview.apk > build-reports/v043/apk-sha256.txt
+      # Verify actual package metadata before QA handoff.
       - name: Build isolated coexisting QA package and instrumentation
         env:
           DEMO_KEYSTORE: ${{ runner.temp }}/preview.jks
