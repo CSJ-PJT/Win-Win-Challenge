@@ -9,6 +9,7 @@ import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.StaleObjectException;
+import androidx.test.uiautomator.Until;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import java.io.File;
@@ -62,6 +63,15 @@ public final class LiveAddressTest {
         }
     }
     private void shot(String name){device.takeScreenshot(new File(output,name+".png"));}
+    private void launchApp(Context context,Intent launch) throws Exception {
+        // Wait for Home before starting the Activity; otherwise a delayed Home
+        // transition can cover the app. Shell start also avoids background-start rules.
+        device.pressHome();device.waitForIdle();
+        String component=launch.getComponent().flattenToShortString();
+        String result=device.executeShellCommand("am start -W -n "+component);
+        assertTrue("App not in foreground after launch: "+result,
+            device.wait(Until.hasObject(By.pkg(context.getPackageName())),10000));
+    }
     private void hideKeyboard() throws Exception {
         if(device.executeShellCommand("dumpsys input_method").contains("mInputShown=true")){
             device.pressBack();SystemClock.sleep(500);
@@ -71,10 +81,11 @@ public final class LiveAddressTest {
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
         device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         output=context.getExternalFilesDir("address-qa");assertNotNull(output);output.mkdirs();
-        device.wakeUp();device.pressHome();
+        device.wakeUp();
         Intent launch=context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
-        assertNotNull(launch);launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);context.startActivity(launch);
+        assertNotNull(launch);assertNotNull(launch.getComponent());
         try {
+            launchApp(context,launch);
             tap("도착지 입력하기");find("도착지 저장",false);
             UiObject2 address=device.findObject(By.res("field-address"));
             if(address==null){
@@ -97,7 +108,7 @@ public final class LiveAddressTest {
             scrollFind("04524");shot("02-returned-address");
             tap("도착지 저장");scrollFind("세종대로 110");scrollFind("방문 시작하기");
             shot("03-saved-address");
-            device.pressHome();context.startActivity(launch);SystemClock.sleep(1200);
+            launchApp(context,launch);SystemClock.sleep(1200);
             scrollFind("세종대로 110");scrollFind("04524");shot("04-restored-address");
             Log.i("HandoffAddress","LIVE_POSTCODE_ROUNDTRIP_OK");
         } finally {shot("last-screen");device.dumpWindowHierarchy(new File(output,"window.xml"));}

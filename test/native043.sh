@@ -2,6 +2,8 @@
 set -euo pipefail
 mkdir -p native-results
 collect_address() {
+  adb logcat -d -b crash > native-results/crash-logcat.txt 2>&1 || true
+  adb shell dumpsys activity activities > native-results/activity-state.txt 2>&1 || true
   adb logcat -d -s HandoffAddress:I HandoffMap:I > native-results/address-logcat.txt 2>&1 || true
   adb pull /sdcard/Android/data/kr.co.ansimdonghaeng/files/address-qa native-results/live-address >/dev/null 2>&1 || true
 }
@@ -22,3 +24,4 @@ python3 -u test/android_smoke.py build-input/apk/ansim-platform-0.4.3-preview.ap
 flow_rc=$?
 printf 'instrument_exit=%s\naddress_exit=%s\nflow_exit=%s\n' "$instrument_rc" "$address_rc" "$flow_rc" > native-results/check-status.txt
 if [ "$instrument_rc" -ne 0 ] || [ "$address_rc" -ne 0 ] || [ "$flow_rc" -ne 0 ]; then exit 1; fi
+
