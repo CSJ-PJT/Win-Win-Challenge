@@ -40,12 +40,20 @@ def coord(node):
     assert a is not None, 'Cannot tap an off-screen or zero-sized accessibility element'
     return str((a[0]+a[2])//2),str((a[1]+a[3])//2)
 def shot(n):(O/(n+'.png')).write_bytes(adb('exec-out','screencap','-p',raw=True))
+def safe_tap_rect(node,root):
+    a=rect(node)
+    if a is None or a[3]-a[1]<64:return False
+    # UIAutomator clips WebView controls at the viewport boundary. A nonzero
+    # sliver is not a usable button (and can be covered by the status toast).
+    view=next((rect(n) for n in root.iter('node') if n.get('class')=='android.webkit.WebView' and rect(n)),None)
+    return view is None or (a[1]>=view[1]+16 and a[3]<=view[3]-32)
+
 def find(text,click=False,exact=False):
     for i in range(15):
         root=ui();hits=[n for n in root.iter('node') if (n.get('text','')==text or n.get('content-desc','')==text) if exact] if exact else [n for n in root.iter('node') if text in (n.get('text','')+' '+n.get('content-desc',''))]
         hits.sort(key=lambda n:n.get('clickable')!='true')
         for n in hits:
-            if rect(n) is None:continue
+            if rect(n) is None or (click and not safe_tap_rect(n,root)):continue
             if click:
                 assert n.get('enabled')!='false',f'{text} disabled'
                 adb('shell','input','tap',*coord(n));time.sleep(.7)
@@ -79,8 +87,11 @@ try:
         assert 'Seoul' in txt,'Android keyboard did not enter address text'
         adb('shell','input','keyevent','4');shot('02-edit');tap('도착지 저장');find('Seoul City Hall')
         passed('real Android keyboard input saves a destination')
+    shot('02-before-map')
     tap('카카오맵에서 위치 보기');time.sleep(1)
+    shot('02-after-map')
     logs=adb('logcat','-d','-s','HandoffMap:I')
+    (O/'map-intent-logcat.txt').write_text(logs)
     assert 'MAP_INTENT_OPENED' in logs,'external map intent was not launched'
     passed('maps intent opens from a saved address without an API key')
     adb('shell','am','start','-n','kr.co.ansimdonghaeng/.MainActivity');time.sleep(.8)
