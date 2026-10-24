@@ -5,7 +5,9 @@ android {
   buildFeatures { buildConfig true }
   useLibrary 'android.car', false
   defaultConfig { applicationId 'kr.co.ansimdonghaeng'; minSdk 28; targetSdk 35; versionCode 9; versionName '0.4.3'; testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' }
-  testBuildType 'release'
+  def requestedTestBuildType = providers.gradleProperty('ansimTestBuildType').getOrElse('release')
+  if (!(requestedTestBuildType in ['release', 'deviceQa'])) throw new GradleException('Unsupported ansimTestBuildType')
+  testBuildType requestedTestBuildType
   signingConfigs {
     demoRelease {
       if (System.getenv('DEMO_KEYSTORE')) {
@@ -17,6 +19,15 @@ android {
     }
   }
   buildTypes { release { minifyEnabled false; if (System.getenv('DEMO_KEYSTORE')) signingConfig signingConfigs.demoRelease } }
+  buildTypes {
+    deviceQa {
+      initWith release
+      applicationIdSuffix '.qa'
+      versionNameSuffix '-qa'
+      debuggable false
+      matchingFallbacks = ['release']
+    }
+  }
   compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
 kotlin { jvmToolchain(17) }

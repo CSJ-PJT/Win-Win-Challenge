@@ -69,6 +69,16 @@ jobs:
           cp android/app/build/outputs/apk/androidTest/release/app-release-androidTest.apk apk/ansim-address-tests.apk
           "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/ansim-platform-0.4.3-preview.apk > build-reports/v043/signature.txt
           sha256sum apk/ansim-platform-0.4.3-preview.apk > build-reports/v043/apk-sha256.txt
+      - name: Build isolated coexisting QA package and instrumentation
+        env:
+          DEMO_KEYSTORE: ${{ runner.temp }}/preview.jks
+          DEMO_STORE_PASSWORD: preview-ci-only
+        run: |
+          gradle -p android --no-daemon --max-workers=2 -PansimTestBuildType=deviceQa assembleDeviceQa assembleDeviceQaAndroidTest 2>&1 | tee build-reports/v043/qa-gradle.txt
+          mkdir -p qa-package
+          cp android/app/build/outputs/apk/deviceQa/app-deviceQa.apk qa-package/ansim-platform-0.4.3-qa.apk
+          cp android/app/build/outputs/apk/androidTest/deviceQa/app-deviceQa-androidTest.apk qa-package/ansim-qa-tests.apk
+          python3 tools/qa_package_manifest.py | tee build-reports/v043/qa-package-check.txt
       - name: Package source and PC launcher
         run: |
           python3 - <<'PY'
@@ -89,6 +99,7 @@ jobs:
           path: |
             apk/ansim-platform-0.4.3-preview.apk
             apk/ansim-address-tests.apk
+            qa-package/
             dist/handoff-demo.html
             build-reports/v043/
             ansim-platform-0.4.3-source.zip
