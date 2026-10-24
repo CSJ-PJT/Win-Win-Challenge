@@ -8,6 +8,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
+import androidx.test.uiautomator.StaleObjectException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import java.io.File;
@@ -21,9 +22,19 @@ public final class LiveAddressTest {
     private UiDevice device;
     private File output;
     private UiObject2 visible(String text,boolean contains){
-        List<UiObject2> all=new ArrayList<>(device.findObjects(contains?By.textContains(text):By.text(text)));
-        all.addAll(device.findObjects(contains?By.descContains(text):By.desc(text)));
-        for(UiObject2 el:all)if(!el.getVisibleBounds().isEmpty())return el;
+        // WebView can replace accessibility nodes between lookup and bounds access.
+        // Retry the query, never reuse the stale node or treat it as a missing control.
+        for(int attempt=0;attempt<3;attempt++){
+            try {
+                List<UiObject2> all=new ArrayList<>(device.findObjects(contains?By.textContains(text):By.text(text)));
+                all.addAll(device.findObjects(contains?By.descContains(text):By.desc(text)));
+                for(UiObject2 el:all)if(!el.getVisibleBounds().isEmpty())return el;
+                return null;
+            } catch(StaleObjectException e){
+                if(attempt==2)throw e;
+                SystemClock.sleep(150);
+            }
+        }
         return null;
     }
     private UiObject2 find(String text, boolean contains) {
@@ -43,7 +54,13 @@ public final class LiveAddressTest {
         }
         return find(text,true);
     }
-    private void tap(String text){find(text,false).click();SystemClock.sleep(700);}
+    private void tap(String text){tap(text,false);}
+    private void tap(String text,boolean contains){
+        for(int attempt=0;attempt<3;attempt++){
+            try {find(text,contains).click();SystemClock.sleep(700);return;}
+            catch(StaleObjectException e){if(attempt==2)throw e;SystemClock.sleep(150);}
+        }
+    }
     private void shot(String name){device.takeScreenshot(new File(output,name+".png"));}
     private void hideKeyboard() throws Exception {
         if(device.executeShellCommand("dumpsys input_method").contains("mInputShown=true")){
@@ -69,7 +86,7 @@ public final class LiveAddressTest {
             address.setText("세종대로 110");SystemClock.sleep(500);
             shot("00-keyboard-search");tap("주소 검색");
             UiObject2 selected=find("서울 중구 세종대로 110",true);
-            shot("01-official-results");selected.click();
+            shot("01-official-results");tap("서울 중구 세종대로 110",true);
             find("도착지 저장",false);hideKeyboard();
             UiObject2 returned=device.findObject(By.res("field-address"));
             String value=returned==null?"":returned.getText();
@@ -86,3 +103,4 @@ public final class LiveAddressTest {
         } finally {shot("last-screen");device.dumpWindowHierarchy(new File(output,"window.xml"));}
     }
 }
+

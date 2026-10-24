@@ -42,7 +42,12 @@ function createApp(options = {}) {
       raw += chunk;
       if (Buffer.byteLength(raw) > 8192) throw new H.DomainError('SIZE', '요청이 너무 큽니다.', 413);
     }
-    try { return JSON.parse(raw); } catch { throw new H.DomainError('JSON', 'JSON 요청이 필요합니다.', 400); }
+    let parsed;
+    try { parsed = JSON.parse(raw); } catch { throw new H.DomainError('JSON', 'JSON 요청이 필요합니다.', 400); }
+    if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      throw new H.DomainError('JSON_OBJECT', 'JSON 객체 요청이 필요합니다.', 400);
+    }
+    return parsed;
   }
   const server = http.createServer(async (req, res) => {
     try {
@@ -122,3 +127,4 @@ if (require.main === module) {
   app.listen(port, '127.0.0.1', () => console.log(`안심동행 로컬 합성 데이터 시연: http://127.0.0.1:${port}\n실제 개인정보를 입력하거나 인터넷에 공개하지 마세요.`));
 }
 module.exports = { createApp };
+
