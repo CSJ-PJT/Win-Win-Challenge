@@ -49,3 +49,11 @@ CI의 브라우저 캡처에는 한글 글꼴을 설치했다. 새 브라우저 
 커밋 `a001ec3`, CI `40062463496`: Node 22 검사 112개·브라우저 회귀·서명 APK 빌드 성공. 실제 공식 주소 선택·저장·복원·지도 표시가 PC 실행기와 HTTP 서버에서 각각 통과했다. 내려받은 APK는 5,170,048바이트이며 SHA-256 `c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54`로 CI 기록과 일치했다. 쉬운 화면 브라우저 캡처의 한글 표시도 직접 확인했다.
 
 Android 작업은 첫 `도착지 입력하기`를 찾지 못해 실패했다. 수집된 화면 구조는 앱이 아닌 `com.google.android.apps.nexuslauncher`를 표시했고 주소 로그는 비어 있었다. 앱 내부 주소 동작의 성공·실패로 단정하지 않는다. 테스트 시작/복원 시 Home 전환 완료를 기다리고 `am start -W`로 Activity를 시작한 뒤 대상 앱이 전면에 나타났는지 확인하도록 보완했다. 실패 시 crash log와 Activity 상태도 수집한다. 이 후속 수정의 최신 CI 통과는 아직 확인 전이다.
+
+## 최신 APK 재검증 완료
+
+커밋 `38ef02b356f6f1c7edd1c5e8297ccc1e5d0a1e5d`, [CI 40063017206](https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40063017206)의 verify-build, live-address, native-smoke가 모두 성공했다. 공식 주소 왕복 instrumentation `OK (1 test)`와 APK 실제 조작 7개를 로그·아티팩트로 확인했다. `instrument_exit=0`, `address_exit=0`, `flow_exit=0`이다.
+
+APK에서 확인한 흐름은 공식 주소 선택·저장·복원, 저장 주소의 지도 열기, 독립 인계자 확인, 시설 화면 인수, 보호자 완료 조회, 큰 버튼 도착 알림이다. 내려받은 최신 APK는 5,170,048바이트, SHA-256 `1264da0e1faadf0be1f97341b0f36aaa3f016ea58117c0706eb018f91d35d39d`이며 CI의 apk-sha256.txt와 일치한다. Android 쉬운 화면 결과 캡처의 한글도 직접 확인했다.
+
+publish는 검증 브랜치 정책에 따라 건너뛰었다. 최신 APK는 이 CI의 `ansim-0.4.3-build` 아티팩트이며 게시 릴리스로 간주하지 않는다. Kakao REST 실키, 실제 기관 인증·클라우드 동기화, Pleos/AAOS·실차 및 단말 전화 앱 호출은 별도 검증이 남아 있다. 모든 외부 API 정상이나 공모전 최종 제출 완료를 의미하지 않는다.
