@@ -46,7 +46,7 @@ def safe_tap_rect(node,root):
     # UIAutomator clips WebView controls at the viewport boundary. A nonzero
     # sliver is not a usable button (and can be covered by the status toast).
     view=next((rect(n) for n in root.iter('node') if n.get('class')=='android.webkit.WebView' and rect(n)),None)
-    return view is None or (a[1]>=view[1]+16 and a[3]<=view[3]-32)
+    return view is None or (a[1]>=view[1] and a[3]<=view[3]-32)
 
 def find(text,click=False,exact=False):
     for i in range(15):
