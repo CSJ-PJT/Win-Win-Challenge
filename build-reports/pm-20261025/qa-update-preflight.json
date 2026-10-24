@@ -1,0 +1,101 @@
+{
+  "cases": [
+    {
+      "name": "old-to-new-blocked",
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "result": {
+        "scope": "certificate equality only",
+        "signature_verified": false,
+        "package_version_lineage_verified": false,
+        "installation_authorized": false,
+        "device_actions": "none",
+        "installed": {
+          "bytes": 5170072,
+          "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+          "leaf_certificate_sha256": [
+            "faa3357362277ea4e13d7fe0d97e889b67c1610915ecf018b201921bfbd6f133"
+          ]
+        },
+        "candidate": {
+          "bytes": 5170152,
+          "sha256": "25fbaf85a8d554b8f5466385fd903ea739e6b035752ac8e994881cd0a2221827",
+          "leaf_certificate_sha256": [
+            "23a3ce03e36061d7780b69862e1ec7095d93b4301e5c84bf3d882ba72ef4a486"
+          ]
+        },
+        "status": "CERTIFICATE_MISMATCH"
+      }
+    },
+    {
+      "name": "same-file-cert-match",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": {
+        "scope": "certificate equality only",
+        "signature_verified": false,
+        "package_version_lineage_verified": false,
+        "installation_authorized": false,
+        "device_actions": "none",
+        "installed": {
+          "bytes": 5170152,
+          "sha256": "25fbaf85a8d554b8f5466385fd903ea739e6b035752ac8e994881cd0a2221827",
+          "leaf_certificate_sha256": [
+            "23a3ce03e36061d7780b69862e1ec7095d93b4301e5c84bf3d882ba72ef4a486"
+          ]
+        },
+        "candidate": {
+          "bytes": 5170152,
+          "sha256": "25fbaf85a8d554b8f5466385fd903ea739e6b035752ac8e994881cd0a2221827",
+          "leaf_certificate_sha256": [
+            "23a3ce03e36061d7780b69862e1ec7095d93b4301e5c84bf3d882ba72ef4a486"
+          ]
+        },
+        "status": "CERTIFICATES_MATCH_NOT_INSTALL_APPROVAL"
+      }
+    },
+    {
+      "name": "malformed-candidate",
+      "expected_exit": 3,
+      "actual_exit": 3,
+      "result": {
+        "scope": "certificate equality only",
+        "signature_verified": false,
+        "package_version_lineage_verified": false,
+        "installation_authorized": false,
+        "device_actions": "none",
+        "installed": {
+          "bytes": 5170072,
+          "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+          "leaf_certificate_sha256": [
+            "faa3357362277ea4e13d7fe0d97e889b67c1610915ecf018b201921bfbd6f133"
+          ]
+        },
+        "status": "UNREADABLE_OR_UNSUPPORTED_APK"
+      }
+    },
+    {
+      "name": "missing-candidate",
+      "expected_exit": 3,
+      "actual_exit": 3,
+      "result": {
+        "scope": "certificate equality only",
+        "signature_verified": false,
+        "package_version_lineage_verified": false,
+        "installation_authorized": false,
+        "device_actions": "none",
+        "installed": {
+          "bytes": 5170072,
+          "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+          "leaf_certificate_sha256": [
+            "faa3357362277ea4e13d7fe0d97e889b67c1610915ecf018b201921bfbd6f133"
+          ]
+        },
+        "status": "UNREADABLE_OR_UNSUPPORTED_APK"
+      }
+    }
+  ],
+  "passed": 4,
+  "failed": 0,
+  "device_actions": "none"
+}
