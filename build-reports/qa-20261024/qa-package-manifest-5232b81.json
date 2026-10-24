@@ -1,0 +1,50 @@
+{
+  "source_sha": "5232b81544b4214c14048c7c020d8eac7e639861",
+  "workflow_run": "40081102580",
+  "release": {
+    "file": "ansim-platform-0.4.3-preview.apk",
+    "bytes": 5170048,
+    "sha256": "faf6562113d58c2d4cdc6aadc094eb4fadf8666caf47c5045d8893bc99d4140b",
+    "package_id": "kr.co.ansimdonghaeng",
+    "target_package": null,
+    "label": "안심동행 플랫폼",
+    "debuggable": false,
+    "certificate_sha256": "d8e14ce971c8b4773d7cce10af6ef184c5e6c3086a008864ba7530ad3e30fd60",
+    "authorities": []
+  },
+  "qa": {
+    "file": "ansim-platform-0.4.3-qa.apk",
+    "bytes": 5170072,
+    "sha256": "2ca2f36fb051258f9867448f2c6a81adbf493087fdcb44fda008e36292c0f90e",
+    "package_id": "kr.co.ansimdonghaeng.qa",
+    "target_package": null,
+    "label": "안심동행 QA",
+    "debuggable": false,
+    "certificate_sha256": "d8e14ce971c8b4773d7cce10af6ef184c5e6c3086a008864ba7530ad3e30fd60",
+    "authorities": []
+  },
+  "instrumentation": {
+    "file": "ansim-qa-tests.apk",
+    "bytes": 816844,
+    "sha256": "d6be68d20915e52016ccfecd60b3ed664ffe40292cabe37e488605e30386fe3a",
+    "package_id": "kr.co.ansimdonghaeng.qa.test",
+    "target_package": "kr.co.ansimdonghaeng.qa",
+    "label": null,
+    "debuggable": false,
+    "certificate_sha256": "d8e14ce971c8b4773d7cce10af6ef184c5e6c3086a008864ba7530ad3e30fd60",
+    "authorities": []
+  },
+  "assets_identical": true,
+  "asset_count": 8,
+  "differences": [
+    "applicationId suffix .qa",
+    "versionName suffix -qa",
+    "launcher label 안심동행 QA",
+    "BuildConfig applicationId/buildType and generated test target"
+  ],
+  "production_java_kotlin_changed": false,
+  "remote_debugging_enabled": false,
+  "physical_install": "not_performed",
+  "physical_e2e": "not_verified",
+  "handoff_status": "prepared_not_acknowledged"
+}

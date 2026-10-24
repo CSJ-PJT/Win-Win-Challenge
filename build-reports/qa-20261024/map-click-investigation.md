@@ -17,10 +17,17 @@ AS-Q1 수신/점유/실기기 실행과 AS-A1 독립 감사는 18:00 조회 범�
 기존 QA APK2903bc14/c73efa79의 빌드·해시와 IT13 준비는 유효하며 새 시험 커밋용 바이너리와 혼합하지 않는다.
 
 
-## 後속 결과 2026-10-24 18:12 KST
+## 후속 결과 2026-10-24 18:12 KST
 150cd5f/CI40080392976 verify-build(Node112/실패0·QA metadata)/live-address 성공.
 공식주소 instrumentation OK(1 test), 저장유지 및 실제 MAP_INTENT_OPENED(18:10:07 KST) 성공.
 그 뒤 시설 탭 접근성 탐색 실패로 native-smoke 실패, 이후 인계/DOM 미실행.
 native ZIP12555515596 SHA256 e1404c2a162dbcc162d40ce868d0754c5ece3d0806b3dc5a42777a2d6795e0c5 대조, 원본 XML을 읽었다.
 시설 탭은 [543,76][784,246], WebView 상단63으로 실제 가시 상태인데 새 상단여유16px 조건(79)이 제외했다. 이는 이번 검사 수정의 과도한 상단여유로 발생한 하네스 회귀다.
 상단여유를 제거하고 하단32px·최소높이64px 조건은 유지한다. 두 실제 실패 XML로 잘린 지도 거절 및 정상 고정탭4개 허용을 재검증했다. Python 컴파일 성공. 실제 새 APK 시험은 후속 CI로 별도 판정한다.
+
+
+## 최종 확인 · 2026-10-24 18:25 KST
+5232b81 / CI40081102580 전체 success(18:13:29–18:23:15 KST), publish skipped.
+Node112/실패0·공식주소1·APK조작7·DOM1. MAP_INTENT_OPENED·PRIMARY_HANDOFF_OK·EASY_ARRIVAL_ACK_OK, 종료코드5개 모두0.
+새 build/native ZIP과 앱3종의 해시를 실제 바이트와 대조했다. map-runtime-5232b81.json 및 qa-package-manifest-5232b81.json을 따른다.
+실기기·AS-Q1 수신은 미확인이다. 원본 실기기 앱/데이터와 인계용QA 바이트는 유지했다.

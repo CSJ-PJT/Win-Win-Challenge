@@ -1,0 +1,14 @@
+[
+  {
+    "file": "qa-package/ansim-platform-0.4.3-qa.apk",
+    "payload_entries_identical": true,
+    "entries": 48,
+    "excluded": "META-INF entries and APK signing block; not full APK identity"
+  },
+  {
+    "file": "apk/ansim-platform-0.4.3-preview.apk",
+    "payload_entries_identical": true,
+    "entries": 48,
+    "excluded": "META-INF entries and APK signing block; not full APK identity"
+  }
+]

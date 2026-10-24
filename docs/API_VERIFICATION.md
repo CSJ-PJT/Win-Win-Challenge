@@ -1,10 +1,20 @@
+# 최신 실행 확인 · 2026-10-24 18:25 KST
+
+소스 `5232b81544b4214c14048c7c020d8eac7e639861`, [CI40081102580](https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40081102580)(18:13:29–18:23:15 KST)의 verify-build/live-address/native-smoke 모두 성공, publish skipped. Node112/실패0·공식주소 Android instrumentation1·APK조작7·DOM instrumentation1. 실제 MAP_INTENT_OPENED, PRIMARY_HANDOFF_OK, EASY_ARRIVAL_ACK_OK 및 종료코드5개 모두0을 원본 아티팩트에서 확인했다. 시설 양측 확인 완료와 쉬운 도착 알림 화면의 한글·큰 글씨를 직접 확인했다. Android15 에뮬레이터 범위다.
+
+release APK5,170,048바이트 / SHA256 `faf6562113d58c2d4cdc6aadc094eb4fadf8666caf47c5045d8893bc99d4140b`와 QA 앱/테스트의 실제 바이트·해시를 CI manifest에 대조했다. [최신 실행 근거](../build-reports/qa-20261024/map-runtime-5232b81.json), [QA manifest](../build-reports/qa-20261024/qa-package-manifest-5232b81.json). QA variant는 빌드/metadata 검사만이며 이 실행의 native 대상은 release 패키지다.
+
+341bc88/CI40076247150의 잘린 지도 탭 실패, 150cd5f/CI40080392976의 과도한 상단여유로 인한 시설 탭 실패는 수정 전 이력이다. 최신5232b81 전체 성공과 구분한다. 실물 AS-Q1 인계용은 기존341bc88/QA2903bc14·테스트c73efa79 그대로이며 수신/점유/실행 미확인. 신규 APK·QA의 실기기 성공, 외부 API 전체 정상, 공개 릴리스·제출 완료로 합산하지 않는다.
+
+아래 문단은 각 시점의 과거 검증 기록이다. 키 미제공 설명도 해당 시험환경 범위이며 현재 모든 위치에 키가 없다는 판정이 아니다.
+
 # 현재 최신 실행 결과 · 2026-10-24 16시
 
 현재 통과 소스 `4a671e0`, [CI40068462730](https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40068462730): Node112·공식주소1·APK조작7·DOM1 통과. APK SHA256 `9a0c311adb35ebebb43a31b8b7ca5e38ad609ebc632212b8c09fcd47ba64f4bb` 바이트 대조 완료. Android15 에뮬레이터 범위이며 실기기 전체 흐름은 미검증. 상세는 [DOM 검증 기록](DOM_VERIFICATION_20261024.md)의 16시 항목과 `build-reports/pm-20261024/dom-runtime-check.json`을 따른다. 아래 38ef02b 및 이전 실행 설명은 해당 시점의 기록이다.
 
 # API 목록과 검증 기록
 
-현재 검증 소스: `38ef02b356f6f1c7edd1c5e8297ccc1e5d0a1e5d`, CI `40063017206` (2026-10-24). Node 22·Android 15 에뮬레이터 결과이며 운영·실차 연동과 구분한다. 최초 로컬 HTTP 검증은 기준 `0f4946b`에 API 본문 수정을 적용한 Linux / Node.js 24.19.0에서 수행했다.
+초기 검증 소스: `38ef02b356f6f1c7edd1c5e8297ccc1e5d0a1e5d`, CI `40063017206` (2026-10-24). Node 22·Android 15 에뮬레이터 결과이며 운영·실차 연동과 구분한다. 최초 로컬 HTTP 검증은 기준 `0f4946b`에 API 본문 수정을 적용한 Linux / Node.js 24.19.0에서 수행했다.
 
 ## HTTP API 전수 목록
 

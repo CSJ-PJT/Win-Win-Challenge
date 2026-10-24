@@ -1,0 +1,108 @@
+{
+  "confirmed_at_kst": "2026-10-24 18:25 KST",
+  "source_sha": "5232b81544b4214c14048c7c020d8eac7e639861",
+  "run_id": 40081102580,
+  "started_at_kst": "2026-10-24 18:13:29 KST",
+  "finished_at_kst": "2026-10-24 18:23:15 KST",
+  "jobs": {
+    "verify_build": "success",
+    "live_address": "success",
+    "native_smoke": "success",
+    "publish": "skipped"
+  },
+  "checks": {
+    "node": 112,
+    "node_failed": 0,
+    "official_address_instrumentation": 1,
+    "apk_ui": 7,
+    "dom_instrumentation": 1
+  },
+  "exit_status": "instrument_exit=0\naddress_exit=0\nflow_exit=0\ndom_process_exit=0\ndom_result_exit=0\n",
+  "markers": [
+    "MAP_INTENT_OPENED",
+    "PRIMARY_HANDOFF_OK",
+    "EASY_ARRIVAL_ACK_OK"
+  ],
+  "release_apk": {
+    "file": "ansim-platform-0.4.3-preview.apk",
+    "bytes": 5170048,
+    "sha256": "faf6562113d58c2d4cdc6aadc094eb4fadf8666caf47c5045d8893bc99d4140b",
+    "package_id": "kr.co.ansimdonghaeng",
+    "target_package": null,
+    "label": "안심동행 플랫폼",
+    "debuggable": false,
+    "certificate_sha256": "d8e14ce971c8b4773d7cce10af6ef184c5e6c3086a008864ba7530ad3e30fd60",
+    "authorities": []
+  },
+  "qa_apk": {
+    "file": "ansim-platform-0.4.3-qa.apk",
+    "bytes": 5170072,
+    "sha256": "2ca2f36fb051258f9867448f2c6a81adbf493087fdcb44fda008e36292c0f90e",
+    "package_id": "kr.co.ansimdonghaeng.qa",
+    "target_package": null,
+    "label": "안심동행 QA",
+    "debuggable": false,
+    "certificate_sha256": "d8e14ce971c8b4773d7cce10af6ef184c5e6c3086a008864ba7530ad3e30fd60",
+    "authorities": []
+  },
+  "instrumentation_apk": {
+    "file": "ansim-qa-tests.apk",
+    "bytes": 816844,
+    "sha256": "d6be68d20915e52016ccfecd60b3ed664ffe40292cabe37e488605e30386fe3a",
+    "package_id": "kr.co.ansimdonghaeng.qa.test",
+    "target_package": "kr.co.ansimdonghaeng.qa",
+    "label": null,
+    "debuggable": false,
+    "certificate_sha256": "d8e14ce971c8b4773d7cce10af6ef184c5e6c3086a008864ba7530ad3e30fd60",
+    "authorities": []
+  },
+  "environment": "Android 15 emulator; not physical device",
+  "physical_install": "not_performed",
+  "physical_e2e": "not_verified",
+  "assigned_qa_handoff": {
+    "source_sha": "341bc88ce9c86ea3c88b82bba281f0e21da50258",
+    "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+    "test_sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+    "status": "files_prepared_not_acknowledged"
+  },
+  "artifacts": [
+    {
+      "id": 12555645377,
+      "name": "ansim-0.4.3-build",
+      "digest": "sha256:27750f26c18bb6414e04cee2a202361faf98ecbf2cb10bdc52e46678bcb7abca",
+      "size": 5521786
+    },
+    {
+      "id": 12555481388,
+      "name": "ansim-0.4.3-live-address",
+      "digest": "sha256:d4eeac46edc3c9eec4cfd2f97165f4812ec90d3e515c57968e82ba6b083c3e88",
+      "size": 249063
+    },
+    {
+      "id": 12555451337,
+      "name": "ansim-0.4.3-native",
+      "digest": "sha256:51fcdf114a9e21cf475910c3d874c779d195f6d1caff24ebc557d9c329851d65",
+      "size": 1326389
+    }
+  ],
+  "screen_inspection": [
+    "04-received.png Korean text and both confirmation complete",
+    "05-easy.png Korean large text and arrival notice saved"
+  ],
+  "prior_failures": [
+    {
+      "source": "341bc88",
+      "run": 40076247150,
+      "stage": "map clipped tap"
+    },
+    {
+      "source": "150cd5f",
+      "run": 40080392976,
+      "stage": "over-strict sticky tab geometry"
+    }
+  ],
+  "independent_qa": "unconfirmed",
+  "independent_audit": "unconfirmed",
+  "weekly_baseline": "unavailable",
+  "overall_progress": "not_calculable"
+}
