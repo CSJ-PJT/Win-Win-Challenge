@@ -1,0 +1,30 @@
+{
+  "checked_at_kst": "2026-10-24T16:05:43+09:00",
+  "source": "4a671e033ca504da2229526656039b5b61e025a2",
+  "run": 40068462730,
+  "run_started_kst": "2026-10-24T15:00:18+09:00",
+  "run_ended_kst": "2026-10-24T15:09:05+09:00",
+  "verify_build": "success",
+  "live_address": "success",
+  "native_smoke": "success",
+  "publish": "skipped",
+  "node_passed": 112,
+  "official_address_instrumentation_passed": 1,
+  "apk_checks_passed": 7,
+  "dom_instrumentation_passed": 1,
+  "apk_bytes": 5170048,
+  "apk_sha256": "9a0c311adb35ebebb43a31b8b7ca5e38ad609ebc632212b8c09fcd47ba64f4bb",
+  "byte_hash_matched": true,
+  "installed_physical_apk_sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+  "new_certificate_sha256": "8354bc780aa3045afd72dbd32df9bf6d3e1ec8176260e0d71d75a8f0ea0ac366",
+  "old_certificate_sha256": "74f3b4db72749aa904fd281ca45c531b271bd8894a65e2117a6a27e4333dd136",
+  "physical_e2e": "not_verified",
+  "physical_install_attempted": false,
+  "exit_status": {
+    "instrument_exit": 0,
+    "address_exit": 0,
+    "flow_exit": 0,
+    "dom_process_exit": 0,
+    "dom_result_exit": 0
+  }
+}

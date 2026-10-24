@@ -1,3 +1,7 @@
+# 현재 최신 실행 결과 · 2026-10-24 16시
+
+현재 통과 소스 `4a671e0`, [CI40068462730](https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40068462730): Node112·공식주소1·APK조작7·DOM1 통과. APK SHA256 `9a0c311adb35ebebb43a31b8b7ca5e38ad609ebc632212b8c09fcd47ba64f4bb` 바이트 대조 완료. Android15 에뮬레이터 범위이며 실기기 전체 흐름은 미검증. 상세는 [DOM 검증 기록](DOM_VERIFICATION_20261024.md)의 16시 항목과 `build-reports/pm-20261024/dom-runtime-check.json`을 따른다. 아래 38ef02b 및 이전 실행 설명은 해당 시점의 기록이다.
+
 # API 목록과 검증 기록
 
 현재 검증 소스: `38ef02b356f6f1c7edd1c5e8297ccc1e5d0a1e5d`, CI `40063017206` (2026-10-24). Node 22·Android 15 에뮬레이터 결과이며 운영·실차 연동과 구분한다. 최초 로컬 HTTP 검증은 기준 `0f4946b`에 API 본문 수정을 적용한 Linux / Node.js 24.19.0에서 수행했다.
