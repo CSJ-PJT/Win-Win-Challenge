@@ -43,6 +43,7 @@ jobs:
             ln -s "$(command -v google-chrome)" "$RUNNER_TEMP/chromium"
             export PATH="$RUNNER_TEMP:$PATH"
           fi
+          python3 -u test/easy_completion.py --output build-reports/v043/easy-completion
           python3 -u test/flow040.py --output build-reports/v043/flow
           python3 -u test/role_tabs041.py --output build-reports/v043/tabs
           python3 -u test/address042_mock.py --fixture --output build-reports/v043/address-ui
