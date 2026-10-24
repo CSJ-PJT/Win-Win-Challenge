@@ -1,3 +1,7 @@
+# 실기기 후속 · 2026-10-25 03:13 KST
+
+준비된341bc88 QA 앱2903bc14/testc73efa79를 공존 설치해 공식주소 instrumentation1과 수동주소 DOM 인계/쉬운알림 instrumentation1이 실기기에서 각각 통과했다. PM이 임시 AS-Q1을 수신·직접 수행한 자체 QA이며 독립 승인이나5232b81 release 실기기 성공이 아니다. 쉬운 알림 ACK의 process cold 복원 화면 확인, 공식 선택 주소의 별도 cold 복원은 추가검증. [실기기 근거/정확한 명령](PHYSICAL_QA_20261025.md). 아래는 각 시점의 이전 기록이다.
+
 # 최신 실행 확인 · 2026-10-24 18:25 KST
 
 소스 `5232b81544b4214c14048c7c020d8eac7e639861`, [CI40081102580](https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40081102580)(18:13:29–18:23:15 KST)의 verify-build/live-address/native-smoke 모두 성공, publish skipped. Node112/실패0·공식주소 Android instrumentation1·APK조작7·DOM instrumentation1. 실제 MAP_INTENT_OPENED, PRIMARY_HANDOFF_OK, EASY_ARRIVAL_ACK_OK 및 종료코드5개 모두0을 원본 아티팩트에서 확인했다. 시설 양측 확인 완료와 쉬운 도착 알림 화면의 한글·큰 글씨를 직접 확인했다. Android15 에뮬레이터 범위다.
