@@ -1,3 +1,21 @@
+## 공식 주소 process cold 복원 실기기 확인 · 2026-10-25 07:00 KST
+
+작업 AS-Q1-PM-COLD-20261025T0656, 기존 PM 임시 AS-Q1 자체 QA. 최신 지시·PHONE-QA-STANDING·기존 결과와 점유를 읽고 AS_Q1_DEVICE.lock을 독점 생성했다. 설치된341bc88 QA2903bc14/testc73efa79에서 주요 화면 버튼으로 새 합성 유치원 방문을 만들고, 도착지 편집→주소 검색→공식 SDK의 서울시청 도로명 결과 실제 선택→주소/우편번호 반환→저장을 수행했다. JS/상태 주입·개발자 도구·재설치 없이 실제 터치로 실행했다.
+
+QA 패키지만 am force-stop하고 pidof가 비어 있음을 확인한 뒤 am start -W로 시작했다. Status ok / LaunchState COLD / TotalTime347ms / WaitTime358ms. 안정된 메인 화면에서 선택 주소를 직접 확인하고 편집창에서 동일 주소와 우편번호04524 복원을 확인했다. 편집창은 추가 저장 없이 닫았다. 최초 즉시 접근성 조회는 WebView 자식 노드가 없었으며 준비된 뒤 재조회해 성공했다. 한 번의 선택·cold 실행 뒤 화면 조회만 재시도한 것으로 앱 검증 실패를 숨긴 것이 아니다. 이 한정된 준비 시점 사례만으로 전체 접근성/기동 속도 문제가 해결됐다고 판단하지 않는다.
+
+**설치된341bc88 QA의 공식 선택 주소 process cold 복원은 이번에 확인 완료. 최신 수정9c277ce/새QA25fbaf85 및 release95d9ba40의 실기기 성공은 계속 미검증이다.** 새/기존 QA 서명 불일치와 데이터 보존 업데이트 차단은 그대로다. 원래 앱c09449f8·QA2903bc14·testc73efa79 설치 SHA 전후 동일. 원래 앱 삭제/초기화/교체/force-stop·개인정보 탐색·실전화/기관 전송 없음. QA의 현재 합성 방문 상태는 정상 제품 버튼으로 새 방문/주소 저장했으며 이전 시험 기록·캡처는 보존했다. 완료 후 자신의 잠금을 반납했다. 독립 QA/감사 승인은 아니다.
+
+IT13 Task/Win-Win-Challenge-QA-20261024/AS-Q1-PM-20261025T0656/result.json 및 00~11단계 비공개 캡처/XML·cold-start.txt 보존. 상태바 포함 화면은 게시하지 않는다. 중요 해시:
+- 공식 picker05-picker.png:2368bc0249ceab73ec8cf54cb418091290676cd43fae3a3894c7085a8e77546d
+- 안정된 cold 메인10-cold-settled.png:0004164b8d0dd6574c1554c642918f460303fa20e05c7640966ebf1c336e7cff
+- cold 편집창11-cold-editor.xml:fa6a6fb7781131de31a00a57699207e028ff00639cacb87dca16dbe36367c621
+- cold-start.txt:ded8821a16e3e0042f71906c979037d66156338d29420884eeec54b78e2d6afb
+
+다음 단일 책임자는 기존 PM. 최신 수정 APK의 데이터 보존 가능한 실물 검증 경로가 다음 우선순위이며 외부 실연동·최종 제출판 대조·독립 감사는 남아 있다. CI40127842234/9c277ce 성공 유지·새 빌드 없음, PRDraft/미병합·미배포·미제출, DOCX/PDF 재열람/수정 없음. 지난주 비교/전체진척률 분모 없음. 야간 Slack/일반 정기 알림 없음.
+
+---
+
 ## 최신 확인 · 2026-10-25 06:05 KST
 
 소스9c277ce5bcb1c7b79b2a5ce5871a8302343dd4fe / CI40127842234(05:00:29–05:11:15 KST)는 verify-build/live-address/native-smoke 전체 success, publish skipped. 원본 로그/실제 ZIP 바이트를 다시 읽어 Node112/실패0·쉬운 완료 화면 Chromium회귀5개·공식주소 Android instrumentation1·APK조작7·DOM instrumentation1 및 종료코드5개=0을 확인했다. 수정된 빈주소 완료 화면에서 설정 지시/비활성 버튼 없이 시설 요약과 ‘다른 방문 시작하기’가 표시됨을 Chromium 캡처로 직접 확인했다.
