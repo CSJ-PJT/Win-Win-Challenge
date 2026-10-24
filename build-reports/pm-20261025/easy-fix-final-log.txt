@@ -1,0 +1,23 @@
+2026-10-24T20:00:49.3658354Z # tests 112
+2026-10-24T20:00:49.3660440Z # pass 112
+2026-10-24T20:00:49.3660944Z # fail 0
+2026-10-24T20:01:49.7324811Z PASS unacknowledged notice without address has summary and usable next visit
+2026-10-24T20:01:49.8885500Z PASS facility acknowledgement and role round trip keep clean summary
+2026-10-24T20:01:50.1109436Z PASS browser reload retains acknowledged clean summary
+2026-10-24T20:01:50.2122928Z PASS configured destination and dialer link survive summary rendering fixture
+2026-10-24T20:01:50.2907072Z PASS new visit keeps editable destination setup
+2026-10-24T20:04:04.0861323Z BUILD SUCCESSFUL in 1m 10s
+2026-10-24T20:04:49.2916866Z BUILD SUCCESSFUL in 43s
+2026-10-24T20:07:44.5050235Z INSTRUMENTATION_STATUS: class=kr.co.ansimdonghaeng.LiveAddressTest
+2026-10-24T20:08:35.9824347Z INSTRUMENTATION_STATUS: class=kr.co.ansimdonghaeng.LiveAddressTest
+2026-10-24T20:08:37.7879661Z Time: 53.249
+2026-10-24T20:09:07.7665687Z PASS selected official Korean address remains saved on the device
+2026-10-24T20:09:14.4862317Z PASS maps intent opens from a saved address without an API key
+2026-10-24T20:09:54.0138642Z PASS sender confirmation is independently recorded
+2026-10-24T20:10:00.0218418Z PASS facility tab displays its independent reception screen
+2026-10-24T20:10:26.8958237Z PASS receiver finishes the handoff
+2026-10-24T20:10:32.0037427Z PASS guardian sees completed status
+2026-10-24T20:10:49.1631945Z PASS large-button arrival flow works
+2026-10-24T20:10:50.1406404Z INSTRUMENTATION_STATUS: class=kr.co.ansimdonghaeng.DomFlowTest
+2026-10-24T20:11:07.0962944Z INSTRUMENTATION_STATUS: class=kr.co.ansimdonghaeng.DomFlowTest
+2026-10-24T20:11:08.3340955Z Time: 18.175
