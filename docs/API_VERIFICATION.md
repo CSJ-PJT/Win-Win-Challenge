@@ -1,3 +1,5 @@
+> 2026-10-25 23시: 현재 c5 검증 앱의 저장 주소 주요 지도 버튼→카카오맵 실제 주소/지도 타일 표시→명시적 QA 복귀를 확인했다. 위치 권한 미허용, 주소·우편번호/5패키지 SHA 유지. 뒤로 한 번은 외부 위치 권한 창으로 이어져 직접 복귀 성공은 아님. 새 빌드·설치·JUnit 없음. [정확한 물리 지도 범위](MAP_PHYSICAL_20261025.md). 아래 기록은 시점별 이력이다.
+
 > 2026-10-25 22시: ec6992f/CI40191642309 21:06–21:16KST verify/live/native최종success,publishskipped。실제ZIP/APK/v2인증서/8assets대조. [현재HTTP6·bridge6근거표](API_EVIDENCE_MATRIX_20261025.md). Geocoder·전화는CIruntime미포함/기존c5실물별도결과,실차·기관·Kakao REST인증검색미완료. 아래pending은과거시점기록.
 
 > 2026-10-25 21시: 기존c5앱/새354test에서 실제전화bridge ACTION_DIAL→전화앱패키지화면→QA복귀/저장상태동일 JUnit1/2.775초통과. 발신/전화앱버튼클릭/연락처·기록·전화화면캡처수집없음. [전화bridge실기기근거](DIALER_PHYSICAL_20261025.md). 새test소스ec6992f/CI40191642309 마지막verify-build진행중,CI전화runtime미포함. 아래18시resolver만확인은당시이력.

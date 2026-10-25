@@ -1,4 +1,6 @@
-# API·bridge 근거 표 / 최신 CI · 2026-10-25 22시
+# API·bridge 근거 표 / 2026-10-25 23시
+
+23시 c5 물리 주요 지도 버튼으로 실제 카카오맵 주소·타일 표시와 명시적 QA 복귀를 확인했다. 위치 권한은 허용하지 않았다. 뒤로 한 번은 권한 창으로 이어져 직접 복귀 성공으로 판정하지 않는다. [물리 지도 상세](MAP_PHYSICAL_20261025.md). 아래 CI 근거는 22시 최종 확인 기록이다.
 기존 PM이 원본3job로그와실제download바이트를조회했다. 배정/전달과시험통과를구분하며독립QA·감사승인으로표시하지않는다. [CI·APK 해시](../build-reports/pm-20261025/api-matrix-ci-final.json).
 
 ## 현재 기준
@@ -31,13 +33,13 @@ MainActivity의실제JavascriptInterface6개를직접읽었다.
 |---|---|---|
 |openAddressSearch|현재CI공식주소1, c5/5f7물리16.944초+COLD264ms|기관주소승인/실차UX는별도|
 |searchAddress|c5/5f7물리실제Geocoder1.348초/isPresenttrue/결과1·유한좌표|위치정확도·차량환경·오류/없음분기와UI검색사용성별도|
-|openMap|현재CI Android15 MAP_INTENT_OPENED/APK실제조작|c5단말에서현재저장주소→외부지도실제화면·복귀는미검증|
+|openMap|현재 CI Android15 MAP_INTENT_OPENED 및 23시 c5 주요 버튼→카카오맵 실제 주소·지도 표시→명시적 QA 복귀, 저장 주소 유지|단일 뒤로 복귀는 외부 권한 창으로 이어짐. 현재 위치 권한 미허용, 경로 시작·실차 미검증|
 |openDialer|c5/354물리ACTION_DIAL→전화패키지화면→QA복귀2.775초/저장상태유지|실제발신미수행·주요연락버튼사용성/AAOS제한별도|
 |checkNavigation|실제NaviHelper연결어댑터소스·CI컴파일|Pleos서비스연결콜백실환경미검증|
 |requestSampleRoute|사용자확인·정차guard/SDK호출소스·CI컴파일|실제Pleos경로응답·완료콜백/실차미검증|
 **“12개인터페이스모두실서비스정상” 또는“bridge6개실기기완료”로표시할근거는없다.** 전화·Geocoder는별도instrumentation관찰이며사람사용성승인이아니다.
 
 ## 유지·차단·다음 단일담당
-이번은근거수집/대조작업,신규앱·test빌드/설치/폰UI시험없음. IT13최신result.json을직접읽음: c5앱/test354의21시전화시험통과유지. claim/관련writer·instrumentation일치항목없음,기기화면조작없음. AS-Q1실행은PM자체겸임,전담독립QA/감사ACK는미확인.
-기존DOCX/PDFversion2/13쪽17시시각검토유지·이번원본재편집없음. PRDraft미병합/v0.3.0-preview게시만/0.4.3미게시·공모전미제출. main/easy/address원본보존. 지난주비교자료·전체진척률분모없음.
-다음단일기존PM: 현재c5의저장주소주요버튼을통한지도열기/복귀를한정확인해남은물리bridge근거격차를줄인다. 새빌드없이가능한UI를우선하고,실차·기관환경/유효REST키/독립QA·사용성·접수요건은별도상태로유지한다. 야간Slack전송없음,대화방결과보고. 새agent/예약/유료·공개배포없음.
+23시에는 새 빌드/설치 없이 현재 c5/354 패키지로 주요 지도 버튼 UI를 시험했다. 5패키지 설치 SHA와 QA 전후 표시 텍스트 동일, 주소/우편번호 유지, own claim 반납 확인. 전체 localStorage 비교나 새 JUnit/전체 E2E는 실행하지 않았다. 단일 뒤로 복귀는 미통과이고 명시적 QA 실행으로 복귀했다.
+기존 DOCX/PDF version2/13쪽 17시 시각검토 유지·이번 편집 없음. PR Draft 미병합/v0.3.0-preview만 게시/0.4.3 미게시·공모전 미제출. main/easy/address 보존. 독립 QA/감사 ACK·사람 사용성 미확인, 전체 진척률·지난주 근거 없음.
+다음 단일 기존 PM: Pleos/AAOS 두 bridge의 실제 서비스 가용성·안전 guard와 불가 응답을 좁게 확인한다. 유효 REST 키/실차·기관/클라우드/독립 QA·사용성·접수 요건은 별도 미검증이다. 야간 Slack 없음, 현재 대화 결과 보고 유지.
