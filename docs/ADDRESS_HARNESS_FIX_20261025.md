@@ -1,3 +1,5 @@
+> 2026-10-25 15시 최신: CI40163763754/source518는 verify/native성공·live-address HTTP저장FAILURE로 최종실패. pending상태아님. 저장busy경합을 실제로컬HTTP 지연조건에서 재현/수정b227ca2 후 저장·reload 및Node112/0통과. 새CI40167658701진행중, 새수정APK/실기기미검증. docs/EDITOR_SAVE_BUSY_20261025.md 우선; 기존518 실기기주소시험통과는 유지하되환경별구분.
+
 # Official address harness start-state fix — 2026-10-25 14시
 
 Confirmed13h defect: previous42f683a5 test assumed 도착지 입력하기 after launch. Restored easy ACK has different controls; one physical run failed25.18s before official picker. That historical failure is preserved in VERIFYQA_OFFICIAL_COLD_20261025.md.

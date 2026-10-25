@@ -1,0 +1,54 @@
+{
+  "checked_at": "2026-10-25T15:02:53+09:00",
+  "source_commit": "b227ca2409eae9ae1f71ff1a5d1b64ef42d7ebab",
+  "old_ci": {
+    "run": 40163763754,
+    "source": "5188638ef9c72409842c61d0650e99da44a21d54",
+    "start_kst": "2026-10-25 13:57:27",
+    "end_kst": "2026-10-25 14:07:25",
+    "verify_build": "success",
+    "native_smoke": "success",
+    "live_address": "failure",
+    "publish": "skipped",
+    "failure": "address042_live.py:41 HTTP save; modal expected0 actual1",
+    "pc_launcher": "official selection/save/reload/map passed",
+    "artifact": {
+      "id": 12587705834,
+      "bytes": 168300,
+      "sha256": "9fd1b6a33000ce29a676e22b431a9aa88dba5b97eb23988e912473f0c735f161",
+      "actual_download_hash_matched": true
+    }
+  },
+  "reproduction": {
+    "scope": "actual local HTTP,headless Chrome,one telemetry request deliberately delayed3seconds,no external API response replacement",
+    "baseline": {
+      "dialog_still_open": true,
+      "error": "정보를 저장하지 못했어요.",
+      "log_sha256": "2eb9ab645392856b264e1e6fcdbe220fbb3e532d97dea2737c987533d4b8d381"
+    },
+    "fixed": {
+      "dialog_closed": true,
+      "persisted_after_reload": true,
+      "exit": 0,
+      "log_sha256": "bb1cc67049abb97dfd6454cf9fc228fa1a3bf6063df183acface86daeb12e802"
+    },
+    "original_ci_timing": "not captured; correspondence with reproduced busy failure is inference"
+  },
+  "node": {
+    "tests": 112,
+    "pass": 112,
+    "fail": 0,
+    "exit": 0,
+    "log_sha256": "472bcf69424340c52fa8e907a90ff4eccc58574bd3f220cf8084558c5232b506"
+  },
+  "new_ci": {
+    "run": 40167658701,
+    "source": "b227ca2409eae9ae1f71ff1a5d1b64ef42d7ebab",
+    "status": "in_progress",
+    "conclusion": null
+  },
+  "new_apk_installed": false,
+  "phone_actions": "none",
+  "document_originals_reread": false,
+  "independent_qa_approval": false
+}
