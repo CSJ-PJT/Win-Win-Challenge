@@ -1,3 +1,13 @@
+## Final local build evidence — 2026-10-25 11:10:46 KST
+Source722a366 (product9c277ce): app + instrumentation APK build exit0. Initial raw Android assets build also succeeded, but only6 tracked assets were present. It was never installed. Applied existing release043 workflow bundle + web/*.js/style.css/postcode.html copy + bundled index before rebuilding: final build32s/73tasks(6 executed,67 up-to-date), exit0,8 assets match prepared inputs. Do not use initial345ff161 APK as the final artifact.
+Final APK5,170,172bytes SHA18c999d1b3e7969e54d4985eb57224428b5965947d390f00feaad11cd136f21a.
+Test816,852bytes SHA42f683a58352037bf8bc910aa8074db6bc29423e7913589015bf2cfcc41e21ef.
+Both actual apksigner verify exit0; certificate323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e.
+Actual manifest target verified, app non-debuggable, label 안심동행 검증. 19 unchanged source blobs matched remote c94 before web preparation. Final APK is a locally signed verification variant, not CI release binary.
+Key generation first PowerShell invocation stopped on native stderr; subsequent guarded generation using existing protected password completed exit0. One persistent key exists; no private key export or existing app operation.
+Final private artifacts/result/signature/manifest/build log: IT13 Task/Win-Win-Challenge-QA-20261024/AS-Q1-PM-20261025T1103. Local reusable build helper below repository tools uses same preparation; it requires private signer env and never installs/clears/uninstalls.
+Physical tests NOT_RUN, next single owner existingPM: inspect device claim + installed packages, coexist install only exact final bytes then official-picker and DOM separately. No repeat build/new ID/key generation required. Independent QA/external service/final submission checks remain open.
+
 # Persistent local verification variant — 2026-10-25 11시 KST
 
 Base: c94e72191b2541d0ada747b240f5cd928dcd03a4 (product source9c277ce).
