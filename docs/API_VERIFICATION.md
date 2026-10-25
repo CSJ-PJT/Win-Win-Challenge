@@ -1,3 +1,5 @@
+> 2026-10-25 13:06 최신: 동일verifyQa18c999d1/test42f683a5의 공식 SDK 주소 선택→저장→프로세스 종료(pid없음)→COLD273ms 후 주소/우편번호 복원 확인. 별도 LiveAddressTest는 기존 완료 화면에서 초기버튼을 가정해1회FAIL(25.18s), 시험기 전제조건 수정 미완료. 이전12시통과와 혼합하지 않음. docs/VERIFYQA_OFFICIAL_COLD_20261025.md 참조. PM자체QA/공개release실물승인아님.
+
 > 2026-10-25 11:59 최신: source722a366/product9c277ce 고정 verifyQa(18c999d1/test42f683a5) 공존설치·공식주소1(14.248s)·DOM1(9.436s) 실기기 통과. 쉬운 ACK COLD279ms 복원/한글큰글씨/불필요한 빈주소안내·비활성설정 제거 직접 확인. 원래 앱/기존.qa 해시 유지. PM 자체QA, 공개release 바이너리/독립승인 아님. 새verifyQa 공식선택주소 process cold 복원은 별도미검증. docs/VERIFYQA_PHYSICAL_20261025.md 우선; 아래 과거 NOT_RUN/서명차단은 해당 예전 동일패키지 업데이트 범위.
 
 ## 공식 주소 process cold 복원 실기기 확인 · 2026-10-25 07:00 KST

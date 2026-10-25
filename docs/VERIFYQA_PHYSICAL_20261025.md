@@ -1,3 +1,5 @@
+> 2026-10-25 13:06 최신: 동일verifyQa18c999d1/test42f683a5의 공식 SDK 주소 선택→저장→프로세스 종료(pid없음)→COLD273ms 후 주소/우편번호 복원 확인. 별도 LiveAddressTest는 기존 완료 화면에서 초기버튼을 가정해1회FAIL(25.18s), 시험기 전제조건 수정 미완료. 이전12시통과와 혼합하지 않음. docs/VERIFYQA_OFFICIAL_COLD_20261025.md 참조. PM자체QA/공개release실물승인아님.
+
 # verifyQa physical verification — 2026-10-25 12시 KST
 
 At11:56–11:59 existing Ansim PM temporarily performed AS-Q1 selfQA, with PHONE-QA-STANDING authorization. Read actual common authorization/latest dispatch, prior results, PR/latest CI and device claim. No lock or active instrumentation/writer/build was found; acquired exclusive AS_Q1_DEVICE.lock and released after results. One connected unlocked USB device. This is PM selfQA, not independent QA/audit approval.
