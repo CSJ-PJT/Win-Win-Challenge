@@ -1,3 +1,5 @@
+> 2026-10-25 16시 최신: b227/CI40167658701 verify/live/native 최종성공(15:02:05–15:11:48), ZIP/APK/cert바이트대조. 동일서명 localverifyQa c5aad9ee(5170840B) 데이터보존업데이트·기존주소/우편번호유지,공식주소1/16.281s·DOM1/9.410s 실물통과. CIrelease와localverifyQa구분. docs/B227_FINAL_VERIFICATION_20261025.md 우선. 제출DOCX/PDF v1 전13쪽텍스트 직접재검토, 여전히38ef/옛CI기준(갱신미수행), docs/SUBMISSION_TEXT_REVIEW_20261025.md 참조.
+
 > 2026-10-25 15시 최신: CI40163763754/source518는 verify/native성공·live-address HTTP저장FAILURE로 최종실패. pending상태아님. 저장busy경합을 실제로컬HTTP 지연조건에서 재현/수정b227ca2 후 저장·reload 및Node112/0통과. 새CI40167658701진행중, 새수정APK/실기기미검증. docs/EDITOR_SAVE_BUSY_20261025.md 우선; 기존518 실기기주소시험통과는 유지하되환경별구분.
 
 > 2026-10-25 13:59 최신: 시험기 시작상태 수정5188638 + 새test bb17d224(817232B), 동일앱18c999d1 보존. 실기기 저장상태→공식주소 OK1/16.637s, DOM완료상태준비 OK1/9.566s, 완료상태→공식주소 OK1/15.769s. 13시옛시험기실패와구분, 새CI40163763754 진행중. docs/ADDRESS_HARNESS_FIX_20261025.md 우선. PM자체QA/공개release실물승인아님.
