@@ -1,3 +1,5 @@
+> 2026-10-25 19시: Geocoder실제bridge 호출이 c5검증앱/신규5f7test에서 JUnit1/1(1.348초) 통과. isPresent=true/공개장소결과1개/유한좌표/409ms/저장상태동일. [Geocoder실기기근거](GEOCODER_PHYSICAL_20261025.md). 새test소스2284016/CI40182818148 마지막verify-build진행중, 기존b227전체CI/공식주소·DOM과분리. 아래18시Geocoder미실행은그시점이력.
+
 > 2026-10-25 18시: 실제 loopback 서버8계약요청 확인(키없음503/미인증401/잘못된query·본문400), 외부 Kakao 무인증GET1회401. 인증성공아님. 전화resolver확인/미실행, automotive=false/Pleos패키지0, Geocoder실호출미검증. [새 외부연동 점검](EXTERNAL_API_CHECK_20261025.md). 17시 제출DOCX/PDF version2 갱신·13쪽시각검토 완료, 아래는각시점기록.
 
 > 2026-10-25 16시 최신: b227/CI40167658701 verify/live/native 최종성공(15:02:05–15:11:48), ZIP/APK/cert바이트대조. 동일서명 localverifyQa c5aad9ee(5170840B) 데이터보존업데이트·기존주소/우편번호유지,공식주소1/16.281s·DOM1/9.410s 실물통과. CIrelease와localverifyQa구분. docs/B227_FINAL_VERIFICATION_20261025.md 우선. 제출DOCX/PDF는 후속17시 같은ID version2로 갱신/13쪽 전체시각검토 완료. docs/SUBMISSION_REVIEW_20261025.md 참조.

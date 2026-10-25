@@ -1,3 +1,5 @@
+> 2026-10-25 19시: Geocoder실제bridge 호출이 c5검증앱/신규5f7test에서 JUnit1/1(1.348초) 통과. isPresent=true/공개장소결과1개/유한좌표/409ms/저장상태동일. [Geocoder실기기근거](GEOCODER_PHYSICAL_20261025.md). 새test소스2284016/CI40182818148 마지막verify-build진행중, 기존b227전체CI/공식주소·DOM과분리. 아래18시Geocoder미실행은그시점이력.
+
 # 외부 연동 실제 호출·가용성 점검 · 2026-10-25 18시
 기존 안심동행 PM이 임시 자체 점검을 수행했다. **독립 AS-A1 감사 승인이 아니다.** 확인 시각17:58–17:59 KST, 소스b227ca2/조회HEAD7ba3734. [비밀값 없는 실제 응답](../build-reports/pm-20261025/external-api-check.json).
 
