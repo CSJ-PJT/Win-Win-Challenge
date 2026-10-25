@@ -1,3 +1,5 @@
+> 2026-10-25 20시: 소스2284016/CI40182818148은18:58:07–19:08:56 전체verify/live/native성공·publishskipped, ZIP/APK실제바이트확인. 기존c5앱/5f7test에서공식주소JUnit1/16.944초 후 processCOLD264ms/안정화재조회주소·우편번호복원확인. [최신CI·c5 COLD근거](CI_AND_COLD_FINAL_20261025.md). Geocoder는19시실기기별도통과,CI runtime에는미포함. 아래진행중/미검증표현은과거시점기록.
+
 # Geocoder bridge 실기기 실제 호출 · 2026-10-25 19시
 기존 PM이 임시 AS-Q1 자체 QA로 수행했다. 독립 QA/감사 승인이나 공개 release APK 실물 검증이 아니다.
 
