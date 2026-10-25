@@ -1,3 +1,5 @@
+> 2026-10-26 02시: 41c1812/CI40210143323 최종 verify/live/native success(01:07:04–01:17:16KST),publish skipped. 3원본로그·3실제ZIP·APK해시/v2인증서/8assets 대조 완료. [최신 CI 결과](GUARD_SOURCE_CI_FINAL_20261026.md). Guard/Geocoder/Dialer는 CI runtime 미포함, 01시 c5/419 물리거절1/0.896초와 별도. 아래 진행중 표기는 과거 시점 기록.
+
 > 2026-10-26 01시: c5제품/새419test에서 실제 NavigationGuardTest JUnit1/0.896초 통과. 두 비차량 거절 callback·화면 toast·전체 localStorage동일·adapter null 확인, native flag 미변경/서비스·경로 요청 없음. [정확한 범위](NAVIGATION_GUARD_PHYSICAL_20261026.md). 새41c1812/CI40210143323 진행 중, 아래 ec6992f 전체성공과 분리.
 
 > 2026-10-26 00시: 실제 NaviHelper3.0.5 AAR 연결 대상/권한과 단말 서비스 조회를 대조했다. automotive=false, 정확한 서비스 패키지 경로 없음/action 서비스0/car_service없음. 두 bridge 안전 guard는 소스만 검토했으며 연결·거절·완료 callback 런타임은 미실행. [조회 근거](PLEOS_READINESS_20261026.md). 새 빌드/설치/UI시험 없음.

@@ -1,0 +1,92 @@
+{
+  "artifacts": [
+    {
+      "id": 12605595895,
+      "bytes": 5643172,
+      "sha256": "e618061b224de21e3f25e759d105cedf88d40f59e022df6837f3ee5b1282fea1"
+    },
+    {
+      "id": 12605616761,
+      "bytes": 1352317,
+      "sha256": "52edc506835ff5cfe33655582f3b3b0e94dac25ca207a0c858ddcfbb6efb2526"
+    },
+    {
+      "id": 12605795619,
+      "bytes": 232030,
+      "sha256": "97b27df3bb8622789ebb51abb3b915c331d6e6fbf0e7d4862bebea3adf23fe16"
+    }
+  ],
+  "source": "41c1812013d395b90d9c6ae7a35ccdcee8b377f4",
+  "run": "40210143323",
+  "apk": {
+    "release": {
+      "bytes": 5170796,
+      "sha256": "7801e8ffc7e393662ad73c57c3cfb385261b6dcc63405b737359a326504fe8a5",
+      "certificate": "96f4f72921d8c9d5a2c1d3fab694d2861281e2184f534b85194cd1b2b15e1bd6",
+      "package": "kr.co.ansimdonghaeng",
+      "target": null,
+      "debuggable": false
+    },
+    "qa": {
+      "bytes": 5170820,
+      "sha256": "8d31aedf946bc21d29332eff0bec47d871463973520cadc61a47142fd17949b4",
+      "certificate": "96f4f72921d8c9d5a2c1d3fab694d2861281e2184f534b85194cd1b2b15e1bd6",
+      "package": "kr.co.ansimdonghaeng.qa",
+      "target": null,
+      "debuggable": false
+    },
+    "instrumentation": {
+      "bytes": 828952,
+      "sha256": "6dbae80446a49fe2330eea2abf6b7ff9a342e3cc4d871cb3ef1ee5db910f17e0",
+      "certificate": "96f4f72921d8c9d5a2c1d3fab694d2861281e2184f534b85194cd1b2b15e1bd6",
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "target": "kr.co.ansimdonghaeng.qa",
+      "debuggable": false
+    }
+  },
+  "release_qa_previous_product_assets_identical": true,
+  "asset_count": 8,
+  "live-address-test.txt": [
+    "Time: 52.53",
+    "OK (1 test)"
+  ],
+  "dom-flow-test.txt": [
+    "Time: 16.075",
+    "OK (1 test)"
+  ],
+  "all5_exits_zero": true,
+  "three_markers": true,
+  "native_apk_checks": 7,
+  "pc_http_live_checks": 7,
+  "busy_save_regression": true,
+  "separate_full_cryptographic_apksigner_rerun": false,
+  "task_id": "AS-PM-20261026T0155",
+  "owner": "existing PM evidence review, not independent QA",
+  "ci_start_kst": "2026-10-26T01:07:04+09:00",
+  "ci_end_kst": "2026-10-26T01:17:16+09:00",
+  "verify_build": "success",
+  "live_address": "success",
+  "native_smoke": "success",
+  "publish": "skipped",
+  "jobs": {
+    "verify_build": 121219415230,
+    "live_address": 121220396171,
+    "native_smoke": 121220396101,
+    "publish": 121221850456
+  },
+  "node": {
+    "passed": 112,
+    "failed": 0
+  },
+  "actual_dex_navigation_guard_present": true,
+  "source_zip_guard_blob": "ddca594e8dd6ea436155939fbe5d8f205821fe4e",
+  "geocoder_dialer_navigation_guard_ci_runtime_executed": false,
+  "new_build_install_phone_UI": false,
+  "physical_guard_previous": {
+    "app_sha256": "c5aad9eecc70bf0cac07450e414c582720582ee8286f0b255af5ff46e69eda4b",
+    "test_sha256": "41900b95a4ef2a1dafb4af45259c95cde5e6cdec2d728ca265af93a1900f7bc2",
+    "junit_seconds": 0.896,
+    "junit_tests": 1,
+    "separate_from_ci": true
+  }
+}
