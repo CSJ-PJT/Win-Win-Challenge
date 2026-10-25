@@ -6,7 +6,7 @@ android {
   useLibrary 'android.car', false
   defaultConfig { applicationId 'kr.co.ansimdonghaeng'; minSdk 28; targetSdk 35; versionCode 9; versionName '0.4.3'; testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' }
   def requestedTestBuildType = providers.gradleProperty('ansimTestBuildType').getOrElse('release')
-  if (!(requestedTestBuildType in ['release', 'deviceQa'])) throw new GradleException('Unsupported ansimTestBuildType')
+  if (!(requestedTestBuildType in ['release', 'deviceQa', 'verifyQa'])) throw new GradleException('Unsupported ansimTestBuildType')
   testBuildType requestedTestBuildType
   signingConfigs {
     demoRelease {
@@ -18,6 +18,16 @@ android {
       }
     }
   }
+  signingConfigs {
+    persistentQa {
+      if (System.getenv('ANSIM_QA_KEYSTORE')) {
+        storeFile file(System.getenv('ANSIM_QA_KEYSTORE'))
+        storePassword System.getenv('ANSIM_QA_STORE_PASSWORD')
+        keyAlias 'ansim-qa'
+        keyPassword System.getenv('ANSIM_QA_STORE_PASSWORD')
+      }
+    }
+  }
   buildTypes { release { minifyEnabled false; if (System.getenv('DEMO_KEYSTORE')) signingConfig signingConfigs.demoRelease } }
   buildTypes {
     deviceQa {
@@ -25,6 +35,16 @@ android {
       applicationIdSuffix '.qa'
       versionNameSuffix '-qa'
       debuggable false
+      matchingFallbacks = ['release']
+    }
+  }
+  buildTypes {
+    verifyQa {
+      initWith release
+      applicationIdSuffix '.verifyqa'
+      versionNameSuffix '-verifyqa'
+      debuggable false
+      signingConfig signingConfigs.persistentQa
       matchingFallbacks = ['release']
     }
   }
