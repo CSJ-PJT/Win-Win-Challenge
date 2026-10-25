@@ -1,3 +1,5 @@
+> 2026-10-25 11:59 최신: source722a366/product9c277ce 고정 verifyQa(18c999d1/test42f683a5) 공존설치·공식주소1(14.248s)·DOM1(9.436s) 실기기 통과. 쉬운 ACK COLD279ms 복원/한글큰글씨/불필요한 빈주소안내·비활성설정 제거 직접 확인. 원래 앱/기존.qa 해시 유지. PM 자체QA, 공개release 바이너리/독립승인 아님. 새verifyQa 공식선택주소 process cold 복원은 별도미검증. docs/VERIFYQA_PHYSICAL_20261025.md 우선; 아래 과거 NOT_RUN/서명차단은 해당 예전 동일패키지 업데이트 범위.
+
 ## Final local build evidence — 2026-10-25 11:10:46 KST
 Source722a366 (product9c277ce): app + instrumentation APK build exit0. Initial raw Android assets build also succeeded, but only6 tracked assets were present. It was never installed. Applied existing release043 workflow bundle + web/*.js/style.css/postcode.html copy + bundled index before rebuilding: final build32s/73tasks(6 executed,67 up-to-date), exit0,8 assets match prepared inputs. Do not use initial345ff161 APK as the final artifact.
 Final APK5,170,172bytes SHA18c999d1b3e7969e54d4985eb57224428b5965947d390f00feaad11cd136f21a.

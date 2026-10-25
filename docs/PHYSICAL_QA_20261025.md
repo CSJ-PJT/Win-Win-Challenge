@@ -1,3 +1,5 @@
+> 2026-10-25 11:59 최신: source722a366/product9c277ce 고정 verifyQa(18c999d1/test42f683a5) 공존설치·공식주소1(14.248s)·DOM1(9.436s) 실기기 통과. 쉬운 ACK COLD279ms 복원/한글큰글씨/불필요한 빈주소안내·비활성설정 제거 직접 확인. 원래 앱/기존.qa 해시 유지. PM 자체QA, 공개release 바이너리/독립승인 아님. 새verifyQa 공식선택주소 process cold 복원은 별도미검증. docs/VERIFYQA_PHYSICAL_20261025.md 우선; 아래 과거 NOT_RUN/서명차단은 해당 예전 동일패키지 업데이트 범위.
+
 ## 공식 주소 process cold 복원 실기기 확인 · 2026-10-25 07:00 KST
 
 작업 AS-Q1-PM-COLD-20261025T0656, 기존 PM 임시 AS-Q1 자체 QA. 최신 지시·PHONE-QA-STANDING·기존 결과와 점유를 읽고 AS_Q1_DEVICE.lock을 독점 생성했다. 설치된341bc88 QA2903bc14/testc73efa79에서 주요 화면 버튼으로 새 합성 유치원 방문을 만들고, 도착지 편집→주소 검색→공식 SDK의 서울시청 도로명 결과 실제 선택→주소/우편번호 반환→저장을 수행했다. JS/상태 주입·개발자 도구·재설치 없이 실제 터치로 실행했다.
