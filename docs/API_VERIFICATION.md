@@ -1,3 +1,5 @@
+> 2026-10-26 01시: c5제품/새419test에서 실제 NavigationGuardTest JUnit1/0.896초 통과. 두 비차량 거절 callback·화면 toast·전체 localStorage동일·adapter null 확인, native flag 미변경/서비스·경로 요청 없음. [정확한 범위](NAVIGATION_GUARD_PHYSICAL_20261026.md). 새41c1812/CI40210143323 진행 중, 아래 ec6992f 전체성공과 분리.
+
 > 2026-10-26 00시: 실제 NaviHelper3.0.5 AAR 연결 대상/권한과 단말 서비스 조회를 대조했다. automotive=false, 정확한 서비스 패키지 경로 없음/action 서비스0/car_service없음. 두 bridge 안전 guard는 소스만 검토했으며 연결·거절·완료 callback 런타임은 미실행. [조회 근거](PLEOS_READINESS_20261026.md). 새 빌드/설치/UI시험 없음.
 
 > 2026-10-25 23시: 현재 c5 검증 앱의 저장 주소 주요 지도 버튼→카카오맵 실제 주소/지도 타일 표시→명시적 QA 복귀를 확인했다. 위치 권한 미허용, 주소·우편번호/5패키지 SHA 유지. 뒤로 한 번은 외부 위치 권한 창으로 이어져 직접 복귀 성공은 아님. 새 빌드·설치·JUnit 없음. [정확한 물리 지도 범위](MAP_PHYSICAL_20261025.md). 아래 기록은 시점별 이력이다.

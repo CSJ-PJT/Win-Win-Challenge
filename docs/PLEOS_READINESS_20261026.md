@@ -1,3 +1,5 @@
+> 2026-10-26 01시 후속: 새419 테스트로 비차량 bridge2개 거절 callback·화면 표시·저장 상태 보존을 실제 검증했다(JUnit1/0.896초). [후속 물리 시험](NAVIGATION_GUARD_PHYSICAL_20261026.md). 아래 “미실행”은 00시 조회 시점이며 실제 Pleos 연결/경로·자동차 UX 상태는 여전히 미검증이다.
+
 # Pleos 서비스 가용성·안전 조건 확인 — 2026-10-26 00시
 
 기존 PM의 소스·SDK 및 단말 읽기 전용 점검이다. 독립 QA/감사 승인이나 두 bridge의 런타임 통과가 아니다. 작업 ID `AS-PM-20261026T0003`, 조회 시각 **00:06:39 KST**. [결과 JSON](../build-reports/pm-20261026/pleos-readiness.json).
