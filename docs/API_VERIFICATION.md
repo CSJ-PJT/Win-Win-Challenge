@@ -1,3 +1,5 @@
+> 2026-10-25 21시: 기존c5앱/새354test에서 실제전화bridge ACTION_DIAL→전화앱패키지화면→QA복귀/저장상태동일 JUnit1/2.775초통과. 발신/전화앱버튼클릭/연락처·기록·전화화면캡처수집없음. [전화bridge실기기근거](DIALER_PHYSICAL_20261025.md). 새test소스ec6992f/CI40191642309 마지막verify-build진행중,CI전화runtime미포함. 아래18시resolver만확인은당시이력.
+
 > 2026-10-25 20시: 소스2284016/CI40182818148은18:58:07–19:08:56 전체verify/live/native성공·publishskipped, ZIP/APK실제바이트확인. 기존c5앱/5f7test에서공식주소JUnit1/16.944초 후 processCOLD264ms/안정화재조회주소·우편번호복원확인. [최신CI·c5 COLD근거](CI_AND_COLD_FINAL_20261025.md). Geocoder는19시실기기별도통과,CI runtime에는미포함. 아래진행중/미검증표현은과거시점기록.
 
 > 2026-10-25 19시: Geocoder실제bridge 호출이 c5검증앱/신규5f7test에서 JUnit1/1(1.348초) 통과. isPresent=true/공개장소결과1개/유한좌표/409ms/저장상태동일. [Geocoder실기기근거](GEOCODER_PHYSICAL_20261025.md). 새test소스2284016/CI40182818148 마지막verify-build진행중, 기존b227전체CI/공식주소·DOM과분리. 아래18시Geocoder미실행은그시점이력.
