@@ -51,6 +51,7 @@ jobs:
           rm -f build-reports/v043/http/server-private.json
           npm install --no-save --ignore-scripts --no-audit --no-fund playwright@1.57.0
           ANSIM_CHROME="$(command -v chromium)" node test/editor_save_busy.cjs
+          ANSIM_CHROME="$(command -v chromium)" node test/readiness_expiry.cjs
       - uses: actions/setup-java@v4
         with:
           distribution: temurin

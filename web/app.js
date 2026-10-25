@@ -27,7 +27,7 @@
   let panel=null,draft=null,editorFrom=null,editorError='',searchResults=[],searchMessage='',searchTicket=null,editorSaving=false;
   let error='',notice='',noticeTimer=null,codeInput='',heartbeatAt=0,refreshing=false,activeVisit=null;
   let changingRole=false,roleRevision=0;
-  let addressDispose=null,addressSavedScroll=0;
+  let addressDispose=null,addressSavedScroll=0,renderedReady=null;
   let draftPreferences=null;
   const role=()=>prefs.mode==='easy'?'visitor':prefs.role;
   const terminal=()=>['COMPLETED','ARRIVAL_REPORTED','CANCELLED'].includes(state?.state);
@@ -184,6 +184,7 @@
   function render(force=false){if(!state)return;
     // Never unmount an active form because of a background poll or heartbeat.
     if(!force&&(panel==='editor'||panel==='address'||document.activeElement?.id==='codeInput'))return;
+    renderedReady=H.readyNow(state,Date.now());
     document.documentElement.className='text-'+prefs.text;
     const body=!prefs.roleChosen?rolePicker():prefs.mode==='easy'?easyView():role()==='facility'?facilityView():role()==='guardian'?guardianView():vehicleView();
     const overlays=panel==='address'?addressPanel():panel==='editor'?editor():panel==='demo'?demoMenu():panel==='visits'?visitPicker():'';
@@ -355,7 +356,7 @@
     if(serverMode){try{await connect(false);}catch{connected=false;state=H.createTrip('kindergarten',Date.now(),uid());}}
     else{state=storageRead(localStorage,STATE_KEY);if(!state||state.schema!==1){state=H.createTrip('kindergarten',Date.now(),uid());storageWrite(localStorage,STATE_KEY,state);}state.info={...C.defaults(),...state.info};}
     await initialConditions();savePrefs();render();
-    setInterval(()=>{countdown();if(serverMode)refresh();renewVehicle();},2000);
+    setInterval(()=>{countdown();if(state&&renderedReady!==H.readyNow(state,Date.now()))render();if(serverMode)refresh();renewVehicle();},2000);
   }
   init();
 })();
