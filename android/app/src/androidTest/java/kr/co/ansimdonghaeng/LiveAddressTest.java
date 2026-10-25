@@ -77,6 +77,21 @@ public final class LiveAddressTest {
             device.pressBack();SystemClock.sleep(500);
         }
     }
+    private void openOfficialDestinationEditor() throws Exception {
+        // Start a synthetic visit through product controls even when a previous
+        // saved visit, role or completion screen was restored. Never clear data.
+        tap("방문 변경");
+        tap("유치원 등원",true);
+        tap("인계자");
+        // Move the destination action away from the bottom transient toast.
+        device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()*7/10,
+            device.getDisplayWidth()/2,device.getDisplayHeight()*4/10,20);
+        SystemClock.sleep(500);
+        if(visible("도착지 입력하기",false)!=null)tap("도착지 입력하기");
+        else {scrollFind("도착지 변경");tap("도착지 변경");}
+        find("도착지 저장",false);
+        Log.i("HandoffAddress","OFFICIAL_TEST_VISIT_READY");
+    }
     @Test public void officialAddressReturnsToTheVisit() throws Exception {
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
         device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
@@ -86,7 +101,7 @@ public final class LiveAddressTest {
         assertNotNull(launch);assertNotNull(launch.getComponent());
         try {
             launchApp(context,launch);
-            tap("도착지 입력하기");find("도착지 저장",false);
+            openOfficialDestinationEditor();
             UiObject2 address=device.findObject(By.res("field-address"));
             if(address==null){
                 for(UiObject2 el:device.findObjects(By.clazz("android.widget.EditText"))){
