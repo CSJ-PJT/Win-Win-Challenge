@@ -1,0 +1,63 @@
+{
+  "task_id": "AS-PM-20261025T2203",
+  "owner": "existing PM evidence review; not independent audit",
+  "source": "ec6992f40405ce696b063a101745bd6331fe402f",
+  "ci": 40191642309,
+  "start": "2026-10-25T21:06:00+09:00",
+  "end": "2026-10-25T21:16:32+09:00",
+  "verify_build": "success",
+  "live_address": "success",
+  "native_smoke": "success",
+  "publish": "skipped",
+  "job_ids": [
+    121163688849,
+    121164477592,
+    121164477618
+  ],
+  "node": {
+    "pass": 112,
+    "fail": 0
+  },
+  "android15_release": {
+    "official": 1,
+    "official_seconds": 64.565,
+    "apk_checks": 7,
+    "dom": 1,
+    "dom_seconds": 17.39,
+    "all5_exits_zero": true,
+    "markers": [
+      "MAP_INTENT_OPENED",
+      "PRIMARY_HANDOFF_OK",
+      "EASY_ARRIVAL_ACK_OK"
+    ]
+  },
+  "geocoder_dialer_runtime_not_invoked": true,
+  "build_zip": {
+    "id": 12598232815,
+    "bytes": 5624486,
+    "sha256": "768a0a3f3116c3618e24956d81aa1aaf702ae842184dadd36165a629aa1828b2"
+  },
+  "native_zip": {
+    "id": 12597814345,
+    "bytes": 1268422,
+    "sha256": "cf7d964c7a39465fe70665366fc79226a5dbdcf85b574bee4440c97d08652657"
+  },
+  "release": {
+    "bytes": 5170796,
+    "sha256": "e7d2ad2d81e3d824ff180889990083be9adebc4c63d0ffc61dd07dbb4ef96435"
+  },
+  "qa": {
+    "bytes": 5170820,
+    "sha256": "0f9ef87be7dcf8afefc44f1e809249c1cce4a8baf2ebc6dcb665d8ec570c975e"
+  },
+  "qa_test": {
+    "bytes": 824820,
+    "sha256": "65ef9e28a646ba5b6565427b6341d5a7136bd688439cfca206876120156aa5ba"
+  },
+  "actual_hashes_and_v2_certificate_match_manifest": true,
+  "certificate": "ee0c203da86f091d85f0091b8ee0545d9fc98450b58d9d3bf46800232536383c",
+  "separate_full_cryptographic_signature_verification_rerun": false,
+  "actual_8assets_release_qa_b227_match": true,
+  "new_local_build_install_phone_test": false,
+  "ci_apks_not_physically_installed": true
+}

@@ -1,3 +1,5 @@
+> 2026-10-25 22시: ec6992f/CI40191642309 21:06–21:16KST verify/live/native최종success,publishskipped。실제ZIP/APK/v2인증서/8assets대조. [현재HTTP6·bridge6근거표](API_EVIDENCE_MATRIX_20261025.md). Geocoder·전화는CIruntime미포함/기존c5실물별도결과,실차·기관·Kakao REST인증검색미완료. 아래pending은과거시점기록.
+
 # 전화 화면 연결 실기기 검증 · 2026-10-25 21시
 기존 PM 자체 QA. 독립 QA·감사 승인이 아니다. [비밀값 없는 결과](../build-reports/pm-20261025/dialer-physical.json).
 
