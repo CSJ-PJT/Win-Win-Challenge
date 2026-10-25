@@ -1,3 +1,5 @@
+> 2026-10-25 13:59 최신: 시험기 시작상태 수정5188638 + 새test bb17d224(817232B), 동일앱18c999d1 보존. 실기기 저장상태→공식주소 OK1/16.637s, DOM완료상태준비 OK1/9.566s, 완료상태→공식주소 OK1/15.769s. 13시옛시험기실패와구분, 새CI40163763754 진행중. docs/ADDRESS_HARNESS_FIX_20261025.md 우선. PM자체QA/공개release실물승인아님.
+
 # Official selected address process cold restore — 2026-10-25 13:06 KST
 
 Existing PM single temporary AS-Q1 / PHONE-QA-STANDING, physical Samsung Android16. Read latest instructions, claim/active instrumentation/writer/CI/results and exact installed APK hashes. Acquired claim and released after bounded run. No new build/install/key/ID or original app/old QA actions.

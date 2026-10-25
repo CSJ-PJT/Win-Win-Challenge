@@ -1,0 +1,59 @@
+{
+  "checked_at": "2026-10-25T13:59:31+09:00",
+  "task_id": "AS-Q1-PM-20261025T1355",
+  "owner": "existing PM temporary AS-Q1 selfQA",
+  "test_source": "5188638ef9c72409842c61d0650e99da44a21d54",
+  "app_source": "722a366eea91188110c70b0051fada2719f0f84c",
+  "app_sha256": "18c999d1b3e7969e54d4985eb57224428b5965947d390f00feaad11cd136f21a",
+  "old_test_sha256": "42f683a58352037bf8bc910aa8074db6bc29423e7913589015bf2cfcc41e21ef",
+  "new_test_sha256": "bb17d224e273480e130d66b929fed53a981e4739335d342c6e429dd98ffb7fd5",
+  "new_test_bytes": 817232,
+  "certificate_sha256": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+  "old_and_new_apksigner_verified": true,
+  "test_package": "kr.co.ansimdonghaeng.verifyqa.test",
+  "target": "kr.co.ansimdonghaeng.verifyqa",
+  "build_exit": 0,
+  "build_seconds": 27,
+  "build_tasks": "45 total,4 executed,41 up-to-date",
+  "runs": [
+    {
+      "case": "official-from-saved",
+      "start": "13:58:25",
+      "end": "13:58:43",
+      "junit": "OK (1 test)",
+      "seconds": 16.637,
+      "log_sha256": "27c66ee02c7236d2ee43c439ae5d81812a515cb544399947e9a91163f20769fe"
+    },
+    {
+      "case": "dom-completion-setup",
+      "start": "13:58:43",
+      "end": "13:58:52",
+      "junit": "OK (1 test)",
+      "seconds": 9.566,
+      "scope": "setup to reproduce completed starting state; not new feature count",
+      "log_sha256": "82fc15f6d9df838221411efbbcde893341febe95da793f3aea4d634160757d4c"
+    },
+    {
+      "case": "official-from-completed",
+      "start": "13:58:52",
+      "end": "13:59:09",
+      "junit": "OK (1 test)",
+      "seconds": 15.769,
+      "log_sha256": "b9371456540467c4b3cbae1c1950552776a84d8e4aa65d66991c123129072638"
+    }
+  ],
+  "markers_log_sha256": "cf13aa487950ea550dc7563fe6ecfa30fe5772d3dd7f48414452c9f9b7f33b97",
+  "previous_failure": "13h old42f test/25.18seconds/Missing visible control:도착지 입력하기 retained as historical failure",
+  "installed_original_old_qa_and_app_hashes_unchanged": true,
+  "only_test_updated": true,
+  "private_key_regenerated": false,
+  "claim_released": true,
+  "independent_qa_approval": false,
+  "release_binary_physical_pass": false,
+  "ci": {
+    "id": 40163763754,
+    "source": "5188638ef9c72409842c61d0650e99da44a21d54",
+    "last_status": "in_progress",
+    "conclusion": null
+  }
+}
