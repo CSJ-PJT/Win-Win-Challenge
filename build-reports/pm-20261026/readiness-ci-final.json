@@ -1,0 +1,116 @@
+{
+  "artifacts": [
+    {
+      "id": 12615873301,
+      "bytes": 5807429,
+      "sha256": "03eb9468e4e98f694a4ef1999bbc0426b8840d24c34cd2d692997ca42ff9d4a5"
+    },
+    {
+      "id": 12616150207,
+      "bytes": 245365,
+      "sha256": "2251d086712d419a4a3ffcb99288a67142e50abbfcfe7145e22f8afd0ec5c3b7"
+    },
+    {
+      "id": 12615179689,
+      "bytes": 1247425,
+      "sha256": "97d8772fa657fe44f12c0a703090d619797355a9b4001b89667b6780281555d9"
+    }
+  ],
+  "source": "741869b3f7ce8d954cc7d267a69bdfe85b338e9b",
+  "run": "40238360125",
+  "apk": {
+    "release": {
+      "bytes": 5170856,
+      "sha256": "bf9c98fee4bb2a4b87b75a3df10e7c5f5f5f9444316a5cff03d3597974aa7ae0",
+      "certificate": "1425a2a147a18f1c4a9497ecd15de5d0c8d35d38c612c35c92883e7fe4bb5706",
+      "package": "kr.co.ansimdonghaeng",
+      "target": null,
+      "debuggable": false
+    },
+    "qa": {
+      "bytes": 5170880,
+      "sha256": "fb7809d26a451736ed072fef12d71e3eb88cf89fb8bd6522d08086cfba762fed",
+      "certificate": "1425a2a147a18f1c4a9497ecd15de5d0c8d35d38c612c35c92883e7fe4bb5706",
+      "package": "kr.co.ansimdonghaeng.qa",
+      "target": null,
+      "debuggable": false
+    },
+    "instrumentation": {
+      "bytes": 828952,
+      "sha256": "e54d2ede6864b510a89cc860df98477047ccebd8f03531f570ee332b1fd53445",
+      "certificate": "1425a2a147a18f1c4a9497ecd15de5d0c8d35d38c612c35c92883e7fe4bb5706",
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "target": "kr.co.ansimdonghaeng.qa",
+      "debuggable": false
+    }
+  },
+  "changed_assets_vs_41": [
+    "assets/app.js",
+    "assets/index.html"
+  ],
+  "release_qa_assets_identical": true,
+  "asset_count": 8,
+  "live-address-test.txt": [
+    "Time: 67.029",
+    "OK (1 test)"
+  ],
+  "dom-flow-test.txt": [
+    "Time: 19.78",
+    "OK (1 test)"
+  ],
+  "all5_exits_zero": true,
+  "three_markers": true,
+  "native_apk_checks": 7,
+  "pc_http_live_checks": 7,
+  "busy_save_regression": true,
+  "separate_full_cryptographic_apksigner_rerun": true,
+  "signature_verify": {
+    "location": "IT13 JDK17/build-tools35 apksigner verify --verbose --print-certs",
+    "release_exit": 0,
+    "qa_exit": 0,
+    "test_exit": 0,
+    "v2": true,
+    "signers": 1,
+    "download_script_removed": true
+  },
+  "task_id": "AS-PM-20261026T0756",
+  "ci_final_kst": {
+    "start": "2026-10-26T07:03:17+09:00",
+    "end": "2026-10-26T07:13:51+09:00",
+    "verify_build": "success",
+    "live_address": "success",
+    "native_smoke": "success",
+    "publish": "skipped"
+  },
+  "node": {
+    "tests": 112,
+    "pass": 112,
+    "fail": 0
+  },
+  "new_readiness_regression": {
+    "passed": true,
+    "virtual_clock_ms": 601000,
+    "pre_click_issue_enabled": false,
+    "scenarios": 1,
+    "page_errors": 0,
+    "external_requests": 0,
+    "runner_os": "Ubuntu24.04",
+    "browser": "155.0.8059.0",
+    "result_metadata_correction": "inherited environment string Windows and task id0656 are stale labels in CI JSON; runner logs/source_sha741 and actual browser above identify this CI, not physicalWindows rerun"
+  },
+  "source_zip": {
+    "bytes": 380043,
+    "sha256": "52dd5b52c3f4d5e589f42c843aab2f3e5b08ca28fcb96153cd2f453a56765fe7",
+    "app_matches_apk": true
+  },
+  "fixed_app_sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e",
+  "fixed_html_sha256": "ebb63dfef4c80fcc46e07d274483eb8816a7f1d4512214b63582d0a376dfed95",
+  "phone_install": false,
+  "physical_new_source_success": false,
+  "independent_qa": false,
+  "original_candidate_replaced": false,
+  "slack_sent": false,
+  "new_manual_build": false,
+  "submission": false,
+  "original_documents_read": false
+}
