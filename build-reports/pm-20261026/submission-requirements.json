@@ -1,0 +1,71 @@
+{
+  "task_id": "AS-M1-PM-20261026T0256",
+  "owner": "existing PM submission evidence review; not independent audit",
+  "review_date_kst": "2026-10-26",
+  "repo_head": "22dbaf20d1434df028caf656487de15068a65426",
+  "repo_private": true,
+  "reviewer_access_verified": false,
+  "collaborator_invited": false,
+  "actual_submission": false,
+  "public_release_or_visibility_change": false,
+  "official_sources": {
+    "submission": "https://appdevchallenge.auto-hmg.io/guide/submission",
+    "schedule": "https://appdevchallenge.auto-hmg.io/guide/schedule",
+    "faq": "https://appdevchallenge.auto-hmg.io/faq",
+    "notice": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005",
+    "template": "https://appdevchallenge.auto-hmg.io/downloads/contest-application-consent.docx"
+  },
+  "official_template": {
+    "bytes": 55208,
+    "sha256": "07be893d58b0e96ab7788f0d189d6829f0e59a2cee4bc18cb90ec37eeda2f5fd",
+    "downloaded": true,
+    "introduction_page_limit": "none stated in actual template",
+    "deadline_local": "2026-11-15 23:59 KST"
+  },
+  "mandatory": "completed signed application proposal",
+  "development_outputs": "optional at first application; functional app required before second PT",
+  "briefing": {
+    "date": "2026-10-28",
+    "time": "afternoon, precise time/link not yet confirmed"
+  },
+  "documents": {
+    "docx": {
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "version": 2,
+      "bytes": 499985,
+      "sha256": "6a0b0d1e3998db1c3433a63245182925c8e7ec817fb7f4666c42a157cf9b9fbd"
+    },
+    "pdf": {
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "version": 2,
+      "bytes": 760001,
+      "sha256": "ed29238f519887513874a331376965e460059a806a574ba33f0d511ef0eb3ded",
+      "pages": 13,
+      "previous_receipt_bytes": 734871,
+      "previous_receipt_sha256": "1b42273e55333de4b7c24eb2cb8a87cdcc1d70afb180de42d619dbeed1e56b50",
+      "all13_whitespace_normalized_page_text_equal": true,
+      "all13_72dpi_render_pixels_equal": true,
+      "boxes_equal": true,
+      "byte_change_cause_unknown": true
+    }
+  },
+  "originals_edited_or_replaced": false,
+  "current_form_sections_present": true,
+  "proposal_evidence_basis": "b227/CI40167658701/c5 physical16h, remains product-source consistent; not current41CI result claim",
+  "tracked_named_release": {
+    "path": "apk/안심동행_안심동행플랫폼_release.apk",
+    "tree_blob": "fd64e80f7c82712806bebefb221b45457b15b246",
+    "bytes": 5131231,
+    "binary_download_or_runtime_verified": false,
+    "does_not_match_latest_ci_release_bytes": 5170796
+  },
+  "ci": {
+    "source": "41c1812013d395b90d9c6ae7a35ccdcee8b377f4",
+    "id": 40210143323,
+    "conclusion": "success",
+    "publish": "skipped"
+  },
+  "new_build_install_phone_UI": 0,
+  "independent_qa_approval": false,
+  "slack_sent": false
+}

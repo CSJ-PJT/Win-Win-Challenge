@@ -19,7 +19,7 @@
 
 ## 실행
 
-- **Android / Windows:** 최신 게시 릴리스는 `v0.3.0-preview`입니다. 0.4.3은 개발·검증 중이며 아직 게시되지 않았습니다. 0.4.3 APK·PC 패키지는 CI 검증 결과와 함께 확인합니다.
+- **Android / Windows:** 최신 게시 릴리스는 [v0.3.0-preview](https://github.com/CSJ-PJT/Win-Win-Challenge/releases/tag/v0.3.0-preview)입니다. 0.4.3은 개발·검증 중이며 아직 게시되지 않았습니다. 0.4.3 APK·PC 패키지는 CI 검증 결과와 함께 확인합니다.
 - **개발자:** `npm test && npm run bundle && node tools/serve-demo.cjs` 명령으로 `http://127.0.0.1:18420`에서 체험합니다.
 - 여러 웹 화면을 실제 서버 상태로 연결하려면 `npm start`를 실행합니다(`http://127.0.0.1:8080`).
 
@@ -41,5 +41,7 @@ python3 test/flow040_http.py
 python3 test/address042_live.py
 ```
 
-GitHub Actions는 Android 15 에뮬레이터에서 공식 주소 검색·선택·저장과 지도 열기, 양측 인계, 쉬운 화면까지 시험하도록 구성되어 있습니다. 마지막 기존 실행은 Android 주소 선택 검사 실패로 게시가 차단됐습니다. 검증용 PM 브랜치는 릴리스를 게시하지 않습니다. 자동화 테스트의 장소 정보는 시연 데이터이며 실제 기관 계정 인증 및 Pleos 차량 연동과는 별도입니다.
+GitHub Actions는 Android 15 에뮬레이터에서 공식 주소 검색·선택·저장과 지도 열기, 양측 인계, 쉬운 화면까지 시험하도록 구성되어 있습니다. 최신 검증은 [41c1812 / CI40210143323](https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40210143323)이며, 2026-10-26 01:17 KST에 빌드·공식 주소·Android 흐름이 성공했습니다. Android 15 release 에뮬레이터와 별도 검증 앱의 휴대전화 시험은 [검증 근거](docs/GUARD_SOURCE_CI_FINAL_20261026.md)에서 구분합니다. 검증용 PM 브랜치는 릴리스를 게시하지 않습니다. 자동화 테스트의 장소 정보는 시연 데이터이며 실제 기관 계정 인증 및 Pleos 차량 연동과는 별도입니다.
 
+
+저장소는 현재 비공개입니다. 게시 릴리스·APK 링크는 접근 권한이 있는 계정에서 확인해야 합니다. 제출할 소스와 APK 경로는 [최신 제출 준비 기록](docs/SUBMISSION_REQUIREMENTS_20261026.md)에서 확인합니다.
