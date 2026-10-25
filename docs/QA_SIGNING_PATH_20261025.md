@@ -1,3 +1,32 @@
+## 격리 로컬 툴체인 준비 완료 · 2026-10-25 10:07 KST
+
+작업 AS-Q1-PM-TOOLCHAIN-20261025T1002, 담당 기존 안심동행 PM 임시 AS-Q1. 최신 OPS·배정·PHONE-QA-STANDING·07/08/09시 결과·PR#2/CI를 먼저 읽고 관련 writer/QA claim을 발견하지 않은 상태에서 실행했다. 이전 ‘JDK17/SDK 미확보’는 이번 준비로 아래 범위에서 해소했다. 앱 빌드/실기기 검증 차단 전체가 해결됐다는 뜻은 아니다.
+
+원본 프로젝트 밖 %LOCALAPPDATA%/AnsimBuildTools에만 도구를 배치했다. 시스템 PATH/JAVA_HOME/기존 설치·원본 소스·휴대폰 앱/데이터는 변경하지 않았다. 각 명령 프로세스에만 JAVA_HOME을 지정했다.
+
+| 실제 검증 | 결과 |
+|---|---|
+| 공식 Adoptium API 선택 JDK17 ZIP | 190,817,615bytes, SHA256 e53a79c3c3d86865bd7e787903884331068e71321714ffd44f145785affc7cb0 일치 |
+| 추출한 Java 실행 | Temurin17.0.20.1+1, java -version exit0 |
+| 기존 Gradle8.11.1 격리 javaToolchains | --offline --no-daemon --max-workers=1, exit0; Current JVM=Temurin17, 기존 Oracle21도 탐색됨 |
+| Google 명령행 도구15859902 ZIP | 155,655,386bytes, SHA256 90ae805d20434428bffcb699c290860f19bb5f66a67e6b330067e3de801fb04a 일치 |
+| sdkmanager | 22.0 실행 exit0(기존 JDK21 사용) |
+| SDK 패키지 설치 | SDK 라이선스 단계 exit0, platforms;android-35·build-tools;35.0.0 설치 exit0 |
+| 실제 플랫폼 파일 | android-35/android.jar 및 optional/android.car.jar 존재 |
+| 빌드도구 실행 | aapt2 2.19-11948202 / apksigner0.9, 각각 exit0(JDK17) |
+
+출처 https://api.adoptium.net/v3/assets/latest/17/hotspot?architecture=x64&image_type=jdk&os=windows&vendor=eclipse 및 https://adoptium.net/installation/ci-scripts , https://developer.android.com/studio . API 메타데이터/Google 공식 다운로드 표의 해시와 실제 내려받은 바이트를 대조한 뒤 추출했다. 바이너리 GPG/플랫폼별 Authenticode를 별도 검증한 주장은 하지 않는다.
+
+실제 경로: JDK17은 AnsimBuildTools/jdk17/jdk-17.0.20.1+1, SDK는 AnsimBuildTools/android-sdk, CLI는 cmdline-tools/15859902. sdkmanager 최신 CLI 실행은 기존JDK21, 앱용 Gradle은 JDK17을 선택한다. 기존 Android adb 서버는 교체/실행하지 않았다.
+
+PC Task/Win-Win-Challenge-QA-20261024/AS-Q1-PM-20261025T1002/result.json 및 gradle-java17.txt·sdk-install.txt·sdkmanager-version.txt·sdk-licenses.txt에 실행 근거를 보존했다. 최초 긴 다운로드 명령의 프로세스 시작 오류는 후속 짧은 명령으로 실행했고 공식 ZIP 바이트/해시로 완료를 확인했다. Java 버전 stderr를 PowerShell ErrorRecord로 표시한 부분은 버전 문자열·실제 exit0과 구분했다.
+
+**아직 미수행:** 최신 QA 검증용 ID/지속 비공개 서명키 생성·구현, 최신 소스의 격리 로컬 앱 빌드 및 APK 실기기 설치. 설치된.qa를 새 인증서로 덮어쓰지 않았다. 서명 인증서faa33573 vs23a3ce03 불일치는 여전하다. 다음 단일 담당 기존PM이 최신 원격 HEAD로 격리 소스를 준비하고 기존 release/.qa와 공존하는 하나의 전용 검증ID·지속 로컬QA서명 경로를 구현·빌드·검증한다. SDK라이선스·다운로드 완료를 앱 API/SDK 실연동 성공으로 합산하지 않는다.
+
+소스9c277ce/CI40127842234 성공, 설치341 QA의 official1/DOM1·공식주소 cold 복원은 기존 별도 범위다. 새CI/새APK/기기조작·공개배포/실제제출 없음. 원문 제출 DOCX/PDF 재열람/수정·외부 API 실연동·독립 QA/감사·진척률 분모는 여전히 별도 미확인이다.
+
+---
+
 ## 2026-10-25 08:57 KST · 실제 오프라인 Gradle 탐색
 
 기존 PM이 IT13 Temp/asdh-toolchains-2026102509에 java 플러그인만 둔 격리 프로젝트를 만들고, 발견된 Gradle8.11.1/bin/gradle.bat -p <격리경로> --offline --no-daemon --max-workers=1 -q javaToolchains를 실행했다. 프로세스 한정 JAVA_HOME=기존 JDK21.0.11을 사용했고 exit0으로 완료됐다. Auto-detection Enabled, 자동 탐색 JDK는 Oracle21.0.11 하나(Location Program Files/Java/jdk-21.0.11, Is JDK true)였다. 도구 설정의 Auto-download Enabled 표시는 다운로드 실행/성공이 아니다. 실제 JDK/SDK 다운로드나 앱 빌드는 하지 않았다.
