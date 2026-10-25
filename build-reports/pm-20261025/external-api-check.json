@@ -1,0 +1,78 @@
+{
+  "task_id": "AS-A1-PM-20261025T1756",
+  "owner": "existing Ansim PM self-audit; NOT independent AS-A1 approval",
+  "checked_at": "2026-10-25T17:59:25.767+09:00",
+  "source": "b227ca2409eae9ae1f71ff1a5d1b64ef42d7ebab",
+  "read_head": "7ba3734be1cb9122990d7e8db6065100b93ad9ba",
+  "server_blob": "7933942c06dc5287b982a22b5296fba3430a5040",
+  "core_blob": "267601ac7c59e2c6e11ab1afd3f0eaea64fc1101",
+  "server_sha256": "242b12e31078453c240ca3a9c21de4efb29b11fe4c4086a4feaa90cd9de7d150",
+  "actual_local_requests": [
+    [
+      "GET /api/health",
+      200
+    ],
+    [
+      "GET /api/bootstrap",
+      200
+    ],
+    [
+      "GET /api/state",
+      200
+    ],
+    [
+      "GET /api/places authenticated/no map key",
+      503,
+      "MAP_NOT_CONFIGURED"
+    ],
+    [
+      "GET /api/places unauthenticated",
+      401,
+      "UNAUTHORIZED"
+    ],
+    [
+      "GET /api/places short query",
+      400,
+      "QUERY"
+    ],
+    [
+      "POST /api/events JSON null",
+      400,
+      "JSON_OBJECT"
+    ],
+    [
+      "POST /api/reset JSON null",
+      400,
+      "JSON_OBJECT"
+    ]
+  ],
+  "external_probe": {
+    "authenticated": false,
+    "status": 401,
+    "error_type": "AccessDeniedError",
+    "elapsed_ms": 35,
+    "request_count": 1,
+    "query": "서울시청",
+    "no_personal_input": true
+  },
+  "key_presence": {
+    "process": false,
+    "user": false,
+    "machine": false,
+    "scope": "KAKAO_REST_API_KEY exact environment name only; not whole-machine secret absence"
+  },
+  "device_readonly": {
+    "automotive_feature": false,
+    "pleos_package_count": 0,
+    "dial_intent_resolver": "com.samsung.android.dialer/.DialtactsActivity",
+    "dialer_launched": false,
+    "call_placed": false,
+    "geocode_service_name_match": false,
+    "geocoder_isPresent": "NOT_EXECUTED; binder name scan insufficient",
+    "active_instrumentation": "no matching ActiveInstrumentation/test lines in dumpsys activity processes",
+    "earlier_dumpsys_activity_instrumentation": "unsupported command, not a successful idle check"
+  },
+  "new_app_build": false,
+  "new_phone_flow": false,
+  "independent_qa_approval": false
+}
