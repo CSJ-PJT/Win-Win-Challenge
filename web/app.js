@@ -24,7 +24,7 @@
   // The preview opens directly into a usable screen; role changes remain available above it.
   if(!prefs.roleChosen){prefs.role='vehicle';prefs.mode='standard';prefs.roleChosen=true;}
   let state=null,tokens=null,connected=!serverMode,busy=false,offline=false,pending=storageRead(sessionStorage,PENDING_KEY);
-  let panel=null,draft=null,editorFrom=null,editorError='',searchResults=[],searchMessage='',searchTicket=null;
+  let panel=null,draft=null,editorFrom=null,editorError='',searchResults=[],searchMessage='',searchTicket=null,editorSaving=false;
   let error='',notice='',noticeTimer=null,codeInput='',heartbeatAt=0,refreshing=false,activeVisit=null;
   let changingRole=false,roleRevision=0;
   let addressDispose=null,addressSavedScroll=0;
@@ -197,9 +197,22 @@
   function captureEditor(){if(!draft)return;if($('mapProvider'))draftPreferences={mapProvider:$('mapProvider').value,text:Number($('textSize').value)};document.querySelectorAll('#visitForm [name]').forEach(el=>{if(C.fieldsFor(role()).includes(el.name))draft[el.name]=el.value;});}
   function fieldError(msg){editorError=msg;const el=$('editorError');if(el){el.textContent=msg;el.hidden=false;el.scrollIntoView({block:'nearest'});}else toast(msg);}
   async function saveEditor(){
+    if(editorSaving)return;
+    editorSaving=true;
+    const savedDraft=draft,savedTrip=state.id,savedRole=role();
+    const submitButton=$('visitForm')?.querySelector('button[type=submit]');
+    if(submitButton)submitButton.disabled=true;
     captureEditor();const form=$('visitForm'),map=form?.querySelector('#mapProvider')?.value,txt=form?.querySelector('#textSize')?.value;
     const allowed=C.fieldsFor(role());let patch={};
-    try{if(canWrite()){const keys=editorFrom==='destination'?['facility','address','postcode','detailAddress','place','latitude','longitude']:allowed;
+    try{
+      // A quiet telemetry write can overlap the user's submit. Keep the intent
+      // until that write finishes rather than turning busy into a save error.
+      const deadline=Date.now()+10000;
+      while(busy&&Date.now()<deadline)await new Promise(resolve=>setTimeout(resolve,50));
+      if(panel!=='editor'||draft!==savedDraft)return;
+      if(state.id!==savedTrip||role()!==savedRole)throw new Error('방문 정보가 변경됐어요. 다시 확인해 주세요.');
+      if(busy)throw new Error('다른 작업을 처리 중이에요. 잠시 후 다시 저장해 주세요.');
+      if(canWrite()){const keys=editorFrom==='destination'?['facility','address','postcode','detailAddress','place','latitude','longitude']:allowed;
       patch=C.cleanPatch(Object.fromEntries(keys.filter(k=>allowed.includes(k)).map(k=>[k,draft[k]??''])),role(),state.info);
       if(editorFrom==='destination'&&!C.hasDestination({...state.info,...patch}))throw new Error('주소를 입력하거나 검색 결과를 선택해 주세요.');
       if(!await send('CONFIGURE_VISIT',patch,role(),true))throw new Error(error||'정보를 저장하지 못했어요.');
@@ -209,6 +222,7 @@
     if([100,125,150,200].includes(Number(txt)))prefs.text=Number(txt);
     savePrefs();closePanel();toast('저장했어요.');
     }catch(e){fieldError(e.message||'입력을 확인해 주세요.');}
+    finally{editorSaving=false;const button=$('visitForm')?.querySelector('button[type=submit]');if(button)button.disabled=false;}
   }
   function updateSearchUI(){const e=$('lookupStatus');if(e)e.textContent=searchMessage;const b=$('lookupResults');if(b)b.innerHTML=searchResults.map((it,i)=>`<button type="button" class="search-result" data-action="choose-address" data-index="${i}"><strong>${escapeHTML(it.name||it.address)}</strong><small>${escapeHTML(it.address)}</small></button>`).join('');}
   function addressPanel(){return `<div class="modal-title"><h2>주소 검색</h2><p class="hint">도로명이나 건물 이름으로 검색해 주세요.</p></div><div id="addressLoadStatus" role="status">검색창을 불러오고 있어요.</div><div id="addressWidget" class="address-widget"></div><div id="addressRetry" hidden>${btn('retry-address','다시 연결하기','outlined')}</div>${btn('back-address','직접 입력으로 돌아가기','light')}`;}

@@ -49,6 +49,8 @@ jobs:
           python3 -u test/address042_mock.py --fixture --output build-reports/v043/address-ui
           timeout -k 5s 90s python3 -u test/flow040_http.py --output build-reports/v043/http
           rm -f build-reports/v043/http/server-private.json
+          npm install --no-save --ignore-scripts --no-audit --no-fund playwright@1.57.0
+          ANSIM_CHROME="$(command -v chromium)" node test/editor_save_busy.cjs
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
