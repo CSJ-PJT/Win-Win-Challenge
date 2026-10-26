@@ -1,3 +1,13 @@
+## 최신 비차량 거절 실기기 회귀 · 2026-10-26 19시 KST
+
+19:02:50.640–19:02:51.822 KST, 현재 제품741 verifyqa4edaf75c / test35의229eefc4에서 NavigationGuardTest가 **JUnit OK1/0.814초** 통과했습니다. 실제 비차량 단말에서 checkNavigation·requestSampleRoute를 호출해 각 거절 callback과 화면 안내 문구를 확인했고, navigation adapter가 전후 null인 것과 전체 localStorage key/value 동일을 assertion으로 검증했습니다.
+
+시험은 실제 FEATURE_AUTOMOTIVE=false를 검사하며 차량/UX flag를 바꾸지 않습니다. onNativeNavigationStatus를 일시 감싸 실제 callback을 관찰·원래 함수 호출/복원했으며 응답·저장 상태를 주입하지 않았습니다. **요청의 안전한 거절**을 검증한 것으로 실제 Pleos 연결·서비스 binding·경로 완료나 AAOS UX 제한 runtime 성공이 아닙니다. 01시c5/test419의0.896초와 현재4ed/test229의0.814초는 별도입니다.
+
+실행 전 단일 claim/CreateNew·instrumentation·writer·잠금/입력 제한·설치5APK SHA·test229 class/manifest target을 확인했습니다. 새 빌드/설치/권한변경 없음,5패키지 전후 해시 동일·자기 claim 정상반납·후속 claim부재/instrumentation없음 확인. PM 자체 QA이며 독립 QA/감사·사람 사용성·release6a28 물리 성공과 구분합니다. [실제 결과·해시·시간별 marker](../build-reports/pm-20261026/navigation-guard-current-physical.json).
+
+다음 단일 기존 PM은 현재앱 주요 지도 버튼과 저장된 공개 주소/점유 조건부터 확인한 뒤 지도 열기·명시적 QA 복귀/저장 보존을 한 번 확인합니다. 위치 권한 허용·경로 시작·실전화·실기관 전송은 수행하지 않습니다. 이번 19시 Slack 새 게시 없음.
+
 ## 최신 전화 bridge 실기기 회귀 · 2026-10-26 18시 KST
 
 18:13:07.958–18:13:10.551 KST, 현재 제품741 verifyqa4edaf75c / test35의229eefc4에서 기존 DialerBridgeTest가 **JUnit OK1/2.210초** 통과했습니다. 합성번호5550100에 대한 실제 ACTION_DIAL 전달, 해석된 전화 앱 패키지의 화면 표시, 명시적 QA 복귀·전체 localStorage key/value 전후 동일을 확인했습니다. 시험 전후 원래 앱을 포함한5패키지 설치 SHA가 동일하며 own claim 정상반납/후속 claim부재·instrumentation없음을 확인했습니다. 새 빌드·설치·권한변경 없음.
