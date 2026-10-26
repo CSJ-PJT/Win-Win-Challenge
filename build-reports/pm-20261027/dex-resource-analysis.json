@@ -1,0 +1,116 @@
+{
+  "task_id": "AS-M1-PM-20261027T0103",
+  "classes": 3750,
+  "project_classes": [
+    "Lkr/co/ansimdonghaeng/AddressPickerDialog$$ExternalSyntheticLambda0;",
+    "Lkr/co/ansimdonghaeng/AddressPickerDialog$$ExternalSyntheticLambda1;",
+    "Lkr/co/ansimdonghaeng/AddressPickerDialog$$ExternalSyntheticLambda2;",
+    "Lkr/co/ansimdonghaeng/AddressPickerDialog$1;",
+    "Lkr/co/ansimdonghaeng/AddressPickerDialog$2;",
+    "Lkr/co/ansimdonghaeng/AddressPickerDialog$Result;",
+    "Lkr/co/ansimdonghaeng/AddressPickerDialog;",
+    "Lkr/co/ansimdonghaeng/BuildConfig;",
+    "Lkr/co/ansimdonghaeng/CarRestrictionMonitor$$ExternalSyntheticLambda0;",
+    "Lkr/co/ansimdonghaeng/CarRestrictionMonitor$1;",
+    "Lkr/co/ansimdonghaeng/CarRestrictionMonitor$2;",
+    "Lkr/co/ansimdonghaeng/CarRestrictionMonitor$Callback;",
+    "Lkr/co/ansimdonghaeng/CarRestrictionMonitor;",
+    "Lkr/co/ansimdonghaeng/MainActivity$$ExternalSyntheticLambda0;",
+    "Lkr/co/ansimdonghaeng/MainActivity$$ExternalSyntheticLambda1;",
+    "Lkr/co/ansimdonghaeng/MainActivity$$ExternalSyntheticLambda2;",
+    "Lkr/co/ansimdonghaeng/MainActivity$$ExternalSyntheticLambda3;",
+    "Lkr/co/ansimdonghaeng/MainActivity$$ExternalSyntheticLambda4;",
+    "Lkr/co/ansimdonghaeng/MainActivity$$ExternalSyntheticLambda5;",
+    "Lkr/co/ansimdonghaeng/MainActivity$$ExternalSyntheticLambda6;",
+    "Lkr/co/ansimdonghaeng/MainActivity$1;",
+    "Lkr/co/ansimdonghaeng/MainActivity$2$$ExternalSyntheticLambda0;",
+    "Lkr/co/ansimdonghaeng/MainActivity$2$$ExternalSyntheticLambda1;",
+    "Lkr/co/ansimdonghaeng/MainActivity$2;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge$$ExternalSyntheticLambda0;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge$$ExternalSyntheticLambda1;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge$$ExternalSyntheticLambda2;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge$$ExternalSyntheticLambda3;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge$$ExternalSyntheticLambda4;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge$$ExternalSyntheticLambda5;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge$$ExternalSyntheticLambda6;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge$$ExternalSyntheticLambda7;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge$$ExternalSyntheticLambda8;",
+    "Lkr/co/ansimdonghaeng/MainActivity$Bridge;",
+    "Lkr/co/ansimdonghaeng/MainActivity;",
+    "Lkr/co/ansimdonghaeng/NavigationAdapter$$ExternalSyntheticLambda0;",
+    "Lkr/co/ansimdonghaeng/NavigationAdapter$$ExternalSyntheticLambda1;",
+    "Lkr/co/ansimdonghaeng/NavigationAdapter$1;",
+    "Lkr/co/ansimdonghaeng/NavigationAdapter;",
+    "Lkr/co/ansimdonghaeng/R$style;",
+    "Lkr/co/ansimdonghaeng/R;",
+    "Lkr/co/ansimdonghaeng/RouteFactory;"
+  ],
+  "dex_dump_lines_each": [
+    847551,
+    847551
+  ],
+  "relocated_const_string_references": 133,
+  "remaining_dex_differences": [
+    {
+      "line": 842173,
+      "owner": "Class descriptor  : 'Lkr/co/ansimdonghaeng/BuildConfig;'",
+      "a": "      value         : \"kr.co.ansimdonghaeng\"",
+      "b": "      value         : \"kr.co.ansimdonghaeng.verifyqa\"",
+      "field": "APPLICATION_ID"
+    },
+    {
+      "line": 842178,
+      "owner": "Class descriptor  : 'Lkr/co/ansimdonghaeng/BuildConfig;'",
+      "a": "      value         : \"release\"",
+      "b": "      value         : \"verifyQa\"",
+      "field": "BUILD_TYPE"
+    },
+    {
+      "line": 842193,
+      "owner": "Class descriptor  : 'Lkr/co/ansimdonghaeng/BuildConfig;'",
+      "a": "      value         : \"0.4.3\"",
+      "b": "      value         : \"0.4.3-verifyqa\"",
+      "field": "VERSION_NAME"
+    }
+  ],
+  "resource_differences": [
+    {
+      "line": 2,
+      "a": "Package name=kr.co.ansimdonghaeng id=7f",
+      "b": "Package name=kr.co.ansimdonghaeng.verifyqa id=7f"
+    }
+  ],
+  "all_remaining_dex_changes_in_BuildConfig": true,
+  "other_disassembled_class_or_instruction_differences": 0,
+  "dex_sha256": {
+    "candidate": "1db85ddffe7a8948f9839b985567bc99654b7e6b05c3eec9d49b2d19bebe239e",
+    "verifyqa": "689d3a4a9bce214deaae0360159a6e2c0581dd3b4158e596f67befbe40b75ef4"
+  },
+  "owner": "existing PM static self-review; not independent QA or runtime equivalence proof",
+  "checked_at_utc": "2026-10-26T16:09:51.839Z",
+  "base_head": "1b559dc5c56a51a5f86ba2f6d1163cc6b673765a",
+  "candidate_apk_sha256": "6a28008a491fb7ece55572cc5c705db88c202acfde12caa98b7336c353e53313",
+  "verifyqa_apk_sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+  "status": "DISASSEMBLED_DIFF_EXPLAINED_BY_BUILDCONFIG_AND_RELOCATION",
+  "resource_scope": "aapt2 decoded resource listing only; package-name difference, not byte identity or all metadata proof",
+  "normalization_rules": [
+    "Remove input filename and absolute file-offset display only",
+    "Classify const-string table-index changes only when opcode/register word and full resolved instruction/relative offset/literal match in both APKs",
+    "Retain all other opcode words, method/type references, relative branch offsets, class/field values"
+  ],
+  "candidate_physical_runtime": "NOT_RUN",
+  "in_place_update": "BLOCKED_CERTIFICATE_MISMATCH",
+  "new_build": false,
+  "new_install": false,
+  "new_junit_or_phone_ui": 0,
+  "device_claim_acquired": false,
+  "original_five_installed_sha_match_prior": true,
+  "formal_documents_changed": false,
+  "candidate_modified": false,
+  "slack_sent": false,
+  "phone_push_verified": false,
+  "preparation_note": "dexdump on Unicode PC path failed ReadFileToString before decode. Re-extracted identical APK entry into fresh ASCII TEMP stage; both complete dumps exit0. No APK rewrite or phone install.",
+  "next_owner": "기존 PM",
+  "next_action": "현재 verifyqa에서 번호 오류 5회 차단·재발급 후 양측 확인 복구의 단일 실기기 시나리오를 점유·저장 보존 조건 하에 검증",
+  "overall_percentage": null
+}

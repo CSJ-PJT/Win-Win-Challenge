@@ -118,14 +118,15 @@
   "device_claim_acquired": false,
   "slack_sent": false,
   "next_owner": "기존 PM",
-  "next_action": "classes.dex와resources.arsc 차이의 원인을 정적으로 대조해 variant 상수·이름 차이와 native bridge 로직 차이를 구분",
+  "next_action": "현재 verifyqa에서 번호 오류 5회 차단·재발급 후 양측 확인 복구의 단일 실기기 시나리오를 점유·저장 보존 조건 하에 검증",
   "official_sources": [
     "https://appdevchallenge.auto-hmg.io/guide/submission",
     "https://appdevchallenge.auto-hmg.io/faq",
     "https://appdevchallenge.auto-hmg.io/guide/schedule",
     "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005"
   ],
-  "last_reconciled_kst": "2026-10-27 00시",
+  "last_reconciled_kst": "2026-10-27 01시",
   "latest_preflight": "build-reports/pm-20261026/release-install-preflight.json",
-  "static_comparison": "build-reports/pm-20261027/release-verifyqa-comparison.json"
+  "static_comparison": "build-reports/pm-20261027/release-verifyqa-comparison.json",
+  "dex_resource_analysis": "build-reports/pm-20261027/dex-resource-analysis.json"
 }
