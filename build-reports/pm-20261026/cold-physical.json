@@ -1,0 +1,87 @@
+{
+  "task_id": "AS-Q1-PM-20261026T0957",
+  "owner": "existing PM selfQA",
+  "product_source": "741869b3f7ce8d954cc7d267a69bdfe85b338e9b",
+  "test_source": "35e30651a259251cc652c66acca43eafdff33b78",
+  "app_sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+  "test": {
+    "bytes": 828964,
+    "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+    "certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+    "target": "kr.co.ansimdonghaeng.verifyqa",
+    "java_sha256": "ecd4565ca7be2bf1cb7fe9b3f69c12e2b3c6256380a26ab0d807358b299b30d9",
+    "build_seconds": 54,
+    "build_tasks": 45,
+    "build_exit": 0,
+    "test_only_update_success": true
+  },
+  "baseline": {
+    "started_kst": "2026-10-26T09:58:58.306+09:00",
+    "ended_kst": "2026-10-26T09:59:24.785+09:00",
+    "junit_seconds": 25.171,
+    "failed": 1,
+    "reason": "Missing visible control: 방문 변경",
+    "actual_screen": "facility role restored; visit picker intentionally absent",
+    "no_cold_executed": true,
+    "test_sha256": "41900b95a4ef2a1dafb4af45259c95cde5e6cdec2d728ca265af93a1900f7bc2"
+  },
+  "fixed": {
+    "junit_ok": true,
+    "tests": 1,
+    "seconds": 16.709,
+    "change": "select vehicle tab before visit picker; no app/data injection or clear",
+    "claim_kst": [
+      "2026-10-26T10:02:48.519+09:00",
+      "2026-10-26T10:03:34.467+09:00"
+    ],
+    "own_claim_released": true
+  },
+  "cold": {
+    "pid_after_force_stop_empty": true,
+    "launch_state": "COLD",
+    "total_time_ms": 302,
+    "wait_time_ms": 304,
+    "started_kst": "2026-10-26T10:03:13.921+09:00",
+    "repeated": false,
+    "first_xml_nodes": 6,
+    "later_xml_nodes": 67,
+    "raw_reported_restoration": false,
+    "raw_false_reason": "PowerShell UTF8-no-BOM script Korean literal decoded incorrectly; postcode/start controls also offscreen before scroll",
+    "correct_unicode_revalidation_address": true,
+    "observed_kst": "2026-10-26T10:04:56.504+09:00",
+    "observed_address_bounds": [
+      "[94,543][808,690]",
+      "[94,1543][808,1612]"
+    ],
+    "observed_postcode_bounds": "[94,1627][808,1693]",
+    "observed_start_button_bounds": "[94,1063][808,1213]",
+    "address_postcode_start_restored": true,
+    "private_screens_directly_reviewed": true
+  },
+  "original3_and_app_hashes_preserved": true,
+  "new_app_build": false,
+  "new_app_install": false,
+  "new_test_build": true,
+  "old_update_across_saved_values_equality_still_unverified": true,
+  "actual10minute_readiness_not_tested": true,
+  "independent_qa": false,
+  "public_release_physical_pass": false,
+  "new_ci": {
+    "run": 40252472387,
+    "source": "35e30651a259251cc652c66acca43eafdff33b78",
+    "status": "in_progress",
+    "complete": false
+  },
+  "original_documents_read": false,
+  "submission": false,
+  "screens": [
+    {
+      "file": "official-failure-private.png",
+      "sha256": "15880b7edcd4be792b1846da19f88e4e03e6a4f631dcf6261162a78b1b8b2b7d"
+    },
+    {
+      "file": "cold-observed-private.png",
+      "sha256": "39586b52138b4312e808a426ca6d4cb6ddf41c22b4ede67b02b901e38dab4838"
+    }
+  ]
+}
