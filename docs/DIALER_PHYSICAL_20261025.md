@@ -1,3 +1,15 @@
+## 최신 전화 bridge 실기기 회귀 · 2026-10-26 18시 KST
+
+18:13:07.958–18:13:10.551 KST, 현재 제품741 verifyqa4edaf75c / test35의229eefc4에서 기존 DialerBridgeTest가 **JUnit OK1/2.210초** 통과했습니다. 합성번호5550100에 대한 실제 ACTION_DIAL 전달, 해석된 전화 앱 패키지의 화면 표시, 명시적 QA 복귀·전체 localStorage key/value 전후 동일을 확인했습니다. 시험 전후 원래 앱을 포함한5패키지 설치 SHA가 동일하며 own claim 정상반납/후속 claim부재·instrumentation없음을 확인했습니다. 새 빌드·설치·권한변경 없음.
+
+시험은 VehicleBridge.openDialer를 직접 호출하며 ACTION_CALL을 금지하는 monitor로 실제 전달을 관찰합니다. 전화 앱 컨트롤을 누르거나 실제 발신하지 않았고 연락처·통화기록·전화화면 캡처를 수집하지 않았습니다. 주요 연락 버튼의 사람 사용성·실제 통화·AAOS 주행 제한 성공은 아닙니다. 이전c5/test354의2.775초와 현재4ed/test229의2.210초는 별도 결과입니다.
+
+현재CI35의 전화 runtime 또는 release6a28 APK의 물리 성공으로 확대하지 않습니다. PM 자체 QA이며 독립 QA/감사 승인이 아닙니다. [원본 결과·패키지 해시·시간별 marker](../build-reports/pm-20261026/dialer-current-physical.json).
+
+다음 단일 기존 PM은 NavigationGuardTest의 비차량 조건·flag 미변경·adapter null·저장 보존 검사와 기기 점유부터 확인한 뒤 한 번의 거절 회귀를 수행합니다. 실제 Pleos 서비스 연결/경로 요청·완료는 수행하지 않습니다.
+
+## 이전 제품 c5 실행 이력
+
 > 2026-10-25 22시: ec6992f/CI40191642309 21:06–21:16KST verify/live/native최종success,publishskipped。실제ZIP/APK/v2인증서/8assets대조. [현재HTTP6·bridge6근거표](API_EVIDENCE_MATRIX_20261025.md). Geocoder·전화는CIruntime미포함/기존c5실물별도결과,실차·기관·Kakao REST인증검색미완료. 아래pending은과거시점기록.
 
 # 전화 화면 연결 실기기 검증 · 2026-10-25 21시

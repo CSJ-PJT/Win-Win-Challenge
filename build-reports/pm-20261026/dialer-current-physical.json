@@ -1,0 +1,79 @@
+{
+  "task_id": "AS-Q1-PM-20261026T1811",
+  "owner": "existing PM selfQA",
+  "started_kst": "2026-10-26T18:13:06.0591196+09:00",
+  "status": "PASS",
+  "new_build": false,
+  "install": false,
+  "independent_qa": false,
+  "scope": "Single actual ACTION_DIAL synthetic number dispatch, dialer package visibility, return to QA and localStorage equality; no call, dialer controls, screenshots, contacts or history",
+  "before": [
+    {
+      "package": "kr.co.ansimdonghaeng",
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa",
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa",
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa.test",
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f"
+    }
+  ],
+  "installed_test_class_present": true,
+  "device_epoch_start": 1793005987,
+  "test_started_kst": "2026-10-26T18:13:07.9579906+09:00",
+  "test_finished_kst": "2026-10-26T18:13:10.5514911+09:00",
+  "junit_ok": true,
+  "junit_seconds": 2.21,
+  "safe_action_dial_package_visible": true,
+  "returned_to_qa_saved_state_unchanged": true,
+  "after": [
+    {
+      "package": "kr.co.ansimdonghaeng",
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa",
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa",
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa.test",
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f"
+    }
+  ],
+  "all5_package_hashes_unchanged": true,
+  "own_claim_released": true,
+  "finished_kst": "2026-10-26T18:13:14.2674944+09:00",
+  "product_source": "741869b3f7ce8d954cc7d267a69bdfe85b338e9b",
+  "test_source": "35e30651a259251cc652c66acca43eafdff33b78",
+  "dialer_test_source_blob": "67430684f582163091b4cf019cfa97c06dc972f3",
+  "model": "SM-F936N",
+  "android": "16",
+  "intent_action": "android.intent.action.DIAL",
+  "synthetic_number": "5550100",
+  "no_action_call": true,
+  "no_dialer_controls_clicked": true,
+  "no_contacts_callhistory_or_dialer_screenshots": true,
+  "primary_contact_button_usability": false,
+  "raw_markers": "         1793005989.459 20580 20593 I HandoffDialer: ACTION_DIAL_OBSERVED DIALER_PACKAGE_VISIBLE NO_CALL_ACTION\n         1793005989.801 20580 20593 I HandoffDialer: DIALER_BRIDGE_OK RETURNED_TO_QA SAVED_STATE_UNCHANGED",
+  "next_owner": "existing PM",
+  "next_task": "Review current NavigationGuardTest no-flag-change/adapter-null/storage-preservation assertions and ownership, then one non-automotive refusal regression; no actual route"
+}
