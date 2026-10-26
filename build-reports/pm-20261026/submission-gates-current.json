@@ -80,7 +80,7 @@
       "status": "SCOPED_PM_SELF_QA",
       "owner": "기존 PM",
       "done_when": "환경별 성공/실패 원장을 유지; 09시 업데이트 전 값 동일성은 당시 before 증거 없이는 소급 PASS 금지",
-      "evidence": "09~20시 물리 한정검증/21시 Linux40HTTP·31assertion; 새 시험 아님;10/27 02시 잘못된번호/폐기/재발급/양측확인/콜드 복원,03시 쉬운알림 UI재전송제어·시설ACK·콜드복원 한정 실제 UI, PM 자체QA. docs/EASY_NOTICE_PHYSICAL_20261027.md;04시 현재verifyqa COLD1회 초기로딩안내/7268ms관찰상한/시설탭왕복·ACK보존, 정밀TTI나candidate PASS 아님"
+      "evidence": "09~20시 물리 한정검증/21시 Linux40HTTP·31assertion; 새 시험 아님;10/27 02시 잘못된번호/폐기/재발급/양측확인/콜드 복원,03시 쉬운알림 UI재전송제어·시설ACK·콜드복원 한정 실제 UI, PM 자체QA. docs/EASY_NOTICE_PHYSICAL_20261027.md;04시 현재verifyqa COLD1회 초기로딩안내/7268ms관찰상한/시설탭왕복·ACK보존, 정밀TTI나candidate PASS 아님;05시 표시값200% 실제UI/가로역할탭·세로하단버튼 접근/100%복귀·ACK후속관찰. 원본자동false2개보존,전체스크립트PASS아님"
     },
     {
       "id": "Q3",
@@ -118,18 +118,19 @@
   "device_claim_acquired": false,
   "slack_sent": false,
   "next_owner": "기존 PM",
-  "next_action": "쉬운 화면의 큰 글씨 설정에서 주요 버튼 잘림·스크롤 접근성을 한정 실기기 확인",
+  "next_action": "글씨 크기 선택값(100·125·150·200%)과 실제 CSS 배율의 정합성을 점검",
   "official_sources": [
     "https://appdevchallenge.auto-hmg.io/guide/submission",
     "https://appdevchallenge.auto-hmg.io/faq",
     "https://appdevchallenge.auto-hmg.io/guide/schedule",
     "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005"
   ],
-  "last_reconciled_kst": "2026-10-27 04시",
+  "last_reconciled_kst": "2026-10-27 05시",
   "latest_preflight": "build-reports/pm-20261026/release-install-preflight.json",
   "static_comparison": "build-reports/pm-20261027/release-verifyqa-comparison.json",
   "dex_resource_analysis": "build-reports/pm-20261027/dex-resource-analysis.json",
   "code_error_physical": "build-reports/pm-20261027/code-errors-physical.json",
   "easy_notice_physical": "build-reports/pm-20261027/easy-notice-physical.json",
-  "startup_observation": "build-reports/pm-20261027/startup-observation.json"
+  "startup_observation": "build-reports/pm-20261027/startup-observation.json",
+  "font_scroll_observation": "build-reports/pm-20261027/font-scroll-observation.json"
 }

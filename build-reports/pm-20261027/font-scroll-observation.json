@@ -1,0 +1,114 @@
+{
+  "task_id": "AS-Q1-PM-20261027T0455",
+  "owner": "기존 PM 자체 QA",
+  "started": "2026-10-27T04:56:21.6241380+09:00",
+  "finished": "2026-10-27T05:01:34.6619039+09:00",
+  "base_head": "bc219eaf22c954560afef266eab1ecddda1387f6",
+  "device": "SM-F936N Android16 verifyqa4ed/test229",
+  "scope": "App setting labeled200%, horizontal role-tab scroll, vertical lower action access, restore original100%; existing acknowledged senior visit",
+  "final_verdict": "SCOPED_OBSERVATION_CONFIRMED_WITH_RAW_AUTOMATION_FAILURES",
+  "junit_added": 0,
+  "new_build": false,
+  "new_install": false,
+  "product_source_modified": false,
+  "new_visit": false,
+  "new_notification": false,
+  "installed_before": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "installed_after": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "claim": {
+    "released": "2026-10-27T05:01:34.6619039+09:00",
+    "owner": "AS-Q1-PM-20261027T0455"
+  },
+  "raw_first": {
+    "failure": "BOTTOM_ACTION_NOT_REVEALED",
+    "started": "2026-10-27T04:58:55.9592767+09:00",
+    "easy_tab_after_horizontal_scroll": "[553,360][850,538]",
+    "success": false,
+    "task_id": "AS-Q1-PM-20261027T0455",
+    "finished": "2026-10-27T04:59:02.0215538+09:00"
+  },
+  "raw_followup": {
+    "bottom_action_after_vertical_scroll": "[42,1620][863,1822]",
+    "selected_200_reopened": true,
+    "failure": "ACK_CHANGED",
+    "started": "2026-10-27T05:00:01.3690180+09:00",
+    "success": false,
+    "task_id": "AS-Q1-PM-20261027T0455",
+    "finished": "2026-10-27T05:00:27.9229629+09:00"
+  },
+  "final_observation": {
+    "native_select_100_to_200_and_saved": true,
+    "reopened_setting_200_seen": true,
+    "easy_role_tab_after_horizontal_swipe_bounds": "[553,360][850,538]",
+    "lower_action_after_vertical_swipe_bounds": "[42,1620][863,1822]",
+    "lower_action_not_clicked": true,
+    "native_select_100_and_save_executed": true,
+    "subsequent_xml_and_screen_ack_present": true,
+    "restored_100_appearance_matches_initial": true
+  },
+  "raw_failures_not_overwritten": true,
+  "automation_failure_cause": "not conclusively determined; later local XML/PNG show lower button and ACK; followup wrapped XML node output in explicit arrays; do not interpret process exit0 or raw false as product PASS/FAIL",
+  "private_png_reviewed": [
+    "font200-top-private.png",
+    "font200-horizontal-private.png",
+    "font200-after-one-swipe-private.png",
+    "font200-bottom-private.png",
+    "font200-setting-private.png",
+    "font100-after-save-private.png"
+  ],
+  "limitations": [
+    "Labeled200% setting tested; physical2x/font-metric compliance not measured",
+    "No click execution of new-visit action, no complete end-to-end test",
+    "No whole localStorage equality claim; font preference changed and restored through UI",
+    "Final release6a28 physical run blocked by existing signing certificate mismatch",
+    "No independent QA/human usability/AAOS/real institution/submission claim"
+  ],
+  "evidence_directory": "IT13 Desktop/Task/Win-Win-Challenge-QA-20261024/AS-Q1-PM-20261027T0455",
+  "latest_ci": 40252472387,
+  "slack_sent": false,
+  "phone_push": "unverified",
+  "next_owner": "기존 PM",
+  "next_action": "글씨 크기 선택값(100·125·150·200%)과 실제 CSS 배율의 정합성을 점검"
+}
