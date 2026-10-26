@@ -1,0 +1,77 @@
+{
+  "task_id": "AS-M1-PM-20261027T0603",
+  "owner": "기존 PM 자체 개발/검수",
+  "base_head": "eab5d2b7fb9be8174998f6cdfb398b30711f0d6b",
+  "before": {
+    "root100_px": 16,
+    "settings": [
+      {
+        "label": 125,
+        "px": 19,
+        "actual_percent": 118.75
+      },
+      {
+        "label": 150,
+        "px": 22,
+        "actual_percent": 137.5
+      },
+      {
+        "label": 200,
+        "px": 25,
+        "actual_percent": 156.25
+      }
+    ]
+  },
+  "after": {
+    "root100_px": 16,
+    "settings": [
+      {
+        "label": 125,
+        "px": 20
+      },
+      {
+        "label": 150,
+        "px": 24
+      },
+      {
+        "label": 200,
+        "px": 32
+      }
+    ]
+  },
+  "source_fix": true,
+  "syntax_check": {
+    "command": "node --check test/font_scaling.cjs",
+    "exit_code": 0
+  },
+  "browser_regression": "PENDING_NEW_CI; not passed locally",
+  "new_test": "test/font_scaling.cjs",
+  "viewports": [
+    360,
+    412,
+    768
+  ],
+  "local_attempts": [
+    {
+      "environment": "Linux Playwright",
+      "status": "NOT_RUN_MISSING_BROWSER_EXECUTABLE"
+    },
+    {
+      "environment": "IT13 isolated headless Edge",
+      "status": "NO_RESULT_EMPTY_STDOUT_OWNED_PROCESS_STOPPED",
+      "pid": 51844
+    }
+  ],
+  "previous_ci": 40252472387,
+  "previous_candidate_apk": "6a28008a491fb7ece55572cc5c705db88c202acfde12caa98b7336c353e53313",
+  "installed_verifyqa": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+  "old_artifacts_not_replaced": true,
+  "new_phone_install": false,
+  "new_phone_ui": false,
+  "device_claim_acquired": false,
+  "formal_documents_modified": false,
+  "slack_sent": false,
+  "phone_push": "unverified",
+  "next_owner": "기존 PM",
+  "next_action": "새 글씨 배율 수정 CI의 브라우저·APK·주소·native 결과를 읽고, 실패 시 같은 실행 근거로 한정 수정"
+}

@@ -52,6 +52,7 @@ jobs:
           npm install --no-save --ignore-scripts --no-audit --no-fund playwright@1.57.0
           ANSIM_CHROME="$(command -v chromium)" node test/editor_save_busy.cjs
           ANSIM_CHROME="$(command -v chromium)" node test/readiness_expiry.cjs
+          ANSIM_CHROME="$(command -v chromium)" node test/font_scaling.cjs
       - uses: actions/setup-java@v4
         with:
           distribution: temurin

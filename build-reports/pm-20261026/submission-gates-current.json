@@ -118,19 +118,21 @@
   "device_claim_acquired": false,
   "slack_sent": false,
   "next_owner": "기존 PM",
-  "next_action": "글씨 크기 선택값(100·125·150·200%)과 실제 CSS 배율의 정합성을 점검",
+  "next_action": "새 글씨 배율 수정 CI의 브라우저·APK·주소·native 결과를 읽고, 실패 시 같은 실행 근거로 한정 수정",
   "official_sources": [
     "https://appdevchallenge.auto-hmg.io/guide/submission",
     "https://appdevchallenge.auto-hmg.io/faq",
     "https://appdevchallenge.auto-hmg.io/guide/schedule",
     "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005"
   ],
-  "last_reconciled_kst": "2026-10-27 05시",
+  "last_reconciled_kst": "2026-10-27 06시",
   "latest_preflight": "build-reports/pm-20261026/release-install-preflight.json",
   "static_comparison": "build-reports/pm-20261027/release-verifyqa-comparison.json",
   "dex_resource_analysis": "build-reports/pm-20261027/dex-resource-analysis.json",
   "code_error_physical": "build-reports/pm-20261027/code-errors-physical.json",
   "easy_notice_physical": "build-reports/pm-20261027/easy-notice-physical.json",
   "startup_observation": "build-reports/pm-20261027/startup-observation.json",
-  "font_scroll_observation": "build-reports/pm-20261027/font-scroll-observation.json"
+  "font_scroll_observation": "build-reports/pm-20261027/font-scroll-observation.json",
+  "font_scale_fix": "build-reports/pm-20261027/font-scale-fix.json",
+  "source_candidate_relation": "New root font scale fix is not in existing candidate35/6a28 or installed verifyqa4ed; new CI verification pending"
 }
