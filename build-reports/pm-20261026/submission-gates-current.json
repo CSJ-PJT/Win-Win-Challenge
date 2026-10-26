@@ -118,15 +118,16 @@
   "device_claim_acquired": false,
   "slack_sent": false,
   "next_owner": "기존 PM",
-  "next_action": "현재 verifyqa에서 번호 오류 5회 차단·재발급 후 양측 확인 복구의 단일 실기기 시나리오를 점유·저장 보존 조건 하에 검증",
+  "next_action": "쉬운 화면의 도착 알림 중복 방지와 시설 확인을 한정 실기기 회귀로 확인",
   "official_sources": [
     "https://appdevchallenge.auto-hmg.io/guide/submission",
     "https://appdevchallenge.auto-hmg.io/faq",
     "https://appdevchallenge.auto-hmg.io/guide/schedule",
     "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005"
   ],
-  "last_reconciled_kst": "2026-10-27 01시",
+  "last_reconciled_kst": "2026-10-27 02시",
   "latest_preflight": "build-reports/pm-20261026/release-install-preflight.json",
   "static_comparison": "build-reports/pm-20261027/release-verifyqa-comparison.json",
-  "dex_resource_analysis": "build-reports/pm-20261027/dex-resource-analysis.json"
+  "dex_resource_analysis": "build-reports/pm-20261027/dex-resource-analysis.json",
+  "code_error_physical": "build-reports/pm-20261027/code-errors-physical.json"
 }
