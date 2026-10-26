@@ -1,3 +1,22 @@
+## 현재 검증 기준 · 2026-10-26 16시 KST
+
+제품 소스는 `741869b3f7ce8d954cc7d267a69bdfe85b338e9b`, 주소 시험 수정 소스는 `35e30651a259251cc652c66acca43eafdff33b78`입니다. [CI40252472387](https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40252472387)는 10:05:27–10:16:02 KST에 verify-build/live-address/native-smoke 성공, publish skipped로 종료했습니다. 이번 16시 작업은 문서·소스·기존 실행 근거 대조이며 신규 제품 시험이 아닙니다.
+
+| 환경·바이너리 | 확인한 범위 | 근거 |
+| --- | --- | --- |
+| CI35 Android15 release `6a28008a…e53313` | 공식 주소 JUnit1/62.605초, APK UI7, DOM JUnit1/17.692초. Node112/실패0·PC/HTTP 공식 주소7은 별도 실행 | [11시 최종 검수](https://github.com/CSJ-PJT/Win-Win-Challenge/issues/1#issuecomment-6406563089) |
+| Android16 물리 verifyqa `4edaf75c…b88c` / 이전 test419 | 09시 공식 주소 JUnit1/16.665초, 수동 주소·양측 인계·보호자·쉬운 알림/시설 ACK DOM JUnit1/9.330초 | [09시 기록](READINESS_PHYSICAL_20261026.md) |
+| 같은 물리 앱 / 수정 test `229eefc4…6d4f` | 10시 공식 주소 JUnit1/16.709초. 별도 force-stop→PID 없음→COLD302ms 후 같은 세션에서 주소·우편번호 복원. 새 테스트의 DOM 재시험은 없음 | [실패·수정·콜드 복원](COLD_PHYSICAL_20261026.md) |
+| 같은 물리 앱/test229의 실제 UI | 12시 시설 준비 후 실제610.595초 무입력 대기→버튼 비활성·재준비 안내→시설 재준비·새6자리 번호 발급. ADB UI1시나리오이며 JUnit 추가나 양측 인계 재시험이 아님 | [12시 실제 시간 검증](https://github.com/CSJ-PJT/Win-Win-Challenge/issues/1#issuecomment-6407453978) |
+
+CI release와 물리 verifyqa는 APK·인증서가 다릅니다. 공개 release 후보의 실기기 통과, 독립 QA/감사·사람 사용성, 09시 업데이트 전 저장값 동일성을 위 결과로 확정하지 않습니다. 실제600초 경계 지연이나 2초 갱신 지연의 측정 결과도 아닙니다.
+
+HTTP6개·bridge6개별 현재 판정은 [API·bridge 근거 표](API_EVIDENCE_MATRIX_20261025.md)를 우선합니다. 현재 소스의 실제 route/인터페이스 목록과 CI35 원본 source ZIP의 바이트를 대조했습니다. HTTP 로컬 계약, 주입 fixture, 실제 외부 요청, 에뮬레이터, 물리 단말을 합산하지 않습니다.
+
+## 이전 실행 이력
+
+아래의 '현재/최신/미검증/다음'은 각 기록 시점의 표현입니다. 최신 범위는 위 표를 따르며 원본 실패·시험 버전은 보존합니다.
+
 > 2026-10-26 02시: 41c1812/CI40210143323 최종 verify/live/native success(01:07:04–01:17:16KST),publish skipped. 3원본로그·3실제ZIP·APK해시/v2인증서/8assets 대조 완료. [최신 CI 결과](GUARD_SOURCE_CI_FINAL_20261026.md). Guard/Geocoder/Dialer는 CI runtime 미포함, 01시 c5/419 물리거절1/0.896초와 별도. 아래 진행중 표기는 과거 시점 기록.
 
 > 2026-10-26 01시: c5제품/새419test에서 실제 NavigationGuardTest JUnit1/0.896초 통과. 두 비차량 거절 callback·화면 toast·전체 localStorage동일·adapter null 확인, native flag 미변경/서비스·경로 요청 없음. [정확한 범위](NAVIGATION_GUARD_PHYSICAL_20261026.md). 새41c1812/CI40210143323 진행 중, 아래 ec6992f 전체성공과 분리.
@@ -139,3 +158,4 @@ publish는 검증 브랜치 정책에 따라 건너뛰었다. 최신 APK는 이 
 별도 QA의 [PR 댓글](https://github.com/CSJ-PJT/Win-Win-Challenge/pull/2#issuecomment-6380210313)에서 Samsung Android 16의 설치·콜드 실행·실제 주소 선택/저장/복원·출발/도착/번호 발급까지 보고됐다. 대상 APK는 이전 CI 40062463496의 a001ec3, SHA-256 `c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54`이다. 최신 에뮬레이터 검증 APK 해시와 다르므로 동일 바이트의 실기기 통과로 합산하지 않는다.
 
 실기기의 UIAutomator는 WebView 하위 HTML 컨트롤을 찾지 못해 `Missing visible control: 도착지 입력하기`로 실패했다. 같은 화면의 ADB 터치는 동작했다는 QA 기록이다. 이 문서 수정에서는 실물 기기를 재조작하거나 원본 캡처를 직접 재검증하지 않았다. 시설의 최종 양측 확인·쉬운 알림 전체 흐름은 미검증이다. DOM 기반 instrumentation 보강 후 동일 APK 해시로 실기기 E2E를 검증해야 한다. 릴리스 WebView 원격 디버깅을 무조건 활성화하지 않는다.
+

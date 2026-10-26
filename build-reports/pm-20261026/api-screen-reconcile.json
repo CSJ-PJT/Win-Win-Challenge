@@ -1,0 +1,56 @@
+{
+  "task_id": "AS-M1-PM-20261026T1607",
+  "owner": "existing PM self-review",
+  "base_head": "e0f256f65f7d38637a3d1f8c6f22af7b241e1553",
+  "product_source": "741869b3f7ce8d954cc7d267a69bdfe85b338e9b",
+  "test_source": "35e30651a259251cc652c66acca43eafdff33b78",
+  "ci": 40252472387,
+  "source_checks": [
+    {
+      "path": "server.js",
+      "bytes": 9388,
+      "sha256": "242b12e31078453c240ca3a9c21de4efb29b11fe4c4086a4feaa90cd9de7d150",
+      "matches_head_blob": true
+    },
+    {
+      "path": "web/app.js",
+      "bytes": 44798,
+      "sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e",
+      "matches_head_blob": true
+    },
+    {
+      "path": "android/app/src/main/java/kr/co/ansimdonghaeng/MainActivity.java",
+      "bytes": 15145,
+      "sha256": "a780a98077495ce40dc83b18c0145a381ad6e7e8511979058c5574da03dd4942",
+      "matches_head_blob": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/kr/co/ansimdonghaeng/LiveAddressTest.java",
+      "bytes": 7017,
+      "sha256": "ecd4565ca7be2bf1cb7fe9b3f69c12e2b3c6256380a26ab0d807358b299b30d9",
+      "matches_head_blob": true
+    },
+    {
+      "path": ".github/workflows/release043.yml",
+      "bytes": 9960,
+      "sha256": "ca117f3751bf067c04eb1355e2669cfe507e733492099ca5cc0285d24e86cc64",
+      "matches_head_blob": true
+    }
+  ],
+  "http_routes": 6,
+  "javascript_interfaces": 6,
+  "relative_link_failures": [],
+  "changed_documents": [
+    "SCREEN_DESIGN.md",
+    "API_EVIDENCE_MATRIX_20261025.md",
+    "API_VERIFICATION.md"
+  ],
+  "new_runtime_tests": 0,
+  "new_build_or_ci_requested": false,
+  "phone_ui_or_install": false,
+  "fixed_candidate_modified": false,
+  "official_documents_modified": false,
+  "independent_qa": false,
+  "next_owner": "existing PM",
+  "next_task": "bounded current verifyqa Geocoder regression with ownership/preconditions and storage-preservation assertions checked first"
+}
