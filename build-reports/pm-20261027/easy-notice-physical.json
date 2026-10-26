@@ -1,0 +1,132 @@
+{
+  "task_id": "AS-Q1-PM-20261027T0256",
+  "date_kst": "2026-10-27 03시",
+  "owner": "기존 PM 자체 QA; 독립 QA 아님",
+  "base_head": "2b4cde4c48b1af718c2a47d0730daded1bdc76af",
+  "device": "SM-F936N / Android16",
+  "scope": "ADB actual UI one bounded easy-notice scenario",
+  "junit_added": 0,
+  "new_build": false,
+  "new_install": false,
+  "installed_before": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "installed_after": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "installed_hashes_unchanged": true,
+  "scenario": {
+    "new_visit": "ordinary UI 주야간보호센터/동의하고 계속; synthetic verifyqa state changed",
+    "notify_once": true,
+    "notify_control_removed": true,
+    "role_return_pending_without_resend": true,
+    "facility_ack_once": true,
+    "facility_no_repeat_ack_control": true,
+    "easy_acknowledged": true,
+    "no_handoff_completion_claim": true,
+    "cold_restored": true
+  },
+  "partial_result": {
+    "task_id": "AS-Q1-PM-20261027T0256",
+    "started": "2026-10-27T02:59:34.3564148+09:00",
+    "success": false,
+    "after_notify_no_resend_control": true,
+    "pending_facility_ack_button": true,
+    "role_return_pending_without_resend": true,
+    "failure": "CLICK_COUNT_도착 알림 확인_0",
+    "finished": "2026-10-27T02:59:45.4529617+09:00"
+  },
+  "ack_followup": {
+    "task_id": "AS-Q1-PM-20261027T0256",
+    "started": "2026-10-27T03:00:42.0901300+09:00",
+    "success": true,
+    "followup_reason": "ACK control was below viewport; no repeat notify/visit",
+    "facility_ack_complete_and_no_repeat_button": true,
+    "easy_acknowledged_without_resend": true,
+    "no_handoff_complete_label": true,
+    "finished": "2026-10-27T03:00:53.9388083+09:00"
+  },
+  "cold": {
+    "task_id": "AS-Q1-PM-20261027T0256",
+    "started": "2026-10-27T03:01:22.5195365+09:00",
+    "success": true,
+    "snapshots": [
+      {
+        "attempt": 1,
+        "acknowledged": false,
+        "elapsed_ms": 2810
+      },
+      {
+        "attempt": 2,
+        "acknowledged": true,
+        "elapsed_ms": 5573
+      }
+    ],
+    "pid_empty": true,
+    "launch_state": "COLD",
+    "activity_total_ms": 429,
+    "acknowledged_restored_without_resend": true,
+    "finished": "2026-10-27T03:01:28.7267814+09:00"
+  },
+  "claim": {
+    "released": "2026-10-27T03:03:59.3241343+09:00",
+    "owner": "AS-Q1-PM-20261027T0256"
+  },
+  "private_screenshots_reviewed": [
+    "facility-ack-private.png",
+    "acknowledged-private.png",
+    "cold-restored-private.png"
+  ],
+  "evidence_directory": "IT13 Desktop/Task/Win-Win-Challenge-QA-20261024/AS-Q1-PM-20261027T0256",
+  "limitations": [
+    "UI controls/state only; no forced duplicate HTTP/domain-event replay",
+    "No original-release/.qa/.qa.test data clear, uninstall, signature replacement or install",
+    "verifyqa synthetic visit/prefs changed through ordinary UI; whole localStorage equality not claimed",
+    "429ms Activity TotalTime is not complete screen-ready latency; ACK absent first snapshot2810ms, present second5573ms including dump overhead",
+    "Candidate release6a28008a physical runtime not tested; current-device certificate mismatch remains",
+    "No real institution delivery/call/permission expansion/public release/submission"
+  ],
+  "latest_ci": 40252472387,
+  "slack_sent": false,
+  "phone_push": "unverified",
+  "next_owner": "기존 PM",
+  "next_action": "콜드 실행 후 초기 빈 화면에서 실제 앱 문구·조작 가능한 화면까지의 준비시간을 한정 측정"
+}
