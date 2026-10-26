@@ -1,4 +1,4 @@
-# API·bridge 근거 표 — 2026-10-26 16시
+# API·bridge 근거 표 — 2026-10-26 17시
 
 ## 현재 검증 기준 · 2026-10-26 16시 KST
 
@@ -35,13 +35,13 @@ CI release와 물리 verifyqa는 APK·인증서가 다릅니다. 공개 release 
 | bridge | 확인한 실행·대상 | 남은 범위 |
 | --- | --- | --- |
 | openAddressSearch | CI35 공식주소1 및 물리4ed/test229 공식1/16.709초·COLD302ms 후 복원 | 현재 test229 DOM 전체 재시험·기관 주소 승인·실차 UX 별도 |
-| searchAddress | 이전 제품c5/test5f7 물리 Geocoder1/1.348초·공개 장소 결과1·유한 좌표 | 최신4ed에서 재시험 없음. 위치 정확도·차량 환경·오류/없음 UI 분기 별도 |
+| searchAddress | 현재4ed/test229 물리 JUnit1/1.379초·실제 결과1·유한 좌표·callback409ms·전체 localStorage 동일. [17시 근거](GEOCODER_PHYSICAL_20261025.md) | 위치 정확도·차량 환경·오류/없음 UI 분기·주요 버튼 사람 사용성 별도 |
 | openMap | CI35 Android15 MAP_INTENT_OPENED. 이전c5의 23시 주요 버튼→카카오맵 주소/지도→명시적 QA 복귀 | 단일 뒤로 복귀는 외부 권한창으로 이어짐. 최신4ed 외부 지도 실물 재시험·경로 시작·실차 미검증 |
 | openDialer | 이전c5/test354 ACTION_DIAL→전화 앱 패키지→QA 복귀1/2.775초·저장상태 유지 | 발신 없음. 최신4ed 재시험·주요 연락버튼 사람 사용성·AAOS 제한 별도 |
 | checkNavigation | 실제 SDK AAR/권한 대조. 이전c5/test419 비차량 거절 callback/화면 시험 | 실제 Pleos 연결 callback·AAOS UX·실차 미검증 |
 | requestSampleRoute | 실제 AAR·확인/조건 재검사 소스, 같은 비차량 거절 시험 | 실제 경로·완료 callback·실차 미검증 |
 
-Geocoder·Dialer·NavigationGuard는 현재CI35의 런타임 대상이 아닙니다. 과거 실물 성공을 최신4ed의 재시험으로 소급하지 않습니다. [Geocoder](GEOCODER_PHYSICAL_20261025.md) · [전화](DIALER_PHYSICAL_20261025.md) · [지도](MAP_PHYSICAL_20261025.md) · [SDK 환경](PLEOS_READINESS_20261026.md) · [비차량 거절](NAVIGATION_GUARD_PHYSICAL_20261026.md).
+Geocoder·Dialer·NavigationGuard는 현재CI35의 런타임 대상이 아닙니다. Geocoder만17시 현재4ed/test229의 물리 단일 회귀를 추가했습니다. 나머지 과거 실물 성공을 최신4ed의 재시험으로 소급하지 않습니다. [Geocoder](GEOCODER_PHYSICAL_20261025.md) · [전화](DIALER_PHYSICAL_20261025.md) · [지도](MAP_PHYSICAL_20261025.md) · [SDK 환경](PLEOS_READINESS_20261026.md) · [비차량 거절](NAVIGATION_GUARD_PHYSICAL_20261026.md).
 
 **12개 인터페이스 전체 실서비스 정상 또는 bridge6개 최신 실기기 완료로 판정할 근거는 없습니다.** 공식 우편번호 SDK, Android Geocoder, Kakao Local REST는 서로 다른 경로입니다.
 
@@ -51,4 +51,4 @@ Geocoder·Dialer·NavigationGuard는 현재CI35의 런타임 대상이 아닙니
 
 PR2는 Draft/미병합, v0.3.0-preview만 게시되어 있고 0.4.3 공개·실제 제출·심사 접근·독립 QA/감사·사람 사용성·실차/기관/클라우드·유효 REST 인증은 미확인입니다. 기존 앱·데이터·후보를 보존했습니다.
 
-다음 단일 기존 PM: 최신4ed 앱에서 기존 Geocoder 물리 시험의 시작조건·저장 보존 assertion과 기기 점유를 먼저 대조한 뒤, 이미 승인된 범위의 공개 합성 장소 Geocoder 단일 회귀를 수행합니다. 유효 REST 키·실기관·실차 성공으로 확대하지 않습니다.
+다음 단일 기존 PM: 최신4ed의 DialerBridgeTest 발신 없는 ACTION_DIAL/저장보존 검사와 기기 점유를 확인 후 단일 회귀를 수행합니다. 유효 REST 키·실기관·실차 성공으로 확대하지 않습니다.

@@ -1,3 +1,15 @@
+## 최신 실기기 Geocoder 회귀 · 2026-10-26 17시 KST
+
+17:10:27.844–17:10:30.186 KST, SM-F936N Android16의 **제품741 verifyqa4edaf75c / test35의229eefc4**에서 기존 GeocoderBridgeTest가 **JUnit OK1/1.379초** 통과했습니다. 공개 합성 장소 서울시청을 실제 VehicleBridge.searchAddress로 검색해 결과1개·모든 좌표 유한·오류없음·callback409ms를 확인했습니다. 시험 전후 전체 localStorage key/value 비교가 같고 5패키지 설치 SHA도 전후 동일합니다.
+
+`onAddressResults`를 일시 감싸 실제 callback을 관찰하고 원래 함수를 호출·복원했습니다. 저장값/검색 응답을 주입하지 않았습니다. 주요 검색 버튼을 사람이 사용한 UI 시험, 좌표 정확도 평가, 공식 우편번호 picker 또는 Kakao REST 유효키 검색은 아닙니다. 현재 CI35에는 이 Geocoder runtime이 포함되지 않으며 물리 verifyqa와 release6a28도 별도입니다.
+
+실행 전 claim/CreateNew·instrumentation·writer·잠금 상태와 설치 APK5개 해시, test229 class/manifest target을 확인했습니다. 빌드/설치/삭제/clear/권한변경/실전화/기관전송 없음. own claim 정상 반납과 후속 claim 부재·instrumentation 없음 확인. PM 자체 QA이며 독립 QA/사용성 승인 아님. [원본 결과·현재 패키지 해시](../build-reports/pm-20261026/geocoder-current-physical.json).
+
+다음 단일 기존 PM은 현재 DialerBridgeTest의 발신 없는 ACTION_DIAL·저장보존 검사와 점유부터 확인하고 허용된 단일 회귀를 수행합니다. 기존 통과 공식주소/TTL/Geocoder를 반복하지 않습니다.
+
+## 이전 제품 c5의 실행 이력
+
 > 2026-10-25 20시: 소스2284016/CI40182818148은18:58:07–19:08:56 전체verify/live/native성공·publishskipped, ZIP/APK실제바이트확인. 기존c5앱/5f7test에서공식주소JUnit1/16.944초 후 processCOLD264ms/안정화재조회주소·우편번호복원확인. [최신CI·c5 COLD근거](CI_AND_COLD_FINAL_20261025.md). Geocoder는19시실기기별도통과,CI runtime에는미포함. 아래진행중/미검증표현은과거시점기록.
 
 # Geocoder bridge 실기기 실제 호출 · 2026-10-25 19시
