@@ -1,4 +1,4 @@
-# API·bridge 근거 표 — 2026-10-26 20시
+# API·bridge 근거 표 — 2026-10-26 21시
 
 ## 현재 검증 기준 · 2026-10-26 16시 KST
 
@@ -15,16 +15,16 @@ CI release와 물리 verifyqa는 APK·인증서가 다릅니다. 공개 release 
 
 ## HTTP API 6개
 
-현재 server.js에서 확인한 route6개는 아래와 같습니다. CI35 source ZIP의 server.js가 문서 작업 전 HEAD e0f256f와 바이트 동일합니다. 16시에는 HTTP 요청을 새로 실행하지 않았습니다.
+현재 server.js에서 확인한 route6개는 아래와 같습니다. CI35 source ZIP의 server.js가 문서 작업 전 HEAD e0f256f와 바이트 동일합니다. 21시 Linux/Node24.22.1의 격리 loopback에서 HTTP40요청·31assertion을 직접 확인했습니다. server/core/config 3파일은 CI35 원본 ZIP 및 작업 전 현재 HEAD와 동일합니다. [실행 결과](HTTP_CONTRACT_20261026.md).
 
 | 경로 | 실제 실행 근거 | 판정·남은 범위 |
 | --- | --- | --- |
-| GET /api/health | 10/25 18시 loopback 실제200, CI35 서버 시험 | 로컬 서버 상태 |
-| GET /api/bootstrap | 같은 실제200·CI35 합성 역할 세션 | 기관 계정 인증 아님. 토큰 원문 비기록 |
-| GET /api/state | 같은 실제200·CI35 역할 조회·번호 비공개 검사 | 로컬 역할 상태, 기관 간 클라우드 동기화 별도 |
-| GET /api/places | 18시 키없는 환경503/미인증401/짧은 query400, 외부 무인증401 | 유효키 Kakao REST 검색200은 미검증. fixture200·공식 우편번호 SDK 성공과 구분 |
-| POST /api/reset | 기존 실제 합성 상태 초기화·권한 검사, 18시 null400·CI35 서버 시험 | 로컬 시연 계약. 폰 데이터 초기화와 무관 |
-| POST /api/events | 기존 실제 인계/알림 흐름, 18시 null400·CI35 동시성/충돌 계약 | 로컬 전이. 실기관 전송·운영 DB 성공 아님 |
+| GET /api/health | 21시 격리 loopback 실제200, local synthetic mode/0.4.3 확인 | 로컬 서버 상태 |
+| GET /api/bootstrap | 21시 실제200·합성5역할 토큰, reset 후 새토큰 | 기관 계정 인증 아님. 토큰 원문 비기록 |
+| GET /api/state | 21시4역할200·무인증/구토큰401·reset 후version0; 번호 공개 전체흐름은 기존CI 범위 | 로컬 역할 상태, 기관 간 클라우드 동기화 별도 |
+| GET /api/places | 21시 키를 명시적으로 제외한503/무인증401/query400·외부요청0;18시 외부 무인증401은 과거별도 | 유효키 Kakao REST 검색200은 미검증. fixture200·공식 우편번호 SDK 성공과 구분 |
+| POST /api/reset | 21시 guardian403/simulator200·비객체5종400·구토큰폐기 | 로컬 시연 계약. 폰 데이터 초기화와 무관 |
+| POST /api/events | 21시 READY200·동일재전송버전동일·키/버전/trip409·비객체5종400/크기413; 전체인계는기존CI | 로컬 전이. 실기관 전송·운영 DB 성공 아님 |
 
 [HTTP 원장](API_VERIFICATION.md) · [실제 외부 호출 당시 조건](EXTERNAL_API_CHECK_20261025.md). Node112 전체를 신규 HTTP 실호출112개로 계산하지 않습니다.
 
@@ -51,4 +51,4 @@ Geocoder·Dialer·NavigationGuard는 현재CI35의 런타임 대상이 아닙니
 
 PR2는 Draft/미병합, v0.3.0-preview만 게시되어 있고 0.4.3 공개·실제 제출·심사 접근·독립 QA/감사·사람 사용성·실차/기관/클라우드·유효 REST 인증은 미확인입니다. 기존 앱·데이터·후보를 보존했습니다.
 
-다음 단일 기존 PM: 현재source35의 loopback HTTP 역할·인증·오류 계약을 격리 합성 상태로 검증합니다. 실기관·클라우드·유효 REST 성공으로 확대하지 않습니다.
+다음 단일 기존 PM: 기존 제출 게이트/판정 기준을 후보35·문서v3·환경별 실제 근거와 대조하고 남은 책임·완료조건을 정리합니다. 임의의 전체 진척률이나 실서비스 완료를 주장하지 않습니다.

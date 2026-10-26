@@ -1,0 +1,547 @@
+{
+  "status": "PASS",
+  "started_utc": "2026-10-26T12:00:21.191Z",
+  "finished_utc": "2026-10-26T12:00:21.360Z",
+  "runtime": "v24.22.1",
+  "environment": "linux x64",
+  "scope": "Local synthetic loopback authorization, body validation, idempotency/conflicts and reset; no real institution/cloud/valid-key REST test",
+  "source": "35e30651a259251cc652c66acca43eafdff33b78",
+  "source_zip_sha256": "db8322f11733f983772f8e6f31eb1ce9e8f74447d0db06126329f664bef512c2",
+  "source_checks": [
+    {
+      "path": "server.js",
+      "bytes": 9388,
+      "git_blob_sha": "7933942c06dc5287b982a22b5296fba3430a5040",
+      "sha256": "242b12e31078453c240ca3a9c21de4efb29b11fe4c4086a4feaa90cd9de7d150",
+      "matches_current_head": true
+    },
+    {
+      "path": "web/core.js",
+      "bytes": 15541,
+      "git_blob_sha": "267601ac7c59e2c6e11ab1afd3f0eaea64fc1101",
+      "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+      "matches_current_head": true
+    },
+    {
+      "path": "web/config.js",
+      "bytes": 4724,
+      "git_blob_sha": "180907d23bf4fe7f08e0a3e339e27aac963be995",
+      "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+      "matches_current_head": true
+    }
+  ],
+  "http_requests": 40,
+  "http_requests_passed": 40,
+  "assertions": 31,
+  "calls": [
+    {
+      "label": "local health",
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "synthetic role bootstrap",
+      "method": "GET",
+      "path": "/api/bootstrap",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "state missing bearer",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 401,
+      "expected_status": 401,
+      "error": "UNAUTHORIZED",
+      "pass": true
+    },
+    {
+      "label": "state invalid bearer",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 401,
+      "expected_status": 401,
+      "error": "UNAUTHORIZED",
+      "pass": true
+    },
+    {
+      "label": "vehicle role state",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "facility role state",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "guardian role state",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "visitor role state",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "places missing bearer",
+      "method": "GET",
+      "path": "/api/places",
+      "status": 401,
+      "expected_status": 401,
+      "error": "UNAUTHORIZED",
+      "pass": true
+    },
+    {
+      "label": "places short query",
+      "method": "GET",
+      "path": "/api/places",
+      "status": 400,
+      "expected_status": 400,
+      "error": "QUERY",
+      "pass": true
+    },
+    {
+      "label": "places key explicitly absent",
+      "method": "GET",
+      "path": "/api/places",
+      "status": 503,
+      "expected_status": 503,
+      "error": "MAP_NOT_CONFIGURED",
+      "pass": true
+    },
+    {
+      "label": "guardian reset denied",
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 403,
+      "expected_status": 403,
+      "error": "FORBIDDEN",
+      "pass": true
+    },
+    {
+      "label": "events missing bearer",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 401,
+      "expected_status": 401,
+      "error": "UNAUTHORIZED",
+      "pass": true
+    },
+    {
+      "label": "guardian forged-role-test",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 403,
+      "expected_status": 403,
+      "error": "FORBIDDEN",
+      "pass": true
+    },
+    {
+      "label": "visitor visitor-ready-denied",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 403,
+      "expected_status": 403,
+      "error": "FORBIDDEN",
+      "pass": true
+    },
+    {
+      "label": "events rejects null",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "reset rejects null",
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "events rejects array",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "reset rejects array",
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "events rejects string",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "reset rejects string",
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "events rejects number",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "reset rejects number",
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "events rejects boolean",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "reset rejects boolean",
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "expected_status": 400,
+      "error": "JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "label": "state after rejected bodies",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "facility ready accepted",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "identical request replay",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "same key changed event rejected",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 409,
+      "expected_status": 409,
+      "error": "KEY_REUSE",
+      "pass": true
+    },
+    {
+      "label": "stale version rejected",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 409,
+      "expected_status": 409,
+      "error": "VERSION",
+      "pass": true
+    },
+    {
+      "label": "wrong journey rejected",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 409,
+      "expected_status": 409,
+      "error": "TRIP",
+      "pass": true
+    },
+    {
+      "label": "oversized body rejected",
+      "method": "POST",
+      "path": "/api/events",
+      "status": 413,
+      "expected_status": 413,
+      "error": "SIZE",
+      "pass": true
+    },
+    {
+      "label": "foreign origin rejected",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 403,
+      "expected_status": 403,
+      "error": "ORIGIN",
+      "pass": true
+    },
+    {
+      "label": "foreign host rejected",
+      "method": "GET",
+      "path": "/api/health",
+      "status": 403,
+      "expected_status": 403,
+      "error": "LOCAL_ONLY",
+      "pass": true
+    },
+    {
+      "label": "unknown API rejected",
+      "method": "GET",
+      "path": "/api/does-not-exist",
+      "status": 404,
+      "expected_status": 404,
+      "error": "NOT_FOUND",
+      "pass": true
+    },
+    {
+      "label": "state after rejected conflicts",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "simulator reset accepted",
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "old token rejected after reset",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 401,
+      "expected_status": 401,
+      "error": "UNAUTHORIZED",
+      "pass": true
+    },
+    {
+      "label": "new bootstrap after reset",
+      "method": "GET",
+      "path": "/api/bootstrap",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    },
+    {
+      "label": "new role state after reset",
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "expected_status": 200,
+      "error": null,
+      "pass": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "listener bound only to IPv4 loopback",
+      "pass": true
+    },
+    {
+      "name": "health declares local synthetic mode and 0.4.3",
+      "pass": true
+    },
+    {
+      "name": "five role tokens issued without logging values",
+      "pass": true
+    },
+    {
+      "name": "vehicle initial version zero",
+      "pass": true
+    },
+    {
+      "name": "facility initial version zero",
+      "pass": true
+    },
+    {
+      "name": "guardian initial version zero",
+      "pass": true
+    },
+    {
+      "name": "guardian number not exposed",
+      "pass": true
+    },
+    {
+      "name": "visitor initial version zero",
+      "pass": true
+    },
+    {
+      "name": "missing key is MAP_NOT_CONFIGURED and no outbound call",
+      "pass": true
+    },
+    {
+      "name": "events null JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "reset null JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "events array JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "reset array JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "events string JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "reset string JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "events number JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "reset number JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "events boolean JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "reset boolean JSON_OBJECT",
+      "pass": true
+    },
+    {
+      "name": "rejected role/body requests do not change version",
+      "pass": true
+    },
+    {
+      "name": "idempotent replay preserves first version",
+      "pass": true
+    },
+    {
+      "name": "changed replay gives KEY_REUSE",
+      "pass": true
+    },
+    {
+      "name": "stale version gives VERSION",
+      "pass": true
+    },
+    {
+      "name": "wrong journey gives TRIP",
+      "pass": true
+    },
+    {
+      "name": "size rejection gives SIZE",
+      "pass": true
+    },
+    {
+      "name": "foreign origin gives ORIGIN",
+      "pass": true
+    },
+    {
+      "name": "foreign host gives403 LOCAL_ONLY",
+      "pass": true
+    },
+    {
+      "name": "replay/conflicts/size/origin/host do not advance version",
+      "pass": true
+    },
+    {
+      "name": "reset replaces journey and tokens",
+      "pass": true
+    },
+    {
+      "name": "reset creates fresh version zero",
+      "pass": true
+    },
+    {
+      "name": "no outbound map calls during entire run",
+      "pass": true
+    }
+  ],
+  "external_map_attempts": 0,
+  "valid_key_rest_success_verified": false,
+  "role_tokens_logged": false,
+  "private_store_not_published": true,
+  "phone_actions": false,
+  "new_build_or_install": false,
+  "independent_qa": false,
+  "server_closed": true,
+  "owner": "existing PM selfQA",
+  "task_id": "AS-PM-20261026T2057",
+  "base_head": "ad46e63f2a7260b62229d10929547d43d91f47b0",
+  "preparation_attempt1": {
+    "status": "STOPPED_BEFORE_LISTENER",
+    "error": "staged module web/config.js missing",
+    "corrected_by": "staged byte-identical dependency from original CI source ZIP",
+    "product_change": false
+  },
+  "slack": {
+    "status": "not_sent",
+    "reason": "outside09to18_hours"
+  },
+  "next_owner": "existing PM",
+  "next_task": "Review canonical submission gates and existing acceptance denominator against current candidate35, stored docs v3 and bounded runtime evidence; no invented overall percentage"
+}
