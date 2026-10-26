@@ -1,3 +1,5 @@
+> 10/27 07시 최신 CI: 소스899a5a1/CI40402218901 verify-build·live-address·native-smoke성공/publishskipped. Node112·별도글씨12조합·PC주소7·Android15공식주소JUnit1/76.907초·DOM1/19.526초·UI7범위. 새release53ca/cert e5fb/원본3ZIP검수완료,물리4ed·고정후보35/6a28과구분. 아래과거표는해당시간·바이너리의역사근거입니다. [최신검수](FONT_CI_VERIFICATION_20261027.md).
+
 > 10/27 03시 물리 verifyqa 후속: 쉬운 화면 도착 알림 1회 뒤 재전송 제어 부재·역할 복귀 유지, 시설 ACK/재확인 제어 부재·쉬운 화면 확인 표시와 COLD 복원을 확인했습니다. 실제 스크롤 후속으로 최초 화면밖 버튼 조작 실패를 해결했고 원본 실패를 보존했습니다. 강제 중복 API 시험·인계 완료·전체 저장값 동일·후보 release 물리 PASS가 아닙니다. [범위·근거](EASY_NOTICE_PHYSICAL_20261027.md). 다음 단일 기존 PM은 콜드 실행 후 초기 빈 화면에서 실제 앱 문구·조작 가능한 화면까지의 준비시간을 한정 측정합니다.
 
 > 10/27 02시 물리verifyqa후속: 잘못된번호1~4거절·5회폐기/입력란제거→새번호/양측재확인→보호자완료·같은COLD282ms후완료/주소/우편번호복원을실제UI로확인했습니다. ADB UI1시나리오/JUnit0,전체저장값동일·후보release물리PASS아님. [실행·부분실패기록](CODE_ERRORS_PHYSICAL_20261027.md).

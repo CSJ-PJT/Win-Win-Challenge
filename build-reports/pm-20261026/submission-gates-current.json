@@ -3,7 +3,7 @@
   "checked_at_utc": "2026-10-26T13:04:26.695Z",
   "owner": "existing PM self-review",
   "base_head": "ead1162047f7b4d89c9d0d3196f35d93b93ccf7e",
-  "latest_ci": 40252472387,
+  "latest_ci": 40402218901,
   "candidate_id": "candidate-35e3065-6a28008a",
   "candidate_sha256": "6a28008a491fb7ece55572cc5c705db88c202acfde12caa98b7336c353e53313",
   "candidate_checksums": {
@@ -118,14 +118,14 @@
   "device_claim_acquired": false,
   "slack_sent": false,
   "next_owner": "기존 PM",
-  "next_action": "새 글씨 배율 수정 CI의 브라우저·APK·주소·native 결과를 읽고, 실패 시 같은 실행 근거로 한정 수정",
+  "next_action": "소스899a5a1을 기존 지속서명 verifyqa 경로로 한 번 빌드하고 설치 해시·서명을 대조해 수정된 200% 화면을 실기기로 검증",
   "official_sources": [
     "https://appdevchallenge.auto-hmg.io/guide/submission",
     "https://appdevchallenge.auto-hmg.io/faq",
     "https://appdevchallenge.auto-hmg.io/guide/schedule",
     "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005"
   ],
-  "last_reconciled_kst": "2026-10-27 06시",
+  "last_reconciled_kst": "2026-10-27 07시",
   "latest_preflight": "build-reports/pm-20261026/release-install-preflight.json",
   "static_comparison": "build-reports/pm-20261027/release-verifyqa-comparison.json",
   "dex_resource_analysis": "build-reports/pm-20261027/dex-resource-analysis.json",
@@ -134,5 +134,13 @@
   "startup_observation": "build-reports/pm-20261027/startup-observation.json",
   "font_scroll_observation": "build-reports/pm-20261027/font-scroll-observation.json",
   "font_scale_fix": "build-reports/pm-20261027/font-scale-fix.json",
-  "source_candidate_relation": "New root font scale fix is not in existing candidate35/6a28 or installed verifyqa4ed; new CI verification pending"
+  "source_candidate_relation": "899a5a1 CI40402218901 passed; new release53ca, fixed submission candidate35/6a28 and installed4ed remain separate; new build physical NOT_RUN",
+  "latest_ci_verified_source": "899a5a16e747f14cddc92c9805971e5cd4422380",
+  "new_ci_release": {
+    "file": "apk/ansim-platform-0.4.3-preview.apk",
+    "bytes": 5170860,
+    "sha256": "53ca596c74675961e426e53ce8db47835b6fcc4129b38b78330d3aae3a74dd2b"
+  },
+  "new_ci_release_submission_selected": false,
+  "font_ci_verification": "build-reports/pm-20261027/font-ci-verification.json"
 }

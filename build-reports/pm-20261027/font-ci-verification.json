@@ -1,0 +1,214 @@
+{
+  "task_id": "AS-M1-PM-20261027T0655",
+  "owner": "기존 PM 자체 검수",
+  "source": "899a5a16e747f14cddc92c9805971e5cd4422380",
+  "ci": {
+    "id": 40402218901,
+    "started_kst": "2026-10-27 06:11:20",
+    "finished_kst": "2026-10-27 06:21:46",
+    "verify_build": "success",
+    "live_address": "success",
+    "native_smoke": "success",
+    "publish": "skipped"
+  },
+  "node": {
+    "tests": 112,
+    "passed": 112,
+    "failed": 0
+  },
+  "font": {
+    "environment": "desktop Chromium synthetic standalone fixture",
+    "rows": [
+      {
+        "width": 360,
+        "setting": 100,
+        "root_px": 16,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 360,
+        "setting": 125,
+        "root_px": 20,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 360,
+        "setting": 150,
+        "root_px": 24,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 360,
+        "setting": 200,
+        "root_px": 32,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 412,
+        "setting": 100,
+        "root_px": 16,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 412,
+        "setting": 125,
+        "root_px": 20,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 412,
+        "setting": 150,
+        "root_px": 24,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 412,
+        "setting": 200,
+        "root_px": 32,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 768,
+        "setting": 100,
+        "root_px": 16,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 768,
+        "setting": 125,
+        "root_px": 20,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 768,
+        "setting": 150,
+        "root_px": 24,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      },
+      {
+        "width": 768,
+        "setting": 200,
+        "root_px": 32,
+        "reload_preserved": true,
+        "document_horizontal_overflow": false
+      }
+    ],
+    "success": true
+  },
+  "font_pngs_reviewed": [
+    360,
+    412,
+    768
+  ],
+  "visual_note": "360px200% initial prompt wraps final 요 onto its own line; no document overflow is not human readability approval",
+  "pc_live_address": {
+    "checks_passed": 7,
+    "network_failures": 0
+  },
+  "android15_emulator_release": {
+    "official_address_junit": {
+      "tests": 1,
+      "seconds": 76.907,
+      "result": "OK (1 test)"
+    },
+    "dom_junit": {
+      "tests": 1,
+      "seconds": 19.526,
+      "result": "OK (1 test)"
+    },
+    "ui_checks_passed": 7,
+    "status_markers": "instrument/address/flow/dom_process/dom_result all0"
+  },
+  "archives": [
+    {
+      "name": "ansim-0.4.3-live-address",
+      "id": 12689771396,
+      "sha256": "d2cf1271836f74d37a9efd1a7033d24ce2c44340d9ec535837838bc87aeb830c",
+      "bytes": 221789,
+      "files": 9
+    },
+    {
+      "name": "ansim-0.4.3-build",
+      "id": 12689686203,
+      "sha256": "db453652d7aab33e0e57600267b76fe4ae4db1e527465a8c0517ef142e8c6a71",
+      "bytes": 6008277,
+      "files": 55
+    },
+    {
+      "name": "ansim-0.4.3-native",
+      "id": 12689627395,
+      "sha256": "190c05e636af115b483f5334c778f3374ac2924b7905dbd61b73f7371fc19283",
+      "bytes": 1287493,
+      "files": 26
+    }
+  ],
+  "files": [
+    {
+      "file": "qa-package/ansim-platform-0.4.3-qa.apk",
+      "bytes": 5170884,
+      "sha256": "108f1e213f99f1e3d2c86f22762f27c00d8e8e479c9c03da1bf5424d5a60330c"
+    },
+    {
+      "file": "qa-package/ansim-qa-tests.apk",
+      "bytes": 828960,
+      "sha256": "eb4ed251f2a29c0f6913d12e2c2a702bafac12d66807d4e94a460b6c4c6f4efc"
+    },
+    {
+      "file": "apk/ansim-platform-0.4.3-preview.apk",
+      "bytes": 5170860,
+      "sha256": "53ca596c74675961e426e53ce8db47835b6fcc4129b38b78330d3aae3a74dd2b"
+    },
+    {
+      "file": "apk/ansim-address-tests.apk",
+      "bytes": 828932,
+      "sha256": "ee85030eebc31fa91df7025867b9e881330a5735e9423c056011d2179dd333ab"
+    },
+    {
+      "file": "ansim-platform-0.4.3-source.zip",
+      "bytes": 425709,
+      "sha256": "9ae59db5fdfc8ed20943589cccc857771474ce9d75a148d1129e35f0aa46d18a"
+    },
+    {
+      "file": "ansim-platform-0.4.3-pc.zip",
+      "bytes": 28876,
+      "sha256": "bc5ed4ff85a5e12e020918c7e80df141e4ce9278f48550dfdea9c1b2f8db9069"
+    }
+  ],
+  "release_apksigner": {
+    "exit_code": 0,
+    "v2": true,
+    "v3": false,
+    "v31": false,
+    "signers": 1,
+    "certificate_sha256": "e5fb2d410035c021f8edb6297e1aea1ca715c253c985e78f9c21f85cc6d70689"
+  },
+  "signer_initial_failure": "JAVA_HOME parent directory invalid; preserved; followed actual bin/java.exe and successful full verification",
+  "apk_css_equals_source_zip": true,
+  "apk_text200_root_px": 32,
+  "ci_artifacts_persisted": "IT13 QAroot/AS-M1-PM-20261027T0655",
+  "old_candidate35_preserved": true,
+  "new_build_selected_for_submission": false,
+  "new_build_physical_runtime": "NOT_RUN",
+  "installed_five_hashes_match_previous": true,
+  "new_phone_install": false,
+  "new_phone_ui": false,
+  "device_claim_acquired": false,
+  "formal_documents_modified": false,
+  "public_release": false,
+  "actual_submission": false,
+  "slack_sent": false,
+  "phone_push": "unverified",
+  "next_owner": "기존 PM",
+  "next_action": "소스899a5a1을 기존 지속서명 verifyqa 경로로 한 번 빌드하고 설치 해시·서명을 대조해 수정된 200% 화면을 실기기로 검증"
+}
