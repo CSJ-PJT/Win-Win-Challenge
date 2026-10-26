@@ -1,0 +1,128 @@
+{
+  "task_id": "AS-Q1-PM-20261026T1955",
+  "owner": "existing PM selfQA",
+  "status": "PASS_BOUNDED_MAP_WEB_AND_EXPLICIT_RETURN",
+  "product_source": "741869b3f7ce8d954cc7d267a69bdfe85b338e9b",
+  "test_source": "35e30651a259251cc652c66acca43eafdff33b78",
+  "app_sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+  "installed_test_sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+  "method": "One primary QA map button tap by ADB; two external-service UI selections; no JavaScript/bridge injection or JUnit",
+  "qa_map_tap": {
+    "y": 1518,
+    "at": "2026-10-26T20:00:09.0247277+09:00",
+    "x": 452,
+    "bounds": "[265,1494][640,1543]",
+    "epoch": 1793012408
+  },
+  "map_intent_log_epoch": 1793012408.825,
+  "clock_skew_not_latency": true,
+  "public_address": "서울 중구 세종대로 110",
+  "postcode": "04524",
+  "external_host_package": "com.nhn.android.search",
+  "external_service": "Kakao Map mobile web",
+  "native_kakao_map_launched": false,
+  "web_no_install_selection": true,
+  "address_result_map_selection": true,
+  "public_address_search_result_observed": true,
+  "map_tiles_and_address_card_visually_reviewed": true,
+  "qa_return_visually_reviewed": true,
+  "return_method": "explicit am start QA MainActivity; no force-stop or process COLD claim",
+  "single_back_return_tested": false,
+  "before_after_QA_text_desc": {
+    "before_text_nodes": 48,
+    "after_text_nodes": 48,
+    "text_desc_arrays_equal": true,
+    "own_claim_released": true,
+    "screenshot_hashes": [
+      {
+        "sha256": "f1f8ddc7cf6e033029a02863e5c971d4b0d35ecc22bbb3be53a024b7c58c6b20",
+        "name": "external-choice-private.png"
+      },
+      {
+        "sha256": "8b880047fafe8dc3f0448e9bf753a75601701f22b47944636dfda905cb969fb0",
+        "name": "external-first-private.png"
+      },
+      {
+        "sha256": "f429c46c017ab4cb505ab52dc7fee9d1f718660a65558f2e78cb3c221d47b2f5",
+        "name": "external-search-private.png"
+      },
+      {
+        "sha256": "6bb0b30970bb4f2ae465acef086005bb7fd9c56ed566b217ecec3be9ac388ebe",
+        "name": "external-settled-private.png"
+      },
+      {
+        "sha256": "5c1d8814f7479f5127c40721ca699b9bf0f43d5c0260b09883b6c8bb0a7afe0c",
+        "name": "qa-before-private.png"
+      },
+      {
+        "sha256": "c80d24986e53c9782c64caffbea054c18d0d6d30aea4f1760be23e1405acd754",
+        "name": "qa-return-private.png"
+      }
+    ]
+  },
+  "whole_localstorage_keys_values_equality_measured": false,
+  "before": [
+    {
+      "package": "kr.co.ansimdonghaeng",
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa",
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa",
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa.test",
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f"
+    }
+  ],
+  "after": [
+    {
+      "package": "kr.co.ansimdonghaeng",
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa",
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa",
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa.test",
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f"
+    }
+  ],
+  "all5_package_hashes_unchanged": true,
+  "location_permission_grant_action": false,
+  "kakao_map_fine_coarse_granted_after": false,
+  "route_start_call_or_institution_send": false,
+  "new_build": false,
+  "install": false,
+  "new_junit_tests": 0,
+  "independent_qa": false,
+  "own_claim_released": {
+    "released": "2026-10-26T20:02:34.6185640+09:00",
+    "owner": "AS-Q1-PM-20261026T1955"
+  },
+  "initial_ui_xml_had_only_webview_nodes_then_settled_query_succeeded": true,
+  "screenshot_publication": false,
+  "slack": {
+    "status": "not_sent",
+    "reason": "outside09to18_hours"
+  },
+  "next_owner": "existing PM",
+  "next_task": "Recheck current source35 loopback HTTP role/authorization/error contracts using isolated synthetic server state; no real institution or valid-key REST claim"
+}
