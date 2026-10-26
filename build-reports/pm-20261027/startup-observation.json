@@ -1,0 +1,125 @@
+{
+  "first_ready_observed_by_ms": 7268,
+  "launch_return_ms": 434,
+  "snapshots": [
+    {
+      "attempt": 1,
+      "ready": false,
+      "text_count": 0,
+      "dump_start_ms": 812,
+      "dump_end_ms": 5024
+    },
+    {
+      "attempt": 2,
+      "ready": true,
+      "text_count": 20,
+      "dump_start_ms": 5030,
+      "dump_end_ms": 7268
+    }
+  ],
+  "new_install": false,
+  "early_screenshot": {
+    "capture_start_ms": 437,
+    "capture_end_ms": 737,
+    "file": "early-private.png"
+  },
+  "activity_total_ms": 307,
+  "pid_empty": true,
+  "installed_hashes_unchanged": true,
+  "normal_role_controls_worked": true,
+  "ready_screenshot": {
+    "capture_start_ms": 7273,
+    "capture_end_ms": 7636,
+    "file": "ready-private.png"
+  },
+  "new_build": false,
+  "started": "2026-10-27T03:56:57.0777340+09:00",
+  "facility_tap_ms": 7732,
+  "return_screenshot": {
+    "capture_start_ms": 12426,
+    "capture_end_ms": 12760,
+    "file": "returned-private.png"
+  },
+  "facility_response_observed_by_ms": 10071,
+  "finished": "2026-10-27T03:57:15.2090831+09:00",
+  "task_id": "AS-Q1-PM-20261027T0355",
+  "claim_released": "2026-10-27T03:57:15.2079353+09:00",
+  "return_ack_preserved": true,
+  "success": true,
+  "base_head": "8bc83ecf162a1031b66a0e0a38cda5626d68dfca",
+  "owner": "기존 PM 자체 QA; 독립 QA 아님",
+  "environment": "SM-F936N Android16 verifyqa4ed/test229",
+  "junit_added": 0,
+  "installed_before": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "installed_after": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "visual_review": {
+    "early": "capture437–737ms: 오늘의 동행을 준비하고 있어요. 로딩 안내; 완전한 blank 아님",
+    "ready": "capture7273–7636ms: 쉬운 화면/담당자가 확인했어요.",
+    "returned": "capture12426–12760ms: facility roundtrip ACK preserved"
+  },
+  "timing_scope": "Single cold launch; all stopwatch values from before adb am start. Screenshot/dump/transfer costs included. First ready dump completion7268ms is observation upper bound, not exact TTI, not population benchmark. Dump text0 alone does not establish visually blank screen.",
+  "new_visit": false,
+  "new_notification": false,
+  "source_edit": false,
+  "limitations": [
+    "No claim whole localStorage equality; normal role preferences changed and returned",
+    "Final release6a28 physical runtime not verified; certificate mismatch unchanged",
+    "No independent QA/human usability/full E2E claim",
+    "No original app reset/uninstall/signing replacement or real institution transmission"
+  ],
+  "latest_ci": 40252472387,
+  "slack_sent": false,
+  "phone_push": "unverified",
+  "next_owner": "기존 PM",
+  "next_action": "쉬운 화면의 큰 글씨 설정에서 주요 버튼 잘림·스크롤 접근성을 한정 실기기 확인",
+  "native_ready_marker": {
+    "tag": "HandoffUI",
+    "pid": 14187,
+    "time_device_local": "2026-10-27 03:57:03.750",
+    "message": "HANDOFF_UI_READY",
+    "predicate": "branding and #main and >=3 data-action elements",
+    "implementation": "onPageFinished schedules evaluateJavascript after2000ms; not user interaction/fullTTI proof"
+  }
+}
