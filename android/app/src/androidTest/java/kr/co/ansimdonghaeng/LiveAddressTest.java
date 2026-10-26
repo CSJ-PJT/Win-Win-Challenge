@@ -80,6 +80,8 @@ public final class LiveAddressTest {
     private void openOfficialDestinationEditor() throws Exception {
         // Start a synthetic visit through product controls even when a previous
         // saved visit, role or completion screen was restored. Never clear data.
+        // The restored role can be facility, which intentionally has no visit picker.
+        tap("인계자");
         tap("방문 변경");
         tap("유치원 등원",true);
         tap("인계자");
