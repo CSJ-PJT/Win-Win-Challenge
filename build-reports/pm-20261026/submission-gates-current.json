@@ -1,0 +1,128 @@
+{
+  "task_id": "AS-M1-PM-20261026T2201",
+  "checked_at_utc": "2026-10-26T13:04:26.695Z",
+  "owner": "existing PM self-review",
+  "base_head": "ead1162047f7b4d89c9d0d3196f35d93b93ccf7e",
+  "latest_ci": 40252472387,
+  "candidate_id": "candidate-35e3065-6a28008a",
+  "candidate_sha256": "6a28008a491fb7ece55572cc5c705db88c202acfde12caa98b7336c353e53313",
+  "candidate_checksums": {
+    "listed": 11,
+    "matched": 11,
+    "failures": 0,
+    "newly_measured": true
+  },
+  "documents": {
+    "basis": "15h result read this run, not fresh original materialization",
+    "version": 3,
+    "docx_sha256": "a31f72589c8948eea136d3ef26a2035c6c5366f0d90c1334af54f46d1176ad2d",
+    "stored_pdf_sha256": "946f9f60033c3e6dfd7a5179523927e8e238b795c868c18836fd38241d316762"
+  },
+  "gates": [
+    {
+      "id": "F1",
+      "scope": "1차 필수",
+      "item": "기획서·동의·서명·날짜",
+      "status": "PREPARED_VALIDITY_NOT_CONFIRMED",
+      "owner": "기존 PM",
+      "done_when": "제출 직전 동일 원본의 필수 작성·본인 동의/서명/날짜와 참가 인원·CC 조건을 확인. PM 대리서명 금지.",
+      "evidence": "15시 v3 저장본 검수6409441254; 이번에는 원본 재열람·편집 없음"
+    },
+    {
+      "id": "F2",
+      "scope": "1차 필수",
+      "item": "접수 발송·수신 증거",
+      "status": "NOT_SUBMITTED",
+      "owner": "기존 PM",
+      "done_when": "별도 실제 제출 승인 후 최종 첨부/수신자/제목 확인 및 실제 발송·접수 근거 보존",
+      "evidence": "메일 발송/접수 없음"
+    },
+    {
+      "id": "D1",
+      "scope": "선택 개발 산출물",
+      "item": "후보35 바이트·실행 안내",
+      "status": "PRIVATE_CANDIDATE_PREPARED",
+      "owner": "기존 PM",
+      "done_when": "고정 source35/APK6a28/README_KO를 동일 제출 목록으로 연결하고 최종 제출 경로를 명시",
+      "evidence": "14시 원본result 재조회;22시 SHA256SUMS 11/11 재측정 일치, 원본12파일 유지"
+    },
+    {
+      "id": "D2",
+      "scope": "선택 개발 산출물",
+      "item": "GitHub 지정 APK 경로",
+      "status": "OLD_TRACKED_BINARY_DIFFERS",
+      "owner": "기존 PM",
+      "done_when": "승인된 제출 branch/commit의 apk/팀명_앱이름_release.apk가 후보6a28과 동일 SHA임을 확인",
+      "evidence": "현재 tree 지정 APK blob fd64e80/5131231B, 후보5170856B와 다름; 이번 binary 교체/게시 없음"
+    },
+    {
+      "id": "D3",
+      "scope": "선택 개발 산출물",
+      "item": "Private 심사 계정 접근",
+      "status": "ACCESS_UNVERIFIED",
+      "owner": "기존 PM",
+      "done_when": "공식 계정 신원·쓰기권한 영향 확인 및 별도 권한 승인 후 초대 수락·정확한 소스/APK 접근을 실제 확인",
+      "evidence": "Private 유지; 초대/비로그인 또는 심사자 접근 성공을 확인하지 않음"
+    },
+    {
+      "id": "Q1",
+      "scope": "제품 검증",
+      "item": "후보 release의 물리 실행",
+      "status": "NOT_VERIFIED",
+      "owner": "기존 PM",
+      "done_when": "기존 앱/데이터·서명을 보존하는 경로를 먼저 검수한 뒤 후보6a28 실제 바이트의 주소·출발·인계·복원 로그/화면 확보",
+      "evidence": "CI Android15 release와 물리 Android16 verifyqa4ed는 다른 APK/서명"
+    },
+    {
+      "id": "Q2",
+      "scope": "제품 검증",
+      "item": "현재 verifyqa 및 로컬 API 범위",
+      "status": "SCOPED_PM_SELF_QA",
+      "owner": "기존 PM",
+      "done_when": "환경별 성공/실패 원장을 유지; 09시 업데이트 전 값 동일성은 당시 before 증거 없이는 소급 PASS 금지",
+      "evidence": "09~20시 물리 한정검증/21시 Linux40HTTP·31assertion; 새 시험 아님"
+    },
+    {
+      "id": "Q3",
+      "scope": "품질 승인",
+      "item": "독립 QA·감사·사람 사용성",
+      "status": "ACK_NOT_VERIFIED",
+      "owner": "기존 전담 QA/감사 역할(실제 ACK 전 PM이 인계 관리)",
+      "done_when": "기존 담당의 실제 수신·독립 시험·판정 기록 확인; 자체 QA 기록을 독립 승인으로 대체하지 않음",
+      "evidence": "신규 agent/GPT/메시지 발송 없음"
+    },
+    {
+      "id": "Q4",
+      "scope": "실서비스/차량",
+      "item": "유효 REST·기관/클라우드·Pleos/AAOS/실차",
+      "status": "SUCCESS_UNVERIFIED",
+      "owner": "기존 PM",
+      "done_when": "각 환경의 가용성·권한을 조사하고 허용된 실제 호출/SDK 연결·경로 완료·차량 UX 근거 확보; 비용/실기관 전송 별도 승인",
+      "evidence": "공식picker/Geocoder/지도웹/guard 거절/키제외503은 각각 별도 범위"
+    },
+    {
+      "id": "O1",
+      "scope": "공식 일정",
+      "item": "설명회·마감",
+      "status": "OFFICIAL_PAGE_RECHECKED",
+      "owner": "기존 PM",
+      "done_when": "기존 점검에서 공지된 정확한 접속시간·링크를 확인; 새 예약 생성 없음",
+      "evidence": "10/26 22시 공식3안내+설명회 공지 확인:접수11/15까지,설명회10/28오후/정확시간·링크 미공개"
+    }
+  ],
+  "overall_percentage": null,
+  "not_acceptance_denominator": true,
+  "new_build": false,
+  "new_install": false,
+  "phone_ui": false,
+  "device_claim_acquired": false,
+  "slack_sent": false,
+  "next_owner": "기존 PM",
+  "next_action": "후보6a28 release의 실기기 검증을 위한 기존 앱 보존·설치 서명 경로 사전검수",
+  "official_sources": [
+    "https://appdevchallenge.auto-hmg.io/guide/submission",
+    "https://appdevchallenge.auto-hmg.io/faq",
+    "https://appdevchallenge.auto-hmg.io/guide/schedule",
+    "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005"
+  ]
+}
