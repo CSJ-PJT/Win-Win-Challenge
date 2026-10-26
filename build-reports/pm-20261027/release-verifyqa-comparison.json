@@ -1,0 +1,121 @@
+{
+  "task_id": "AS-M1-PM-20261027T0004",
+  "checked_at": "2026-10-27T00:05:53.3427696+09:00",
+  "candidate_sha256": "6a28008a491fb7ece55572cc5c705db88c202acfde12caa98b7336c353e53313",
+  "verifyqa_sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+  "verifyqa_copy_matches_device": true,
+  "candidate_entries": 60,
+  "verifyqa_entries": 60,
+  "equal_entries": 57,
+  "different_common_entries": [
+    "classes.dex",
+    "AndroidManifest.xml",
+    "resources.arsc"
+  ],
+  "candidate_only": [],
+  "verifyqa_only": [],
+  "assets": [
+    {
+      "path": "assets/address.js",
+      "sha256": "49c8b523f9038ed2d8dbe6509d79b975f930b78b1ef94bd1fb0a8c0905280800",
+      "matches": true
+    },
+    {
+      "path": "assets/app.js",
+      "sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e",
+      "matches": true
+    },
+    {
+      "path": "assets/config.js",
+      "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+      "matches": true
+    },
+    {
+      "path": "assets/core.js",
+      "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+      "matches": true
+    },
+    {
+      "path": "assets/index.html",
+      "sha256": "ebb63dfef4c80fcc46e07d274483eb8816a7f1d4512214b63582d0a376dfed95",
+      "matches": true
+    },
+    {
+      "path": "assets/postcode.html",
+      "sha256": "60d789933a252a47d6c4b7b2c8188e097b8615e18b87882215618ed1a1680d7f",
+      "matches": true
+    },
+    {
+      "path": "assets/style.css",
+      "sha256": "8d25b38d9d649c153fd2f772f406024300a0450b62f73687e397975cfd52efa2",
+      "matches": true
+    },
+    {
+      "path": "assets/ui.js",
+      "sha256": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851",
+      "matches": true
+    }
+  ],
+  "installed_five_hashes": [
+    {
+      "package": "kr.co.ansimdonghaeng",
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa",
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa",
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa.test",
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f"
+    }
+  ],
+  "install_attempted": false,
+  "phone_ui": false,
+  "device_claim_acquired": false,
+  "new_build": false,
+  "owner": "existing PM self-review; static APK comparison, not independent QA",
+  "base_head": "6876eefd0b5f08ccd630fbdb9c9808afe16cd70d",
+  "status": "STATIC_COMPARISON_COMPLETE_RUNTIME_EQUIVALENCE_NOT_PROVEN",
+  "manifest_semantic_diff_fields": [
+    "versionName",
+    "package",
+    "application label"
+  ],
+  "manifest_same_fields": [
+    "versionCode9",
+    "minSdk28",
+    "targetSdk35",
+    "INTERNET and NAVI_ROUTE_SEARCH permissions",
+    "optional automotive/touchscreen/android.car",
+    "MainActivity exported/configChanges/windowSoftInputMode",
+    "launcher intent",
+    "Pleos SDK metadata"
+  ],
+  "assets_equal": 8,
+  "assets_total": 8,
+  "zip_entry_content_hashes_only": true,
+  "apk_signing_block_excluded_from_zip_entry_comparison": true,
+  "dex_difference_cause": "NOT_ANALYZED_THIS_RUN",
+  "resources_difference_cause": "NOT_ANALYZED_THIS_RUN",
+  "candidate_physical_runtime": "NOT_RUN",
+  "in_place_install_gate": "BLOCKED_SAME_PACKAGE_DIFFERENT_CERTIFICATE_FROM_INSTALLED_RELEASE",
+  "original_five_hashes_match_prior": true,
+  "new_test_or_junit": 0,
+  "slack_sent": false,
+  "phone_push_verified": false,
+  "preparation_notes": [
+    "First native aapt text decoded Korean labels incorrectly by PowerShell default encoding; regenerated separate UTF8 manifests and verified actual labels. Binary unaffected."
+  ],
+  "next_owner": "기존 PM",
+  "next_action": "classes.dex와resources.arsc 차이의 원인을 정적으로 대조해 variant 상수·이름 차이와 native bridge 로직 차이를 구분",
+  "overall_percentage": null
+}

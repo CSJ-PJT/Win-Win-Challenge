@@ -1,3 +1,5 @@
+> 10/27 00시 정적 후속: 후보6a28와 설치verifyqa4ed의 assets8/8 바이트동일·ZIP57/60동일. DEX/manifest/resources는 다르며 release물리PASS로 합산하지 않습니다. [전체 비교·동등성 경계](RELEASE_VERIFYQA_COMPARISON_20261027.md). 다음 단일 PM: DEX/resources 차이 원인 분석.
+
 > 23시 후속: 설치 release와 후보는 동일패키지/버전·서명불일치로 현재 단말의 보존 업데이트 경로가 차단됨을 직접 확인했습니다. 설치시도 없음. [서명·바이트 실제 검수](RELEASE_INSTALL_PREFLIGHT_20261026.md). 다음 단일 기존 PM은 manifest/assets 차이 대조로 동등성 범위·release 전용 검증 항목을 확정합니다. 아래22시 표는 당시 판정을 보존합니다.
 
 # 제출 조건·현재 근거와 완료 조건 — 2026-10-26 22시

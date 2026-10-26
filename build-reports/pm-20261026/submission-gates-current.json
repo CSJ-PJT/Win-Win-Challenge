@@ -71,7 +71,7 @@
       "status": "BLOCKED_CURRENT_DEVICE_CERTIFICATE_MISMATCH",
       "owner": "기존 PM",
       "done_when": "기존 앱/데이터·서명을 보존하는 경로를 먼저 검수한 뒤 후보6a28 실제 바이트의 주소·출발·인계·복원 로그/화면 확보",
-      "evidence": "23시 실제 설치release c094/cert74f3 vs 후보6a28/certc421,동일package/version·전체서명각exit0·v2/signers1/v3false;설치시도없음. docs/RELEASE_INSTALL_PREFLIGHT_20261026.md"
+      "evidence": "23시 실제 설치release c094/cert74f3 vs 후보6a28/certc421,동일package/version·전체서명각exit0·v2/signers1/v3false;설치시도없음. docs/RELEASE_INSTALL_PREFLIGHT_20261026.md; 10/27 00시 assets8/8 동일,ZIP57/60동일·DEX/manifest/resources차이; 최종물리runtime미완료"
     },
     {
       "id": "Q2",
@@ -118,13 +118,14 @@
   "device_claim_acquired": false,
   "slack_sent": false,
   "next_owner": "기존 PM",
-  "next_action": "최종 release 후보와 현재 verifyqa의 manifest·assets 차이를 대조해 검증 동등성의 범위와 release 전용 검증 항목을 확정",
+  "next_action": "classes.dex와resources.arsc 차이의 원인을 정적으로 대조해 variant 상수·이름 차이와 native bridge 로직 차이를 구분",
   "official_sources": [
     "https://appdevchallenge.auto-hmg.io/guide/submission",
     "https://appdevchallenge.auto-hmg.io/faq",
     "https://appdevchallenge.auto-hmg.io/guide/schedule",
     "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005"
   ],
-  "last_reconciled_kst": "2026-10-26 23시",
-  "latest_preflight": "build-reports/pm-20261026/release-install-preflight.json"
+  "last_reconciled_kst": "2026-10-27 00시",
+  "latest_preflight": "build-reports/pm-20261026/release-install-preflight.json",
+  "static_comparison": "build-reports/pm-20261027/release-verifyqa-comparison.json"
 }
