@@ -1,0 +1,168 @@
+{
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "ci": {
+    "id": 40592432776,
+    "conclusion": "success",
+    "completedKst": "2026-10-28T07:17:53+09:00",
+    "jobs": [
+      {
+        "id": 122499813785,
+        "name": "verify-build",
+        "conclusion": "success"
+      },
+      {
+        "id": 122501432106,
+        "name": "native-smoke",
+        "conclusion": "success"
+      },
+      {
+        "id": 122501432139,
+        "name": "live-address",
+        "conclusion": "success"
+      },
+      {
+        "id": 122504174153,
+        "name": "publish",
+        "conclusion": "skipped"
+      }
+    ]
+  },
+  "scope": {
+    "environment": "Android 15 generic emulator release; PM self verification",
+    "addressJUnit": {
+      "tests": 1,
+      "seconds": 59.203,
+      "ok": true,
+      "marker": "LIVE_POSTCODE_ROUNDTRIP_OK"
+    },
+    "addressWarmRelaunch": true,
+    "addressColdRelaunch": {
+      "method": "native043.sh and android_smoke.py force-stop/start",
+      "addressVisible": true,
+      "postcodeColdAssertion": false
+    },
+    "domJUnit": {
+      "tests": 1,
+      "seconds": 18.397,
+      "ok": true,
+      "markers": [
+        "PRIMARY_HANDOFF_OK",
+        "EASY_ARRIVAL_ACK_OK"
+      ]
+    },
+    "uiChecks": 7,
+    "processExitMarkers": 5,
+    "processExitAllZero": true,
+    "nodePass": 112,
+    "nodeFail": 0,
+    "pcLiveChecks": 7,
+    "controlledJvmRetry": true,
+    "vehicleSdkRuntime": false,
+    "physicalRelease": false,
+    "independentQaApproval": false
+  },
+  "verification": {
+    "time": "2026-10-28T07:57:01.0109492+09:00",
+    "apkMetadata": [
+      {
+        "manifestExit": 0,
+        "name": "release",
+        "bytes": 5171400,
+        "certificateSha256": "187a401de35e4a9ecc5f8630ab4912c4e4884a9106bdf6b1b76c7ceb97bc5826",
+        "sha256": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+        "signatureExit": 0,
+        "manifestFile": "release-manifest.txt"
+      },
+      {
+        "manifestExit": 0,
+        "name": "release-tests",
+        "bytes": 829220,
+        "certificateSha256": "187a401de35e4a9ecc5f8630ab4912c4e4884a9106bdf6b1b76c7ceb97bc5826",
+        "sha256": "d1956125f1601727f89ee4c6dd8efcf7fc43b17a2d0b71b736cdc6b238cbce1f",
+        "signatureExit": 0,
+        "manifestFile": "release-tests-manifest.txt"
+      },
+      {
+        "manifestExit": 0,
+        "name": "qa",
+        "bytes": 5171420,
+        "certificateSha256": "187a401de35e4a9ecc5f8630ab4912c4e4884a9106bdf6b1b76c7ceb97bc5826",
+        "sha256": "5d34a20aa71be2442b2811b8265ffeb2ce5ec783ca760a75fddbaf8ea06eb486",
+        "signatureExit": 0,
+        "manifestFile": "qa-manifest.txt"
+      },
+      {
+        "manifestExit": 0,
+        "name": "qa-tests",
+        "bytes": 829244,
+        "certificateSha256": "187a401de35e4a9ecc5f8630ab4912c4e4884a9106bdf6b1b76c7ceb97bc5826",
+        "sha256": "b1b2977204d7fac108e3f870bd78281ac2137a92131d31db7ef07d49295d16b2",
+        "signatureExit": 0,
+        "manifestFile": "qa-tests-manifest.txt"
+      },
+      {
+        "sha256": "e9a62dfa3cd64e33eb5a3792b366dd94b9c31e176a2f612cd7f9a4a093990217",
+        "name": "sourceZip",
+        "bytes": 483649
+      }
+    ],
+    "installed": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "changed": 0,
+    "candidateMatched": 16,
+    "candidateSumsSha": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+    "lock": false,
+    "newApkBuild": 0,
+    "newInstall": 0,
+    "phoneUi": 0,
+    "routeRequests": 0
+  },
+  "artifacts": [
+    {
+      "id": 12774992889,
+      "name": "ansim-0.4.3-native",
+      "bytes": 1291149,
+      "digest": "sha256:b8d0d3c26e439c4e150e3fbb2e1c8e025f94507be8c7c5ae7bd39f3a8ac8b935"
+    },
+    {
+      "id": 12774967132,
+      "name": "ansim-0.4.3-build",
+      "bytes": 6062763,
+      "digest": "sha256:be0cfdf5fe234b3212a7822a347a93279e31589324e232465403a4f785cc0687"
+    },
+    {
+      "id": 12773934880,
+      "name": "ansim-0.4.3-live-address",
+      "bytes": 248086,
+      "digest": "sha256:c649473d75bb273543032e00708523e9f96df10d15b8f9ebc7bf0d4232ed450a"
+    }
+  ],
+  "slackSent": false,
+  "nextOwner": "existing PM",
+  "next": "Compare current verified source with installed verifyqa and prepare safe same-certificate QA update path without replacing originals"
+}
