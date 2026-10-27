@@ -1,3 +1,13 @@
+# API·bridge 현재 판정 — 2026-10-27 23시 KST
+
+현재 제품 소스는 f1164b04dc267260771ce3ffcc674247053f56e7 / CI40436119702 성공(publish skipped)입니다. 설치 verifyqa bd79075f/test229의19시 실제 주요버튼 인계·콜드,20시 쉬운알림/시설ACK·콜드,21시 이름2필드 저장/콜드/복귀,22시 잘못된연락처 거절·편집취소·콜드를 PM 자체QA로 구분합니다. [19시](PRIMARY_TOUCH_PHYSICAL_20261027.md) · [20시](EASY_TOUCH_PHYSICAL_20261027.md) · [21시](SETTINGS_TOUCH_PHYSICAL_20261027.md) · [22시](SETTINGS_CANCEL_PHYSICAL_20261027.md). 이것은 bridge6개 최신폰 재시험·release 자체물리·독립QA/사람사용성 승인 전체가 아닙니다.
+
+23시 REST 경로 직접조사: server.js/API/places는 키워드 REST를 구현하지만 현재 주소버튼은 official postcode picker 경로입니다. 현재 프로세스/User/Machine의 정확한 KAKAO_REST_API_KEY 미설정·소유 격리workspace .env/.env.local 없음 확인. 다른위치/이름/계정의키전체부재 아님. 최신소스동일 server/core/config 격리 실제HTTP3요청 health200/bootstrap200/authenticatedplaces503 MAP_NOT_CONFIGURED, 외부 dapi 요청0·서버종료·데이터파일미생성. 유효인증REST200은 여전히 미검증입니다. [현재 조사와 범위](KAKAO_REST_CONFIGURATION_20261027.md).
+
+서버6route의 최신코드검수와 실제외부호출, DOM/SDK/Geocoder를 합산하지 않습니다. 아래 날짜·옛APK·문서v3 기록은 당시 이력이며 현재 기준으로 소급하지 않습니다. 공식문서 현재v4/봉인후보 doc-v4-r1, 지정release75b5, 공개v0.3.0-preview·PR2 private Draft/미병합·실제제출미완료입니다.
+
+---
+
 > 10/27 08시 물리앱갱신: 지속서명verifyqa4ed→bd79075f로보존업데이트,CI899release와assets8/8동일.200%실제UI/가로·세로스크롤/COLD설정·확인유지/추가스크롤후100%복귀한정확인. 원본false보존/전체자동시험PASS아님. 기존release/.qa/.qa.test/test229보존. [최신물리근거](FONT_PHYSICAL_UPDATE_20261027.md). 아래4ed물리기록은해당옛바이너리의역사근거입니다.
 
 > 10/27 07시 최신 CI: 소스899a5a1/CI40402218901 verify-build·live-address·native-smoke성공/publishskipped. Node112·별도글씨12조합·PC주소7·Android15공식주소JUnit1/76.907초·DOM1/19.526초·UI7범위. 새release53ca/cert e5fb/원본3ZIP검수완료,물리4ed·고정후보35/6a28과구분. 아래과거표는해당시간·바이너리의역사근거입니다. [최신검수](FONT_CI_VERIFICATION_20261027.md).
@@ -6,7 +16,7 @@
 
 > 10/27 02시 물리verifyqa후속: 잘못된번호1~4거절·5회폐기/입력란제거→새번호/양측재확인→보호자완료·같은COLD282ms후완료/주소/우편번호복원을실제UI로확인했습니다. ADB UI1시나리오/JUnit0,전체저장값동일·후보release물리PASS아님. [실행·부분실패기록](CODE_ERRORS_PHYSICAL_20261027.md).
 
-# API·bridge 근거 표 — 2026-10-26 21시
+## 과거 API·bridge 근거 표 — 2026-10-26 21시
 
 ## 현재 검증 기준 · 2026-10-26 16시 KST
 
