@@ -1,0 +1,185 @@
+{
+  "task_id": "AS-M1-PM-20261027T1303",
+  "candidate": {
+    "candidate_id": "candidate-f1164b0-75b53185",
+    "source_sha": "f1164b04dc267260771ce3ffcc674247053f56e7",
+    "pm_head_at_preparation": "c8c9b55ae6dc73e0033fddf1b4ee59b96d6f8e16",
+    "ci_run": 40436119702,
+    "build_artifact": 12703837897,
+    "release": {
+      "sha256": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100",
+      "bytes": 5170860,
+      "certificate_sha256": "7573330d2f0123a50c4f947e6fe986cccb434f8cd5aba1c2324209dbddbd6831",
+      "package_id": "kr.co.ansimdonghaeng",
+      "version_code": 9,
+      "version_name": "0.4.3",
+      "physical_install": false
+    },
+    "source_zip_sha256": "917ea32121adf6a6d739a1102f243a46cd001208c200172ec86ff2efbc664d18",
+    "build_zip_sha256": "17ad41a52a3db8fd42607db0fc1b5e66216879c2edbb45cf586eefd4246e3f30",
+    "previous_candidate": "candidate-35e3065-6a28008a",
+    "official_documents": [
+      {
+        "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+        "name": "안심동행플랫폼_공식접수양식_최종.docx",
+        "version": "3",
+        "bytes": 500006,
+        "pages": 13
+      },
+      {
+        "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+        "name": "안심동행플랫폼_공식접수양식_최종.pdf",
+        "version": "3",
+        "bytes": 759195,
+        "pages": 13
+      }
+    ],
+    "document_match": false,
+    "formal_files_changed": false,
+    "public_release": false,
+    "reviewer_access_verified": false,
+    "actual_submission": false,
+    "ready": false
+  },
+  "sealed": {
+    "checksum_sha256": "1701675e74fe20aff4549821e8230718daab64604dab7830df6ad90683c49fb4",
+    "old_candidate_changed": [],
+    "candidate_id": "candidate-f1164b0-75b53185",
+    "new_build": false,
+    "old_checksums_verified": 11,
+    "files": [
+      {
+        "sha256": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100",
+        "name": "ansim-platform-0.4.3-candidate.apk",
+        "bytes": 5170860
+      },
+      {
+        "sha256": "d387260b36f9d6430332e72425fc0a265f8a5f2d49cd68604ed9ec1d544ec365",
+        "name": "ansim-platform-0.4.3-pc.zip",
+        "bytes": 28876
+      },
+      {
+        "sha256": "917ea32121adf6a6d739a1102f243a46cd001208c200172ec86ff2efbc664d18",
+        "name": "ansim-platform-0.4.3-source.zip",
+        "bytes": 436508
+      },
+      {
+        "sha256": "17ad41a52a3db8fd42607db0fc1b5e66216879c2edbb45cf586eefd4246e3f30",
+        "name": "ci-build-12703837897.zip",
+        "bytes": 6017117
+      },
+      {
+        "sha256": "efc330af79d783af06a499555f5bd0b517140c15de8f1efd1e8ca3351c616a13",
+        "name": "ci-verification.json",
+        "bytes": 8972
+      },
+      {
+        "sha256": "d9ddfaeb2702a3a4bc22dbfc9d3aaed61c73d04b301f4f74d4d3f6f8ae03d304",
+        "name": "DOCUMENT_VERSION_GAPS.json",
+        "bytes": 1774
+      },
+      {
+        "sha256": "13b982d6ccbea029efa88d150a09a9ee7da915cefa881732279680ca41135663",
+        "name": "manifest.json",
+        "bytes": 1448
+      },
+      {
+        "sha256": "98c0dd97c0c6088eb70ea5d43c78bbcabac5c3efc3144a7b85a150e2c8c619e2",
+        "name": "qa-package-manifest.json",
+        "bytes": 1792
+      },
+      {
+        "sha256": "cf35adb04750be367e0e2174ad6a35a97b6f43a2765a65f978e5fe025e79599e",
+        "name": "README_KO.md",
+        "bytes": 1953
+      },
+      {
+        "sha256": "efa3ede9962a746400b4d1e75812119ddcad357de0cf20c9ebbcf7b1468f39bf",
+        "name": "release-signature.txt",
+        "bytes": 982
+      },
+      {
+        "sha256": "10091870f8157f81df39652a0e74b21bd2ec6565f951d8bf21ccebb633108f64",
+        "name": "source-sha.txt",
+        "bytes": 41
+      }
+    ],
+    "formal_docs_changed": false,
+    "total_files": 12,
+    "submission": false,
+    "new_install": false,
+    "checksum_failures": [],
+    "success": true,
+    "old_files_preserved": 12,
+    "created_kst": "2026-10-27T13:06:17.0316839+09:00",
+    "listed_files": 11
+  },
+  "document_review": {
+    "reviewed_at_kst": "2026-10-27T13:05:00+09:00",
+    "scope": "current full extracted text13pages; no new layout/pixel verification",
+    "files": [
+      {
+        "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+        "name": "안심동행플랫폼_공식접수양식_최종.docx",
+        "version": "3",
+        "bytes": 500006,
+        "pages": 13
+      },
+      {
+        "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+        "name": "안심동행플랫폼_공식접수양식_최종.pdf",
+        "version": "3",
+        "bytes": 759195,
+        "pages": 13
+      }
+    ],
+    "gaps": [
+      {
+        "page": 5,
+        "field": "source",
+        "document": "35e3065",
+        "latest": "f1164b04dc267260771ce3ffcc674247053f56e7"
+      },
+      {
+        "page": 5,
+        "field": "physical app and test timing",
+        "document": "4edaf75c; official16.709s/DOM9.330s",
+        "latest": "bd79075f/test229; official17.693s/DOM9.707s; distinct PM self QA"
+      },
+      {
+        "page": 7,
+        "field": "CI",
+        "document": "40252472387",
+        "latest": "40436119702"
+      },
+      {
+        "page": 7,
+        "field": "release hash",
+        "document": "6a28008a…e53313",
+        "latest": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100"
+      },
+      {
+        "page": 13,
+        "field": "screen source",
+        "document": "b227ca2/CI40167658701",
+        "latest": "historical figure source; not latest release screen evidence"
+      }
+    ],
+    "unchanged_boundaries": [
+      "PM self QA, not independent approval",
+      "actual Pleos/vehicle integration remains future scope",
+      "pilot targets are targets, not actual metrics",
+      "release physical, reviewer access, real submission not verified"
+    ],
+    "formal_files_modified": false,
+    "ready_for_actual_submission": false
+  },
+  "ready_for_submission": false,
+  "phone_packages_preserved": 5,
+  "new_build": 0,
+  "new_install": 0,
+  "new_ci": 0,
+  "formal_files_modified": false,
+  "next_owner": "existing PM",
+  "next_action": "공식 DOCX·PDF의 동일 ID를 유지해 5·7쪽 검증 기록을 최신 소스·APK·실기기 근거로 갱신하고 렌더 검수"
+}
