@@ -1,0 +1,106 @@
+{
+  "task_id": "AS-Q1-PM-20261027T0904",
+  "scope": "PM self QA, physical Android16 verifyqa official address and separate cold restore",
+  "source": "899a5a16e747f14cddc92c9805971e5cd4422380",
+  "app_sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+  "test_sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+  "junit": {
+    "ok": 1,
+    "seconds": 17.693,
+    "executions": 1
+  },
+  "raw_initial": {
+    "task_id": "AS-Q1-PM-20261027T0904",
+    "owner": "PM self QA",
+    "started": "2026-10-27T09:05:32.2929439+09:00",
+    "success": false,
+    "junit_pass": true,
+    "cold_restored": false,
+    "builds": 0,
+    "installs": 0,
+    "instrument_exit": 0,
+    "failure": "ADB_1:adb.exe : adb: error: cannot create 'C:\\Users\\dan18\\OneDrive\\바탕 화면\\Task\\Win-Win-Challenge-QA-20261024\\AS-Q1-PM-20261027\r\nT0904\\address-qa\\00-keyboard-search.png': Not a directory\r\n위치 C:\\Users\\dan18\\OneDrive\\바탕 화면\\Task\\Win-Win-Challenge-QA-20261024\\address09.ps1:7 문자:99\r\n+ ... ;$ErrorActionPreference='Continue';$v=& $a -d @arguments 2>&1;$ex=$LA ...\r\n+                                           ~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (adb: error: can...Not a directory:String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\npull: building file list...\r\n",
+    "five_hashes_preserved": true,
+    "finished": "2026-10-27T09:05:52.4305179+09:00"
+  },
+  "raw_cold_followup": {
+    "task_id": "AS-Q1-PM-20261027T0904",
+    "owner": "PM self QA",
+    "started": "2026-10-27T09:06:28.2476979+09:00",
+    "success": false,
+    "junit_pass": true,
+    "cold_restored": false,
+    "builds": 0,
+    "installs": 0,
+    "activity_ms": 322,
+    "snapshots": [],
+    "failure": "\"?몄쥌?濡?110\" 구문 분석 - 수량자 {x,y} 앞에 아무 것도 없습니다.",
+    "five_hashes_preserved": true,
+    "finished": "2026-10-27T09:06:35.3838671+09:00"
+  },
+  "cold_observation": {
+    "task_id": "AS-Q1-PM-20261027T0904",
+    "owner": "PM self QA",
+    "started": "2026-10-27T09:07:01.0514692+09:00",
+    "success": true,
+    "junit_pass": true,
+    "cold_restored": true,
+    "builds": 0,
+    "installs": 0,
+    "activity_ms": 322,
+    "snapshots": [
+      {
+        "address_and_postcode": true,
+        "attempt": 1
+      }
+    ],
+    "five_hashes_preserved": true,
+    "finished": "2026-10-27T09:07:08.4518548+09:00"
+  },
+  "installed_after": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "claim": {
+    "released": "2026-10-27T09:07:08.4578637+09:00",
+    "owner": "AS-Q1-PM-20261027T0904",
+    "claim_exists": false
+  },
+  "screenshots_reviewed": [
+    "01-official-results.png",
+    "03-saved-address.png",
+    "cold-private.png"
+  ],
+  "stale_evidence": "address-qa/failure.png dated2026-10-26 09:59 excluded from this run",
+  "warnings": "Kakao tiara analytics CORS warnings09:05:43–44; picker selection and JUnit roundtrip succeeded; do not claim network console error-free",
+  "synthetic_visit_changed": true,
+  "whole_localStorage_equal": "not tested",
+  "builds": 0,
+  "installs": 0,
+  "ci_request": 0,
+  "latest_ci": 40402218901,
+  "release_physical": "NOT_RUN",
+  "independent_qa": "NOT_APPROVED",
+  "submission": false,
+  "next_owner": "기존 PM",
+  "next_action": "새 verifyqa bd/test229에서 출발→도착→연결번호→양측인계→보호자·쉬운알림 전체 DOM 흐름 단일 회귀",
+  "slack": "pending existing sender09slot"
+}
