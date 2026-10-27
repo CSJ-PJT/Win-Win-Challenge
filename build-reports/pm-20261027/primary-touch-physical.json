@@ -1,0 +1,42 @@
+{
+  "time": "2026-10-27T19:10:33.7929988+09:00",
+  "status": "PM_SELF_QA_ACTUAL_ADB_TOUCH_PRIMARY_FLOW_COMPLETE",
+  "appSha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+  "testApkNotInvoked": true,
+  "junitTests": 0,
+  "method": "Actual ADB taps/swipes/text; no JS/DOM injection",
+  "scope": "One kindergarten synthetic visit; selected saved public address; departure-arrival-code-sender-receiver-guardian; QA-only process COLD",
+  "checks": {
+    "departure": true,
+    "arrival": true,
+    "sixDigitCode": true,
+    "senderConfirmed": true,
+    "receiverConfirmed": true,
+    "guardianCompleted": true,
+    "guardianFiveChecks": true,
+    "addressRestored": true,
+    "allInstalledHashesUnchanged": true
+  },
+  "uiSnapshots": 21,
+  "coldActivityMs": 478,
+  "coldWaitMs": 493,
+  "earlyColdSnapshotEmpty": true,
+  "releasePhysicalPass": false,
+  "independentQa": false,
+  "humanUsabilityApproval": false,
+  "newInstall": 0,
+  "newBuild": 0,
+  "originalAppsAndDataActions": 0,
+  "qaStateChangedByNormalSyntheticVisit": true,
+  "slack": "not sent; outside 09-18",
+  "nextOwner": "existing PM temporary AS-Q1",
+  "nextTask": "On the same current verifyqa, verify easy arrival notice/facility acknowledgement via actual UI and cold restore, separately from kindergarten handoff.",
+  "claimReleased": true,
+  "notes": [
+    "Initial focus probe used dumpsys window windows and returned no QA focus; no capture then. Correct default dumpsys window confirmed QA foreground/unlocked; continued under same claim.",
+    "Started from prior easy ACK. Normal new-visit controls first reset care-center state; kindergarten preset then selected. One kindergarten handoff completed; no clear/reset command or JS/state injection.",
+    "Early post-COLD XML had no own-app nodes; preserved. Settled follow-up showed guardian completion/five confirmations/address. No repeated cold launch.",
+    "ADB screencap warned multiple displays; both resulting images directly inspected and show the intended QA guardian UI; no generic display success assumed.",
+    "APK five hashes unchanged; original-app preservation does not imply entire verifyqa localStorage unchanged, because a normal synthetic visit was created."
+  ]
+}
