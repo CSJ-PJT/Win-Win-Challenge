@@ -1,0 +1,165 @@
+{
+  "schema": "submission-candidate-docv4-revision-v1",
+  "runId": "AS-M1-PM-20261027T1456",
+  "owner": "existing PM",
+  "sealed": {
+    "sealedAt": "2026-10-27T14:59:56.6005253+09:00",
+    "candidate": "C:\\Users\\dan18\\OneDrive\\바탕 화면\\Task\\Win-Win-Challenge-QA-20261024\\AS-M1-PM-20261027T1456\\candidate-f1164b0-75b53185-docv4-r1",
+    "fileCount": 14,
+    "checksums": 13,
+    "checksumErrors": 0,
+    "oldFiles": 12,
+    "oldChanged": 0,
+    "oldSumsSha": "1701675e74fe20aff4549821e8230718daab64604dab7830df6ad90683c49fb4",
+    "sumsSha": "e7544d063b4091d26b0483125be939a447b53ff7b0304a098b0f105b6023a10a",
+    "installedHashesUnchanged": true,
+    "lock": false,
+    "documentBinaryCopies": 0,
+    "ready": false,
+    "files": [
+      {
+        "name": "ACCESS_REVIEW.json",
+        "bytes": 992,
+        "sha256": "5442c2432dbec42d2e9a5f5b118170fddcc3ef5fcf565725455856498943f548"
+      },
+      {
+        "name": "ansim-platform-0.4.3-candidate.apk",
+        "bytes": 5170860,
+        "sha256": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100"
+      },
+      {
+        "name": "ansim-platform-0.4.3-pc.zip",
+        "bytes": 28876,
+        "sha256": "d387260b36f9d6430332e72425fc0a265f8a5f2d49cd68604ed9ec1d544ec365"
+      },
+      {
+        "name": "ansim-platform-0.4.3-source.zip",
+        "bytes": 436508,
+        "sha256": "917ea32121adf6a6d739a1102f243a46cd001208c200172ec86ff2efbc664d18"
+      },
+      {
+        "name": "ci-build-12703837897.zip",
+        "bytes": 6017117,
+        "sha256": "17ad41a52a3db8fd42607db0fc1b5e66216879c2edbb45cf586eefd4246e3f30"
+      },
+      {
+        "name": "ci-verification.json",
+        "bytes": 8972,
+        "sha256": "efc330af79d783af06a499555f5bd0b517140c15de8f1efd1e8ca3351c616a13"
+      },
+      {
+        "name": "DOCUMENT_VERSION_BINDINGS.json",
+        "bytes": 1180,
+        "sha256": "0bc14bb13052ad49f40280e7beccafff53815be989a5b6b9a744b542896ea1ba"
+      },
+      {
+        "name": "HISTORY_DOCUMENT_VERSION_GAPS_V3.json",
+        "bytes": 1774,
+        "sha256": "d9ddfaeb2702a3a4bc22dbfc9d3aaed61c73d04b301f4f74d4d3f6f8ae03d304"
+      },
+      {
+        "name": "manifest.json",
+        "bytes": 2125,
+        "sha256": "048f12f21b1612ca05b35db91e92117f248e8ac8a78b6d072e3fa31b57b2c375"
+      },
+      {
+        "name": "qa-package-manifest.json",
+        "bytes": 1792,
+        "sha256": "98c0dd97c0c6088eb70ea5d43c78bbcabac5c3efc3144a7b85a150e2c8c619e2"
+      },
+      {
+        "name": "README_KO.md",
+        "bytes": 1769,
+        "sha256": "b1c59e70468022c735bf6a060ec00a8e9b25a24169b8dcf3f33e3bd4d59e1b8e"
+      },
+      {
+        "name": "release-signature.txt",
+        "bytes": 982,
+        "sha256": "efa3ede9962a746400b4d1e75812119ddcad357de0cf20c9ebbcf7b1468f39bf"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 1189,
+        "sha256": "e7544d063b4091d26b0483125be939a447b53ff7b0304a098b0f105b6023a10a"
+      },
+      {
+        "name": "source-sha.txt",
+        "bytes": 41,
+        "sha256": "10091870f8157f81df39652a0e74b21bd2ec6565f951d8bf21ccebb633108f64"
+      }
+    ]
+  },
+  "officialDocuments": [
+    {
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "file_id": "file_00000000152881f7abec3ad6c85c8e2c",
+      "name": "안심동행플랫폼_공식접수양식_최종.docx",
+      "version": 4,
+      "bytes": 500068,
+      "pages": 13,
+      "sha256": "ab4145047be92065a7d0a0383d171ad1096f89f68176278e6b8745891dc8192d",
+      "url": "https://chatgpt.com/library?file_id=libfile_412035b073bc8191a3980f378b0df188&account_id=personal"
+    },
+    {
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "file_id": "file_000000002db0820da34a35557f4595aa",
+      "name": "안심동행플랫폼_공식접수양식_최종.pdf",
+      "version": 4,
+      "bytes": 760964,
+      "pages": 13,
+      "sha256": "87f1a1745b445bab985eca161dc937e08e3840b8f050f27556254617b70445bc",
+      "url": "https://chatgpt.com/library?file_id=libfile_bed9844c793c8191b486dc00e74925fd&account_id=personal"
+    }
+  ],
+  "referencesOnly": true,
+  "officialFilesEditedOrDuplicated": false,
+  "ci": {
+    "id": 40436119702,
+    "source": "f1164b04dc267260771ce3ffcc674247053f56e7",
+    "verifyBuild": "success",
+    "liveAddress": "success",
+    "nativeSmoke": "success",
+    "publish": "skipped"
+  },
+  "accessInitial": {
+    "schema": "submission-access-preflight-v1",
+    "checkedAt": "2026-10-27T14:59+09:00",
+    "repoPrivate": true,
+    "authenticatedPmRead": "success",
+    "unauthenticatedProbe": "REQUEST_FAILED; transport/tool outcome; not GitHub permission denial",
+    "reviewerAccountAccess": "NOT_VERIFIED",
+    "libraryDocuments": "existing same-ID v4; external judge access not established; no shares granted",
+    "trackedApk": {
+      "path": "apk/안심동행_안심동행플랫폼_release.apk",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd64e80f7c82712806bebefb221b45457b15b246",
+      "size": 5131231,
+      "url": "https://api.github.com/repos/CSJ-PJT/Win-Win-Challenge/git/blobs/fd64e80f7c82712806bebefb221b45457b15b246"
+    },
+    "candidateApkBytes": 5170860,
+    "trackedPathMatchesCandidate": false,
+    "trackedMismatchBasis": "different byte length 5131231 vs 5170860; tracked blob retained, no replacement",
+    "permissionChanges": 0,
+    "invitations": 0,
+    "publicRelease": 0,
+    "actualSubmission": 0
+  },
+  "accessFollowup": {
+    "url": "https://github.com/CSJ-PJT/Win-Win-Challenge",
+    "method": "unauthenticated curl.exe HEAD",
+    "status": 404,
+    "exit": 0,
+    "meaning": "private repository is not accessible anonymously; actual judge identity/account access not verified",
+    "initialRequestFailurePreserved": true,
+    "permissionsChanged": false
+  },
+  "publishedRelease": "v0.3.0-preview",
+  "newBuildInstallPhoneUI": false,
+  "independentQaApproved": false,
+  "releaseExactPhysicalRuntime": "NOT_RUN",
+  "ready": false,
+  "actualSubmission": false,
+  "nextSingleOwner": "existing PM",
+  "nextSingleTask": "기존 PM이 공식 접수 안내의 최신 원문을 다시 읽고 필수 첨부·본인 서명·제출 수신 경로와 비공개 개발 산출물의 심사 접근 요건을 대조한다. 실제 제출·초대·공개 전환은 수행하지 않는다."
+}
