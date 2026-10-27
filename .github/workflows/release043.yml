@@ -57,6 +57,8 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - name: Verify native navigation retry contract
+        run: python3 test/navigation_adapter_retry.py
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
