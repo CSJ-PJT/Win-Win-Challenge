@@ -86,9 +86,21 @@ public final class LiveAddressTest {
         // Start a synthetic visit through product controls even when a previous
         // saved visit, role or completion screen was restored. Never clear data.
         // The restored role can be facility, which intentionally has no visit picker.
-        tap("인계자");
-        tap("방문 변경");
-        tap("유치원 등원",true);
+        // A clean install already opens the visit picker and hides the role tabs.
+        // A restored visit needs the existing role/change controls to open it.
+        long readyEnd=SystemClock.uptimeMillis()+22000;
+        while(visible("방문 유형 선택",false)==null && visible("인계자",false)==null
+            && SystemClock.uptimeMillis()<readyEnd)SystemClock.sleep(350);
+        if(visible("방문 유형 선택",false)==null){
+            tap("인계자");
+            tap("방문 변경");
+        }
+        // Match the actual button, not the Dialog whose aggregate text also matches.
+        UiObject2 visit=device.wait(Until.findObject(
+            By.clazz("android.widget.Button").textContains("유치원 등원")),22000);
+        assertNotNull("Kindergarten visit button not found",visit);
+        visit.click();
+        find("인계자",false); // Do not proceed until the picker is dismissed.
         tap("인계자");
         // Move the destination action away from the bottom transient toast.
         device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()*7/10,
