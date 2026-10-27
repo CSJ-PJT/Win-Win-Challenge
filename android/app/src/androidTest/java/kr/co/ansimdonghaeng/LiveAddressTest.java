@@ -23,20 +23,25 @@ public final class LiveAddressTest {
     private UiDevice device;
     private File output;
     private UiObject2 visible(String text,boolean contains){
-        // WebView can replace accessibility nodes between lookup and bounds access.
-        // Retry the query, never reuse the stale node or treat it as a missing control.
-        for(int attempt=0;attempt<3;attempt++){
+        // A save replaces the WebView subtree. Re-query within a bounded window,
+        // including when one stale duplicate precedes another usable matching node.
+        long end=SystemClock.uptimeMillis()+3000;
+        StaleObjectException stale=null;
+        do {
+            boolean replaced=false;
             try {
                 List<UiObject2> all=new ArrayList<>(device.findObjects(contains?By.textContains(text):By.text(text)));
                 all.addAll(device.findObjects(contains?By.descContains(text):By.desc(text)));
-                for(UiObject2 el:all)if(!el.getVisibleBounds().isEmpty())return el;
-                return null;
-            } catch(StaleObjectException e){
-                if(attempt==2)throw e;
-                SystemClock.sleep(150);
-            }
-        }
-        return null;
+                for(UiObject2 el:all){
+                    try {if(!el.getVisibleBounds().isEmpty())return el;}
+                    catch(StaleObjectException e){stale=e;replaced=true;}
+                }
+                if(!replaced)return null;
+            } catch(StaleObjectException e){stale=e;}
+            SystemClock.sleep(150);
+        } while(SystemClock.uptimeMillis()<end);
+        // Never convert an unsettled tree into a successful/missing-control result.
+        throw stale;
     }
     private UiObject2 find(String text, boolean contains) {
         long end=SystemClock.uptimeMillis()+22000;
