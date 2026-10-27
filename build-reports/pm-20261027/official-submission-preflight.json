@@ -1,0 +1,101 @@
+{
+  "schema": "official-submission-preflight-v1",
+  "runId": "AS-M1-PM-20261027T1605",
+  "checkedAt": "2026-10-27T16:06:24+09:00",
+  "owner": "existing PM",
+  "officialSources": [
+    "https://appdevchallenge.auto-hmg.io/guide/submission",
+    "https://appdevchallenge.auto-hmg.io/faq",
+    "https://appdevchallenge.auto-hmg.io/guide/schedule",
+    "https://appdevchallenge.auto-hmg.io/guide/rules",
+    "https://appdevchallenge.auto-hmg.io/notice",
+    "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005",
+    "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000006",
+    "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000001"
+  ],
+  "requirements": {
+    "firstRoundRequired": "completed application/planning form with participant consent/signature/date",
+    "optional": "video, source+APK GitHub, shortform link",
+    "email": "appdevchallenge@hyundai-partners.com",
+    "subjectPattern": "[차량용 앱 개발 공모전] 팀명(개인은 성명)_대표자명",
+    "deadline": "2026-11-15 KST; exact cutoff time not shown",
+    "revision": "same sending email, all documents and signed consent, all team members CC; last pre-deadline submission wins",
+    "privateRepository": "announced judge collaborator identity, invitation accepted and actual access before deadline; personal-repo write access caution",
+    "readmeRequired": [
+      "app name and summary",
+      "execution",
+      "test environment and settings",
+      "APK path or release link"
+    ],
+    "workingAppGate": "before second PT, not first-round mandatory attachment"
+  },
+  "formReview": {
+    "version": 4,
+    "ids": [
+      "libfile_412035b073bc8191a3980f378b0df188",
+      "libfile_bed9844c793c8191b486dc00e74925fd"
+    ],
+    "individual": true,
+    "participants": 1,
+    "consentMarked": true,
+    "typedNameInSignature": true,
+    "datePresent": true,
+    "handwrittenOrTypedSignatureValidity": "not determined; official pages reviewed do not explicitly settle typed-name acceptance",
+    "optionalBlankFieldsPreserved": true,
+    "edited": false,
+    "renderedThisRun": false
+  },
+  "notice": {
+    "date": "2026-10-28T14:00:00+09:00",
+    "prior": "only afternoon / exact time unknown",
+    "current": "schedule and dedicated notice both show 14:00",
+    "connectionLinkFound": false,
+    "reviewerGithubIdentityFound": false,
+    "searchScope": "submission/FAQ/rules and all 3 current notices; domain-restricted search; not a claim no notice can exist elsewhere"
+  },
+  "candidate": {
+    "files": 14,
+    "checks": 13,
+    "errors": 0,
+    "sumsSha": "e7544d063b4091d26b0483125be939a447b53ff7b0304a098b0f105b6023a10a",
+    "officialDocumentsReferencedOnly": true,
+    "latestReleaseSha": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100",
+    "trackedApkMismatchStillOpen": true
+  },
+  "preservation": {
+    "installed5HashesUnchanged": true,
+    "lockAbsent": true,
+    "instrumentationAbsent": true,
+    "newInstall": false,
+    "newBuild": false,
+    "newCI": false,
+    "phoneUI": false,
+    "formalEdit": false
+  },
+  "github": {
+    "headAtStart": "43c4691996355ac7167c1521072b650ae2fb7dc0",
+    "pr": 2,
+    "draft": true,
+    "ci": 40436119702,
+    "source": "f1164b04dc267260771ce3ffcc674247053f56e7",
+    "success": true,
+    "publish": "skipped",
+    "published": "v0.3.0-preview"
+  },
+  "notPerformed": [
+    "mail submission",
+    "judge invitation or permission expansion",
+    "public release",
+    "formal document edits or signature generation"
+  ],
+  "open": [
+    "signature acceptance confirmation",
+    "actual formal attachment before submission",
+    "optional GitHub judged account access",
+    "designated tracked APK consistency",
+    "release exact physical runtime",
+    "independent QA and human usability"
+  ],
+  "nextSingleOwner": "existing PM",
+  "nextSingleTask": "지정 APK 경로와 최신 후보75b5의 차이를 해소할 비공개 PM 브랜치 변경을 준비·검수한다. 원본 APK·봉인 후보는 보존하고 공개 배포·권한 확대·실제 제출은 하지 않는다."
+}
