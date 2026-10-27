@@ -6,10 +6,7 @@ if (!$env:ANSIM_GRADLE -or !(Test-Path $env:ANSIM_GRADLE)) { throw 'Set ANSIM_GR
 $root = Split-Path $PSScriptRoot
 Push-Location $root
 try {
-  & node tools/bundle.js
-  if ($LASTEXITCODE -ne 0) { throw 'Bundle failed' }
-  Copy-Item web/*.js,web/style.css,web/postcode.html android/app/src/main/assets/
-  Copy-Item dist/handoff-demo.html android/app/src/main/assets/index.html
+  # Gradle prepares and checks the complete web asset set before merging assets.
   Set-Location android
   & $env:ANSIM_GRADLE --no-daemon --max-workers=1 -PansimTestBuildType=verifyQa :app:assembleVerifyQa :app:assembleVerifyQaAndroidTest
   if ($LASTEXITCODE -ne 0) { throw 'QA APK build failed' }

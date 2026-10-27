@@ -57,3 +57,31 @@ dependencies {
   androidTestImplementation 'androidx.test.ext:junit:1.2.1'
   androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'
 }
+
+
+// Build web assets from source for every variant, including direct Gradle builds.
+// Never package the stale tracked snapshot from src/main/assets.
+def webRoot = rootProject.projectDir.parentFile
+def generatedWebAssets = layout.buildDirectory.dir('generated/ansimAssets')
+def bundleAndroidWeb = tasks.register('bundleAndroidWeb', Exec) {
+  workingDir webRoot
+  commandLine 'node', 'tools/bundle.js'
+  inputs.files(fileTree(new File(webRoot, 'web')))
+  inputs.file(new File(webRoot, 'tools/bundle.js'))
+  outputs.file(new File(webRoot, 'dist/handoff-demo.html'))
+}
+def prepareAndroidAssets = tasks.register('prepareAndroidAssets', Sync) {
+  dependsOn bundleAndroidWeb
+  from(new File(webRoot, 'web')) {
+    include 'config.js', 'core.js', 'ui.js', 'address.js', 'app.js', 'style.css', 'postcode.html'
+  }
+  from(new File(webRoot, 'dist/handoff-demo.html')) { rename { 'index.html' } }
+  into generatedWebAssets
+  doLast {
+    def expected = ['config.js','core.js','ui.js','address.js','app.js','style.css','postcode.html','index.html'] as Set
+    def actual = destinationDir.listFiles().collect { it.name } as Set
+    if (actual != expected) throw new GradleException('Incomplete Android web assets: ' + actual)
+  }
+}
+android.sourceSets.main.assets.setSrcDirs([generatedWebAssets])
+tasks.named('preBuild').configure { dependsOn prepareAndroidAssets }

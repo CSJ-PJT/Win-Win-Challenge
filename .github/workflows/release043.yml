@@ -65,8 +65,6 @@ jobs:
           DEMO_KEYSTORE: ${{ runner.temp }}/preview.jks
           DEMO_STORE_PASSWORD: preview-ci-only
         run: |
-          cp web/*.js web/style.css web/postcode.html android/app/src/main/assets/
-          cp dist/handoff-demo.html android/app/src/main/assets/index.html
           keytool -genkeypair -keystore "$DEMO_KEYSTORE" -storepass "$DEMO_STORE_PASSWORD" -keypass "$DEMO_STORE_PASSWORD" -alias demo -keyalg RSA -keysize 3072 -validity 3650 -dname 'CN=Ansim Preview, O=Contest Prototype, C=KR'
           gradle -p android --no-daemon --max-workers=2 assembleRelease assembleReleaseAndroidTest 2>&1 | tee build-reports/v043/gradle.txt
           mkdir -p apk
