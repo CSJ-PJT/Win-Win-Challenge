@@ -1,0 +1,37 @@
+{
+  "schema": "private-tracked-apk-alignment-v1",
+  "runId": "AS-M1-PM-20261027T1656",
+  "owner": "existing PM",
+  "base": "37612f32292e5f26a9f2ae79b0b5fde47c5cfe49",
+  "source": "f1164b04dc267260771ce3ffcc674247053f56e7",
+  "ci": 40436119702,
+  "private": true,
+  "targetPath": "apk/안심동행_안심동행플랫폼_release.apk",
+  "old": {
+    "blob": "fd64e80f7c82712806bebefb221b45457b15b246",
+    "bytes": 5131231,
+    "preservedPath": "apk/history/안심동행_안심동행플랫폼_release-before-20261027-fd64e80.apk"
+  },
+  "new": {
+    "blob": "70e9c7735818bacf9937b3b0a6ac959cb0a5add8",
+    "bytes": 5170860,
+    "sha256": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100",
+    "certificateSha256": "7573330d2f0123a50c4f947e6fe986cccb434f8cd5aba1c2324209dbddbd6831",
+    "signatureEvidence": "12h full apksigner exit0/v2true/1signer; this run same SHA verified, no signing/build"
+  },
+  "candidateUnchanged": true,
+  "formalDocumentsEdited": false,
+  "phoneRuntimeNew": false,
+  "releasePhysicalRuntime": "NOT_RUN",
+  "publicRelease": false,
+  "actualSubmission": false,
+  "permissionsChanged": false,
+  "independentQaApproved": false,
+  "readbackVerification": {
+    "method": "Git tree exact blob ID and byte length equals computed full APK object hash",
+    "newTargetMatches": true,
+    "oldPreserved": true,
+    "binaryDownload": "connector binary fetch failed UTF-8 decoding twice; no APK content failure inferred",
+    "independentStoredSha256Download": "not performed"
+  }
+}
