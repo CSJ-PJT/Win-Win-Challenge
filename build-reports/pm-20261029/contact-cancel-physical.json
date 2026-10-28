@@ -1,0 +1,237 @@
+{
+  "time": "2026-10-29T05:07:07.5729146+09:00",
+  "owner": "AS-Q1-PM-20261029T0505",
+  "status": "PASS_SCOPED",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "package": "kr.co.ansimdonghaeng.verifyqa",
+  "variant": "verifyQa",
+  "appSha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+  "scope": "PM actual UI invalid sender phone rejection and unsaved sender name cancel; two reopen comparisons",
+  "checks": {
+    "baseline13": true,
+    "reject13": true,
+    "cancel13": true,
+    "afterRejectSame13": true,
+    "afterCancelSame13": true,
+    "phoneError": true,
+    "rejectedEditorKeptValue": true,
+    "nameEditedBeforeCancel": true,
+    "installed5Same": true,
+    "candidate20Same": true,
+    "sumsSame": true,
+    "instrumentationAbsent": true,
+    "claimAbsent": true
+  },
+  "before": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "after": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "candidateChecks": [
+    {
+      "matches": true,
+      "file": "ACCESS_REVIEW.json"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-candidate.apk"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-pc.zip"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-source.zip"
+    },
+    {
+      "matches": true,
+      "file": "ci-build-12774967132.zip"
+    },
+    {
+      "matches": true,
+      "file": "ci-verification-historical-0755.json"
+    },
+    {
+      "matches": true,
+      "file": "DOCUMENT_VERSION_BINDINGS.json"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_R2_SHA256SUMS.txt"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_R3_SHA256SUMS.txt"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_V4_DOCUMENT_GAPS.json"
+    },
+    {
+      "matches": true,
+      "file": "manifest.json"
+    },
+    {
+      "matches": true,
+      "file": "official-application-v5.docx"
+    },
+    {
+      "matches": true,
+      "file": "official-application-v5.pdf"
+    },
+    {
+      "matches": true,
+      "file": "official-v5-verification.json"
+    },
+    {
+      "matches": true,
+      "file": "README_KO.md"
+    },
+    {
+      "matches": true,
+      "file": "release-manifest.txt"
+    },
+    {
+      "matches": true,
+      "file": "release-signature.txt"
+    },
+    {
+      "matches": true,
+      "file": "source-sha.txt"
+    },
+    {
+      "matches": true,
+      "file": "verifyqa-dom-cold-physical.json"
+    },
+    {
+      "matches": true,
+      "file": "verifyqa-official-physical.json"
+    }
+  ],
+  "candidateSumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+  "claim": {
+    "time": "2026-10-29T05:07:06.7693172+09:00",
+    "lockRemaining": false,
+    "owner": "AS-Q1-PM-20261029T0505"
+  },
+  "xmlCount": 22,
+  "images": [
+    {
+      "sha256": "3eb6909219ee05c441b0bff80496dee3de068f1ebff0eb8630fe80dea4451c12",
+      "file": "after-cancel-private.png"
+    },
+    {
+      "sha256": "0a9e20a9ed2172c8fbc52da10bdfd49950aab006f11357eab14525f235d388c0",
+      "file": "after-reject-private.png"
+    },
+    {
+      "sha256": "1fb70f0e9e9fcf1a6cd6e876f806ed0cceda9a6115e07ae49f8e761739006596",
+      "file": "baseline-private.png"
+    },
+    {
+      "sha256": "1fb70f0e9e9fcf1a6cd6e876f806ed0cceda9a6115e07ae49f8e761739006596",
+      "file": "editor-after-private.png"
+    },
+    {
+      "sha256": "0338dd62137b08c7d167f85d6caae7150c2ebf10ec5728d7cdef514658204b84",
+      "file": "final-close-after-private.png"
+    },
+    {
+      "sha256": "0646ed4a5fe1c249decd625c953592a4975b0644eb5cecb3cd70c5ac010487f4",
+      "file": "initial-private.png"
+    },
+    {
+      "sha256": "9c406cd95779c2433b46dc6d6acae91dd9f24bc71496fab4d3e9f72aa54bac86",
+      "file": "invalid-cancel-after-private.png"
+    },
+    {
+      "sha256": "4286e1f10f18a99b07a95d7dda83d13c0d0038d0dd21fa8d055641f7a17ff852",
+      "file": "invalid-phone-after-private.png"
+    },
+    {
+      "sha256": "dae7dbab209019bb1ff0eb73c80d8856c2e88883449c274da28d16ea44c68907",
+      "file": "name-cancel-after-private.png"
+    },
+    {
+      "sha256": "36f018501d298d4880d802e50b8dfea77702ab27ac5c2a54586f296777af951a",
+      "file": "name-unsaved-after-private.png"
+    },
+    {
+      "sha256": "90d3ee25d75cd7cab8d48608feb0199ef11342a4ff5fc997903af02585545dbb",
+      "file": "rejected-save-after-private.png"
+    },
+    {
+      "sha256": "3eb6909219ee05c441b0bff80496dee3de068f1ebff0eb8630fe80dea4451c12",
+      "file": "reopen-after-cancel-after-private.png"
+    },
+    {
+      "sha256": "0a9e20a9ed2172c8fbc52da10bdfd49950aab006f11357eab14525f235d388c0",
+      "file": "reopen-after-reject-after-private.png"
+    }
+  ],
+  "junitRuns": 0,
+  "newBuilds": 0,
+  "newInstalls": 0,
+  "uiScenario": 1,
+  "limitations": [
+    "PM self QA, not independent QA or release physical.",
+    "13 observed form values only; not full localStorage.",
+    "One short invalid phone and one unsaved name; not exhaustive input validation.",
+    "No cold restart this run; previous cold result separate.",
+    "No real phone call or institution notification."
+  ],
+  "delivery": {
+    "slack": "NOT_SENT_NIGHT",
+    "phonePush": "UNVERIFIED",
+    "lastObservedPost": "2026-10-28 18:11:31 KST #asdh ArchiveOS search; not this run delivery"
+  },
+  "nextSingleOwner": "기존 PM AS-M1: 현재 verifyQa930의 표시값 200%에서 역할 탭·하단 버튼 접근을 실제 스크롤로 확인한 뒤 원래 100%로 복귀. 새 claim·잠금·동시작업 점검, 전체 저장값 동일/실제 2배/사람 사용성 승인으로 확대하지 않음.",
+  "ci": {
+    "run": 40592432776,
+    "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+    "verifyBuild": "success",
+    "liveAddress": "success",
+    "nativeSmoke": "success",
+    "publish": "skipped"
+  }
+}
