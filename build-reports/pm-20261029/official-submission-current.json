@@ -1,0 +1,197 @@
+{
+  "time": "2026-10-29T00:05:04.3409741+09:00",
+  "pages": [
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/guide/submission",
+      "status": 200,
+      "sha256": "5ee4aaca0e520b7b199851448806f09c098799d574f0ac93df294eaf5a54a78e",
+      "file": "official-01.html",
+      "externalMediaOrGithubLinks": []
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice",
+      "status": 200,
+      "sha256": "d433557a4b6dfbf33ba344728fc7329df6821cb4761a92fdb646c48403fed6e5",
+      "file": "official-02.html",
+      "externalMediaOrGithubLinks": []
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/faq",
+      "status": 200,
+      "sha256": "886c2dd45512e4015ec805db53d0a664e97ccd905281d5b9f0d41a5eed9c608b",
+      "file": "official-03.html",
+      "externalMediaOrGithubLinks": []
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/guide/rules",
+      "status": 200,
+      "sha256": "5a7d6389fb51eadc210d95b5933b0db663d6594ab65465c61329afa733b5b939",
+      "file": "official-04.html",
+      "externalMediaOrGithubLinks": []
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/guide/schedule",
+      "status": 200,
+      "sha256": "d5c1d84c6edc7b4d1164fe9d07b8ef905f469c1ddfaf0ae5d89321cfe9117696",
+      "file": "official-05.html",
+      "externalMediaOrGithubLinks": []
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000006",
+      "status": 200,
+      "sha256": "d52c82856bda93f6360fccf432805d83b364689933c4e2c3548764dcd5641b4f",
+      "file": "official-06.html",
+      "externalMediaOrGithubLinks": []
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000001",
+      "status": 200,
+      "sha256": "363099f33504bf71bcc4099707e14be8f693691f3442136f75053cb57eb1a9df",
+      "file": "official-07.html",
+      "externalMediaOrGithubLinks": []
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005",
+      "status": 200,
+      "sha256": "65841cade505fa5fd33864a7500032d234e1a0448375e4a76e69b49700aa6186",
+      "file": "official-08.html",
+      "externalMediaOrGithubLinks": []
+    }
+  ],
+  "candidateChecks": [
+    {
+      "file": "ACCESS_REVIEW.json",
+      "matches": true
+    },
+    {
+      "file": "ansim-platform-0.4.3-candidate.apk",
+      "matches": true
+    },
+    {
+      "file": "ansim-platform-0.4.3-pc.zip",
+      "matches": true
+    },
+    {
+      "file": "ansim-platform-0.4.3-source.zip",
+      "matches": true
+    },
+    {
+      "file": "ci-build-12774967132.zip",
+      "matches": true
+    },
+    {
+      "file": "ci-verification-historical-0755.json",
+      "matches": true
+    },
+    {
+      "file": "DOCUMENT_VERSION_BINDINGS.json",
+      "matches": true
+    },
+    {
+      "file": "HISTORY_R2_SHA256SUMS.txt",
+      "matches": true
+    },
+    {
+      "file": "HISTORY_R3_SHA256SUMS.txt",
+      "matches": true
+    },
+    {
+      "file": "HISTORY_V4_DOCUMENT_GAPS.json",
+      "matches": true
+    },
+    {
+      "file": "manifest.json",
+      "matches": true
+    },
+    {
+      "file": "official-application-v5.docx",
+      "matches": true
+    },
+    {
+      "file": "official-application-v5.pdf",
+      "matches": true
+    },
+    {
+      "file": "official-v5-verification.json",
+      "matches": true
+    },
+    {
+      "file": "README_KO.md",
+      "matches": true
+    },
+    {
+      "file": "release-manifest.txt",
+      "matches": true
+    },
+    {
+      "file": "release-signature.txt",
+      "matches": true
+    },
+    {
+      "file": "source-sha.txt",
+      "matches": true
+    },
+    {
+      "file": "verifyqa-dom-cold-physical.json",
+      "matches": true
+    },
+    {
+      "file": "verifyqa-official-physical.json",
+      "matches": true
+    }
+  ],
+  "installed": [
+    {
+      "package": "kr.co.ansimdonghaeng",
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "matches": true
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa",
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "matches": true
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "matches": true
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa",
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "matches": true
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa.test",
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "matches": true
+    }
+  ],
+  "lockPresent": false,
+  "instrumentation": [],
+  "sumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+  "docxSha256": "3f0bf3deb7d0469fdae5e31a40bbeecf976089be52934b37ce4e62cabe3401df",
+  "pdfSha256": "2be8816f2b3eebd061d4de4d0aaaa95482ffdd67317e25a5a37fb0c7fa614178",
+  "scope": "Official submission conditions and candidate gate reconciliation, no product runtime test",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "baseHead": "16a7fb3866cec8423b4d87c442da9b63f6642a5b",
+  "noticeCount": 3,
+  "submissionDeadline": "2026-11-15",
+  "deadlineTimeVerified": false,
+  "judgingAccountIdFound": false,
+  "typedSignatureAcceptanceVerified": false,
+  "replayUrlFound": false,
+  "briefingActualHeldVerified": false,
+  "readyToSend": false,
+  "newProductCode": 0,
+  "newBuild": 0,
+  "newInstall": 0,
+  "newPhoneUi": 0,
+  "newJUnit": 0,
+  "formalDocumentContentReinspection": false,
+  "formalDocumentEdited": false,
+  "slackNewSend": 0,
+  "phonePush": "unverified",
+  "nextOwner": "existing PM AS-M1",
+  "nextTask": "Update existing private review-only submission email draft against r4/v5/current source and fixed links; no mailbox registration or sending"
+}

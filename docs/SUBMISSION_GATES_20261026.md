@@ -1,3 +1,28 @@
+# 제출 조건·현재 근거와 완료 조건 — 2026-10-29 00시 KST
+
+[오늘 공식8페이지 재조회](OFFICIAL_SUBMISSION_PREFLIGHT_20261027.md)와 [현재 API/bridge표](API_EVIDENCE_MATRIX_20261025.md)를 기준으로 갱신했습니다. 아래 10/26 표와 후속은 과거이력입니다. 전체출시%/공식수용분모가 아닙니다.
+
+| 범위 | 현재 판정 | 기존 단일 담당·완료 조건 |
+|---|---|---|
+| F1 1차 필수 기획서·동의 | v5 실제파일 후보r4에 포함·체크섬유지, 서명허용 방식 미확인 | PM: 제출직전 본인동의/서명/날짜와 공식요건 대조. 대리서명0 |
+| F2 실제 접수 | NOT_SUBMITTED | PM: 별도 실제제출 승인 후 발송·접수근거 확보. 검토초안≠메일함등록≠발송 |
+| D1 선택 개발자료 | source99/releasef3b8/docv5 후보r4 준비,20/20일치 | PM: 최종메일 첨부목록·원본ID·hash·고정소스링크 대조 |
+| D2 지정APK | ALIGNED: apk/안심동행_안심동행플랫폼_release.apk blob80cf1a71/5171400B | PM: 후보f3b8 정합화16시근거 유지, 옛파일history보존. 심사자 다운로드 성공과 구분 |
+| D3 Private 접근 | ACCOUNT_ID_AND_ACCESS_UNVERIFIED | PM: 정확공식계정 확보와 별도권한승인 후 실제접근 확인. 임의초대0 |
+| Q1 release 실기기 | NOT_RUN: 현재폰 보존 업데이트 서명차이로 차단 | PM: 원본앱/데이터 보존가능 경로에서 후보실제바이트 검증. QA variant로 대체판정 금지 |
+| Q2 PM 자체QA | 현재verifyQa930/testdac 공식주소·DOM/cold·Geocoder·Dialer·지도웹·비차량guard 각각한정 근거 | PM: 환경/시각/APK별 기록유지, 과거HTTP와현재3파일동일·새호출0 |
+| Q3 독립QA·사람사용성 | ACK/APPROVAL_UNVERIFIED | 기존QA/감사 담당: 실제수신·독립시험·판정. PM자체검수와분리/새agent0 |
+| Q4 실제서비스/차량 | 유효KakaoREST200·Pleos/AAOS/실차·기관클라우드 미검증 | PM: 가용권한/환경 조사 후 허용범위실측. 비용/실기관전송별도승인 |
+| O1 일정/설명회 | 마감11/15유지·정확시각미확인,10/28 14시공지의 실제개최/다시보기 미확인 | PM: 공식변경 추후대조. 오늘조회8페이지에는녹화URL미발견 |
+
+공식DOCX/PDF 동일ID v5는 이번내용/렌더재검수·편집0. 후보r4내바이트해시/20체크섬·설치5SHA00:05:04보존확인. 제품소스99/CI40592432776성공·publishskipped/PR2Draft미병합·게시v0.3.0-preview만. 준비·제품출시·접수완료를 분리합니다.
+
+다음 단일 기존 PM: 기존 비공개 제출메일 검토초안을 현재r4/v5/source99/releasef3b8로 갱신·첨부/고정링크 검수. 실제메일함등록/발송/공개·권한확대/제출없음. 야간Slack발송0·폰push미검증.
+
+---
+
+## 보존 이력 — 2026-10-26~27 원문
+
 > 10/27 00시 정적 후속: 후보6a28와 설치verifyqa4ed의 assets8/8 바이트동일·ZIP57/60동일. DEX/manifest/resources는 다르며 release물리PASS로 합산하지 않습니다. [전체 비교·동등성 경계](RELEASE_VERIFYQA_COMPARISON_20261027.md). 다음 단일 PM: DEX/resources 차이 원인 분석.
 
 > 23시 후속: 설치 release와 후보는 동일패키지/버전·서명불일치로 현재 단말의 보존 업데이트 경로가 차단됨을 직접 확인했습니다. 설치시도 없음. [서명·바이트 실제 검수](RELEASE_INSTALL_PREFLIGHT_20261026.md). 다음 단일 기존 PM은 manifest/assets 차이 대조로 동등성 범위·release 전용 검증 항목을 확정합니다. 아래22시 표는 당시 판정을 보존합니다.
