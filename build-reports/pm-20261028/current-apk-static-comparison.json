@@ -1,0 +1,344 @@
+{
+  "time": "2026-10-28T17:11:22.8144312+09:00",
+  "owner": "existing PM (AS-M1)",
+  "scope": "Static comparison of current release f3b8 and physical-tested verifyQa930, not runtime equivalence or physical release PASS",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "ci": 40592432776,
+  "zip": {
+    "time": "2026-10-28T17:10:04.2359041+09:00",
+    "releaseSha": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+    "verifyqaSha": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+    "releaseBytes": 5171400,
+    "verifyqaBytes": 5171440,
+    "releaseEntries": 60,
+    "verifyqaEntries": 60,
+    "equal": 57,
+    "assets": [
+      {
+        "name": "assets/address.js",
+        "bytes": 3356,
+        "sha256": "49c8b523f9038ed2d8dbe6509d79b975f930b78b1ef94bd1fb0a8c0905280800"
+      },
+      {
+        "name": "assets/app.js",
+        "bytes": 44798,
+        "sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e"
+      },
+      {
+        "name": "assets/config.js",
+        "bytes": 4724,
+        "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87"
+      },
+      {
+        "name": "assets/core.js",
+        "bytes": 15541,
+        "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65"
+      },
+      {
+        "name": "assets/index.html",
+        "bytes": 89466,
+        "sha256": "1519668533310c3dded68380284a8eba0e296e6c1c9d87ca3dc90a84f810e0a8"
+      },
+      {
+        "name": "assets/postcode.html",
+        "bytes": 1629,
+        "sha256": "60d789933a252a47d6c4b7b2c8188e097b8615e18b87882215618ed1a1680d7f"
+      },
+      {
+        "name": "assets/style.css",
+        "bytes": 14816,
+        "sha256": "1f44836f5bd9e6b2b802aa89601ded5d80f04100223bdaf516905906495b439e"
+      },
+      {
+        "name": "assets/ui.js",
+        "bytes": 5297,
+        "sha256": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851"
+      }
+    ],
+    "entryDifferences": [
+      {
+        "name": "classes.dex",
+        "reason": "content",
+        "release": "6471f90b976035a14ab2e9fd019074b1d3f6551f1dd6faac48ce61db07b75325",
+        "verifyqa": "60270f3d045478979f293fff2f6e03342e5622d7a8a5a1246fc3a9e993dc9a4d"
+      },
+      {
+        "name": "AndroidManifest.xml",
+        "reason": "content",
+        "release": "4a7613fd487851a5dc11b9a0fed7ba3d579b0f53af88a5524c0048a2b10867ca",
+        "verifyqa": "ca6c4657cf3ccb074198491abcac67dc373c5eca0e64bcb14b767789eea3b982"
+      },
+      {
+        "name": "resources.arsc",
+        "reason": "content",
+        "release": "39a57e7f3d06cc778a6c2c4684b9aa142110b6a895fa8984f0870f0a41128d54",
+        "verifyqa": "bccad6722be0ca60c883aa3313560a8b0cca093d56c7b03d94f4300ae7903273"
+      }
+    ],
+    "verifyqaOnly": [],
+    "staging": "C:\\Users\\dan18\\AppData\\Local\\Temp\\asdh-compare-20261028-1704"
+  },
+  "dex": {
+    "releaseLines": 847708,
+    "verifyqaLines": 847708,
+    "rawDifferentLines": 334557,
+    "normalizedDifferentLines": 3,
+    "samples": [
+      {
+        "line": 842173,
+        "context": "Class descriptor  : 'Lkr/co/ansimdonghaeng/BuildConfig;'",
+        "release": "      value         : \"kr.co.ansimdonghaeng\"",
+        "verifyqa": "      value         : \"kr.co.ansimdonghaeng.verifyqa\"",
+        "normalizedRelease": "      value         : \"kr.co.ansimdonghaeng\"",
+        "normalizedVerifyqa": "      value         : \"kr.co.ansimdonghaeng.verifyqa\""
+      },
+      {
+        "line": 842178,
+        "context": "Class descriptor  : 'Lkr/co/ansimdonghaeng/BuildConfig;'",
+        "release": "      value         : \"release\"",
+        "verifyqa": "      value         : \"verifyQa\"",
+        "normalizedRelease": "      value         : \"release\"",
+        "normalizedVerifyqa": "      value         : \"verifyQa\""
+      },
+      {
+        "line": 842193,
+        "context": "Class descriptor  : 'Lkr/co/ansimdonghaeng/BuildConfig;'",
+        "release": "      value         : \"0.4.3\"",
+        "verifyqa": "      value         : \"0.4.3-verifyqa\"",
+        "normalizedRelease": "      value         : \"0.4.3\"",
+        "normalizedVerifyqa": "      value         : \"0.4.3-verifyqa\""
+      }
+    ]
+  },
+  "manifest": {
+    "verifyqaLines": 59,
+    "releaseLines": 59,
+    "differences": [
+      {
+        "verifyqa": "    A: android:versionName(0x0101021c)=\"0.4.3-verifyqa\" (Raw: \"0.4.3-verifyqa\")",
+        "release": "    A: android:versionName(0x0101021c)=\"0.4.3\" (Raw: \"0.4.3\")",
+        "line": 4
+      },
+      {
+        "verifyqa": "    A: package=\"kr.co.ansimdonghaeng.verifyqa\" (Raw: \"kr.co.ansimdonghaeng.verifyqa\")",
+        "release": "    A: package=\"kr.co.ansimdonghaeng\" (Raw: \"kr.co.ansimdonghaeng\")",
+        "line": 7
+      },
+      {
+        "verifyqa": "      A: android:label(0x01010001)=\"안심동행 검증\" (Raw: \"안심동행 검증\")",
+        "release": "      A: android:label(0x01010001)=\"안심동행 플랫폼\" (Raw: \"안심동행 플랫폼\")",
+        "line": 29
+      }
+    ]
+  },
+  "resources": {
+    "releaseLines": 494,
+    "verifyqaLines": 494,
+    "rawDifferentLines": 387,
+    "packageNormalizedResidualLines": 0
+  },
+  "signatures": [
+    {
+      "variant": "release",
+      "certificateSha256": "187a401de35e4a9ecc5f8630ab4912c4e4884a9106bdf6b1b76c7ceb97bc5826",
+      "verifyExit": 0,
+      "v2": true
+    },
+    {
+      "variant": "verifyqa",
+      "certificateSha256": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+      "verifyExit": 0,
+      "v2": true
+    }
+  ],
+  "preservation": {
+    "newInstall": 0,
+    "checks": [
+      {
+        "match": true,
+        "sha256": "6fd382e660a10ab28c939b04c8c3886c4295b77f54b7589bb200fa0ac3eb0859",
+        "name": "ACCESS_REVIEW.json"
+      },
+      {
+        "match": true,
+        "sha256": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+        "name": "ansim-platform-0.4.3-candidate.apk"
+      },
+      {
+        "match": true,
+        "sha256": "d25756aaef64149debfe016493ff7c8775b1a47cdd36a65eefe7d127f779b0f0",
+        "name": "ansim-platform-0.4.3-pc.zip"
+      },
+      {
+        "match": true,
+        "sha256": "e9a62dfa3cd64e33eb5a3792b366dd94b9c31e176a2f612cd7f9a4a093990217",
+        "name": "ansim-platform-0.4.3-source.zip"
+      },
+      {
+        "match": true,
+        "sha256": "be0cfdf5fe234b3212a7822a347a93279e31589324e232465403a4f785cc0687",
+        "name": "ci-build-12774967132.zip"
+      },
+      {
+        "match": true,
+        "sha256": "976c777d3a994926b90876960cf6043c2474c45a45bff1c5529cd1e5a722dfac",
+        "name": "ci-verification-historical-0755.json"
+      },
+      {
+        "match": true,
+        "sha256": "f7d7030a0083613c535ced49090dc11e06132b88bb39da844eda0ecd2e6ecfcd",
+        "name": "DOCUMENT_VERSION_BINDINGS.json"
+      },
+      {
+        "match": true,
+        "sha256": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+        "name": "HISTORY_R2_SHA256SUMS.txt"
+      },
+      {
+        "match": true,
+        "sha256": "7e0b9a0334471849166b7b5389b9bda60cf87a4957053191ce0ff2c8ffe7f8b9",
+        "name": "HISTORY_R3_SHA256SUMS.txt"
+      },
+      {
+        "match": true,
+        "sha256": "48916c3d1eeda7061ee8d7a13094ce9246f5bc5a8ef39dfce2fc19b03b5623b7",
+        "name": "HISTORY_V4_DOCUMENT_GAPS.json"
+      },
+      {
+        "match": true,
+        "sha256": "aec08bf4ca08d18cb948f2e3f8698af3d39f79b8a724a43bbd3105ed9220b09f",
+        "name": "manifest.json"
+      },
+      {
+        "match": true,
+        "sha256": "3f0bf3deb7d0469fdae5e31a40bbeecf976089be52934b37ce4e62cabe3401df",
+        "name": "official-application-v5.docx"
+      },
+      {
+        "match": true,
+        "sha256": "2be8816f2b3eebd061d4de4d0aaaa95482ffdd67317e25a5a37fb0c7fa614178",
+        "name": "official-application-v5.pdf"
+      },
+      {
+        "match": true,
+        "sha256": "31d71250c62bf768f6f4ea489c5abaa6ee6833c850f7f05a5143f368ee8e6388",
+        "name": "official-v5-verification.json"
+      },
+      {
+        "match": true,
+        "sha256": "8494bddb8c81bb846918fddbea811a33392d0445bdf33a60a2d16fdece5cda4e",
+        "name": "README_KO.md"
+      },
+      {
+        "match": true,
+        "sha256": "4fe4fd217818415d63bece2f8b0823e92552ee0f31558a49cd1e3c7a7bd30f72",
+        "name": "release-manifest.txt"
+      },
+      {
+        "match": true,
+        "sha256": "1dcce65e7c307d263f8878520f43410f7117db2ab1b5be9317fb0aeba8236e88",
+        "name": "release-signature.txt"
+      },
+      {
+        "match": true,
+        "sha256": "99acd77854090c6be39d28e3ce0bfe201101486d64bb67afff4437b34837381e",
+        "name": "source-sha.txt"
+      },
+      {
+        "match": true,
+        "sha256": "f785d81770fb3c2465b5a0366cb4e055315643ba8ed9a0ba9bbeea1bb64e1233",
+        "name": "verifyqa-dom-cold-physical.json"
+      },
+      {
+        "match": true,
+        "sha256": "190cfc9ef63e9eeaaf2b763c1c29462cee8f04ab06618f23a5d703211de86fa5",
+        "name": "verifyqa-official-physical.json"
+      }
+    ],
+    "newJUnit": 0,
+    "writers": [],
+    "sumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+    "time": "2026-10-28T17:10:37.9198947+09:00",
+    "lockExists": false,
+    "activeInstrumentation": [],
+    "newBuild": 0,
+    "newPhoneUi": 0,
+    "installed": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ]
+  },
+  "newBuild": 0,
+  "newInstall": 0,
+  "newJUnit": 0,
+  "newPhoneUi": 0,
+  "releasePhysicalPass": false,
+  "independentQaApproved": false,
+  "humanUsabilityApproved": false,
+  "nextOwner": "existing PM (AS-M1)",
+  "nextTask": "Read current installed release vs candidate signing and available safe separate device profile/emulator options, without uninstall/reset/forced update; record a concrete release physical validation route.",
+  "historicalPhysical": {
+    "official": {
+      "timeKst": "2026-10-28T09:58+09:00",
+      "junit": 1,
+      "seconds": 17.637,
+      "variant": "verifyQa930/testdac",
+      "cold": "stored address visible after force-stop, separate cold postcode assertion not performed"
+    },
+    "dom": {
+      "timeKst": "2026-10-28T11:06+09:00",
+      "junit": 1,
+      "seconds": 9.678,
+      "variant": "verifyQa930/testdac",
+      "cold": "easy facility ACK visible, not earlier kindergarten handoff state"
+    }
+  },
+  "normalization": {
+    "dex": "Line-aligned equal 847708 lines. Removed file paths, instruction byte/absolute offsets, bracket offsets and string/method/type/field reference indexes. Remaining three lines are BuildConfig constants. Not formal or runtime equivalence.",
+    "resources": "Exact replacement kr.co.ansimdonghaeng.verifyqa -> kr.co.ansimdonghaeng only.",
+    "manifest": "Raw UTF-8 aapt captured using explicit StandardOutputEncoding; initial console-decoded label corruption retained in earlier raw dump."
+  },
+  "preflight": {
+    "commonLedgersRead": true,
+    "standingRead": true,
+    "assignmentPathCorrectedToQaFolder": true,
+    "prComments": [
+      6387088890,
+      6393949101
+    ],
+    "latestPrHead": "b433222dcee19477b66f2337d271567786fb8c4f",
+    "latestCi": "40592432776 success; no active newer run",
+    "publishedRelease": "v0.3.0-preview",
+    "original0310FailurePreserved": true,
+    "latest1105Read": true
+  },
+  "notEstablished": [
+    "Physical execution of release f3b8",
+    "Formal/runtime equivalence",
+    "Independent QA approval",
+    "Human usability",
+    "Real vehicle routing or authenticated external REST",
+    "Institution/cloud integration",
+    "Judge access/signature acceptance",
+    "Actual submission",
+    "Phone push receipt"
+  ]
+}
