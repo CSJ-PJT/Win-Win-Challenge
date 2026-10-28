@@ -1,0 +1,243 @@
+{
+  "time": "2026-10-29T03:09:20.6775071+09:00",
+  "owner": "AS-Q1-PM-20261029T0303",
+  "status": "PASS_SCOPED",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "appSha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+  "scope": "PM actual ADB easy notice 1 and facility ACK 1, QA-only process cold restore",
+  "checks": {
+    "coldFacilityAck": true,
+    "easyAck": true,
+    "noResend": true,
+    "facilityAck": true,
+    "coldNoResend": true,
+    "coldEasyAck": true,
+    "noRepeatAck": true,
+    "pendingNotice": true,
+    "coldNoRepeatAck": true,
+    "pendingStaff": true
+  },
+  "before": {
+    "value": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "Count": 5
+  },
+  "after": {
+    "value": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "Count": 5
+  },
+  "candidateChecks": [
+    {
+      "matches": true,
+      "file": "ACCESS_REVIEW.json"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-candidate.apk"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-pc.zip"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-source.zip"
+    },
+    {
+      "matches": true,
+      "file": "ci-build-12774967132.zip"
+    },
+    {
+      "matches": true,
+      "file": "ci-verification-historical-0755.json"
+    },
+    {
+      "matches": true,
+      "file": "DOCUMENT_VERSION_BINDINGS.json"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_R2_SHA256SUMS.txt"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_R3_SHA256SUMS.txt"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_V4_DOCUMENT_GAPS.json"
+    },
+    {
+      "matches": true,
+      "file": "manifest.json"
+    },
+    {
+      "matches": true,
+      "file": "official-application-v5.docx"
+    },
+    {
+      "matches": true,
+      "file": "official-application-v5.pdf"
+    },
+    {
+      "matches": true,
+      "file": "official-v5-verification.json"
+    },
+    {
+      "matches": true,
+      "file": "README_KO.md"
+    },
+    {
+      "matches": true,
+      "file": "release-manifest.txt"
+    },
+    {
+      "matches": true,
+      "file": "release-signature.txt"
+    },
+    {
+      "matches": true,
+      "file": "source-sha.txt"
+    },
+    {
+      "matches": true,
+      "file": "verifyqa-dom-cold-physical.json"
+    },
+    {
+      "matches": true,
+      "file": "verifyqa-official-physical.json"
+    }
+  ],
+  "sumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+  "claimReleased": {
+    "time": "2026-10-29T03:08:55.1408641+09:00",
+    "lockRemaining": false,
+    "owner": "AS-Q1-PM-20261029T0303"
+  },
+  "lockRemaining": false,
+  "activeInstrumentationMatches": 0,
+  "coldLog": "Starting: Intent { cmp=kr.co.ansimdonghaeng.verifyqa/kr.co.ansimdonghaeng.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: kr.co.ansimdonghaeng.verifyqa/kr.co.ansimdonghaeng.MainActivity\r\nTotalTime: 392\r\nWaitTime: 403\r\nComplete",
+  "images": [
+    {
+      "time": "2026-10-29T03:06:11.2328472+09:00",
+      "sha256": "a53d4d51de6483263a3781920bc513dbea675cb8adbed45ff1813bd7ca16343e",
+      "file": "arrival-notice-after-private.png"
+    },
+    {
+      "time": "2026-10-29T03:05:35.1230946+09:00",
+      "sha256": "6cea867d26d53bf803d4877ed721034826311065ef838d2dd3981c931fc73546",
+      "file": "care-center-after-private.png"
+    },
+    {
+      "time": "2026-10-29T03:08:41.8294512+09:00",
+      "sha256": "d2ab8d0bf1d5ae5bd92f07ad5b97a1c84c76f30fdabbf12f892c995d1e825926",
+      "file": "cold-facility-ack-private.png"
+    },
+    {
+      "time": "2026-10-29T03:08:14.7964185+09:00",
+      "sha256": "c8dbdd70550f9f957c154c903095f8c60226645207e124a998fbafc5e45f0992",
+      "file": "cold-facility-after-private.png"
+    },
+    {
+      "time": "2026-10-29T03:07:47.4318040+09:00",
+      "sha256": "eed61970a837302fdd0809b0b30da6ea5f3703d6fd51e9108c278c29e08b95dc",
+      "file": "cold-restored-private.png"
+    },
+    {
+      "time": "2026-10-29T03:05:50.3223819+09:00",
+      "sha256": "545cfd0364dc11cdca21565450dbdd7a355a9cc6d22e6eeac159d0e144cff476",
+      "file": "consent-after-private.png"
+    },
+    {
+      "time": "2026-10-29T03:07:31.7281247+09:00",
+      "sha256": "a0776dc9a1c7077cace8c9138c6b01bc526e5a8d1db3b9f68cda3db800a0bd55",
+      "file": "easy-ack-before-cold-private.png"
+    },
+    {
+      "time": "2026-10-29T03:07:14.4233826+09:00",
+      "sha256": "a0776dc9a1c7077cace8c9138c6b01bc526e5a8d1db3b9f68cda3db800a0bd55",
+      "file": "easy-return-after-private.png"
+    },
+    {
+      "time": "2026-10-29T03:05:11.7427814+09:00",
+      "sha256": "9606fa2b4fd82b3abdfe520ad1b79aabd072e01ecbdbed79be98d11a7c28b5b2",
+      "file": "easy-tab-after-private.png"
+    },
+    {
+      "time": "2026-10-29T03:07:00.7657786+09:00",
+      "sha256": "89b205fddbde7f200eb64f3d87b50625b66dcadc5709d524106f3e665d5ca8d5",
+      "file": "facility-ack-after-private.png"
+    },
+    {
+      "time": "2026-10-29T03:06:27.8227831+09:00",
+      "sha256": "b7a123430b05b16843f639d48d3a9a7b5cd60fd2ccb4a9fe0faa437d4967bdda",
+      "file": "facility-tab-after-private.png"
+    },
+    {
+      "time": "2026-10-29T03:04:59.3830836+09:00",
+      "sha256": "6d1a217445139a74735bda15c4a6aaebcd74603fa76da593f3607832ec59d523",
+      "file": "initial-private.png"
+    }
+  ],
+  "xmlCount": 22,
+  "newJUnit": 0,
+  "newBuild": 0,
+  "newInstall": 0,
+  "originalAppDataTouched": false,
+  "qaSyntheticVisitChanged": "completed kindergarten -> new care-center consent/arrival notice/staff ACK",
+  "wholeLocalStorageEqualityAsserted": false,
+  "independentQA": false,
+  "releasePhysicalPass": false,
+  "realCallsOrInstitutionSends": 0,
+  "notes": [
+    "First cold XML had no text before WebView readiness, retained; later own-app capture verifies ACK without repeat cold.",
+    "Screencap multiple-display stderr handled by known helper; intended QA images inspected.",
+    "Final foreground is facility ACK after cold verification; easy ACK verified before role switch."
+  ],
+  "fiveInstalledHashesUnchanged": true,
+  "nextOwner": "existing PM AS-M1",
+  "nextTask": "기존 PM AS-M1: 현재 verifyQa930 설정의 원래값을 비공개로 기록한 뒤 합성 이름2필드 수정·저장→QA콜드복원→원래값복귀를 1회 검증. fresh claim·잠금·동시작업 확인, 원본앱/데이터·다른필드 보존·실전화기관전송/새빌드설치0.",
+  "slackNewSend": 0,
+  "phonePush": "unverified"
+}
