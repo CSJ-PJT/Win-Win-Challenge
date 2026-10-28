@@ -1,0 +1,75 @@
+{
+  "time": "2026-10-29T07:57:00+09:00",
+  "reportSlot": "2026-10-29 08:00 KST",
+  "owner": "기존 PM AS-M1",
+  "status": "GITHUB_RECORDS_ALIGNED_CURRENT_BLOCKER_OVERLAY_ADDED",
+  "reviewHead": "94564db4285a0836c6f0bd0d80585d7703e823a9",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "checks": {
+    "source": true,
+    "ci": true,
+    "releaseSha": true,
+    "documents2": true,
+    "candidateNotReady": true,
+    "mailNotReady": true,
+    "releasePhysicalNotRun": true,
+    "fixedApkSame": true,
+    "notSubmitted": true
+  },
+  "scope": "GitHub records only; not sealed candidate files or private email re-read",
+  "candidate": {
+    "recordTime": "2026-10-28T15:02:33.2571211+09:00",
+    "ready": false,
+    "releaseSha": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+    "sum": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+    "documents": [
+      {
+        "id": "libfile_412035b073bc8191a3980f378b0df188",
+        "version": 5,
+        "bytes": 500039,
+        "sha256": "3f0bf3deb7d0469fdae5e31a40bbeecf976089be52934b37ce4e62cabe3401df"
+      },
+      {
+        "id": "libfile_bed9844c793c8191b486dc00e74925fd",
+        "version": 5,
+        "bytes": 759856,
+        "sha256": "2be8816f2b3eebd061d4de4d0aaaa95482ffdd67317e25a5a37fb0c7fa614178"
+      }
+    ]
+  },
+  "email": {
+    "recordTime": "2026-10-29T01:05:47.4127828+09:00",
+    "readyToSend": false,
+    "draftSha": "f51d9c9550c5fa568977579a0cec113d5c0dfd806645d3b9464587c01e4e1821",
+    "fixedCommit": "67346cf17d58d563fa86382b1536e1fec48b4bb5",
+    "apkBlob": "80cf1a71a50ad5fa2551db1a99171dbcb5c80109",
+    "privateDraftModified": false
+  },
+  "apkBinding": {
+    "fixedCommit": "67346cf17d58d563fa86382b1536e1fec48b4bb5",
+    "blob": "80cf1a71a50ad5fa2551db1a99171dbcb5c80109",
+    "bytes": 5171400,
+    "currentSame": true,
+    "binaryDownloaded": false,
+    "judgeAccessVerified": false
+  },
+  "latestSigningReview": {
+    "time": "2026-10-29T07:05:00+09:00",
+    "status": "SIGNING_POLICY_REVIEW_COMPLETE_RELEASE_UPDATE_BLOCKED",
+    "releaseKeyAvailability": "NOT_INSPECTED",
+    "updateBlocked": true
+  },
+  "freshPhysicalVerification": false,
+  "lastPhysicalPreservationTime": "2026-10-29T05:07:07.5729146+09:00",
+  "remoteRetried": false,
+  "localOpsSynced": false,
+  "officialDocumentsRead": false,
+  "officialDocumentsEdited": false,
+  "newProductCode": 0,
+  "newBuild": 0,
+  "newInstall": 0,
+  "newPhoneTest": 0,
+  "slackSent": 0,
+  "phonePush": "UNVERIFIED",
+  "nextSingleOwner": "기존 PM AS-M1: 현재 tools/qa_update_preflight.py의 인증서 동일성·실패 분류·installation_authorized 출력이 설치 승인이나 release 물리 PASS로 확대되지 않는지 GitHub 코드와 시험 근거를 대조. 새 빌드/설치/키/권한/비용/게시/제출 없이 수행. IT13 원격 재시도·재연결·우회 및 원장 동기화는 공식 사용 가능 상태 확인 전 보류."
+}
