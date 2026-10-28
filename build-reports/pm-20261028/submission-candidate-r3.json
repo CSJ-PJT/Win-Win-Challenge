@@ -1,0 +1,85 @@
+{
+  "oldR2ChecksBefore": 16,
+  "ready": false,
+  "time": "2026-10-28T12:09:01.4886983+09:00",
+  "lockPresent": false,
+  "phoneUi": 0,
+  "fileCount": 18,
+  "installed": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "oldR2SumSha256": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+  "installs": 0,
+  "oldR2ChecksAfter": 16,
+  "status": "PREPARED_WITH_DOCUMENT_GAPS",
+  "candidate": "C:\\Users\\dan18\\OneDrive\\바탕 화면\\Task\\Win-Win-Challenge-QA-20261024\\AS-M1-PM-20261028T1206\\candidate-99d5da0-f3b8c701-docv4-r3",
+  "builds": 0,
+  "checksumMismatches": 0,
+  "sumSha256": "7e0b9a0334471849166b7b5389b9bda60cf87a4957053191ce0ff2c8ffe7f8b9",
+  "checksumCount": 17,
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "ci": 40592432776,
+  "releaseSha256": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+  "sourceZipSha256": "e9a62dfa3cd64e33eb5a3792b366dd94b9c31e176a2f612cd7f9a4a093990217",
+  "formalDocuments": [
+    {
+      "id": "libfile_412035b073bc8191a3980f378b0df188",
+      "version": "4",
+      "bytes": 500068,
+      "name": "안심동행플랫폼_공식접수양식_최종.docx",
+      "lines": 428
+    },
+    {
+      "id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "version": "4",
+      "bytes": 760964,
+      "name": "안심동행플랫폼_공식접수양식_최종.pdf",
+      "lines": 427
+    }
+  ],
+  "documentContentMatch": false,
+  "documentGaps": [
+    {
+      "page": 5,
+      "old": "f1164b0 / physical899a5a1/bd,17.693s/9.707s",
+      "current": "99d5da0 / physical930/dac,17.637s/9.678s"
+    },
+    {
+      "page": 7,
+      "old": "CI40436119702 / release75b53185",
+      "current": "CI40592432776 / releasef3b8c701"
+    },
+    {
+      "page": 13,
+      "action": "retain b227ca2/CI40167658701 historical screenshot attribution"
+    }
+  ],
+  "formalFilesEdited": false,
+  "newRender": false,
+  "independentQa": false,
+  "physicalRelease": false,
+  "actualSubmission": false,
+  "publicDeployment": false,
+  "earlier11SlackIndependentlyFound": true,
+  "nextOwner": "existing PM / AS-M1",
+  "nextTask": "Update same-ID formal DOCX/PDF pages5/7 to current evidence, render/verify preserving signatures/blank fields/history, then bind to separate candidate revision"
+}
