@@ -1,3 +1,35 @@
+# 제출메일 검토초안 현재화 — 2026-10-29 01시 KST
+
+기존 PM이 기존 IT13 `AS-M1-PM-20261028T0203/SUBMISSION_EMAIL_REVIEW_ONLY.txt`의 실제 해시80b14509…a858을 먼저 확인했습니다. 이전파일을 변경하지 않고 `AS-M1-PM-20261029T0103`에 **같은 초안의 갱신 검토본**과 ATTACHMENT_REVIEW.json을 저장·재회수 비교했습니다. **메일함 초안등록·발송·제출0**, readyToSend=false입니다. 원문에는 개인정보가 있어 IT13 비공개에만 두고 이 문서/JSON에는 복제하지 않습니다.
+
+## 실제 변경과 검수
+
+- 수신·발신후보·참조·제목 4개 헤더는 문자 그대로 동일하게 보존했습니다. 공식수신자는 기존검토본의 접수주소이며 새로운 수신자는 없습니다. 실제 발신계정·최초제출 이력 조회0, 수정제출로 단정하지 않습니다.
+- 본문의 예전2694957 커밋 링크2개를 **67346cf17d58d563fa86382b1536e1fec48b4bb5**로, 이전release75b5 SHA를 현재 **f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f**로 교체했습니다. 남은 이전커밋/이전APK SHA0을 검사했습니다.
+- 고정 source/README tree 및 지정 `apk/안심동행_안심동행플랫폼_release.apk` 경로가 해당67346cf tree에 존재하며 blob80cf1a71/5171400B임을 확인했습니다. 이는 Git metadata 대조이며 독립 HTTP APK다운로드·심사자 접근 성공이 아닙니다.
+- 제품소스99d5da0/CI40592432776과 문서후속67346cf 커밋을 구분하고 r4/v5·실제 첨부참조를 본문 밖 검토메모에 추가했습니다. 서명 유효성/심사접근·실제발송 승인 미확인 표시는 유지했습니다.
+- 새초안SHA **f51d9c9550c5fa568977579a0cec113d5c0dfd806645d3b9464587c01e4e1821**. 저장/재회수본문 일치·기존초안SHA불변을 확인했습니다.
+
+| 구분 | 현재 실제 첨부 후보 | 기존 파일ID·버전 | 바이트/SHA256 |
+|---|---|---|---|
+| 필수 접수양식/동의 | official-application-v5.docx | libfile_412035b073bc8191a3980f378b0df188 / v5 | 500039 / 3f0bf3deb7d0469fdae5e31a40bbeecf976089be52934b37ce4e62cabe3401df |
+| 선택 열람용 중복본 | official-application-v5.pdf | libfile_bed9844c793c8191b486dc00e74925fd / v5 | 759856 / 2be8816f2b3eebd061d4de4d0aaaa95482ffdd67317e25a5a37fb0c7fa614178 |
+
+두첨부는 봉인r4 원본에서 크기/해시를 재계산했습니다. `includedInActualEmail=false`이며 파일이 이메일에 첨부됐다는 뜻이 아닙니다. 공식DOCX/PDF 내용·서명·레이아웃 신규검수/수정·Library 복제0입니다. 기준은 [00시 공식8페이지 재조회](OFFICIAL_SUBMISSION_PREFLIGHT_20261027.md)·[현재 게이트](SUBMISSION_GATES_20261026.md)입니다. 본문/첨부 계획 준비와 실제 접수/제품출시를 분리합니다.
+
+## 보존·미완료
+
+01:05:47 r4 체크섬20/20·SUMS419f736a…d31a, 설치5SHA 직전동일·lock/활성instrumentation없음. 원본 main/easy/address·미커밋·앱데이터·봉인r1–r4·옛메일검토본·원본문서ID 보존. 최신CI40592432776/source99success·publishskipped, PR2PrivateDraft미병합·게시v0.3.0-preview만. 제품코드/폰UI/JUnit/빌드설치/새CI요청0.
+
+기명서명허용/심사계정ID·실제접근/실제발송 승인은 미확인입니다. release서명차이 보존업데이트 차단·release자체물리·독립QA·사람사용성·유효REST/실차/기관클라우드 검증도 미완료입니다. 개발자료선택인1차 필수접수조건과 제품품질승인을 혼동하지 않습니다.
+
+다음 단일 담당 기존 PM AS-M1: 현재 verifyQa930의 실제 주요버튼으로 출발→도착→번호→양측 인계→보호자 완료·별도 콜드 복원을 1회 확인. 기존 DOM시험/이전bd 앱터치와 구분, fresh claim/잠금/동시작업 검사·원앱보존·새빌드설치/실전화기관전송0.
+야간Slack발송0/이전18시게시읽기만·폰push미검증·새예약/수신자/agent0.
+
+---
+
+## 과거 검토 기록 — 2026-10-28 02시 (당시v4/r2)
+
 # 제출 메일·첨부 목록 검토 초안 대조
 
 기존 PM, 2026-10-28 02:05:41 KST. 비공개 IT13 AS-M1-PM-20261028T0203에 SUBMISSION_EMAIL_REVIEW_ONLY.txt 및 ATTACHMENT_REVIEW.json을 준비했습니다. 메일함 초안 생성·실제 발송·제출은 0이며 문서/후보 내용 변경도 없습니다.
