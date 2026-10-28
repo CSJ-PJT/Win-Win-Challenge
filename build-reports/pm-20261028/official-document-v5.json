@@ -1,0 +1,45 @@
+{
+  "run": "AS-M1-PM-20261028T1356",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "ci": 40592432776,
+  "pmHead": "b321801df9dc7a8510a4a0806657d41916dbd33e",
+  "documents": [
+    {
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "version": 5,
+      "bytes": 500039,
+      "sha256": "3f0bf3deb7d0469fdae5e31a40bbeecf976089be52934b37ce4e62cabe3401df"
+    },
+    {
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "version": 5,
+      "bytes": 759856,
+      "sha256": "2be8816f2b3eebd061d4de4d0aaaa95482ffdd67317e25a5a37fb0c7fa614178"
+    }
+  ],
+  "pages": 13,
+  "changedPages": [
+    5,
+    7
+  ],
+  "layoutAdjustedPage": 10,
+  "figureScaleRelativeToV4": 0.9,
+  "otherPageTextUnchanged": true,
+  "storedPdfContentAnd72DpiPixelsEqual": true,
+  "originalNamesPreserved": true,
+  "sameIds": true,
+  "candidateR3Checksums": 17,
+  "candidateR3Mismatches": 0,
+  "candidateR3Preserved": true,
+  "candidateR3StillContainsV4": true,
+  "installedFiveHashesUnchanged": true,
+  "builds": 0,
+  "installs": 0,
+  "phoneUi": 0,
+  "physicalRelease": false,
+  "independentQa": false,
+  "actualSubmission": false,
+  "ready": false,
+  "nextOwner": "existing PM AS-M1",
+  "next": "Bind stored same-ID v5 actual bytes into separate candidate r4 and verify source/APK/document hashes, preserving r1/r2/r3"
+}
