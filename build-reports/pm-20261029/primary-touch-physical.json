@@ -1,0 +1,254 @@
+{
+  "time": "2026-10-29T02:05:01.9338600+09:00",
+  "owner": "AS-Q1-PM-20261029T0157",
+  "status": "PASS_SCOPED",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "appSha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+  "scope": "PM actual ADB primary handoff UI and QA-only process cold restore",
+  "checks": {
+    "moving": true,
+    "guardianComplete": true,
+    "guardianFive": true,
+    "coldComplete": true,
+    "senderConfirmed": true,
+    "receiverComplete": true,
+    "facilityReady": true,
+    "coldAddress": true,
+    "arrivalReadinessGate": true,
+    "coldFive": true
+  },
+  "before": {
+    "value": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "Count": 5
+  },
+  "after": {
+    "value": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "Count": 5
+  },
+  "candidateChecks": [
+    {
+      "matches": true,
+      "file": "ACCESS_REVIEW.json"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-candidate.apk"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-pc.zip"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-source.zip"
+    },
+    {
+      "matches": true,
+      "file": "ci-build-12774967132.zip"
+    },
+    {
+      "matches": true,
+      "file": "ci-verification-historical-0755.json"
+    },
+    {
+      "matches": true,
+      "file": "DOCUMENT_VERSION_BINDINGS.json"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_R2_SHA256SUMS.txt"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_R3_SHA256SUMS.txt"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_V4_DOCUMENT_GAPS.json"
+    },
+    {
+      "matches": true,
+      "file": "manifest.json"
+    },
+    {
+      "matches": true,
+      "file": "official-application-v5.docx"
+    },
+    {
+      "matches": true,
+      "file": "official-application-v5.pdf"
+    },
+    {
+      "matches": true,
+      "file": "official-v5-verification.json"
+    },
+    {
+      "matches": true,
+      "file": "README_KO.md"
+    },
+    {
+      "matches": true,
+      "file": "release-manifest.txt"
+    },
+    {
+      "matches": true,
+      "file": "release-signature.txt"
+    },
+    {
+      "matches": true,
+      "file": "source-sha.txt"
+    },
+    {
+      "matches": true,
+      "file": "verifyqa-dom-cold-physical.json"
+    },
+    {
+      "matches": true,
+      "file": "verifyqa-official-physical.json"
+    }
+  ],
+  "sumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+  "claimReleased": {
+    "time": "2026-10-29T02:04:25.4390230+09:00",
+    "lockRemaining": false,
+    "owner": "AS-Q1-PM-20261029T0157"
+  },
+  "lockRemaining": false,
+  "coldLog": "Starting: Intent { cmp=kr.co.ansimdonghaeng.verifyqa/kr.co.ansimdonghaeng.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: kr.co.ansimdonghaeng.verifyqa/kr.co.ansimdonghaeng.MainActivity\r\nTotalTime: 439\r\nWaitTime: 445\r\nComplete",
+  "images": [
+    {
+      "time": "2026-10-29T02:01:03.1322968+09:00",
+      "sha256": "19e8c733a74084297403b5354692a4e7a5116d95ef5ba146b176a4e77320b834",
+      "file": "arrived-after-private.png"
+    },
+    {
+      "time": "2026-10-29T02:04:15.3945312+09:00",
+      "sha256": "960124ef65227ea3b50ac845e87408a7407b05b81045a38ed51cfea7d643113e",
+      "file": "cold-address-visible-private.png"
+    },
+    {
+      "time": "2026-10-29T02:03:38.6745579+09:00",
+      "sha256": "f4825ee19962d351e5e853a438f9f830ad085de5e749850b553515c9eec4a4d3",
+      "file": "cold-restored-private.png"
+    },
+    {
+      "time": "2026-10-29T02:00:40.4740176+09:00",
+      "sha256": "6bf94f9c98cb593ba25ccab5c7adac915dcfa78a989f76a511c4902f7682d918",
+      "file": "depart-after-private.png"
+    },
+    {
+      "time": "2026-10-29T02:01:45.7819505+09:00",
+      "sha256": "f3ee31eab184693bf01f2a4f63b76846aa842008d29dc8836c1ac27cd5cebf4b",
+      "file": "facility-ready-after-private.png"
+    },
+    {
+      "time": "2026-10-29T02:02:45.5145998+09:00",
+      "sha256": "abea8ff67c8b3e4886f7f34c050ebfb8948e83ef24a361db281528c34d468ddd",
+      "file": "facility-return-after-private.png"
+    },
+    {
+      "time": "2026-10-29T02:03:21.7524398+09:00",
+      "sha256": "577b2f711556ce642e870bc3bbff42afa621db7c59671ac8c194a58c4361f62b",
+      "file": "guardian-after-private.png"
+    },
+    {
+      "time": "2026-10-29T02:03:26.4363094+09:00",
+      "sha256": "577b2f711556ce642e870bc3bbff42afa621db7c59671ac8c194a58c4361f62b",
+      "file": "guardian-complete-private.png"
+    },
+    {
+      "time": "2026-10-29T02:02:14.9411641+09:00",
+      "sha256": "78429fde25fc403887a3036c19e4fd624f23b417b016359720a3a398bb7321ac",
+      "file": "number-after-private.png"
+    },
+    {
+      "time": "2026-10-29T02:01:30.3244257+09:00",
+      "sha256": "86fbaccbe171b1e338ab9b8da59a9de7ac909d5d849664c9c259322e95ea5701",
+      "file": "prepare-facility-corrected-after-private.png"
+    },
+    {
+      "time": "2026-10-29T01:59:31.3345648+09:00",
+      "sha256": "94e95b7c1d2a6e9641fecc7f1c2f6511fc35eeba6fa65f50adc41cc98a66773d",
+      "file": "ready-private.png"
+    },
+    {
+      "time": "2026-10-29T02:03:10.9879433+09:00",
+      "sha256": "d2343e38e9013137d9aa0663e48ed6fa11dd6bceb7e0fb3e49a26cd363136950",
+      "file": "receiver-confirm-after-private.png"
+    },
+    {
+      "time": "2026-10-29T02:02:32.1746960+09:00",
+      "sha256": "1e811e0c5b414544f331db9351feab0ec581be2014aa3ea5d4ab52ef46a41fb4",
+      "file": "sender-confirm-after-private.png"
+    },
+    {
+      "time": "2026-10-29T02:02:00.1646913+09:00",
+      "sha256": "9e34355fbe403e79429758112544d9c7a2438f6a1594c8f0f1a74a900d60a9df",
+      "file": "sender-return-after-private.png"
+    }
+  ],
+  "xmlCount": 30,
+  "notes": [
+    "Initial adb screencap stderr Multiple displays warning became terminating PowerShell NativeCommandError despite capture; helper corrected ErrorActionPreference handling, later actual images inspected.",
+    "One helper Print boundary edit failed before script rewrite; corrected by full validated helper rewrite.",
+    "A facility preparation tap mistakenly used Japanese text, TARGET_COUNT_0 before any tap; exact observed Korean label corrected.",
+    "Initial dumpsys activity instrumentation is unsupported on this device; corrected full dumpsys activity and process inspection found no active instrumentation.",
+    "Initial cold UI XML had no text nodes before readiness; preserved and later own-app snapshot verified, no repeat cold launch."
+  ],
+  "newJUnit": 0,
+  "newBuild": 0,
+  "newInstall": 0,
+  "originalAppDataTouched": false,
+  "qaSyntheticVisitChanged": "kindergarten prepared -> completed, same saved public destination",
+  "wholeLocalStorageEqualityAsserted": false,
+  "independentQA": false,
+  "releasePhysicalPass": false,
+  "realCallsOrInstitutionSends": 0,
+  "fiveInstalledHashesUnchanged": true,
+  "nextOwner": "existing PM AS-M1",
+  "nextTask": "기존 PM AS-M1: 현재 verifyQa930의 쉬운 화면 도착 알림→시설 ACK→QA 콜드 복원을 실제 주요버튼 1회로 확인. 현재 인계완료 방문과 쉬운 고령자 알림 방문을 분리하며 fresh claim·잠금·동시작업 확인, 원앱보존·실기관전송/새빌드설치0.",
+  "slackNewSend": 0,
+  "phonePush": "unverified"
+}
