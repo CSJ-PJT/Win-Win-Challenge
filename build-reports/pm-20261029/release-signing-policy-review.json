@@ -1,0 +1,121 @@
+{
+  "time": "2026-10-29T07:05:00+09:00",
+  "owner": "기존 PM AS-M1",
+  "status": "SIGNING_POLICY_REVIEW_COMPLETE_RELEASE_UPDATE_BLOCKED",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "reviewHead": "1733c93115e9e843d133ed184373ce0d5f73c61e",
+  "files": [
+    {
+      "path": ".github/workflows/release043.yml",
+      "blob": "3e733478780c30988014aedfdfac65812724efda",
+      "unchangedFromSource99": true
+    },
+    {
+      "path": "android/app/build.gradle",
+      "blob": "17a5a98fe098a600008349672b4796b4a9a6653b",
+      "unchangedFromSource99": true
+    },
+    {
+      "path": "tools/build_verifyqa.ps1",
+      "blob": "a255c513b653e151e004666814401ae4bafb2ba6",
+      "unchangedFromSource99": true
+    }
+  ],
+  "findings": {
+    "releaseCiSigner": "keytool generates fresh key pair in runner.temp/preview.jks each verify-build job",
+    "deviceQaSigner": "initWith release inherits CI demoRelease signer",
+    "verifyQaSigner": "persistentQa signer supplied by ANSIM_QA_KEYSTORE and credential env; builder checks inputs and does not generate key",
+    "ciQaIsNotPersistentVerifyQa": true,
+    "publishGate": "feature/address-ux-0.4.3 only; PM branch skipped",
+    "releaseNotesRisk": "Existing future publish notes suggest uninstall on signer difference; incompatible with current preservation constraint, not executed or changed",
+    "privateReleaseKeyAvailability": "NOT_INSPECTED; no absence claim",
+    "safePreservingUpdate": "BLOCKED for observed installed/candidate pair; signer mismatch and no v3/v3.1 lineage evidence"
+  },
+  "observedApks": [
+    {
+      "signatureVerifyExit": 0,
+      "label": "installed",
+      "bytes": 5170048,
+      "packageLine": "package: name='kr.co.ansimdonghaeng' versionCode='9' versionName='0.4.3' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "certSha256": "74f3b4db72749aa904fd281ca45c531b271bd8894a65e2117a6a27e4333dd136"
+    },
+    {
+      "signatureVerifyExit": 0,
+      "label": "candidate",
+      "bytes": 5171400,
+      "packageLine": "package: name='kr.co.ansimdonghaeng' versionCode='9' versionName='0.4.3' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "sha256": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+      "certSha256": "187a401de35e4a9ecc5f8630ab4912c4e4884a9106bdf6b1b76c7ceb97bc5826"
+    }
+  ],
+  "signatureEvidenceTime": "2026-10-28T18:06:56.0475077+09:00",
+  "signatureSchemes": {
+    "both": {
+      "v1": false,
+      "v2": true,
+      "v3": false,
+      "v31": false,
+      "v4": false,
+      "signers": 1
+    },
+    "lineageProof": "No v3/v3.1 rotation evidence in these APKs."
+  },
+  "lastPreservation": {
+    "time": "2026-10-29T05:07:07.5729146+09:00",
+    "freshThisRun": false,
+    "installed5Same": true,
+    "candidate20Same": true,
+    "appSha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+    "candidateSums": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a"
+  },
+  "ci": {
+    "id": 40592432776,
+    "jobs": [
+      {
+        "name": "verify-build",
+        "result": "success"
+      },
+      {
+        "name": "native-smoke",
+        "result": "success"
+      },
+      {
+        "name": "live-address",
+        "result": "success"
+      },
+      {
+        "name": "publish",
+        "result": "skipped"
+      }
+    ]
+  },
+  "remote": {
+    "lastKnown": "2026-10-29 06:03 MONTHLY_USAGE_PAUSED",
+    "retried": false,
+    "reconnected": false,
+    "bypass": false,
+    "localOpsRead": false,
+    "localOpsWrite": false,
+    "freshPhoneState": false
+  },
+  "changes": {
+    "product": 0,
+    "keys": 0,
+    "secrets": 0,
+    "permissions": 0,
+    "cost": 0,
+    "build": 0,
+    "install": 0,
+    "phoneTest": 0,
+    "publish": 0,
+    "submission": 0
+  },
+  "handoff": {
+    "github": "to register",
+    "it13": "NOT_SYNCED"
+  },
+  "slack": "NOT_SENT_NIGHT",
+  "phonePush": "UNVERIFIED",
+  "nextSingleOwner": "기존 PM AS-M1: GitHub에 등록된 후보 r4·제출 게이트·메일 검토 기록이 릴리스 서명 지속성 및 release 물리 미실행 차단을 일관되게 표시하는지 대조. 원격 호출·키/권한/비용/배포·실제 제출 변경 없이 수행. IT13 원장 동기화·큰 글씨 물리 시험은 공식 사용 가능 상태 확인까지 보류하고 재시도/재연결/우회 금지."
+}
