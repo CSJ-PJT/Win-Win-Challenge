@@ -1,0 +1,114 @@
+{
+  "time": "2026-10-29T06:05:14+09:00",
+  "owner": "기존 PM AS-M1",
+  "status": "SOURCE_REVIEW_COMPLETE_PHYSICAL_BLOCKED",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "reviewHead": "a1c6801b50b3c807bf6d2a7112efff870ed6ab14",
+  "remote": {
+    "status": "MONTHLY_USAGE_PAUSED",
+    "exactMessage": "You've reached this month's Desktop Commander usage, so tool calls are paused. Your device remains connected and paired — do not retry or reconnect. Visit https://mcp.desktopcommander.app/ to learn more about usage and resets.",
+    "retries": 0,
+    "reconnects": 0,
+    "localOpsRead": "FAILED_BEFORE_EXECUTION",
+    "localOpsWrite": "NOT_ATTEMPTED",
+    "deviceClaim": "NOT_ACQUIRED",
+    "phoneActions": 0,
+    "freshHashVerification": false
+  },
+  "bindings": [
+    {
+      "path": "web/style.css",
+      "old": "fbd6c6e0cba09e7d93c07b70f565ec4486208e89",
+      "current": "fbd6c6e0cba09e7d93c07b70f565ec4486208e89"
+    },
+    {
+      "path": "web/ui.js",
+      "old": "01893ec7f906191bcd017317cdb8dae5ded11f9a",
+      "current": "01893ec7f906191bcd017317cdb8dae5ded11f9a"
+    },
+    {
+      "path": "web/app.js",
+      "old": "224467449eacc9ce6e1de6e6fdd7706a2bd178d0",
+      "current": "224467449eacc9ce6e1de6e6fdd7706a2bd178d0"
+    },
+    {
+      "path": "test/font_scaling.cjs",
+      "old": "69b0cdbc72162c58900f9b2f4704abc260693b45",
+      "current": "69b0cdbc72162c58900f9b2f4704abc260693b45"
+    }
+  ],
+  "browserContract": {
+    "environment": "desktop Chromium synthetic standalone fixture",
+    "script": "test/font_scaling.cjs",
+    "widths": [
+      360,
+      412,
+      768
+    ],
+    "settings": [
+      100,
+      125,
+      150,
+      200
+    ],
+    "rootCssPixels": [
+      16,
+      20,
+      24,
+      32
+    ],
+    "designedCombinations": 12,
+    "checks": [
+      "option label",
+      "root computed size",
+      "save and reload",
+      "document horizontal overflow",
+      "facility/visitor role round trip",
+      "restore100"
+    ],
+    "notCovered": [
+      "all four physical role tabs",
+      "physical sticky footer hit region",
+      "physical OS font scale",
+      "human readability",
+      "all individual glyphs exactly doubled"
+    ],
+    "freshRun": 0
+  },
+  "ci": {
+    "id": 40592432776,
+    "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+    "verifyBuild": "success",
+    "liveAddress": "success",
+    "nativeSmoke": "success",
+    "publish": "skipped",
+    "fontStep": "Browser input and role regressions",
+    "stepConclusion": "success",
+    "rawFontRowsDownloadedThisRun": false
+  },
+  "historicalPhysical": {
+    "source": "899a5a16e747f14cddc92c9805971e5cd4422380",
+    "app": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+    "rawFailure": "TAP_100%_0",
+    "followupRestore": true,
+    "current930Retest": false
+  },
+  "lastObservedPreservation": {
+    "time": "2026-10-29T05:07:07.5729146+09:00",
+    "appSha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+    "installed5Same": true,
+    "candidate20Same": true,
+    "candidateSumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+    "claimReleased": "2026-10-29T05:07:06.7693172+09:00",
+    "freshThisRun": false
+  },
+  "newProductChanges": 0,
+  "newBuilds": 0,
+  "newInstalls": 0,
+  "newJUnit": 0,
+  "newPhoneTests": 0,
+  "slackSent": 0,
+  "phonePush": "UNVERIFIED",
+  "localHandoff": "PENDING_REMOTE_AVAILABILITY",
+  "nextSingleOwner": "기존 PM AS-M1: GitHub의 현재 release 서명 생성·지속 정책을 코드와 기존 서명 근거로 대조해 보존 업데이트 차단 원인을 정리. 키·권한·비용·배포 변경 없이 수행. 큰 글씨 실기기 검증과 IT13 공통 원장 동기화는 공식 원격 사용 가능 상태가 확인될 때까지 보류하며 호출 재시도·재연결·다른 경로 우회 금지."
+}
