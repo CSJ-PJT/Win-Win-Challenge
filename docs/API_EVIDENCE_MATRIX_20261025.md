@@ -1,3 +1,65 @@
+# API·bridge 현재 판정 — 2026-10-28 23시 KST
+
+이번 작업은 **근거표 현재화·소스 동일성 대조**입니다. 신규 HTTP/Android JUnit/폰 UI/빌드/설치/CI 요청은 모두 0입니다. 10/27 23시 표의 f1164·verifyqa bd·문서v4·후보r1 표기를 현재 근거와 구분하도록 갱신했습니다. 아래 이전 전문은 날짜를 붙여 보존합니다.
+
+## 현재 소스·산출물·판정 기준
+
+- 제품/시험 소스: `99d5da02f20d3523d55897795d1f4a6b1fb1690a`. 조회 당시 문서 HEAD `b3b72d5481db13e192caf341dd98bcdf249e6fe9`.
+- [CI40592432776](https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40592432776) success: verify-build/live-address/native-smoke 성공·publish skipped. Android15 에뮬레이터 release f3b8c701의 공식주소 JUnit1/59.203초·DOM1/18.397초·UI7, Node112·PC주소7은 각각 별도 범위입니다. [CI 검수](CI_NAVIGATION_ADDRESS_VERIFICATION_20261028.md).
+- 물리 Android16: `kr.co.ansimdonghaeng.verifyqa` 앱93000752…9045 / test dacb173a…ae7. 지속 QA variant이며 releasef3b8와 다른 패키지/서명입니다. 아래는 **PM 자체 QA**이며 독립 승인·사람 사용성 판단이 아닙니다.
+- 비공개 후보 r4: releasef3b8·source99 ZIP·같은ID DOCX/PDF v5. 22:59:58 보존 검수에서 체크섬20/20, SUMS419f736a…d31a 및 설치5패키지 SHA 유지. 공식 문서 내용/렌더 신규 검수는 이번 0입니다.
+- PR2 Private/Draft·미병합. 최신 조회 게시 release는 v0.3.0-preview(10/23)만 있으며 0.4.3 공개/실제 제출 0입니다.
+
+## HTTP API6 — 기존 실제 호출과 현재 바이트를 연결
+
+[10/26 21시 실제 실행](HTTP_CONTRACT_20261026.md)은 Linux x64/Node24.22.1, 격리 loopback 합성 저장소의 **40요청/기대상태40일치·31assertion**입니다. 이번에 당시 JSON의 git_blob_sha와 현재 HEAD tree를 비교하여 다음 **3/3 동일**을 확인했습니다. 따라서 이 세 실행 의존 파일은 현재도 같은 바이트지만, 이력을 오늘 재실행한 것으로 바꾸지 않습니다. 현재 배포 환경·다른 환경변수·운영 저장소·외부 인증을 재검증한 것은 아닙니다.
+
+| 파일 | 당시/현재 Git blob 동일 |
+|---|---|
+| server.js | `7933942c06dc5287b982a22b5296fba3430a5040` |
+| web/core.js | `267601ac7c59e2c6e11ab1afd3f0eaea64fc1101` |
+| web/config.js | `180907d23bf4fe7f08e0a3e339e27aac963be995` |
+
+현재 server.js의 로컬 의존성은 web/core.js, 해당 core의 config 의존성까지 기존 시험의3파일을 대조했습니다. 표는 실제 과거 요청 결과만 표시합니다.
+
+| API | 실제 실행 근거 | 미검증 경계 |
+|---|---|---|
+| GET /api/health | 10/26 200·local synthetic/0.4.3 | 운영 서버 상태 아님 |
+| GET /api/bootstrap | 10/26 200·5역할 토큰·reset 후 갱신 | 기관 인증 아님 |
+| GET /api/state | 10/26 역할200/무인증·구토큰401 | 기관 간 클라우드 동기화 아님 |
+| GET /api/places | 10/26 키 제외401/400/503, 외부0; [10/27 설정검사](KAKAO_REST_CONFIGURATION_20261027.md) authenticated-local503/외부dapi0 | **유효 Kakao REST 인증 검색200 미검증**, 현재 키 재탐색/로그인0 |
+| POST /api/reset | 10/26 guardian403/simulator200·비객체400/토큰폐기 | 합성 저장소만, 폰 초기화 아님 |
+| POST /api/events | 10/26 READY200·동일 재전송/version유지·충돌409·비객체400/크기413 | 실기관 전송·운영DB 아님 |
+
+공식 주소 picker 성공·Android Geocoder 결과·외부 지도웹 표시와 server /api/places 인증은 서로 다른 경로입니다. 현재 주소 주요 버튼이 Kakao REST를 호출했다고 주장하지 않습니다.
+
+## Android bridge6 — 현재930 앱별 실제 범위
+
+현재 MainActivity의 @JavascriptInterface 메서드 **6개를 직접 열거**했습니다. 아래 실행 시각/앱/시험을 유지하며 같은 JUnit을 메서드 수만큼 중복 계산하지 않습니다.
+
+| bridge | 현재 verifyqa930 실제 근거 | 남은 범위 |
+|---|---|---|
+| openAddressSearch | 10/28 10시 공식주소 JUnit1/17.637초·ROUNDTRIP, 별도 COLD255ms 뒤 주소 UI 복원. [근거](CURRENT_QA_OFFICIAL_PHYSICAL_20261028.md) | cold우편번호 추가assert·기관승인/사람사용성 별도 |
+| searchAddress | 20시 Geocoder JUnit1/1.283초·실제공개질의 결과1·finite좌표·callback408ms·전체 저장값동일. [근거](CURRENT_GEOCODER_PHYSICAL_20261028.md) | 지리정확성·오류/없음 UI·REST 인증 별도 |
+| openMap | 22시 실제 지도 버튼→Naver 브라우저 Kakao 지도웹의 공개주소/지도타일→QA 복귀·주소 UI유지. ADB UI1/JUnit0. [근거](CURRENT_MAP_PHYSICAL_20261028.md) | native지도앱·경로안내·전체localStorage 동일성 미검증. QA새방문 상태변경/최초 로그필터 불완전 결과 보존 |
+| openDialer | 21시 JUnit1/2.085초·ACTION_DIAL 실제전화앱 package노출→QA복귀·전체 저장값동일. [근거](CURRENT_DIALER_PHYSICAL_20261028.md) | 실제발신/전화화면제어·개인정보조회0, 주요연락버튼 사용성 별도 |
+| checkNavigation | 19시 두 메서드 공통 NavigationGuardTest **1건**/0.985초·비차량거절/callback·안내/adapter null | 실제 SDK 연결·실차·UX 제한 미검증 |
+| requestSampleRoute | 같은19시 JUnit1건에 포함·비차량거절·전체저장값동일. [근거](CURRENT_NAVIGATION_GUARD_PHYSICAL_20261028.md) | 실제경로/완료callback·차량 연결 재시도 미검증 |
+
+별도11시 [DOM JUnit1/9.678초·쉬운ACK 콜드복원](CURRENT_QA_DOM_COLD_PHYSICAL_20261028.md)은 공식picker나 bridge6의 추가 통과 수로 합산하지 않습니다. 링크 유효성은 현재 tree로 검수합니다. 04시 NavigationAdapter 재시도 JVM 대역 시험은 실제 Pleos SDK/차량 연결 성공과 구분합니다.
+
+## 제출 차단·다음 단일 담당
+
+릴리스 설치본c094/cert74f3와 후보f3b8/cert187a는 서명이 달라 현재폰 데이터 보존 업데이트 경로가 차단되어 있습니다. 18시 연결범위에서 별도 시험기는 미확보이며 전체 장소의 부재를 뜻하지 않습니다. [사전검수](RELEASE_PHYSICAL_ROUTE_20261028.md).
+release 실기기·독립 QA·사람사용성·유효REST·실차/Pleos/AAOS·기관클라우드·심사자 접근/기명서명 허용·실제 제출은 미완료/미확인입니다. **인터페이스12개 실서비스 정상·전체 출시완성률**로 환산하지 않습니다.
+
+다음 단일 기존 PM(AS-M1): 공식 접수 안내 최신 변경과 심사 접근·서명·첨부 조건을 현재 후보r4/v5에 대조해 제출 게이트를 현재화합니다. 공개배포/권한확대/실제제출/새비용 없이 읽기·대조하며 기존 문서ID와 봉인후보를 보존합니다.
+야간 Slack 발송0, 이전18시 게시 읽기만·폰push미검증. 아래는 과거 날짜/바이너리별 원문이며 현재성을 소급하지 않습니다.
+
+---
+
+## 보존 이력 — 2026-10-27 23시 이하 원문
+
 # API·bridge 현재 판정 — 2026-10-27 23시 KST
 
 현재 제품 소스는 f1164b04dc267260771ce3ffcc674247053f56e7 / CI40436119702 성공(publish skipped)입니다. 설치 verifyqa bd79075f/test229의19시 실제 주요버튼 인계·콜드,20시 쉬운알림/시설ACK·콜드,21시 이름2필드 저장/콜드/복귀,22시 잘못된연락처 거절·편집취소·콜드를 PM 자체QA로 구분합니다. [19시](PRIMARY_TOUCH_PHYSICAL_20261027.md) · [20시](EASY_TOUCH_PHYSICAL_20261027.md) · [21시](SETTINGS_TOUCH_PHYSICAL_20261027.md) · [22시](SETTINGS_CANCEL_PHYSICAL_20261027.md). 이것은 bridge6개 최신폰 재시험·release 자체물리·독립QA/사람사용성 승인 전체가 아닙니다.
