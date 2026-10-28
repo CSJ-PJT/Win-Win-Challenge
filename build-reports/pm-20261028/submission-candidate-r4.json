@@ -1,0 +1,76 @@
+{
+  "time": "2026-10-28T15:02:33.2571211+09:00",
+  "documentVersion": 5,
+  "documentContentMatch": true,
+  "sumSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+  "phoneUi": 0,
+  "oldR3SumSha256": "7e0b9a0334471849166b7b5389b9bda60cf87a4957053191ce0ff2c8ffe7f8b9",
+  "oldR3After": 17,
+  "ready": false,
+  "fileCount": 21,
+  "checksums": 20,
+  "mismatches": 0,
+  "installed": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "oldR3Before": 17,
+  "builds": 0,
+  "installs": 0,
+  "lock": false,
+  "status": "PREPARED_NOT_SUBMITTED",
+  "candidate": "C:\\Users\\dan18\\OneDrive\\바탕 화면\\Task\\Win-Win-Challenge-QA-20261024\\AS-M1-PM-20261028T1458\\candidate-99d5da0-f3b8c701-docv5-r4",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "ci": 40592432776,
+  "releaseSha256": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+  "sourceZipSha256": "e9a62dfa3cd64e33eb5a3792b366dd94b9c31e176a2f612cd7f9a4a093990217",
+  "documents": [
+    {
+      "id": "libfile_412035b073bc8191a3980f378b0df188",
+      "version": 5,
+      "bytes": 500039,
+      "sha256": "3f0bf3deb7d0469fdae5e31a40bbeecf976089be52934b37ce4e62cabe3401df"
+    },
+    {
+      "id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "version": 5,
+      "bytes": 759856,
+      "sha256": "2be8816f2b3eebd061d4de4d0aaaa95482ffdd67317e25a5a37fb0c7fa614178"
+    }
+  ],
+  "formalEdited": 0,
+  "newCi": 0,
+  "sourceCiUnchanged": true,
+  "trackedApk": {
+    "path": "apk/안심동행_안심동행플랫폼_release.apk",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "70e9c7735818bacf9937b3b0a6ac959cb0a5add8",
+    "size": 5170860,
+    "url": "https://api.github.com/repos/CSJ-PJT/Win-Win-Challenge/git/blobs/70e9c7735818bacf9937b3b0a6ac959cb0a5add8"
+  },
+  "physicalRelease": false,
+  "independentQa": false,
+  "actualSubmission": false,
+  "publicDeployment": false,
+  "nextOwner": "existing PM / AS-M1",
+  "nextTask": "Reconcile designated private PM branch APK (old70e9c773/5170860B) with candidate releasef3b8(5171400B), preserve history and verify actual bytes. No public release."
+}
