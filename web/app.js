@@ -51,22 +51,31 @@
     if(!connected||offline){if(!quiet)showError('연결 상태를 확인해 주세요.');return false;}
     busy=true;clearError();
     try{
-      if(serverMode){const intent={key:uid(),tripId:state.id,expectedVersion:state.version,event:{type,payload},role:asRole};setPending(intent);
-        const submit=()=>api('/api/events',{method:'POST',headers:{Authorization:'Bearer '+tokens[asRole],'Content-Type':'application/json'},body:JSON.stringify(intent)});
-        let data;
-        try {data=await submit();}
-        catch(e){
-          // Vehicle telemetry and a human confirmation can arrive at the same state version.
-          // A rejected VERSION write has not been applied. Refresh and retry once.
-          if(e.code!=='VERSION')throw e;
-          const latest=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[asRole]}});
-          state=latest.state;
-          if(state.id!==intent.tripId)throw e;
-          intent.expectedVersion=state.version;
-          setPending(intent);
-          data=await submit();
+      if(serverMode){
+        const transmit=async intent=>{
+          const submit=()=>api('/api/events',{method:'POST',headers:{Authorization:'Bearer '+tokens[intent.role],'Content-Type':'application/json'},body:JSON.stringify(intent)});
+          try{return await submit();}
+          catch(e){
+            // A VERSION rejection did not apply this intent. Retry its original key once.
+            if(e.code!=='VERSION')throw e;
+            const latest=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[intent.role]}});
+            state=latest.state;
+            if(state.id!==intent.tripId)throw e;
+            intent.expectedVersion=state.version;setPending(intent);
+            return await submit();
+          }
+        };
+        const adopt=data=>{if(!state||data.state.id!==state.id||data.state.version>=state.version)state=data.state;};
+        // A transport error may hide a committed write. Resolve that original
+        // intent before generating another key, including after reconnect.
+        if(pending){
+          if(pending.tripId!==state.id){setPending(null);throw new Error('방문 정보가 변경됐어요. 다시 확인해 주세요.');}
+          const previous=pending,same=previous.role===asRole&&JSON.stringify(previous.event)===JSON.stringify({type,payload});
+          adopt(await transmit(previous));setPending(null);
+          if(same)return true;
         }
-        state=data.state;setPending(null);
+        const intent={key:uid(),tripId:state.id,expectedVersion:state.version,event:{type,payload},role:asRole};setPending(intent);
+        adopt(await transmit(intent));setPending(null);
       }else{
         const result=H.apply(state,{type,payload},{role:asRole,id:asRole==='facility'?'staff-001':asRole==='vehicle'?'sender-001':asRole==='visitor'?'visitor-001':asRole},{now:Date.now(),code:code()});
         recordState(result.state);
