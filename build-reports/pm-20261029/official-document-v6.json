@@ -15,9 +15,9 @@
     7
   ],
   "pdf_other_11_pages_text_preserved": true,
-  "pdf_sha256": "ee40ec107f886801fadd22e0d5f397f486281f005031e029ca01012b711a0257",
+  "pdf_sha256": "894e5bde6487c5c0f8b428c7da3fd18612f90cffebd49783f22e14fc95eafa38",
   "output_docx_bytes": 500066,
-  "output_pdf_bytes": 736230,
+  "output_pdf_bytes": 761360,
   "visual_review_pages": [
     1,
     2,
@@ -60,5 +60,13 @@
   "independent_qa": "NOT_APPROVED",
   "actual_submission": "NOT_SENT",
   "it13_ledger": "NOT_SYNCED: existing monthly remote-tool limit, not retried",
-  "slack": "NOT_SENT_BY_THIS_RUN; existing sender/receipt inaccessible; public-channel date search no results; delivery and push unverified"
+  "slack": "NOT_SENT_BY_THIS_RUN; existing sender/receipt inaccessible; public-channel date search no results; delivery and push unverified",
+  "preupload_pdf_sha256": "ee40ec107f886801fadd22e0d5f397f486281f005031e029ca01012b711a0257",
+  "preupload_output_pdf_bytes": 736230,
+  "correction": {
+    "observed_at_kst": "2026-10-29T18:00:00+09:00",
+    "reason": "17h PDF hash/bytes described renderer output before Library canonical upload, not final stored bytes. Fresh v6 materialization now supplies canonical hash. All 13 page texts and 72dpi raster pixels are identical.",
+    "c2pa_marker_present": true,
+    "c2pa_validity": "NOT_INDEPENDENTLY_VERIFIED"
+  }
 }

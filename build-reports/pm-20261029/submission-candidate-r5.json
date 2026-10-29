@@ -1,0 +1,132 @@
+{
+  "candidate_id": "candidate-b37287e-docv6-r5",
+  "archive_bytes": 13500733,
+  "archive_sha256": "e94b5c2cd45bd2ed549fa96a16506826da3891a5564ac53195072ab0eb40d630",
+  "files": 17,
+  "checksums_verified": 16,
+  "mismatches": 0,
+  "sha256sums_sha256": "1935ea1e36388ed821f4ad4e3e346278650e9b38fdb81ee49b05e99a51ba8d3e",
+  "canonical_pdf": {
+    "canonical_pdf_sha256": "894e5bde6487c5c0f8b428c7da3fd18612f90cffebd49783f22e14fc95eafa38",
+    "canonical_pdf_bytes": 761360,
+    "preupload_pdf_sha256": "ee40ec107f886801fadd22e0d5f397f486281f005031e029ca01012b711a0257",
+    "preupload_pdf_bytes": 736230,
+    "pages": 13,
+    "all_page_text_exact": true,
+    "all_page_raster_pixels_exact_at_72dpi": true,
+    "canonical_contains_c2pa_marker": true,
+    "interpretation": "Stored PDF bytes differ from preupload renderer output; content/raster preserved. C2PA validity not independently verified. Prior 17h PDF SHA identifies preupload bytes, not canonical stored v6."
+  },
+  "payload": [
+    {
+      "path": "android/ansim-platform-0.4.3-preview.apk",
+      "role": "release/test or QA/test; package and target from APK inspection",
+      "bytes": 5171460,
+      "sha256": "2ce05b85013b25291131267343e3f1b692d79b874de47137f99ff1dc45006752"
+    },
+    {
+      "path": "android/ansim-address-tests.apk",
+      "role": "release/test or QA/test; package and target from APK inspection",
+      "bytes": 829220,
+      "sha256": "3c090252e00141efb83ec54a82d8163082d4cf9aa5375438b74e4b2eed2221a0"
+    },
+    {
+      "path": "android/ansim-platform-0.4.3-qa.apk",
+      "role": "release/test or QA/test; package and target from APK inspection",
+      "bytes": 5171480,
+      "sha256": "c6a9686fe193fb5a75b17d781b1996ea87d625c8ebf6b0977ac30626f574f470"
+    },
+    {
+      "path": "android/ansim-qa-tests.apk",
+      "role": "release/test or QA/test; package and target from APK inspection",
+      "bytes": 829244,
+      "sha256": "7c53f0c8fa80b93f5005d4d5cc9161271241b6ec10125a7be976c50e8a98e2e1"
+    },
+    {
+      "path": "source/ansim-platform-0.4.3-source.zip",
+      "role": "CI product source",
+      "bytes": 558334,
+      "sha256": "9169e4d18bc09764504cb70d4c2ba8db29e59c45e8fbef69b2d9be5affd578e6"
+    },
+    {
+      "path": "pc/ansim-platform-0.4.3-pc.zip",
+      "role": "CI PC bundle",
+      "bytes": 28904,
+      "sha256": "e90847c39557208ce5ff4be0291ac29a8000f0904d05daf54960eb10e318d603"
+    },
+    {
+      "path": "documents/ansim-official-v6.docx",
+      "role": "canonical stored Library v6; same stable official identity",
+      "bytes": 500066,
+      "sha256": "6de5e17ef6e4f5823a702aef64728305c8f4e3c63c7768f7d5acdc9bbc9766d9"
+    },
+    {
+      "path": "documents/ansim-official-v6.pdf",
+      "role": "canonical stored Library v6; same stable official identity",
+      "bytes": 761360,
+      "sha256": "894e5bde6487c5c0f8b428c7da3fd18612f90cffebd49783f22e14fc95eafa38"
+    },
+    {
+      "path": "evidence/ansim-0.4.3-native.zip",
+      "role": "unaltered original CI artifact ZIP",
+      "bytes": 1295988,
+      "sha256": "492c6d04469abd5c38e8298ed4881feba94012ecf7d3344bfa55546a9129a581"
+    },
+    {
+      "path": "evidence/ansim-0.4.3-live-address.zip",
+      "role": "unaltered original CI artifact ZIP",
+      "bytes": 205402,
+      "sha256": "e76dbf4f1f51cbbd4f36560825b824e168ebe52aedf3b0574afea7657a2c0828"
+    },
+    {
+      "path": "evidence/ansim-0.4.3-build.zip",
+      "role": "unaltered original CI artifact ZIP",
+      "bytes": 6138506,
+      "sha256": "6f441d68bd57d7b85b5ea66b2ed3c35e7207f00716c50892ecfa8297eb474630"
+    },
+    {
+      "path": "evidence/apk-inspection.json",
+      "role": "prior 15:05 manifest/certificate extraction, not fresh cryptographic signature verification",
+      "bytes": 5763,
+      "sha256": "7048648ac74733baec7b939df93441057bd2e188c7eaf0e21182b835e5896a5b"
+    },
+    {
+      "path": "evidence/ci-current-snapshot.json",
+      "role": "fresh GitHub PR/run/artifact/release and Library version observation",
+      "bytes": 1949,
+      "sha256": "6e8161dcdc75394958e10d38c235f73642f075dfd4aa5dd9ac886ee170f08c96"
+    },
+    {
+      "path": "evidence/document-byte-check.json",
+      "role": "canonical/preupload boundary correction",
+      "bytes": 611,
+      "sha256": "f898a51afcca2ca65eef9e56c43ec8c0556e6780573cbd3291d9aab1e0f5fb15"
+    },
+    {
+      "path": "README.md",
+      "role": "candidate scope and preservation instructions",
+      "bytes": 1478,
+      "sha256": "a0db0c4b2539f671258327f40a017795b48e5ba0f544a689474840ad0cdf38c4"
+    }
+  ],
+  "prepared": true,
+  "submitted": false,
+  "it13_copied": false,
+  "library": {
+    "library_file_id": "libfile_14c0d6301fa08191b17e8700af99d3a5",
+    "file_id": "file_00000000b21081f89160b5f0e553eeaf",
+    "status": "succeeded",
+    "version": 0,
+    "local_metadata_applied": true
+  },
+  "observed_at_kst": "2026-10-29T18:00:00+09:00",
+  "it13_ledger": "NOT_SYNCED",
+  "slack": {
+    "sent_by_this_run": false,
+    "existing_sender_receipt": "NOT_OBSERVED",
+    "public_search_today_results": 0,
+    "phone_push": "UNVERIFIED"
+  },
+  "next_single_owner": "existing PM AS-M1",
+  "next_task": "Inspect CI release signing instructions against data-preserving update constraints; remove any uninstall advice if present, without building, changing keys or deploying."
+}
