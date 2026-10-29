@@ -1,0 +1,131 @@
+{
+  "slot": "2026-10-29T16:00:00+09:00",
+  "observed_at": "2026-10-29T15:57:22+09:00",
+  "owner": "existing PM AS-M1",
+  "pm_head": "6521e290e70120fe701f47491a6a55ec9a8f832f",
+  "product_source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "ci": 40820861095,
+  "documents": [
+    {
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "file_id": "file_00000000c5e08230a372320e124ab56a",
+      "version": "5",
+      "size_bytes": 500039,
+      "pages": 13,
+      "modified_at": "2026-10-28T05:03:00.486286Z",
+      "full_read_has_more": false
+    },
+    {
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "file_id": "file_00000000b8b481fda752f131f4b8b653",
+      "version": "5",
+      "size_bytes": 759856,
+      "pages": 13,
+      "modified_at": "2026-10-28T05:03:03.876606Z",
+      "full_read_has_more": false
+    }
+  ],
+  "byte_hash_recomputed": false,
+  "access": "current same-ID full text read for both, no local materialization/edit",
+  "page_text_comparison": [
+    {
+      "page": 5,
+      "same_text_ignoring_whitespace": true,
+      "contains_source99": true,
+      "contains_new_source": false
+    },
+    {
+      "page": 7,
+      "same_text_ignoring_whitespace": true,
+      "contains_source99": true,
+      "contains_new_source": false
+    }
+  ],
+  "findings": [
+    {
+      "page": 5,
+      "status": "MATCHES_SEALED_R4_NOT_NEW_CANDIDATE",
+      "old": "10/28 source99d5da0 Node112",
+      "new": "10/29 b37287e Node131"
+    },
+    {
+      "page": 5,
+      "status": "MUST_KEEP_SOURCE_SCOPE",
+      "old": "verifyqa930 described as same source",
+      "new": "explicit previous source99/10/28 PM self-QA; not newb372 physical PASS"
+    },
+    {
+      "page": 7,
+      "status": "NEW_CANDIDATE_CHANGE",
+      "old": "CI40592432776,10/28 07:17,f3b8 release",
+      "new": "CI40820861095,10/29 14:10,2ce05 release"
+    },
+    {
+      "page": 7,
+      "status": "KEEP_RELEASE_AND_PHONE_BOUNDARIES",
+      "new": "v0.3.0-preview published; latest release physical unverified, distinguish prior phone binary"
+    },
+    {
+      "page": 13,
+      "status": "KEEP_HISTORICAL_SCREEN_ATTRIBUTION",
+      "source": "b227ca2/CI40167658701",
+      "action": "preserve old screenshot attribution, never relabel as b372"
+    },
+    {
+      "pages": [
+        1,
+        8,
+        9
+      ],
+      "status": "PRESERVE",
+      "action": "preserve application/consent/signature/date/blank optional fields; no personal details copied into repository"
+    }
+  ],
+  "proposed_replacements": {
+    "page5_verification_paragraph": "2026년 10월 29일 개발 버전 0.4.3의 소스 b37287e로 자동 검사 131개가 통과했습니다. Android 15 에뮬레이터의 release APK에서 공식 주소 왕복 1개, APK 조작 7개, DOM 흐름 1개와 저장 주소의 앱 재시작 복원을 확인했습니다. PC·HTTP 공식 주소 검사 7개도 통과했습니다. 별도 Android 16 검증 앱은 10월 28일 소스 99d5da0 기반의 0.4.3-verifyqa(SHA256 93000752…f809045)입니다. 이 앱에서 공식 주소 1개(17.637초), 양측 인계·보호자 조회·쉬운 알림 DOM 1개(9.678초)가 통과했고, 강제 종료 후 주소와 담당자 확인 상태 복원을 각각 확인했습니다. 휴대전화 결과는 이전 소스의 개발자 자체 QA이며, 새 release의 실기기 검증과 구분합니다.",
+    "page7_ci_url": "https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40820861095",
+    "page7_verification_paragraph": "10월 29일 14:10 KST 완료. 소스 b37287e의 빌드·주소·Android 검사가 성공했으며 공개 게시는 건너뛰었습니다. release APK SHA256은 2ce05b85…5006752입니다. 휴대전화 검증 APK(93000752…f809045)는 이전 소스의 별도 바이너리이며, 새 release의 실기기 검증은 남아 있습니다. 게시 릴리스는 0.3.0-preview입니다. 전체 해시·서명·패키지·시험 로그는 이슈 #1의 10월 29일 CI 검수 기록에, 기존 실기기 결과는 10월 28일 기록에 연결했습니다."
+  },
+  "visual_qa": {
+    "requested_pdf_pages": [
+      5,
+      7
+    ],
+    "rendered_images_available": false,
+    "tool_warning": "returned extracted text only; images unavailable",
+    "new_render": false,
+    "layout_pass_claim": false
+  },
+  "preserved": {
+    "official_same_id_v5": "not edited",
+    "sealed_r4_source99_f3b8": "not edited",
+    "private_email": "not read/edited",
+    "new_candidate": "not created",
+    "last_device_hash_observation": "2026-10-29T05:07:07+09:00"
+  },
+  "counts": {
+    "current_document_reads": 2,
+    "current_document_pages_each": 13,
+    "official_file_edits": 0,
+    "new_product_code": 0,
+    "new_build": 0,
+    "new_install": 0,
+    "new_phone_test": 0
+  },
+  "remote": {
+    "retry_reconnect_bypass": false,
+    "common_ops_synced": false,
+    "current_claim_process_keyguard": "NOT_OBSERVED"
+  },
+  "slack": {
+    "today_search_results": 0,
+    "existing_sender_queue_and_receipt": "unavailable",
+    "queue_registered": false,
+    "alternate_send": false,
+    "phone_push": "unverified",
+    "review_only_report": "🤝 *안심동행 | 10/29 16:00 KST* 🟡 *릴리스 검증 대기*\n🕒 *관측* 15:57 문서 v5 재조회 / CI 결과 14:10\n*한줄 결론* 공식 DOCX/PDF의 새 CI 반영 위치와 교체 문구 확정.\n📊 *게이트* b372 소스/CI ✅ | 문서 정합화 🟡 | 새 APK 실기기 ⏳\n독립 QA ⏳ | 실제 제출 ⏳\n🧪 *증거* 두 파일 모두 v5·13쪽, 5·7쪽 본문이 공백 제외 동일.\n기존 문서는 source99/CI40592432776·releasef3b8 기준; 새 결과와 혼합 금지.\n🔁 *직전 대비* 문서 대조1건 / 공식파일 수정·빌드·설치·폰 시험0건.\n🚧 *차단* 새 후보에는 5·7쪽 갱신 필요, 원격 제한·release 서명 차이 유지.\n🎯 *다음* 기존 PM AS-M1: 같은ID v6 편집·13쪽 렌더 검수, 기존r4 보존.\n🔗 <https://github.com/CSJ-PJT/Win-Win-Challenge/pull/2|상세> | 봇 발송·폰push 미확인",
+    "lines": 11,
+    "chars": 514
+  },
+  "next_single_owner": "Existing PM AS-M1: materialize current same-ID v5, apply page5/page7 scoped changes to v6, render and inspect all13 pages, replace same IDs only after successful QA; preserve r4, historical screenshots/signature/blank fields; no actual submission."
+}
