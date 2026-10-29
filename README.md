@@ -19,17 +19,31 @@
 
 ## 실행
 
-- **Android / Windows:** 최신 게시 릴리스는 [v0.3.0-preview](https://github.com/CSJ-PJT/Win-Win-Challenge/releases/tag/v0.3.0-preview)입니다. 0.4.3은 개발·검증 중이며 아직 게시되지 않았습니다. 이 비공개 PM 브랜치의 0.4.3 검증 후보는 [지정 release APK](apk/안심동행_안심동행플랫폼_release.apk)입니다. SHA256 `f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f`, 5,171,400바이트입니다. 같은 바이트의 Android15 CI 결과와 별도 검증 앱의 휴대전화 자체 QA를 구분하며, 이 release 자체 실기기 실행·독립 QA·실제 제출은 아직 완료되지 않았습니다. 이전 지정 APK 75b53185는 [10월 28일 이전 바이트](apk/history/안심동행_안심동행플랫폼_release-before-20261028-75b53185.apk)로, 그보다 앞선 fd64e80도 [기존 이력](apk/history/안심동행_안심동행플랫폼_release-before-20261027-fd64e80.apk)으로 보존합니다. 공개 릴리스 게시 상태는 바꾸지 않았습니다.
+- **Android:** 최신 게시 릴리스는 [v0.3.0-preview](https://github.com/CSJ-PJT/Win-Win-Challenge/releases/tag/v0.3.0-preview)입니다. 0.4.3은 개발·검증 중이며 아직 게시되지 않았습니다. 이 비공개 PM 브랜치의 0.4.3 검증 후보는 [지정 release APK](apk/안심동행_안심동행플랫폼_release.apk)입니다. SHA256 `f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f`, 5,171,400바이트입니다. 같은 바이트의 Android15 CI 결과와 별도 검증 앱의 휴대전화 자체 QA를 구분하며, 이 release 자체 실기기 실행·독립 QA·실제 제출은 아직 완료되지 않았습니다. 이전 지정 APK 75b53185는 [10월 28일 이전 바이트](apk/history/안심동행_안심동행플랫폼_release-before-20261028-75b53185.apk)로, 그보다 앞선 fd64e80도 [기존 이력](apk/history/안심동행_안심동행플랫폼_release-before-20261027-fd64e80.apk)으로 보존합니다. 공개 릴리스 게시 상태는 바꾸지 않았습니다.
 - **개발자:** `npm test && npm run bundle && node tools/serve-demo.cjs` 명령으로 `http://127.0.0.1:18420`에서 체험합니다.
 - 여러 웹 화면을 실제 서버 상태로 연결하려면 `npm start`를 실행합니다(`http://127.0.0.1:8080`).
 
 PC의 HTML 파일을 `file://`로 직접 열면 주소 검색 결과를 돌려받을 수 없습니다. **PC 실행.cmd**로 열어주세요. 주소 검색 자체에는 카카오 API 키가 필요하지 않지만 인터넷 연결이 필요합니다.
+
+### PC 실행 환경
+
+Node.js **22 이상**이 필요합니다(`package.json`의 `engines`). `PC 실행.cmd`는 저장소 폴더에서 실행하며, 번들 파일이 없을 때만 생성한 뒤 기본 `http://127.0.0.1:18420`을 엽니다. 웹 소스를 수정한 뒤에는 `npm run bundle`로 번들을 갱신합니다. 위 개발자 명령은 먼저 번들을 다시 생성합니다.
+
+`npm start` 또는 `start-demo.cmd`는 기본 `http://127.0.0.1:8080`에서 역할 화면을 같은 로컬 서버 상태로 연결합니다. 두 서버 모두 루프백에만 바인딩하며 `PORT` 환경변수로 포트를 바꿀 수 있습니다. `start-demo.cmd`가 여는 브라우저 URL은 8080으로 고정되어 있으므로 다른 포트를 지정했다면 해당 주소를 직접 엽니다. 합성 시연 데이터만 사용합니다.
+
+### 기존 앱·데이터 보존
+
+기존 앱을 지우거나 데이터를 초기화해서 후보를 설치하지 않습니다. 설치 전에는 대상 패키지·APK 바이트/해시·서명·버전을 확인해야 합니다. 현재 지정 release 후보와 기존 설치 release는 같은 패키지·버전이지만 인증서가 달라 일반 보존 업데이트가 차단된 상태입니다. [서명·업데이트 조건 검수](docs/RELEASE_SIGNING_POLICY_REVIEW_20261029.md)를 따르며, 원래 서명키 가용성은 미확인입니다.
+
+`deviceQa`(`kr.co.ansimdonghaeng.qa`)와 `verifyQa`(`kr.co.ansimdonghaeng.verifyqa`)는 별도 검증 패키지입니다. 해당 앱의 PM 자체 QA를 지정 release APK의 실기기 통과로 계산하지 않습니다. [설치 사전검사 도구](docs/PREFLIGHT_CONTRACT_REVIEW_20261029.md)의 인증서 일치 판정·종료코드도 설치 승인이 아닙니다.
 
 ## 지도 연동 범위
 
 우편번호 검색은 실제 주소와 우편번호를 반환하지만 위도·경도를 반환하지 않습니다. 따라서 주소만 저장한 카카오맵 링크는 **위치 검색**이며, 좌표가 있는 경우에만 목적지를 지정한 **길찾기**를 요청합니다. 좌표를 임의로 만들어 넣지 않습니다. Google 지도 URL은 도로명 주소로 경로를 요청할 수 있지만, 한국 내 자동차 안내 지원은 제한될 수 있습니다.
 
 ## 검증
+
+아래 Python 브라우저 검사는 Python 3·Playwright와 Chromium이 준비된 환경을 전제로 합니다. 설치된 도구 확인과 코드/설정 대조는 실제 실행 성공과 구분합니다.
 
 ```sh
 npm test
