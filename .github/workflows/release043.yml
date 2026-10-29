@@ -195,7 +195,7 @@ jobs:
           
           PC는 압축을 풀고 PC 실행.cmd로 실행합니다(Node.js 22 이상). HTML 직접 열기는 공식 주소 반환을 지원하지 않습니다. Android APK에는 별도의 주소 검색 창이 포함됩니다.
           
-          주소만 있을 때는 카카오맵 위치 검색, 좌표가 있으면 길찾기로 연결합니다. Google 지도도 선택할 수 있습니다. 이전 시험판과 서명이 다르면 삭제 후 설치해야 하며 저장 기록이 지워집니다.
+          주소만 있을 때는 카카오맵 위치 검색, 좌표가 있으면 길찾기로 연결합니다. Google 지도도 선택할 수 있습니다. 설치된 앱과 APK의 서명이 다르면 업데이트를 중단합니다. 기존 앱 삭제·데이터 초기화·서명 강제 교체를 하지 말고 기존 기록을 보존합니다. 업데이트 전 패키지·APK 해시·서명과 호환성을 확인하고, 서명 지속성이 확인된 APK로만 진행합니다.
           EOF
           gh release view v0.4.3-preview >/dev/null 2>&1 || gh release create v0.4.3-preview --target '${{ needs.verify-build.outputs.source_sha }}' --prerelease --title '안심동행 플랫폼 0.4.3' --notes-file /tmp/notes.md
           gh release upload v0.4.3-preview release-input/apk/ansim-platform-0.4.3-preview.apk release-input/ansim-platform-0.4.3-pc.zip release-input/ansim-platform-0.4.3-source.zip --clobber
