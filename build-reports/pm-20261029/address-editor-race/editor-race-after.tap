@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: role switch invalidates native address response before another role editor opens
+ok 1 - role switch invalidates native address response before another role editor opens
+  ---
+  duration_ms: 4.05156
+  type: 'test'
+  ...
+# Subtest: replacing an editor invalidates its outstanding address request
+ok 2 - replacing an editor invalidates its outstanding address request
+  ---
+  duration_ms: 2.025704
+  type: 'test'
+  ...
+# Subtest: role switch disposes an active address widget
+ok 3 - role switch disposes an active address widget
+  ---
+  duration_ms: 1.020123
+  type: 'test'
+  ...
+# Subtest: closing and reopening an editor ignores an earlier native response
+ok 4 - closing and reopening an editor ignores an earlier native response
+  ---
+  duration_ms: 1.211443
+  type: 'test'
+  ...
+# Subtest: current response updates draft only and consumes the request token
+ok 5 - current response updates draft only and consumes the request token
+  ---
+  duration_ms: 1.201818
+  type: 'test'
+  ...
+# Subtest: mismatched response never changes the current draft
+ok 6 - mismatched response never changes the current draft
+  ---
+  duration_ms: 1.451837
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 97.650983

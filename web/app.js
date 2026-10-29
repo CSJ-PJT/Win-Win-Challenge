@@ -110,6 +110,7 @@
   }
   async function setRole(v){
     if(!Object.hasOwn(ROLE_LABELS,v))return;
+    discardAddressSearch();
     if(v==='visitor'){prefs.role='vehicle';prefs.mode='easy';}
     else{prefs.role=v;prefs.mode='standard';}
     prefs.roleChosen=true;savePrefs();panel=null;draft=null;clearError();
@@ -193,7 +194,8 @@
     if(panel==='editor'){document.querySelector('.dialog>header .icon-button')?.focus({preventScroll:true});}
   }
   function countdown(){const el=$('codeSeconds');if(el&&state.challenge){const n=Math.max(0,Math.ceil((state.challenge.expiresAt-Date.now())/1000));el.textContent=n?`남은 시간 ${n}초`:'번호가 만료됐어요.';}}
-  function openPanel(name,section=null){panel=name;editorFrom=section;editorError='';searchMessage='';searchResults=[];draft=name==='editor'?{...C.defaults(),...state.info}:null;draftPreferences=name==='editor'?{mapProvider:prefs.mapProvider,text:prefs.text}:null;render(true);}
+  function discardAddressSearch(){addressDispose?.();addressDispose=null;searchTicket=null;searchResults=[];searchMessage='';}
+  function openPanel(name,section=null){discardAddressSearch();panel=name;editorFrom=section;editorError='';searchMessage='';searchResults=[];draft=name==='editor'?{...C.defaults(),...state.info}:null;draftPreferences=name==='editor'?{mapProvider:prefs.mapProvider,text:prefs.text}:null;render(true);}
   function closePanel(){if(panel==='address'){returnFromAddress();return;}addressDispose?.();addressDispose=null;panel=null;draft=null;draftPreferences=null;searchTicket=null;editorFrom=null;editorError='';render(true);}
   function captureEditor(){if(!draft)return;if($('mapProvider'))draftPreferences={mapProvider:$('mapProvider').value,text:Number($('textSize').value)};document.querySelectorAll('#visitForm [name]').forEach(el=>{if(C.fieldsFor(role()).includes(el.name))draft[el.name]=el.value;});}
   function fieldError(msg){editorError=msg;const el=$('editorError');if(el){el.textContent=msg;el.hidden=false;el.scrollIntoView({block:'nearest'});}else toast(msg);}
