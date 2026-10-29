@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: address SDK network failure permits a fresh successful retry
+ok 1 - address SDK network failure permits a fresh successful retry
+  ---
+  duration_ms: 6.243499
+  type: 'test'
+  ...
+# Subtest: address SDK timeout removes failed script and clears cached failure
+ok 2 - address SDK timeout removes failed script and clears cached failure
+  ---
+  duration_ms: 2.377559
+  type: 'test'
+  ...
+# Subtest: address widget timeout can retry with cached SDK and disposed callbacks stay silent
+ok 3 - address widget timeout can retry with cached SDK and disposed callbacks stay silent
+  ---
+  duration_ms: 1.277076
+  type: 'test'
+  ...
+# Subtest: disposing while SDK loads prevents embedding and error callbacks
+ok 4 - disposing while SDK loads prevents embedding and error callbacks
+  ---
+  duration_ms: 0.907655
+  type: 'test'
+  ...
+# Subtest: disposed widget cannot select an address or report readiness
+ok 5 - disposed widget cannot select an address or report readiness
+  ---
+  duration_ms: 1.063036
+  type: 'test'
+  ...
+# Subtest: selected official-format address returns postcode without inventing coordinates
+ok 6 - selected official-format address returns postcode without inventing coordinates
+  ---
+  duration_ms: 1.098299
+  type: 'test'
+  ...
+# Subtest: invalid selection reports a recoverable error instead of selecting an empty address
+ok 7 - invalid selection reports a recoverable error instead of selecting an empty address
+  ---
+  duration_ms: 1.019322
+  type: 'test'
+  ...
+# Subtest: file URL reports launcher guidance without injecting a remote SDK
+ok 8 - file URL reports launcher guidance without injecting a remote SDK
+  ---
+  duration_ms: 1.294713
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 109.366152

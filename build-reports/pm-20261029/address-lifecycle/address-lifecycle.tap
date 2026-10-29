@@ -1,0 +1,168 @@
+TAP version 13
+# Subtest: address SDK network failure permits a fresh successful retry
+not ok 1 - address SDK network failure permits a fresh successful retry
+  ---
+  duration_ms: 2.712729
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:17:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'mount')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    Object.mount (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:12:49)
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:18:22)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: address SDK timeout removes failed script and clears cached failure
+not ok 2 - address SDK timeout removes failed script and clears cached failure
+  ---
+  duration_ms: 0.997789
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:23:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'mount')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    Object.mount (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:12:49)
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:24:22)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: address widget timeout can retry with cached SDK and disposed callbacks stay silent
+not ok 3 - address widget timeout can retry with cached SDK and disposed callbacks stay silent
+  ---
+  duration_ms: 0.729929
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:28:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'mount')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    Object.mount (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:12:49)
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:29:28)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: disposing while SDK loads prevents embedding and error callbacks
+not ok 4 - disposing while SDK loads prevents embedding and error callbacks
+  ---
+  duration_ms: 0.753445
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:35:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'mount')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    Object.mount (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:12:49)
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:36:24)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: disposed widget cannot select an address or report readiness
+not ok 5 - disposed widget cannot select an address or report readiness
+  ---
+  duration_ms: 0.710841
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:39:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'mount')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    Object.mount (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:12:49)
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:40:24)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: selected official-format address returns postcode without inventing coordinates
+not ok 6 - selected official-format address returns postcode without inventing coordinates
+  ---
+  duration_ms: 0.765052
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:44:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'mount')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    Object.mount (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:12:49)
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:45:22)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: invalid selection reports a recoverable error instead of selecting an empty address
+not ok 7 - invalid selection reports a recoverable error instead of selecting an empty address
+  ---
+  duration_ms: 0.660255
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:49:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'mount')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    Object.mount (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:12:49)
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:50:22)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: file URL reports launcher guidance without injecting a remote SDK
+not ok 8 - file URL reports launcher guidance without injecting a remote SDK
+  ---
+  duration_ms: 0.819783
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:53:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'mount')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    Object.mount (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:12:49)
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/address-lifecycle.test.js:54:29)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 0
+# fail 8
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 122.95418
