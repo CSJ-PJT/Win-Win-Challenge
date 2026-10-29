@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: places rejects missing, coercible and out-of-range coordinates without changing visit state
+ok 1 - places rejects missing, coercible and out-of-range coordinates without changing visit state
+  ---
+  duration_ms: 42.130888
+  type: 'test'
+  ...
+# Subtest: places retains real zeroes, numeric strings and boundary coordinates
+ok 2 - places retains real zeroes, numeric strings and boundary coordinates
+  ---
+  duration_ms: 15.151362
+  type: 'test'
+  ...
+# Subtest: places selects at most five valid results after filtering invalid entries
+ok 3 - places selects at most five valid results after filtering invalid entries
+  ---
+  duration_ms: 6.084226
+  type: 'test'
+  ...
+# Subtest: places returns a recoverable upstream error for a malformed documents container
+ok 4 - places returns a recoverable upstream error for a malformed documents container
+  ---
+  duration_ms: 10.66028
+  type: 'test'
+  ...
+# Subtest: places ignores null documents without discarding valid siblings
+ok 5 - places ignores null documents without discarding valid siblings
+  ---
+  duration_ms: 6.187702
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 179.505669
