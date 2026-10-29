@@ -1,0 +1,33 @@
+{
+  "observed_at": "2026-10-29T12:00:27.973Z",
+  "source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "node": "v24.22.1",
+  "transport": "real HTTP bound only to 127.0.0.1",
+  "filesystem": "real temporary synthetic stores; no fs monkeypatch",
+  "cases": [
+    {
+      "name": "ordinary event temporary-file open failure",
+      "status": "FAIL",
+      "message": "storage failure code\n+ actual - expected\n\n+ 'EISDIR'\n- 'INTERNAL'\n"
+    }
+  ],
+  "passed": 0,
+  "total": 4,
+  "http_requests": 6,
+  "assertions": 2,
+  "expected_server_errors": [
+    {
+      "type": "server persistence rejection",
+      "errno": "EISDIR"
+    }
+  ],
+  "temporary_stores_removed": true,
+  "external_calls": 0,
+  "phone_tests": 0,
+  "builds": 0,
+  "installs": 0,
+  "failure": {
+    "name": "AssertionError",
+    "message": "storage failure code\n+ actual - expected\n\n+ 'EISDIR'\n- 'INTERNAL'\n"
+  }
+}
