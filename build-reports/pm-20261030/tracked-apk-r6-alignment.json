@@ -1,0 +1,54 @@
+{
+  "observed_at_utc": "2026-10-30 01:06:53 UTC",
+  "owner": "existing PM AS-M1",
+  "head_before": "a84ad47732ad586c11f18b0ce2d67e243817f6d1",
+  "product_source": "8f4aaf93e36e4dd3ab267c09c274dedaca4057a6",
+  "ci": 40887985855,
+  "candidate": "r6/docv7",
+  "operation": "Align private branch tracked APK to exact verified r6 release; preserve old blob in history",
+  "old": {
+    "path": "apk/안심동행_안심동행플랫폼_release.apk",
+    "bytes": 5171400,
+    "git_blob": "80cf1a71a50ad5fa2551db1a99171dbcb5c80109",
+    "preserved_at": "apk/history/안심동행_안심동행플랫폼_release-before-20261030-f3b8c701.apk"
+  },
+  "new": {
+    "path": "apk/안심동행_안심동행플랫폼_release.apk",
+    "bytes": 5171848,
+    "sha256": "09e488aa8cf103dffb187ca4fbee6ed72a2fbd100a82c5ba89faa2da173f5e90",
+    "git_blob": "f01a9627f4bb8ac7a615a118cb87483e5ec21390",
+    "local_bytes_rehashed": true,
+    "github_create_blob_sha_matches_local_git_blob": true
+  },
+  "transfer_note": "Initial single extraction was truncated by output-size cap; aborted before upload. Ten complete chunks decoded/re-encoded; returned Git blob equals local computed blob.",
+  "gates": {
+    "D2": "ALIGNED_TO_R6_GIT_BLOB; not judge download or phone runtime",
+    "release_physical": "NOT_RUN",
+    "new_qa_physical": "NOT_RUN",
+    "signer_preserving_update": "BLOCKED_DIFFERENT_CERTIFICATE; original key availability not inspected",
+    "independent_qa": "NOT_APPROVED",
+    "actual_submission": false,
+    "public_release": "v0.3.0-preview only",
+    "mail_review": "LAST_OBSERVED_R4_V5_NOT_UPDATED"
+  },
+  "counts": {
+    "tracked_apk_updated": 1,
+    "old_binary_archived": 1,
+    "product_source_changes": 0,
+    "builds": 0,
+    "installs": 0,
+    "physical_tests": 0,
+    "official_documents_modified": 0,
+    "frozen_candidate_changes": 0,
+    "independent_qa_approvals": 0
+  },
+  "operations": {
+    "branch": "feature/pm-api-screen-0.4.3 only; main/easy/address untouched",
+    "it13": "REMOTE_MONTHLY_LIMIT_NO_RETRY; OPS/lock/procs/sender receipts inaccessible",
+    "slack": "NOT_SENT_EXISTING_SENDER_UNAVAILABLE; direct alternate send forbidden; channel search0 does not prove sender failure",
+    "phone_push": "NOT_VERIFIED",
+    "night": "18:00-09:00 stop instruction preserved; current work in permitted daytime"
+  },
+  "next_owner": "existing PM AS-M1",
+  "next": "Review submission README/fixed-source and APK links against aligned r6; preserve Private/Draft, no judge invitations/public release/submission."
+}
