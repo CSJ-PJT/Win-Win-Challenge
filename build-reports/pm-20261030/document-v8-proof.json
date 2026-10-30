@@ -1,0 +1,39 @@
+{
+  "document_version": 8,
+  "pages": 13,
+  "visual_review_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "font": "Noto Sans CJK KR",
+  "same_stable_ids": true,
+  "signature_blank": true,
+  "date_blank": true,
+  "future_qa_completion_entered": false,
+  "prior_v7_and_r4_r5_r6_preserved": true,
+  "unchanged_zip_members": 25,
+  "modified_text_nodes": 13,
+  "stored_pdf_13_pages_text_and_pixels_equal_to_reviewed_pdf": true,
+  "files": {
+    "docx": {
+      "bytes": 500201,
+      "sha256": "cbefe2dc4ac156cf4e02914a5d1eba45902bba82040884cf6fec05d944c446de"
+    },
+    "pdf": {
+      "bytes": 762544,
+      "sha256": "f0a5527ab09803bd5de5e072717d7c6134cbfea6b374e7f90ca61996d50c1e22"
+    }
+  },
+  "scope": "Content prepared; participant signature and actual submission pending"
+}

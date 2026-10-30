@@ -1,0 +1,223 @@
+{
+  "scope": "real loopback HTTP / synthetic data / PM self QA",
+  "cases": [
+    {
+      "name": "handoff and guardian readback with durable restore",
+      "status": "PASS"
+    },
+    {
+      "name": "easy arrival consent and staff acknowledgement with durable restore",
+      "status": "PASS"
+    }
+  ],
+  "http": [
+    {
+      "route": "/api/bootstrap",
+      "role": "none",
+      "status": 200
+    },
+    {
+      "route": "/api/health",
+      "role": "none",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "vehicle",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "vehicle",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "simulator",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "simulator",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "facility",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "facility",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "vehicle",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "vehicle",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "simulator",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "simulator",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "vehicle",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "vehicle",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "guardian",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "guardian",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "guardian",
+      "status": 403
+    },
+    {
+      "route": "/api/state",
+      "role": "vehicle",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "vehicle",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "facility",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "facility",
+      "status": 409
+    },
+    {
+      "route": "/api/state",
+      "role": "vehicle",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "facility",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "facility",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "guardian",
+      "status": 200
+    },
+    {
+      "route": "/api/bootstrap",
+      "role": "none",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "guardian",
+      "status": 200
+    },
+    {
+      "route": "/api/reset",
+      "role": "simulator",
+      "status": 200
+    },
+    {
+      "route": "/api/bootstrap",
+      "role": "none",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "visitor",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "visitor",
+      "status": 409
+    },
+    {
+      "route": "/api/state",
+      "role": "visitor",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "visitor",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "visitor",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "visitor",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "facility",
+      "status": 200
+    },
+    {
+      "route": "/api/events",
+      "role": "facility",
+      "status": 200
+    },
+    {
+      "route": "/api/bootstrap",
+      "role": "none",
+      "status": 200
+    },
+    {
+      "route": "/api/state",
+      "role": "visitor",
+      "status": 200
+    }
+  ],
+  "assertions": 54,
+  "browser": false,
+  "android": false,
+  "externalCalls": 0,
+  "phonePushVerified": false,
+  "result": "PASS",
+  "completedAt": "2026-10-30T03:02:22.257Z",
+  "node": "v24.22.1",
+  "source": "8f4aaf93e36e4dd3ab267c09c274dedaca4057a6",
+  "checked_documentation_base": "bfaae931cee93d83ce8472a3f9ce819f386f8209",
+  "product_blob_match_count": 5,
+  "http_request_count": 39,
+  "published_scope": "Service journey only; no fresh browser/Android/independent QA"
+}
