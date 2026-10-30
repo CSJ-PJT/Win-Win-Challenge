@@ -1,0 +1,74 @@
+name: Submission PoC preflight (2026-10-31)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/submission-preflight.yml'
+permissions:
+  contents: read
+
+jobs:
+  poc-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source tests
+        run: |
+          set -euo pipefail
+          mkdir -p build-reports/submission-preflight
+          npm test | tee build-reports/submission-preflight/node-tests.txt
+      - name: Execute independent HTTP PoC with temporary storage
+        run: |
+          set -euo pipefail
+          node tools/poc-e2e.cjs --output build-reports/submission-preflight/poc-e2e.json | tee build-reports/submission-preflight/poc-e2e-console.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path('build-reports/submission-preflight/poc-e2e.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d.get('result')=='PASS', d.get('failure','HTTP PoC failed')
+          assert len(d.get('cases',[]))==2 and all(x['status']=='PASS' for x in d['cases'])
+          assert d.get('assertions',0)>=54
+          assert len(d.get('http',[]))>=39
+          assert not d.get('externalCalls'), 'PoC unexpectedly made external calls'
+          print('PoC PASS / cases=2 / assertions=',d['assertions'],'/ requests=',len(d['http']))
+          PY
+      - name: Verify APK, bundled HTML and source alignment
+        run: |
+          set -euo pipefail
+          npm run bundle
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          path=Path('apk/안심동행_안심동행플랫폼_release.apk')
+          actual=hashlib.sha256(path.read_bytes()).hexdigest()
+          expected='09e488aa8cf103dffb187ca4fbee6ed72a2fbd100a82c5ba89faa2da173f5e90'
+          assert actual==expected, 'The release APK is not the validated 0.4.3 artifact'
+          assert len(path.read_bytes())==5171848
+          assert Path('dist/handoff-demo.html').stat().st_size>50000
+          result={
+             'source_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+             'validated_product_source':'8f4aaf93e36e4dd3ab267c09c274dedaca4057a6',
+             'product_version':'0.4.3',
+             'apk_path':str(path),
+             'apk_sha256':actual,
+             'apk_bytes':path.stat().st_size,
+             'standalone_html':'dist/handoff-demo.html',
+             'notice':'HTTP tests use synthetic people and simulated vehicle state. No live institution, push delivery or Pleos car claim.'
+          }
+          Path('build-reports/submission-preflight/manifest.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False))
+          PY
+      - name: Upload submission-review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: submission-poc-preflight-20261031
+          path: |
+            build-reports/submission-preflight/
+            dist/handoff-demo.html
+          retention-days: 14
