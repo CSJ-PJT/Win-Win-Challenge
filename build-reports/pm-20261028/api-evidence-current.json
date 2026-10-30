@@ -1,0 +1,99 @@
+{
+  "observedKst": "2026-10-28T23:00+09:00",
+  "scope": "source identity and evidence matrix reconciliation; no runtime retest",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "baseHead": "b3b72d5481db13e192caf341dd98bcdf249e6fe9",
+  "httpHistory": {
+    "runDate": "2026-10-26",
+    "source": "35e30651a259251cc652c66acca43eafdff33b78",
+    "requests": 40,
+    "assertions": 31,
+    "reexecuted": false
+  },
+  "sourceChecks": [
+    {
+      "path": "server.js",
+      "bytes": 9388,
+      "git_blob_sha": "7933942c06dc5287b982a22b5296fba3430a5040",
+      "sha256": "242b12e31078453c240ca3a9c21de4efb29b11fe4c4086a4feaa90cd9de7d150",
+      "matches_current_head": true,
+      "currentBlob": "7933942c06dc5287b982a22b5296fba3430a5040",
+      "matchCurrent": true
+    },
+    {
+      "path": "web/core.js",
+      "bytes": 15541,
+      "git_blob_sha": "267601ac7c59e2c6e11ab1afd3f0eaea64fc1101",
+      "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+      "matches_current_head": true,
+      "currentBlob": "267601ac7c59e2c6e11ab1afd3f0eaea64fc1101",
+      "matchCurrent": true
+    },
+    {
+      "path": "web/config.js",
+      "bytes": 4724,
+      "git_blob_sha": "180907d23bf4fe7f08e0a3e339e27aac963be995",
+      "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+      "matches_current_head": true,
+      "currentBlob": "180907d23bf4fe7f08e0a3e339e27aac963be995",
+      "matchCurrent": true
+    }
+  ],
+  "httpRoutes": [
+    "GET /api/health",
+    "GET /api/bootstrap",
+    "GET /api/state",
+    "GET /api/places",
+    "POST /api/reset",
+    "POST /api/events"
+  ],
+  "bridges": [
+    "openAddressSearch",
+    "searchAddress",
+    "openMap",
+    "openDialer",
+    "checkNavigation",
+    "requestSampleRoute"
+  ],
+  "currentAppSha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+  "currentTestSha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+  "ci": {
+    "id": 40592432776,
+    "conclusion": "success",
+    "publish": "skipped"
+  },
+  "published": "v0.3.0-preview",
+  "preservation": {
+    "time": "2026-10-28T22:59:58.2209556+09:00",
+    "installedHashesUnchanged": 5,
+    "candidateChecksPassed": 20,
+    "candidateChecksTotal": 20,
+    "sumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+    "lockPresent": false,
+    "activeInstrumentation": 0
+  },
+  "new": {
+    "productCode": 0,
+    "http": 0,
+    "junit": 0,
+    "phoneUi": 0,
+    "build": 0,
+    "install": 0,
+    "ciRequest": 0
+  },
+  "independentQA": false,
+  "releasePhysicalPass": false,
+  "authenticatedRest200": false,
+  "slack": {
+    "nightSend": 0,
+    "last18PostRead": true,
+    "phonePush": "unverified"
+  },
+  "nextOwner": "existing PM AS-M1",
+  "nextTask": "Read current official submission notices and reconcile judge access/signature/attachment gates against r4/v5; no permission expansion or submission",
+  "orchestrationNotes": [
+    "Initial PowerShell array concatenation treated all input paths as one; corrected with individual parenthesized expressions and reread all files.",
+    "Recursive adb discovery encountered old build path DirectoryNotFound after locating official adb; followed using exact observed adb path and separate preservation check.",
+    "Local JS evidence assembly referenced hist outside scope; corrected before any mutation."
+  ]
+}

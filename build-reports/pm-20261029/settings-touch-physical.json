@@ -1,0 +1,303 @@
+{
+  "time": "2026-10-29T04:09:49.9433166+09:00",
+  "owner": "AS-Q1-PM-20261029T0357",
+  "status": "PASS_SCOPED",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "appSha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+  "package": "kr.co.ansimdonghaeng.verifyqa",
+  "variant": "verifyQa",
+  "scope": "PM actual ADB two synthetic name fields save, QA-only process cold restore, revert original fields",
+  "checks": {
+    "baselineCount13": true,
+    "persistedCount13": true,
+    "revertedCount13": true,
+    "namesOriginallyBlank": true,
+    "senderPersisted": true,
+    "guardianPersisted": true,
+    "other11SameAfterCold": true,
+    "reverted13Same": true,
+    "savedToast": true,
+    "originalSavedToast": true,
+    "coldStart": true,
+    "installed5Preserved": true,
+    "candidate20Same": true,
+    "candidateSumsSame": true,
+    "activeInstrumentationAbsent": true,
+    "lockReleased": true
+  },
+  "before": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "after": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "candidateChecks": [
+    {
+      "matches": true,
+      "file": "ACCESS_REVIEW.json"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-candidate.apk"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-pc.zip"
+    },
+    {
+      "matches": true,
+      "file": "ansim-platform-0.4.3-source.zip"
+    },
+    {
+      "matches": true,
+      "file": "ci-build-12774967132.zip"
+    },
+    {
+      "matches": true,
+      "file": "ci-verification-historical-0755.json"
+    },
+    {
+      "matches": true,
+      "file": "DOCUMENT_VERSION_BINDINGS.json"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_R2_SHA256SUMS.txt"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_R3_SHA256SUMS.txt"
+    },
+    {
+      "matches": true,
+      "file": "HISTORY_V4_DOCUMENT_GAPS.json"
+    },
+    {
+      "matches": true,
+      "file": "manifest.json"
+    },
+    {
+      "matches": true,
+      "file": "official-application-v5.docx"
+    },
+    {
+      "matches": true,
+      "file": "official-application-v5.pdf"
+    },
+    {
+      "matches": true,
+      "file": "official-v5-verification.json"
+    },
+    {
+      "matches": true,
+      "file": "README_KO.md"
+    },
+    {
+      "matches": true,
+      "file": "release-manifest.txt"
+    },
+    {
+      "matches": true,
+      "file": "release-signature.txt"
+    },
+    {
+      "matches": true,
+      "file": "source-sha.txt"
+    },
+    {
+      "matches": true,
+      "file": "verifyqa-dom-cold-physical.json"
+    },
+    {
+      "matches": true,
+      "file": "verifyqa-official-physical.json"
+    }
+  ],
+  "candidateSumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+  "coldActivityMs": 362,
+  "coldWaitMs": 369,
+  "junitRuns": 0,
+  "actualUiScenarios": 1,
+  "newBuilds": 0,
+  "newInstalls": 0,
+  "fieldObservations": 13,
+  "revertedFieldsCompared": 13,
+  "privateImages": [
+    {
+      "sha256": "05492756deab0436884f3a5fc0394c79a916061515a7a2b490f67d36c6498366",
+      "file": "baseline-private.png"
+    },
+    {
+      "sha256": "ea0d6ffb18587b31c7135a2ef57d8fbd2a068a065ee52d04906e91ad98d2cab2",
+      "file": "close-locked-after-private.png"
+    },
+    {
+      "sha256": "76637d1c6cec294279f748d2ca31d5e805694daca6375af3534e0455ba16a96e",
+      "file": "cold-editor-after-private.png"
+    },
+    {
+      "sha256": "ed0e7b4ec3a5ddd2b409cd529e8ba22966ec38793439d7b2ebc0cc0a29703477",
+      "file": "cold-settled-private.png"
+    },
+    {
+      "sha256": "aa981712424f4461f80ba9a1b329f747c11484e96ec4e7dc4de59158d350c8ba",
+      "file": "easy-ack-before-cold-private.png"
+    },
+    {
+      "sha256": "97ddce2770c07ff468b6b62a7478217cf7a31cc6e119af84a68215a31f5dd545",
+      "file": "easy-tab-after-private.png"
+    },
+    {
+      "sha256": "1286830f1793774049e306274517fdaa571b8a964485ffb80de530131fb20457",
+      "file": "editor-locked-after-private.png"
+    },
+    {
+      "sha256": "b1c8d8f0fd84bb209d6147ff58951da646f21f46c3245f4672856d9f68aa1eb3",
+      "file": "editor-new-after-private.png"
+    },
+    {
+      "sha256": "de568d72bd3c1157d69e8494c9e5fa923474c9eceb6db9b5225a1ae3a17fe0f6",
+      "file": "editor-reopen-after-private.png"
+    },
+    {
+      "sha256": "48f9f023410732e8849c704da406e5126323784b6ccd0c318dbf012cbdd1c6ad",
+      "file": "final-close-after-private.png"
+    },
+    {
+      "sha256": "0e13b32b9a36503f9360335f1976e655fd19756f0e2db7cf31a1159e4743c74a",
+      "file": "guardian-revert-after-private.png"
+    },
+    {
+      "sha256": "b165692aa09f68b4f8f603ab0eb845dd6c4ccbcc20753287ad52476d8c950bf2",
+      "file": "guardian-set-retry-after-private.png"
+    },
+    {
+      "sha256": "e30772f265bb71a2f6f031ee6604a7e4c22fb791d30ff66d3db1f865a6ef7e12",
+      "file": "initial-private.png"
+    },
+    {
+      "sha256": "0bd104c15463275233718051d09bbb1c4247d473cecd1ba6fdc9b5cbe82e88f5",
+      "file": "keyboard-hidden-private.png"
+    },
+    {
+      "sha256": "22ceac7ff944ef1a74657995865c4788123dd0a4112b7ec293ed89202a0d97c2",
+      "file": "new-visit-after-private.png"
+    },
+    {
+      "sha256": "d8f1489fe0c4354ed8b9ede23b215209e6a3d5fe438a1f5fb016a05bf41dec0d",
+      "file": "original-editor-after-private.png"
+    },
+    {
+      "sha256": "deaef658e52562c47a1ee70dff767996e80f54f2ee6da58d6f30fd70327a5776",
+      "file": "original-save-after-private.png"
+    },
+    {
+      "sha256": "749177dbc91cdbb5001422b6101110b479ac5657578604bff60719553cc0476b",
+      "file": "persisted-private.png"
+    },
+    {
+      "sha256": "bd27e179de4e1b145c61b935fe34666f451a343125a2dc0ca89fec37ba65b984",
+      "file": "revert-keyboard-hidden-private.png"
+    },
+    {
+      "sha256": "b57c84a887f628c6401fec345c25cfdd896b905c3d58267251115e12ebbf80e5",
+      "file": "reverted-private.png"
+    },
+    {
+      "sha256": "ec4443803badb18f1220dc80492c3b28e41c63715ceacc306c5721ccf11d3514",
+      "file": "sender-revert-after-private.png"
+    },
+    {
+      "sha256": "b627874619861b221c22f4b1b0adc5b0be15290dcc5b1d1413781558310fb50b",
+      "file": "sender-set-after-private.png"
+    },
+    {
+      "sha256": "a9f4c185733877fac2128553842ec7909eb1299b319e96e1c0e9f62155ec7cf6",
+      "file": "sender-set-retry-after-private.png"
+    },
+    {
+      "sha256": "e6b7b1f0d790649f886fb627af179739b44e605abf31d911ee787d4791ca59f0",
+      "file": "synthetic-save-after-private.png"
+    }
+  ],
+  "xmlCount": 41,
+  "claim": {
+    "time": "2026-10-29T04:09:49.3098755+09:00",
+    "lockRemaining": false,
+    "owner": "AS-Q1-PM-20261029T0357"
+  },
+  "failures": [
+    "Initial helper edit parser error before UI due JS replacement expansion; corrected with literal replacement callback.",
+    "First sender entry followed by ESC closed unsaved editor; FIELD_VALUE_MISMATCH retained. Guardian followup FIELD_COUNT did not enter data. Reopen and normal input/back-to-hide-IME recovered.",
+    "First cold initial uiautomator dump returned ADB_EXIT_137 after COLD log persisted; no second cold. Same session settled dump/PNG recovered.",
+    "First verification normalized array items named value as a wrapper and falsely reported differences before any close/release; corrected wrapper detection and retained original failure.",
+    "One read-only remote connection failed; list_devices Online then read-only state inspection succeeded."
+  ],
+  "limitations": [
+    "PM self QA, not independent/human/release physical.",
+    "Only 13 observed form field values compared; not full localStorage or all setting functionality.",
+    "No second cold after revert.",
+    "QA visit state changed from prior facility ACK to new care-center unconsented visit by normal control.",
+    "Activity time is not full UI ready latency.",
+    "No real call, institution transmission, deployment or submission."
+  ],
+  "delivery": {
+    "conversation": "current 04:00 KST run result to be returned",
+    "slack": "NOT_SENT_OUTSIDE_09_18_KST",
+    "lastObservedSlack": "2026-10-28 18:11:31 KST ArchiveOS #asdh search result",
+    "phonePush": "UNVERIFIED"
+  },
+  "automation": {
+    "id": "6adc0b1288ec8191bea6bce2e4c85583",
+    "isEnabled": true,
+    "schedule": "hourly at minute 0, Asia/Seoul",
+    "changed": false
+  },
+  "releaseGates": {
+    "sourceCi": "40592432776 success at source 99d5da0; publish skipped",
+    "qaPhysical": "PM self scoped PASS",
+    "releasePhysical": "UNEXECUTED; preservation update blocked by installed/candidate signer difference",
+    "independentQa": "PENDING",
+    "humanUsability": "UNVERIFIED",
+    "actualSubmission": "NOT_SENT"
+  },
+  "nextSingleOwner": "기존 PM AS-M1: 현재 verifyQa930에서 잘못된 연락처 저장 거절과 편집 취소 시 원래값 보존을 실제 UI로 1회 확인. fresh claim/잠금/동시작업 확인, 실전화·실기관전송·빌드·설치 없이 원래값 복구."
+}

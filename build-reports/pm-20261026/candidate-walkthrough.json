@@ -1,0 +1,142 @@
+{
+  "task_id": "AS-M1-PM-20261026T0456",
+  "owner": "existing PM",
+  "source_commit": "41c1812013d395b90d9c6ae7a35ccdcee8b377f4",
+  "ci": 40210143323,
+  "apk_sha256": "7801e8ffc7e393662ad73c57c3cfb385261b6dcc63405b737359a326504fe8a5",
+  "latest_ci": {
+    "id": 40219456270,
+    "status": "completed",
+    "conclusion": "success",
+    "scope": "metadata only"
+  },
+  "source_files": [
+    {
+      "path": "web/app.js",
+      "git_blob_sha1": "f9376b1fac4ec50e44f7d4e8d6b38e1841083fd0",
+      "sha256": "1130c665e861ce12a9091691a89b0002fc26b0d2a76748fec926ee624186890e"
+    },
+    {
+      "path": "web/core.js",
+      "git_blob_sha1": "267601ac7c59e2c6e11ab1afd3f0eaea64fc1101",
+      "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65"
+    },
+    {
+      "path": "web/config.js",
+      "git_blob_sha1": "180907d23bf4fe7f08e0a3e339e27aac963be995",
+      "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87"
+    },
+    {
+      "path": "web/ui.js",
+      "git_blob_sha1": "01893ec7f906191bcd017317cdb8dae5ded11f9a",
+      "sha256": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851"
+    },
+    {
+      "path": "android/app/src/androidTest/java/kr/co/ansimdonghaeng/DomFlowTest.java",
+      "git_blob_sha1": "0d6dbc2cc161ee7e9536a3bedc8c038b53c2d2c9",
+      "sha256": "ca1380c185e20f9dc7e9c986e84d0af765b722bc605f1bf5f9a16ee31a797f50"
+    },
+    {
+      "path": "android/app/src/androidTest/java/kr/co/ansimdonghaeng/LiveAddressTest.java",
+      "git_blob_sha1": "0fdd38a23046ef4421f6821483795842e4e7cb7a",
+      "sha256": "8413c0b6fb43bb369c3bf173d9fe15e065fdd035b5006dc1f66a1c458526bace"
+    },
+    {
+      "path": "test/android_smoke.py",
+      "git_blob_sha1": "b3dd9ebbe2f63c25d2c8fddc78557f306f2bddf3",
+      "sha256": "476dc3a3c44c37bc8d0944f1562175d93b195382de38f46bc1e307cd964d2849"
+    },
+    {
+      "path": "test/domain.test.js",
+      "git_blob_sha1": "b4a7574ac28140c0096a55fc44cb3983cbca2ded",
+      "sha256": "4e5b75de6acfacc6584cd69fda9a33220a312769095b4f0a5aeb629d8bcdd0d9"
+    }
+  ],
+  "screen_files": [
+    {
+      "path": "04-received.png",
+      "bytes": 115207,
+      "sha256": "000c9ed3f276ff86d5d3b8c5fcc006e9facd8ed9a9ba2497c67269df15f88b71"
+    },
+    {
+      "path": "05-easy.png",
+      "bytes": 105544,
+      "sha256": "b684fed1f6d50c34593e6900290ec1eae1a0329d2a9bc80876cf85515a926702"
+    },
+    {
+      "path": "live-address/03-saved-address.png",
+      "bytes": 96996,
+      "sha256": "1ae7bea83c044bf3a5740fc9420adf767597bfc1e487476eb05aa3ea64af0845"
+    },
+    {
+      "path": "dom-flow-test.txt",
+      "bytes": 753,
+      "sha256": "5fd726ef09534a2a68554beaab491f5581d0d4ab0d947f7a4491bdf77865b14d"
+    },
+    {
+      "path": "dom-flow-logcat.txt",
+      "bytes": 157,
+      "sha256": "b40613ad01fa0a94cd0401477bc6546a269f78abd66e9ef4a2385ab919d6f0ac"
+    },
+    {
+      "path": "live-address-test.txt",
+      "bytes": 738,
+      "sha256": "98506e5e615471e5d1ba2de0d77e857e1c3887cb9c73c159b4b72497de2fed96"
+    },
+    {
+      "path": "check-status.txt",
+      "bytes": 82,
+      "sha256": "281ac425a7ffc745acf191729dc42ba91420084e36a01eab6c335365cecf562e"
+    },
+    {
+      "path": "results.json",
+      "bytes": 397,
+      "sha256": "c16d90556154fbb9187ba37c83af92bdf63d9ca2d464f52c772178e060de203e"
+    }
+  ],
+  "source_apk_assets": [
+    {
+      "path": "assets/address.js",
+      "source_equal": true
+    },
+    {
+      "path": "assets/app.js",
+      "source_equal": true
+    },
+    {
+      "path": "assets/config.js",
+      "source_equal": true
+    },
+    {
+      "path": "assets/core.js",
+      "source_equal": true
+    },
+    {
+      "path": "assets/index.html",
+      "source_equal": false
+    },
+    {
+      "path": "assets/postcode.html",
+      "source_equal": true
+    },
+    {
+      "path": "assets/style.css",
+      "source_equal": true
+    },
+    {
+      "path": "assets/ui.js",
+      "source_equal": true
+    }
+  ],
+  "bundled_index_matches_source_transform": true,
+  "bundled_index_note": "7 web assets exact; index.html equals tools/bundle.js transformation, no APK or app build performed",
+  "new_test_run": false,
+  "new_build": false,
+  "phone_ui": false,
+  "original_candidate_files_unchanged": true,
+  "independent_qa": false,
+  "reviewer_received": false,
+  "submitted": false,
+  "slack_sent": false,
+  "prepared_at_kst": "2026-10-26T05:02:26+09:00"
+}

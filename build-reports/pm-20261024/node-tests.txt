@@ -1,0 +1,12 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> ansim-handoff-demo@0.4.3 test
+> node --test test/*.test.js
+
+✔ postcode maps an explicitly selected road address without inventing coordinates (1.088587ms)
+✔ postcode honours explicit lot selection instead of an inferred road address (0.28386ms)
+✔ postcode data is limited to the selected address, postcode and building name (0.239913ms)
+✔ address postcode and details survive a real configure event (1.076449ms)
+✔ bad postcode is rejected and map links never include private visit fields (0.336279ms)
+✔ Kakao selection never silently opens Google when coordinates are missing (0.22485ms)
+✔ HTTP demo upgrades official postcode requests without allowing arbitrary scripts or frames (36.81498ms)

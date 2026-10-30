@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "slot": "2026-10-29T13:00:00+09:00",
+  "observed_at": "2026-10-29T12:58:50.110074+09:00",
+  "owner": "existing PM AS-M1",
+  "base_head": "6d0eb5ce734afe766969716351e48002363cb726",
+  "scope": "AddressPicker module lifecycle; not rendered app UI, no editor value preservation claim",
+  "source": {
+    "path": "web/address.js",
+    "git_blob": "5f28421d3746e89082cbba8d069bdd0effe1f916",
+    "staged_content_match": "identical except terminal newline",
+    "sha256": "23fb0fd60f03406bf913788ad391efb39a9810af8a5028355a68226731b90528"
+  },
+  "browser_attempt": {
+    "status": "BLOCKED",
+    "reason": "No Chromium executable. Playwright headless-shell download yielded invalid/truncated ZIP (End of central directory record signature not found); installer retried same configured download automatically; interrupted, no alternate route/proxy bypass.",
+    "screen_test_completed": false
+  },
+  "tests": {
+    "runtime": "Node v24.22.1 Linux",
+    "method": "Actual unmodified AddressPicker evaluated in Node VM with minimal DOM/script/timer/SDK fixture; deterministic lifecycle faults, no real browser layout or official provider.",
+    "targeted": {
+      "tests": 8,
+      "pass": 8,
+      "fail": 0
+    },
+    "full_node": {
+      "tests": 125,
+      "pass": 125,
+      "fail": 0
+    },
+    "initial_harness_failure": "8/8 initially failed because VM globalThis.AddressPicker was not exposed on fixture.window; corrected harness only, not product.",
+    "cases": [
+      "SDK network failure -> new-script retry -> readiness",
+      "SDK 12s timeout -> failed-script removal -> retry",
+      "widget 18s timeout -> cached SDK retry -> old callback ignored",
+      "dispose before SDK load -> no embed",
+      "dispose after widget -> no select/ready callback; timers cleared",
+      "address/postcode normalization with null coordinates",
+      "malformed selection -> recoverable error",
+      "file URL -> launcher guidance without remote script"
+    ],
+    "actual_provider_calls": 0,
+    "new_junit": 0,
+    "exclusions": [
+      "rendered app UI and input preservation NOT RUN",
+      "not Android physical QA",
+      "not independent QA",
+      "not release validation"
+    ]
+  },
+  "sha256": {
+    "test/address-lifecycle.test.js": "b71483ce689f29923673033e814007c9c64c5ed6eb43d64bb72f0430c451a14c",
+    "web/address.js": "23fb0fd60f03406bf913788ad391efb39a9810af8a5028355a68226731b90528",
+    "address-lifecycle.tap": "6e8cdf40ef18a7f8cf0c8ee7774dc22aadb3b7e9aba9a033193acb1ad5697177",
+    "address-lifecycle-fixed-harness.tap": "997c4deb751a3d0bff17bbfc14f7659dfbc216219cd58a09a40639a96f0fcca0",
+    "regression-1300.tap": "74db84b03f13ee1dd3af1072bdd27f681b499e31a2127ac82dd02ae10976f472"
+  },
+  "product_code_changes": 0,
+  "new_build": 0,
+  "new_install": 0,
+  "new_phone_test": 0,
+  "new_submission": 0,
+  "candidate": {
+    "r4": "unchanged source99",
+    "server_fix_6d0eb5c": "not included in sealed source ZIP",
+    "apk": "f3b8 unchanged",
+    "fresh_hash": false,
+    "last_physical_hash_observation": "2026-10-29T05:07:07+09:00",
+    "docx_pdf_edit": false
+  },
+  "ci": {
+    "last_run": 40592432776,
+    "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+    "last_conclusion": "success",
+    "new_ci": false,
+    "reason": "test-only addition; complete local Node regression; avoid redundant APK build"
+  },
+  "remote": {
+    "retry_reconnect_bypass": false,
+    "current_claim_process_keyguard": "NOT_OBSERVED",
+    "common_ops_updated": false
+  },
+  "slack": {
+    "today_search": 0,
+    "send_receipt": "UNAVAILABLE",
+    "queue_registered": false,
+    "alternate_send": false,
+    "phone_push": "UNVERIFIED",
+    "review_only_report": "🤝 *안심동행 | 10/29 13:00 KST* 🟡 *릴리스 검증 대기*\n🕒 *관측* 12:58 로컬 검사 / 현장 마지막 05:07\n*한줄 결론* 주소 연결 실패·재시도 모듈 회귀 8개 추가.\n📊 *게이트* 모듈 회귀 ✅ | 브라우저 UI ❔ | QA앱 실기기 🟡(기존 PM 자체)\n릴리스 실기기 ⏳ | 독립 QA ⏳ | 실제 제출 ⏳\n🧪 *증거* 새 Node VM 검사 8/8, 전체 Node 125/125.\n브라우저 다운로드 ZIP 오류로 화면·입력 보존 미검증. 공식 주소 실호출 아님.\n🔁 *직전 대비* 회귀 검사 1건 추가 / 제품 코드·빌드·설치·폰 시험 0건.\n🚧 *차단* 브라우저 실행 파일·IT13 원격 제한·릴리스 서명 차이.\n🎯 *다음* 기존 PM AS-M1: 주소 편집기 지연 결과·역할 전환 경합 검증.\n🔗 <https://github.com/CSJ-PJT/Win-Win-Challenge/pull/2|상세> | 봇 큐·발송·폰 push 미확인",
+    "lines": 11,
+    "characters": 496
+  },
+  "next_single_owner": "Existing PM AS-M1: validate address-editor stale callback and role-switch races in isolated execution; rendered screen remains blocked. No repeated browser download without diagnosing setup; preserve candidate and device constraints."
+}

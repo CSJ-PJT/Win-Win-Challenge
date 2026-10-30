@@ -1,0 +1,37 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const {chromium}=require(path.join(process.env.LOCALAPPDATA,'AnsimBuildTools/checks/live-save-2026102515/node_modules/playwright'));
+const out=__dirname,html=fs.readFileSync(path.join(out,'candidate-index.html'),'utf8');
+const report={task_id:'AS-Q1-PM-20261026T0605',owner:'existing PM selfQA',source:'41c1812013d395b90d9c6ae7a35ccdcee8b377f4',environment:'Windows Chrome headless isolated context / exact release APK bundled HTML / synthetic local visit',clock:'Playwright virtual clock fastForward for expiry; not wall-clock or phone runtime',started_at:new Date().toISOString(),html_sha256:crypto.createHash('sha256').update(html).digest('hex'),cases:[],page_errors:[],external_requests:[],phone_actions:false,new_apk_build:false,product_modified:false};
+const pass=name=>{report.cases.push({name,pass:true});console.log('PASS '+name)};
+(async()=>{let browser;try{
+assert.equal(report.html_sha256,'c2004a65d27ffc601cad796f22c539105ced3db9b58b0d02e68bd5fa36e893d1');
+browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+report.browser_version=browser.version();
+const context=await browser.newContext({viewport:{width:430,height:900}});
+const p=await context.newPage();p.setDefaultTimeout(8000);
+p.on('pageerror',e=>report.page_errors.push(e.message));
+await p.clock.install();
+await p.route('**/*',r=>{if(r.request().isNavigationRequest()&&r.request().url()==='http://127.0.0.1:18605/')return r.fulfill({status:200,contentType:'text/html',body:html});report.external_requests.push(new URL(r.request().url()).origin);return r.abort()});
+await p.goto('http://127.0.0.1:18605/');
+const act=n=>p.locator('[data-action="'+n+'"]').first().click();
+const role=n=>p.locator('.demo-role-tab[data-role="'+n+'"]').click();
+const state=()=>p.evaluate(()=>JSON.parse(localStorage.getItem('ansim-synthetic-demo-v1')));
+await act('edit-destination');await p.locator('#field-address').fill('');await p.locator('#visitForm button[type=submit]').click();
+await p.locator('#editorError').filter({hasText:'주소를 입력하거나 검색 결과를 선택해 주세요.'}).waitFor();
+assert.equal(await p.locator('.dialog').count(),1);
+await p.locator('#field-address').fill('서울 중구 세종대로 110');await p.locator('#visitForm button[type=submit]').click();await p.locator('.dialog').waitFor({state:'detached'});
+assert.match((await state()).info.address,/세종대로 110/);pass('empty address error retains editor; actual input correction saves and closes');
+await act('depart');await act('arrive');await role('facility');if(await p.locator('[data-action=ready]').count())await act('ready');await role('vehicle');await act('issue');let pin=await p.locator('.pin-code strong').innerText();await act('sender');await role('facility');
+await act('receiver');await p.locator('#inlineError').filter({hasText:'6자리'}).waitFor();assert.equal((await state()).receiverConfirmed,false);
+const wrong=String((Number(pin)+1)%1000000).padStart(6,'0');await p.locator('#codeInput').fill(wrong);await act('receiver');
+await p.locator('#inlineError').filter({hasText:'일치하지'}).waitFor();assert.equal((await state()).receiverConfirmed,false);assert.equal((await state()).challenge.attempts,1);pass('empty and wrong code display errors without receiver completion');
+await role('vehicle');await act('issue');let s=await state();assert.equal(s.senderConfirmed,false);assert.equal(s.receiverConfirmed,false);assert.equal(s.challenge.attempts,0);pin=await p.locator('.pin-code strong').innerText();await act('sender');pass('reissuing current code clears prior confirmations and attempts');
+await p.clock.fastForward(121000);await role('facility');await p.locator('#codeInput').fill(pin);await act('receiver');
+await p.locator('#inlineError').filter({hasText:'만료'}).waitFor();s=await state();assert.equal(s.challenge,null);assert.equal(s.senderConfirmed,false);assert.equal(s.receiverConfirmed,false);assert.notEqual(s.state,'COMPLETED');
+await p.screenshot({path:path.join(out,'expired-error.png'),fullPage:true});
+await role('vehicle');await act('issue');pin=await p.locator('.pin-code strong').innerText();await act('sender');await role('facility');await p.locator('#codeInput').fill(pin);await act('receiver');await p.getByText('인수를 완료했어요',{exact:true}).waitFor();s=await state();assert.equal(s.state,'COMPLETED');assert.equal(s.senderConfirmed,true);assert.equal(s.receiverConfirmed,true);
+await p.screenshot({path:path.join(out,'recovered-complete.png'),fullPage:true});await p.reload();await p.getByText('인수를 완료했어요',{exact:true}).waitFor();assert.equal((await state()).state,'COMPLETED');pass('virtual-clock expiry refuses completion; new code and both confirmations recover and persist on reload');
+assert.deepEqual(report.page_errors,[]);assert.deepEqual(report.external_requests,[]);report.success=true;
+}catch(e){report.success=false;report.failure=e.message;console.error('FAILED '+e.message);process.exitCode=1}
+finally{if(browser)await browser.close();report.finished_at=new Date().toISOString();fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({success:report.success,cases:report.cases.length,page_errors:report.page_errors.length,external_requests:report.external_requests.length}));}})();

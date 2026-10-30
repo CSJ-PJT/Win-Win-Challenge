@@ -1,0 +1,19 @@
+{
+  "tested_source_sha": "38ef02b356f6f1c7edd1c5e8297ccc1e5d0a1e5d",
+  "workflow_run": 40063017206,
+  "verify_build": "success",
+  "live_address": "success",
+  "native_smoke": "success",
+  "publish": "skipped",
+  "node_tests_passed": 112,
+  "apk_bytes": 5170048,
+  "apk_sha256": "1264da0e1faadf0be1f97341b0f36aaa3f016ea58117c0706eb018f91d35d39d",
+  "byte_hash_verified": true,
+  "native_easy_korean_visually_checked": true,
+  "remaining": [
+    "Kakao Local REST real API key",
+    "Pleos/AAOS and real vehicle",
+    "production institution auth and cloud sync",
+    "final submission document and published release"
+  ]
+}

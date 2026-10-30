@@ -1,0 +1,162 @@
+{
+  "task_id": "AS-Q1-PM-20261027T0802",
+  "owner": "기존 PM 자체QA",
+  "source": "899a5a16e747f14cddc92c9805971e5cd4422380",
+  "latest_ci": 40402218901,
+  "build": {
+    "asset_preparation": "Copy verified CI APK eight asset bytes; first incomplete source-ZIP six assets APK not installed",
+    "build_exit": 0,
+    "finished": "2026-10-27T08:07:46.7320900+09:00",
+    "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+    "bytes": 5170904
+  },
+  "preflight": {
+    "ready_for_data_preserving_update": true,
+    "same_persistent_certificate": true,
+    "ci_release_assets_equal": [
+      {
+        "file": "assets/address.js",
+        "equal": true
+      },
+      {
+        "file": "assets/app.js",
+        "equal": true
+      },
+      {
+        "file": "assets/config.js",
+        "equal": true
+      },
+      {
+        "file": "assets/core.js",
+        "equal": true
+      },
+      {
+        "file": "assets/index.html",
+        "equal": true
+      },
+      {
+        "file": "assets/postcode.html",
+        "equal": true
+      },
+      {
+        "file": "assets/style.css",
+        "equal": true
+      },
+      {
+        "file": "assets/ui.js",
+        "equal": true
+      }
+    ],
+    "apps": [
+      {
+        "exit": 0,
+        "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+        "file": "installed-before.apk",
+        "certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e"
+      },
+      {
+        "exit": 0,
+        "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+        "file": "ansim-font-verifyqa.apk",
+        "certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e"
+      }
+    ],
+    "assets_equal_count": 8,
+    "packages_verified": true
+  },
+  "install": {
+    "installed_sha": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+    "ack_survives_update": true,
+    "started": "2026-10-27T08:08:12.0451201+09:00",
+    "install_success": true,
+    "success": true,
+    "expected_sha": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+    "task_id": "AS-Q1-PM-20261027T0802",
+    "finished": "2026-10-27T08:08:27.7403487+09:00"
+  },
+  "physical_raw": {
+    "selected200_saved": true,
+    "horizontal_tab_bounds": "[553,402][850,596]",
+    "failure": "TAP_100%_0",
+    "cold_activity_ms": 346,
+    "bottom_button_bounds": "[42,1410][863,1801]",
+    "started": "2026-10-27T08:08:45.3309759+09:00",
+    "reopened200_after_cold": true,
+    "success": false,
+    "finished": "2026-10-27T08:09:35.6123520+09:00",
+    "task_id": "AS-Q1-PM-20261027T0802",
+    "scope": "physical current verifyqa bd79075f, actual UI200%/scroll/reload/100restore",
+    "junit_added": 0
+  },
+  "restore_followup": {
+    "restored100_and_ack": true,
+    "started": "2026-10-27T08:10:45.7689746+09:00",
+    "success": true,
+    "select200_bounds": "[47,1714][855,1885]",
+    "task_id": "AS-Q1-PM-20261027T0802",
+    "reason": "200% select was behind sticky save footer; bounded extra scroll before selection",
+    "finished": "2026-10-27T08:11:10.9586938+09:00"
+  },
+  "installed_after": [
+    {
+      "unchanged_from_before": true,
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "unchanged_from_before": true,
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "unchanged_from_before": true,
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "unchanged_from_before": false,
+      "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "unchanged_from_before": true,
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "claim": {
+    "released": "2026-10-27T08:11:40.9189351+09:00",
+    "owner": "AS-Q1-PM-20261027T0802"
+  },
+  "scope_verdict": "Scoped physical font200/scroll/cold/updateACK/100restore confirmed with preserved raw tap failure; not whole script or independent QA PASS",
+  "build_attempts": 2,
+  "first_build_not_installed": "source ZIP Android assets had six entries, missing address.js/postcode.html; first APK97663d35 preserved, then verified CI8 assets copied and corrective packaging succeeded",
+  "preflight_path_failure": "aapt on Korean path failed before inspection; byte-identical ASCII staging subsequent package/signature/assets verification succeeded",
+  "app_sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+  "app_bytes": 5170904,
+  "persistent_certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+  "new_app_updates": 1,
+  "new_test_apk_updates": 0,
+  "junit_added": 0,
+  "original_release_qa_qatest_and_verifyqatest_hashes_preserved": true,
+  "whole_localStorage_equality": "not tested",
+  "new_visit": false,
+  "new_arrival_notice": false,
+  "private_pngs_reviewed": [
+    "after-update",
+    "font200-top",
+    "font200-cold",
+    "font200-setting",
+    "font200-bottom",
+    "font200-setting-bottom",
+    "font100-restored"
+  ],
+  "release53ca_physical": "NOT_RUN; verifyqa and release differ",
+  "formal_documents_changed": false,
+  "public_release": false,
+  "actual_submission": false,
+  "slack_sent": false,
+  "phone_push": "unverified",
+  "next_owner": "기존 PM",
+  "next_action": "새 verifyqa bd79075f와 기존 test229 조합에서 공식 주소 picker·저장·콜드 복원을 한정 실기기 검증"
+}

@@ -1,0 +1,104 @@
+{
+  "checked_at": "2026-10-25T16:01:34+09:00",
+  "source": "b227ca2409eae9ae1f71ff1a5d1b64ef42d7ebab",
+  "ci": {
+    "run": 40167658701,
+    "start_kst": "2026-10-25 15:02:05",
+    "end_kst": "2026-10-25 15:11:48",
+    "verify_build": "success",
+    "live_address": "success",
+    "native_smoke": "success",
+    "publish": "skipped",
+    "build_zip": {
+      "id": 12589370004,
+      "bytes": 5595356,
+      "sha256": "755ee8b257afb5c20cb793b7450706801fe9c0fc116e4629a36af59d355803ae"
+    },
+    "native_zip": {
+      "id": 12589300550,
+      "bytes": 1409023,
+      "sha256": "7303d278fbd4b8dff3514c7d5c77d66551804761801a88079e8139a83abd51b2"
+    },
+    "actual_zip_and_apk_and_cert_bytes_checked": true,
+    "release": {
+      "file": "ansim-platform-0.4.3-preview.apk",
+      "bytes": 5170796,
+      "sha256": "cead7829eb2679d06560e743a101b89df4f5afaa0148b5300404087142362335",
+      "package_id": "kr.co.ansimdonghaeng",
+      "target_package": null,
+      "label": "안심동행 플랫폼",
+      "debuggable": false,
+      "certificate_sha256": "8cfec1db2e42517817fede8d9efdafd0dc7d91d3558c252fc3cde28ee170a152",
+      "authorities": []
+    },
+    "qa": {
+      "file": "ansim-platform-0.4.3-qa.apk",
+      "bytes": 5170820,
+      "sha256": "677cf6d0e4ce30e8a14e5855159764b7509e48b5dfb25e1ef1450e7b0cdbc2af",
+      "package_id": "kr.co.ansimdonghaeng.qa",
+      "target_package": null,
+      "label": "안심동행 QA",
+      "debuggable": false,
+      "certificate_sha256": "8cfec1db2e42517817fede8d9efdafd0dc7d91d3558c252fc3cde28ee170a152",
+      "authorities": []
+    },
+    "test": {
+      "file": "ansim-qa-tests.apk",
+      "bytes": 817224,
+      "sha256": "a2f79c58707efc3ccbf02c263572d17fc99f59d206cc249dba8493064bfca6f4",
+      "package_id": "kr.co.ansimdonghaeng.qa.test",
+      "target_package": "kr.co.ansimdonghaeng.qa",
+      "label": null,
+      "debuggable": false,
+      "certificate_sha256": "8cfec1db2e42517817fede8d9efdafd0dc7d91d3558c252fc3cde28ee170a152",
+      "authorities": []
+    },
+    "native_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "save_busy_regression": {
+      "telemetryDelayed": true,
+      "saveClosedDialog": true,
+      "persistedAfterReload": true
+    }
+  },
+  "physical": {
+    "app_package": "kr.co.ansimdonghaeng.verifyqa",
+    "app_bytes": 5170840,
+    "app_sha256": "c5aad9eecc70bf0cac07450e414c582720582ee8286f0b255af5ff46e69eda4b",
+    "test_source": "5188638ef9c72409842c61d0650e99da44a21d54",
+    "test_sha256": "bb17d224e273480e130d66b929fed53a981e4739335d342c6e429dd98ffb7fd5",
+    "certificate_sha256": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+    "actual_old_new_apksigner_same": true,
+    "assets_match_ci": 8,
+    "build_exit": 0,
+    "build_seconds": 33,
+    "install": "same-signer pm install-r Success",
+    "prior_saved_address_postcode_preserved_before_test": true,
+    "official": {
+      "junit": "OK (1 test)",
+      "seconds": 16.281,
+      "log_sha256": "c63121d6d149784f545ba4d4bd8d14be7c94f317ac1322bfc36b3bba2eff65ba"
+    },
+    "dom": {
+      "junit": "OK (1 test)",
+      "seconds": 9.41,
+      "log_sha256": "819e3616217f9da42220ac871d1ba12149359aac3347991dedd346549294df73"
+    },
+    "markers": [
+      "LIVE_POSTCODE_ROUNDTRIP_OK",
+      "PRIMARY_HANDOFF_OK",
+      "EASY_ARRIVAL_ACK_OK"
+    ],
+    "preserved_original_old_qa_hashes": true,
+    "claim_released": true,
+    "new_process_cold": "NOT_RUN",
+    "controlled_http_delay_race": "browser and CI only,not independently reproduced as native physical delay",
+    "release_binary_physical_pass": false,
+    "independent_qa_approval": false
+  }
+}

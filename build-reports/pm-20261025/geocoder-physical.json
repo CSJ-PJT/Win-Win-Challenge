@@ -1,0 +1,40 @@
+{
+  "task_id": "AS-Q1-PM-20261025T1856",
+  "owner": "existing PM selfQA",
+  "checked_at": "2026-10-25T19:00:41+09:00",
+  "test_source": "22840169f99feeb64c22cdeba48a9707505eb0bc",
+  "test_source_blob": "cdf800e034b393e2bbb12400ccedbbb3c1c5b124",
+  "app_source": "b227ca2409eae9ae1f71ff1a5d1b64ef42d7ebab",
+  "app_sha256": "c5aad9eecc70bf0cac07450e414c582720582ee8286f0b255af5ff46e69eda4b",
+  "test_sha256": "5f7ecaa3bd9253af916104f916623b7dbea1454d02d348eee2bcb98dfa90a840",
+  "test_bytes": 821268,
+  "certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+  "old_test_sha256": "bb17d224e273480e130d66b929fed53a981e4739335d342c6e429dd98ffb7fd5",
+  "build": "SUCCESS30s/45tasks4executed41uptodate/test-only",
+  "signature_verified": true,
+  "install": "same-signer test-only pm install -r Success",
+  "run": {
+    "start": "2026-10-25T18:59:42.516+09:00",
+    "end": "2026-10-25T18:59:46.612+09:00",
+    "adb_exit": 0,
+    "junit_ok": true,
+    "junit_seconds": 1.348
+  },
+  "geocoder_present": true,
+  "result_count": 1,
+  "finite_coordinates": true,
+  "callback_ms": 409,
+  "saved_localstorage_unchanged": true,
+  "callback_observer_restored": true,
+  "original_apps_hashes_unchanged": true,
+  "claim_acquired_and_released": true,
+  "independent_qa_approval": false,
+  "place_accuracy_verified": false,
+  "official_picker_or_full_flow_retested": false,
+  "ci": {
+    "run_id": 40182818148,
+    "source": "22840169f99feeb64c22cdeba48a9707505eb0bc",
+    "last_status": "verify-build in_progress",
+    "geocoder_test_not_added_to_CI_runtime": true
+  }
+}

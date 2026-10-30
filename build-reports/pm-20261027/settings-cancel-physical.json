@@ -1,0 +1,50 @@
+{
+  "time": "2026-10-27T22:04:53.3858699+09:00",
+  "run": "AS-Q1-PM-20261027T2159",
+  "status": "PM_SELF_QA_INVALID_PHONE_REJECTED_CANCEL_AND_COLD_PRESERVED",
+  "appSha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+  "method": "Actual ADB taps/keyboard; no JS/DOM/state injection",
+  "checks": {
+    "invalidPhoneErrorShown": true,
+    "invalidDraftObserved": true,
+    "validUnsavedNameObserved": true,
+    "phoneOriginalAfterCold": true,
+    "nameOriginalAfterCold": true,
+    "allObservedFieldTextsUnchanged": true,
+    "allFiveInstalledHashesUnchanged": true
+  },
+  "observedFieldCount": 13,
+  "differentFieldIds": [],
+  "uiSnapshots": 11,
+  "coldActivityMs": 270,
+  "coldWaitMs": 278,
+  "earlyColdSnapshotEmpty": true,
+  "remoteLogReadTimeoutRetriedWithoutRerunning": true,
+  "newBuild": 0,
+  "newInstall": 0,
+  "junitTests": 0,
+  "realCallOrInstitutionSend": 0,
+  "originalAppActions": 0,
+  "releasePhysicalPass": false,
+  "independentQa": false,
+  "humanUsabilityApproved": false,
+  "slack": "not sent; outside 09-18",
+  "nextOwner": "existing PM",
+  "nextTask": "Inspect existing Kakao REST address-search authentication/configuration and call path without exposing secrets or incurring new cost; distinguish from postcode SDK/Geocoder.",
+  "claimReleased": true,
+  "sourceInspection": {
+    "pmHead": "bd61e1a07ba1570dedb4e3354bb18a47f0a17496",
+    "configBlob": "180907d23bf4fe7f08e0a3e339e27aac963be995",
+    "appBlob": "224467449eacc9ce6e1de6e6fdd7706a2bd178d0",
+    "phoneRule": "Optional empty; allowed characters then normalized 7–15 digits; invalid throws phone-check message",
+    "closeRule": "closePanel discards draft/draftPreferences/searchTicket/editorError and renders; saveEditor validates C.cleanPatch before CONFIGURE_VISIT"
+  },
+  "notes": [
+    "One invalid short senderPhone case (123) rejected by visible inline error; not exhaustive phone validation.",
+    "Separate name draft CANCEL22 closed without Save. Post-COLD editor has baseline13 field texts. No whole-localStorage equality claim.",
+    "Old saved-toast text remained in accessibility data from previous work; not accepted as current save success. Inline error screenshot and reopened fields are current verdict evidence.",
+    "First COLD own-app XML empty retained; settled follow-up. Activity270ms not UI-ready time.",
+    "One read_process_output transient timeout; retry recovered same finished PID. No repeated cold/test.",
+    "Multiple-display screencap warning retained; invalid-input screenshot directly reviewed. Final PNG retained; baseline verdict uses XML."
+  ]
+}

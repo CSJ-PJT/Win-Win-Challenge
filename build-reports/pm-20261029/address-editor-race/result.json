@@ -1,0 +1,85 @@
+{
+  "slot": "2026-10-29T14:00:00+09:00",
+  "observed_at": "2026-10-29T13:58:52.434726+09:00",
+  "owner": "existing PM AS-M1",
+  "base_head": "012de2b489a20b09929abd5c75610d5d1a40e0af",
+  "bug": "setRole/openPanel did not discard the previous address request. A matching delayed native response could populate a replacement editor's draft; role switch also left widget undisposed.",
+  "fix": "discardAddressSearch clears ticket/results/message, disposes widget, and runs on valid role switch and openPanel. PC bundle regenerated.",
+  "execution_scope": "Actual full app.js evaluated in Node VM; final init call replaced with test seam, render disabled, synthetic domain state and storage/DOM/native-callback fixtures. Programmatic state boundary reproduction, NOT real user navigation, browser layout, native call or physical device.",
+  "verification": {
+    "before": {
+      "tests": 6,
+      "pass": 3,
+      "fail": 3
+    },
+    "after": {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0
+    },
+    "full_node": {
+      "tests": 131,
+      "pass": 131,
+      "fail": 0
+    },
+    "web_bundle": {
+      "command": "npm run bundle",
+      "exit_code": 0,
+      "cancellation_included": true
+    },
+    "cases": [
+      "role switch -> reopen editor -> old reply ignored",
+      "replace editor -> old reply ignored",
+      "role switch disposes widget and clears token",
+      "close/reopen ignores old reply",
+      "current reply changes draft only and consumes token",
+      "mismatched reply leaves draft unchanged"
+    ],
+    "runtime": "Node24.22.1 Linux",
+    "sha256_staged": {
+      "test/address-editor-race.test.js": "1c6aea5a0e1b609654c7794944771474f7bb271871a8b6ae7f6d97e33ae6da8d",
+      "editor-race-before.tap": "f85feeae2995411156e6406005ecafd907609443cf9681f83fb4601648ef82e4",
+      "editor-race-after.tap": "7b03ec91fb0f39765e5c275c33d9657c19648c85b5f9cd1554f5fb204d114cc1",
+      "regression-1400.tap": "a73e69a0a08f739be2033f3578217d0b140fee0e9cfd016b387a820ffaff741a",
+      "web/app.js": "73cf8f0480bd84452972bc2c4f10f4116bf41bd0a04cb1aae94897a0c3148041",
+      "dist/handoff-demo.html": "7538b2e514c9359b11dd5cb98297e44f718c7f154eb17576078f2d2220279cb4"
+    }
+  },
+  "ci": {
+    "previous_run": 40592432776,
+    "previous_source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+    "previous_success_does_not_cover_this_change": true,
+    "new_validation": "one push-triggered CI expected; observe actual run after commit; not yet PASS"
+  },
+  "new_local_apk_build": 0,
+  "new_install": 0,
+  "new_phone_test": 0,
+  "new_junit": 0,
+  "new_external_service_call": 0,
+  "new_submission": 0,
+  "candidate": {
+    "r4_source99_and_f3b8": "preserved, excludes server6d0eb5 and this new app fix",
+    "docx_pdf": "not edited",
+    "fresh_hash_check": false,
+    "last_physical_observation": "2026-10-29T05:07:07+09:00"
+  },
+  "limits": {
+    "remote_retry_reconnect_bypass": false,
+    "current_claim_process_keyguard": "NOT_OBSERVED",
+    "common_ops_updated": false,
+    "browser_download_retried": false,
+    "screen_and_phone_qa": "NOT_RUN",
+    "independent_qa": "NOT_APPROVED"
+  },
+  "slack": {
+    "today_search": 0,
+    "queue_registered": false,
+    "send_receipt": "UNAVAILABLE",
+    "alternate_send": false,
+    "phone_push": "UNVERIFIED",
+    "review_only_report": "🤝 *안심동행 | 10/29 14:00 KST* 🟡 *릴리스 검증 대기*\n🕒 *관측* 13:58 로컬 회귀 / 현장 마지막 05:07\n*한줄 결론* 이전 주소 응답이 새 편집 초안을 바꾸는 경합 수정.\n📊 *게이트* 로컬 Node ✅ | 새 CI ⏳ | QA앱 실기기 🟡(기존 PM 자체)\n릴리스 실기기 ⏳ | 독립 QA ⏳ | 실제 제출 ⏳\n🧪 *증거* 경합 수정 전 3/6→수정 후 6/6, 전체 Node 131/131.\nVM 앱 상태 경계 검사·PC 번들 갱신. 실제 화면/폰·공식 주소 실호출 아님.\n🔁 *직전 대비* 제품 수정 1건·검사 추가 / APK 빌드·설치·폰 시험 0건(로컬).\n🚧 *차단* 원격 제한·브라우저 실행 환경·릴리스 서명 차이 유지.\n🎯 *다음* 기존 PM AS-M1: 새 CI 최종 결과·변경 APK/자산 검수, 기존 후보 보존.\n🔗 <https://github.com/CSJ-PJT/Win-Win-Challenge/pull/2|상세> | 봇 큐·발송·폰 push 미확인",
+    "lines": 11,
+    "chars": 515
+  },
+  "next_single_owner": "Existing PM AS-M1: inspect newly triggered CI final jobs/JUnit and artifact hashes/assets before candidate changes; preserve installed apps/data, sealed r4 and same-ID docs."
+}

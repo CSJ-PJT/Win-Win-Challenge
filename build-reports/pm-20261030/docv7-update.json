@@ -1,0 +1,131 @@
+{
+  "observed_at_utc": "2026-10-29 17:09:40 UTC",
+  "owner": "AS-M1 existing PM",
+  "product_source": "8f4aaf93e36e4dd3ab267c09c274dedaca4057a6",
+  "ci_id": 40887985855,
+  "operation": "same-ID DOCX/PDF version6 to7",
+  "proof": {
+    "input_version": 6,
+    "intended_output_version": 7,
+    "replacements": 5,
+    "changed_paragraphs": [
+      57,
+      61
+    ],
+    "unchanged_zip_members": 25,
+    "images_signature_blank_fields_preserved_by_member_and_paragraph_equality": true,
+    "input_docx_sha256": "6de5e17ef6e4f5823a702aef64728305c8f4e3c63c7768f7d5acdc9bbc9766d9",
+    "input_pdf_sha256": "894e5bde6487c5c0f8b428c7da3fd18612f90cffebd49783f22e14fc95eafa38",
+    "output_docx_sha256": "8f143a26787a736597cf2c4093f49504a2f34ff0e40b72ca7da02146163198cd",
+    "pdf_pages": 13,
+    "pdf_text_changed_pages": [
+      5,
+      7
+    ],
+    "pdf_text_unchanged_pages": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "all_13_page_pngs_visually_reviewed": true,
+    "visual_result": "No new clipping, overlap or missing glyphs observed; historical screenshots/signature/blanks preserved",
+    "preupload_pdf_bytes": 736271,
+    "preupload_pdf_sha256": "7a46ba5c1964f033589c9ff9bfc9aba6b20ed17f459fc4cb62e43a18c399b6dd",
+    "canonical_after_upload": {
+      "text_identical_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "72dpi_pixels_identical_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "v6_unchanged_72dpi_pages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "signature_validity": "NOT_CRYPTOGRAPHICALLY_VERIFIED; preserved typed signature fields"
+    },
+    "saved_files": [
+      {
+        "format": "docx",
+        "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+        "file_id": "file_00000000004c81f9908295b3a4229924",
+        "version": 7,
+        "bytes": 500071,
+        "sha256": "8f143a26787a736597cf2c4093f49504a2f34ff0e40b72ca7da02146163198cd"
+      },
+      {
+        "format": "pdf",
+        "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+        "file_id": "file_00000000a00c81f5b0cfe5dc17461c45",
+        "version": 7,
+        "bytes": 761401,
+        "sha256": "be6cd5e67fa3595f71de948ceba35dc07e157bbc118cadc24a0a861a4d28c214"
+      }
+    ]
+  },
+  "counts": {
+    "official_files_updated": 2,
+    "replacements": 5,
+    "new_product_changes": 0,
+    "new_builds": 0,
+    "installs": 0,
+    "physical_tests": 0,
+    "independent_qa_approvals": 0
+  },
+  "scope": {
+    "render": "all13 pages directly visually reviewed",
+    "old_physical_qa": "99d5da0/verifyqa930 PM QA preserved, not new source runtime",
+    "historical_screenshot": "page13 b227ca2/CI40167658701 preserved",
+    "release_signer_mismatch": "UNRESOLVED; no install",
+    "public_release": "v0.3.0-preview unchanged; PR Draft/open",
+    "actual_submission": "NOT_PERFORMED",
+    "frozen_candidates": "r4/r5 preserved; official v7 not retroactively included",
+    "slack": "NOT_SENT_NIGHT; 10/30 public search0 is not evidence of universal delivery failure",
+    "it13": "NOT_SYNCED; remote monthly limit, no retries/reconnect/bypass; current lock/procs/installed hashes not read",
+    "phone_push": "NOT_VERIFIED",
+    "reservation": "UNCHANGED; current activation not queried"
+  },
+  "next_owner": "AS-M1 existing PM",
+  "next": "Reconcile new 8f4aaf9 artifacts and stored canonical docv7 in separate private candidate r6 with exact hashes; preserve r4/r5; no actual submission/publication."
+}

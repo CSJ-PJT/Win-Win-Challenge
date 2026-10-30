@@ -1,0 +1,161 @@
+{
+  "schema": "ansim-official-document-update-v1",
+  "runId": "AS-M1-PM-20261027T1403",
+  "responsibility": "existing PM self verification; not independent QA approval",
+  "startedAt": "2026-10-27T14:03:26+09:00",
+  "verifiedAt": "2026-10-27T14:10:38.000+09:00",
+  "productSource": "f1164b04dc267260771ce3ffcc674247053f56e7",
+  "ciRun": 40436119702,
+  "ci": {
+    "verifyBuild": "success",
+    "liveAddress": "success",
+    "nativeSmoke": "success",
+    "publish": "skipped"
+  },
+  "releaseApkSha256": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100",
+  "physicalEvidence": {
+    "app": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+    "test": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+    "source": "899a5a16e747f14cddc92c9805971e5cd4422380",
+    "officialAddress": {
+      "date": "2026-10-27",
+      "junit": 1,
+      "seconds": 17.693,
+      "issueComment": 6430353778
+    },
+    "dom": {
+      "date": "2026-10-27",
+      "junit": 1,
+      "seconds": 9.707,
+      "issueComment": 6431084850
+    },
+    "newPhysicalExecutionThisRun": false,
+    "rawFalseResultsPreserved": true
+  },
+  "formalFiles": [
+    {
+      "local_path": "/workspace/scratch/2f3ff442128e/submission14/output/안심동행플랫폼_공식접수양식_최종.docx",
+      "purpose": "replace_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000152881f7abec3ad6c85c8e2c",
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "file_name": "안심동행플랫폼_공식접수양식_최종.docx",
+      "local_metadata_applied": true,
+      "path": "/Project/안심동행플랫폼_공식접수양식_최종.docx",
+      "current_version_number": 4,
+      "previousVersion": 3,
+      "stored": {
+        "name": "안심동행플랫폼_공식접수양식_최종.docx",
+        "sha256": "ab4145047be92065a7d0a0383d171ad1096f89f68176278e6b8745891dc8192d",
+        "bytes": 500068
+      }
+    },
+    {
+      "local_path": "/workspace/scratch/2f3ff442128e/submission14/output/안심동행플랫폼_공식접수양식_최종.pdf",
+      "purpose": "replace_library_file",
+      "status": "succeeded",
+      "file_id": "file_000000002db0820da34a35557f4595aa",
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "file_name": "안심동행플랫폼_공식접수양식_최종.pdf",
+      "local_metadata_applied": true,
+      "path": "/Project/안심동행플랫폼_공식접수양식_최종.pdf",
+      "current_version_number": 4,
+      "previousVersion": 3,
+      "stored": {
+        "name": "안심동행플랫폼_공식접수양식_최종.pdf",
+        "sha256": "87f1a1745b445bab985eca161dc937e08e3840b8f050f27556254617b70445bc",
+        "bytes": 760964,
+        "pages": 13,
+        "pixel_mismatches": [],
+        "text_equal": true,
+        "pageboxes_equal": true
+      }
+    }
+  ],
+  "render": {
+    "pages": 13,
+    "pixel_changed_pages": [
+      5,
+      7,
+      10
+    ],
+    "normalized_text_changed_pages": [
+      5,
+      7
+    ],
+    "last_iteration_pixel_changed_pages": [
+      10
+    ],
+    "page10_final_flow_bottom_pt": 635.4247436523438,
+    "all_13_pages_visually_reviewed": true,
+    "pdf_sha256": "c7aa604417e51ed8873149a9aa0e4ac2f1e4cc0fc4a84ab3ca6cb22730a71430",
+    "pdf_bytes": 735834,
+    "docx_sha256": "ab4145047be92065a7d0a0383d171ad1096f89f68176278e6b8745891dc8192d",
+    "docx_bytes": 500068
+  },
+  "editAudit": {
+    "input_sha256": "a31f72589c8948eea136d3ef26a2035c6c5366f0d90c1334af54f46d1176ad2d",
+    "output_docx_sha256": "ab4145047be92065a7d0a0383d171ad1096f89f68176278e6b8745891dc8192d",
+    "changed_zip_members": [
+      "word/document.xml"
+    ],
+    "changed_text_nodes": 3,
+    "edits": [
+      {
+        "old": "2026년 10월 26일 개발 버전 0.4.3의 소스 35e3065로 자동 검사 112개가 통과했습니다. Android 15 에뮬레이터의 release APK에서 공식 주소 왕복 1개, APK 조작 7개, DOM 흐름 1개가 통과했습니다. PC·HTTP 공식 주소 검색·저장·복원과 통신 중 주소 저장 회귀 검사도 통과했습니다. 별도 Android 16 검증 앱(0.4.3-verifyqa, SHA256 4edaf75c…b68b88c)은 공식 주소 1개(16.709초), 양측 인계·보호자 조회·쉬운 알림 DOM 1개(9.330초)가 통과했습니다. 앱 종료 후 주소 복원, 실제 10분 경과 후 준비 만료와 재준비 후 번호 발급도 확인했습니다. 이는 개발자 자체 QA 결과입니다.",
+        "new": "2026년 10월 27일 개발 버전 0.4.3의 소스 f1164b0로 자동 검사 112개가 통과했습니다. Android 15 에뮬레이터의 release APK에서 공식 주소 왕복 1개, APK 조작 7개, DOM 흐름 1개가 통과했습니다. PC·HTTP 공식 주소 검사 7개와 세 화면폭·네 글씨 크기의 배율·저장 복원 검사 12조합도 통과했습니다. 별도 Android 16 검증 앱(소스 899a5a1, 0.4.3-verifyqa, SHA256 bd79075f…b7fa996)은 공식 주소 1개(17.693초), 양측 인계·보호자 조회·쉬운 알림 DOM 1개(9.707초)가 통과했습니다. 앱 종료 후 주소·알림 확인 상태 복원과 200% 글씨의 스크롤 접근을 확인했습니다. 이는 개발자 자체 QA 결과입니다."
+      },
+      {
+        "old": "https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40252472387",
+        "new": "https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40436119702"
+      },
+      {
+        "old": "10월 26일 10:16 KST 완료. 소스 35e3065의 빌드·주소·Android 검사가 성공했으며 공개 게시는 건너뛰었습니다. release APK SHA256은 6a28008a…e53313입니다. 휴대전화 검증 APK(4edaf75c…b68b88c)와 별도 바이너리이며, 게시 릴리스는 0.3.0-preview입니다. 전체 해시·서명·패키지·시험 로그와 최근 실기기 결과는 저장소 이슈 #1의 10월 26일 검증 기록에 연결했습니다.",
+        "new": "10월 27일 11:12 KST 완료. 소스 f1164b0의 빌드·주소·Android 검사가 성공했으며 공개 게시는 건너뛰었습니다. release APK SHA256은 75b53185…dd100입니다. 휴대전화 검증 APK(bd79075f…b7fa996)와 별도 바이너리이며, release 자체 실기기 검증은 남아 있습니다. 게시 릴리스는 0.3.0-preview입니다. 전체 해시·서명·패키지·시험 로그와 최근 실기기 결과는 저장소 이슈 #1의 10월 27일 검증 기록에 연결했습니다."
+      }
+    ],
+    "layout_fix": "page 10 illustration reduced to 90% and centered to keep final flow above footer; image bytes unchanged",
+    "preserved": "all other text nodes and all other OOXML parts including media, consent, signature, empty fields, and historical screen source"
+  },
+  "renderFailure": {
+    "initial": "Korean glyphs absent in renderer due to temporary HOME missing font; not uploaded",
+    "followup": "installed existing Noto Sans CJK KR into system font path; final render Korean glyphs verified"
+  },
+  "storedPdf": {
+    "uploadSha256": "c7aa604417e51ed8873149a9aa0e4ac2f1e4cc0fc4a84ab3ca6cb22730a71430",
+    "storedSha256": "87f1a1745b445bab985eca161dc937e08e3840b8f050f27556254617b70445bc",
+    "bytesDiffer": true,
+    "all13PixelsTextPageboxesEquivalent": true
+  },
+  "preservation": {
+    "allOtherOOXMLPartsByteIdentical": true,
+    "imagesByteIdentical": true,
+    "historicalPage13Source": "b227ca2 / CI40167658701",
+    "identityConsentSignatureOptionalBlankFieldsUnchanged": true,
+    "installed5PackageHashesUnchanged": true,
+    "noPhoneClaim": true,
+    "noInstrumentation": true,
+    "noNewBuildOrCIOrInstallOrPhoneUI": true
+  },
+  "candidate13": {
+    "directory": "AS-M1-PM-20261027T1303/candidate-f1164b0-75b53185",
+    "frozenFiles": 12,
+    "checksumEntries": 11,
+    "errors": 0,
+    "sumsSha256": "1701675e74fe20aff4549821e8230718daab64604dab7830df6ad90683c49fb4",
+    "unchanged": true,
+    "referencesOldV3": true,
+    "ready": false
+  },
+  "open": [
+    "create new private candidate revision pinning formal v4; preserve frozen 13h candidate",
+    "release 75b5 exact physical runtime not run; original installed release signer differs",
+    "independent QA and human usability approval",
+    "real institutional/Pleos/AAOS/car/service validation and judge access as applicable",
+    "actual submission and public release separately authorized"
+  ],
+  "nextSingleOwner": "existing PM",
+  "nextSingleTask": "갱신된 공식 DOCX·PDF v4를 별도 후보 revision의 ID·해시로 고정하고 최신 APK·소스 ZIP 및 심사 접근 조건을 대조한다. 13시 봉인 후보는 변경하지 않는다.",
+  "submissionPerformed": false,
+  "publicReleasePerformed": false
+}

@@ -1,0 +1,70 @@
+{
+  "candidate_id": "candidate-8f4aaf9-docv7-r6",
+  "zip": "ansim-candidate-8f4aaf9-docv7-r6-20261030.zip",
+  "bytes": 13542910,
+  "sha256": "37bf2683a4ab547c22a5042420536f3af969ec103fe25c208c769f23c8ab836d",
+  "file_count": 17,
+  "checksum_count": 16,
+  "checksum_failures": 0,
+  "sha256sums_sha256": "bae55c1db7a358f666c2a68428d4a0cab94b8d8d400b34e2e280344836d41dbe",
+  "manifest_sha256": "6760cd3dd7f3b548c54d4ec43ccc412d5e99b3fbf006c745fe0320cdea801584",
+  "r5_frozen_zip_sha256": "e94b5c2cd45bd2ed549fa96a16506826da3891a5564ac53195072ab0eb40d630",
+  "status": "PREPARED_NOT_SUBMITTED",
+  "ready_for_submission": false,
+  "library": {
+    "library_file_id": "libfile_46458205d1bc819184b1a045cb2e6229",
+    "file_id": "file_0000000019e881fda9b3cce6341a2c18",
+    "version": 0,
+    "save_status": "succeeded",
+    "bytes": 13542910
+  },
+  "product_source": "8f4aaf93e36e4dd3ab267c09c274dedaca4057a6",
+  "ci": 40887985855,
+  "official_documents": [
+    {
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "file_id": "file_00000000004c81f9908295b3a4229924",
+      "version": "7",
+      "bytes": 500071
+    },
+    {
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "file_id": "file_00000000a00c81f5b0cfe5dc17461c45",
+      "version": "7",
+      "bytes": 761401
+    }
+  ],
+  "checks": {
+    "artifacts": 3,
+    "apks": 4,
+    "canonical_documents": 2,
+    "source_app_equals_release_asset": true,
+    "pc_bundle_equals_dist": true,
+    "source_archive_no_keystore_or_env_paths": true,
+    "r5_frozen_zip_unchanged": true
+  },
+  "changes": {
+    "private_candidate_archive": 1,
+    "product": 0,
+    "official_documents": 0,
+    "builds": 0,
+    "installs": 0,
+    "phone_tests": 0,
+    "independent_qa_approvals": 0
+  },
+  "gates": {
+    "release_physical": "NOT_RUN",
+    "new_qa_physical": "NOT_RUN",
+    "independent_qa": "NOT_APPROVED",
+    "signer_update": "BLOCKED_CERT_MISMATCH; current phone state not observed",
+    "actual_submission": false,
+    "public_deployment": false,
+    "it13_copy": false,
+    "it13_ledger": "NOT_SYNCED_REMOTE_MONTHLY_LIMIT_NO_RETRY",
+    "slack": "NOT_SENT_NIGHT",
+    "slack_current_day_search": "0 results; not proof of universal failure",
+    "phone_push": "NOT_VERIFIED"
+  },
+  "next_owner": "existing PM AS-M1",
+  "next": "Reconcile current submission gate documents against r6/source8f4aaf9/docv7; list remaining evidence/permission conditions without changing access or submitting."
+}

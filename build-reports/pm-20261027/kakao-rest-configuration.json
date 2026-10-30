@@ -1,0 +1,126 @@
+{
+  "time": "2026-10-27T23:00:42.9013901+09:00",
+  "scope": "PM scoped REST authentication/configuration/path inspection and isolated missing-key gate",
+  "pmHead": "8cae9091eee6e336085b5bffb5ab9a409d7ad1e2",
+  "probe": {
+    "time": "2026-10-27T14:00:14.230Z",
+    "scope": "Current-source isolated Windows loopback missing-key gate; no authenticated Kakao result",
+    "node": "v24.18.0",
+    "sourcePins": [
+      {
+        "file": "server.js",
+        "gitBlob": "7933942c06dc5287b982a22b5296fba3430a5040"
+      },
+      {
+        "file": "web/core.js",
+        "gitBlob": "267601ac7c59e2c6e11ab1afd3f0eaea64fc1101"
+      },
+      {
+        "file": "web/config.js",
+        "gitBlob": "180907d23bf4fe7f08e0a3e339e27aac963be995"
+      }
+    ],
+    "requests": [
+      {
+        "route": "health",
+        "status": 200,
+        "version": "0.4.3",
+        "mode": "LOCAL_SYNTHETIC_DEMO"
+      },
+      {
+        "route": "bootstrap",
+        "status": 200,
+        "tokenRecorded": false
+      },
+      {
+        "route": "authenticated places",
+        "status": 503,
+        "error": "MAP_NOT_CONFIGURED"
+      }
+    ],
+    "observedDapiRequests": 0,
+    "serverClosed": true,
+    "ownDataFileCreated": false,
+    "keyValueRecorded": false,
+    "keyPresent": false,
+    "mapFetchFixtureUsed": false
+  },
+  "preservation": {
+    "time": "2026-10-27T23:00:42.9013901+09:00",
+    "installed": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "installedChangedCount": 0,
+    "lockExists": false,
+    "exactEnvironmentName": "KAKAO_REST_API_KEY",
+    "exactEnvironmentPresence": [
+      {
+        "present": false,
+        "scope": "Process"
+      },
+      {
+        "present": false,
+        "scope": "User"
+      },
+      {
+        "present": false,
+        "scope": "Machine"
+      }
+    ],
+    "ownedWorkspaceEnvFilesPresent": {
+      "envLocal": false,
+      "env": false
+    },
+    "scopeLimit": "Does not establish absence of credentials under other names/files/accounts or other process environments",
+    "newBuild": 0,
+    "newInstall": 0,
+    "phoneUi": 0,
+    "junit": 0,
+    "externalKakaoRestRequests": 0,
+    "cost": 0,
+    "publicRelease": 0,
+    "actualSubmission": 0
+  },
+  "paths": {
+    "rest": "Authenticated server GET /api/places -> Kakao Local keyword.json; options.mapKey || process.env.KAKAO_REST_API_KEY",
+    "pc": "PC 실행.cmd -> tools/serve-demo.cjs -> static standalone HTML; no /api/places route",
+    "addressButton": "web/app.js searchAddress -> Android openAddressSearch or AddressPicker.mount official postcode SDK",
+    "nativeGeocoder": "MainActivity.searchAddress -> Android Geocoder; separate bridge",
+    "clientRestInvocation": "No /api/places call in current web/app.js; existing response callback is not evidence of a REST request"
+  },
+  "officialReferences": [
+    "https://developers.kakao.com/docs/ko/local/dev-guide",
+    "https://developers.kakao.com/docs/ko/getting-started/quota"
+  ],
+  "authenticatedRestSuccess": false,
+  "independentQaApproved": false,
+  "releasePhysicalPass": false,
+  "scopeLimit": "No credential values read/output; exact environment scope and owned-workspace metadata do not prove credentials absent elsewhere; no caller cost/account quota verified",
+  "nextOwner": "existing PM",
+  "nextTask": "Re-read official submission/briefing notices for changed access links and attachment/signature requirements; preserve existing formal documents and candidate.",
+  "slack": "not sent; outside09-18",
+  "newBuild": 0,
+  "newInstall": 0,
+  "newCiRequests": 0,
+  "publicRelease": 0,
+  "actualSubmission": 0
+}

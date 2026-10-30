@@ -1,0 +1,852 @@
+TAP version 13
+# Subtest: role switch invalidates native address response before another role editor opens
+ok 1 - role switch invalidates native address response before another role editor opens
+  ---
+  duration_ms: 5.781256
+  type: 'test'
+  ...
+# Subtest: replacing an editor invalidates its outstanding address request
+ok 2 - replacing an editor invalidates its outstanding address request
+  ---
+  duration_ms: 2.428174
+  type: 'test'
+  ...
+# Subtest: role switch disposes an active address widget
+ok 3 - role switch disposes an active address widget
+  ---
+  duration_ms: 1.365937
+  type: 'test'
+  ...
+# Subtest: closing and reopening an editor ignores an earlier native response
+ok 4 - closing and reopening an editor ignores an earlier native response
+  ---
+  duration_ms: 1.44091
+  type: 'test'
+  ...
+# Subtest: current response updates draft only and consumes the request token
+ok 5 - current response updates draft only and consumes the request token
+  ---
+  duration_ms: 1.967006
+  type: 'test'
+  ...
+# Subtest: mismatched response never changes the current draft
+ok 6 - mismatched response never changes the current draft
+  ---
+  duration_ms: 1.406088
+  type: 'test'
+  ...
+# Subtest: address SDK network failure permits a fresh successful retry
+ok 7 - address SDK network failure permits a fresh successful retry
+  ---
+  duration_ms: 7.261897
+  type: 'test'
+  ...
+# Subtest: address SDK timeout removes failed script and clears cached failure
+ok 8 - address SDK timeout removes failed script and clears cached failure
+  ---
+  duration_ms: 1.339747
+  type: 'test'
+  ...
+# Subtest: address widget timeout can retry with cached SDK and disposed callbacks stay silent
+ok 9 - address widget timeout can retry with cached SDK and disposed callbacks stay silent
+  ---
+  duration_ms: 3.607688
+  type: 'test'
+  ...
+# Subtest: disposing while SDK loads prevents embedding and error callbacks
+ok 10 - disposing while SDK loads prevents embedding and error callbacks
+  ---
+  duration_ms: 1.005051
+  type: 'test'
+  ...
+# Subtest: disposed widget cannot select an address or report readiness
+ok 11 - disposed widget cannot select an address or report readiness
+  ---
+  duration_ms: 1.03797
+  type: 'test'
+  ...
+# Subtest: selected official-format address returns postcode without inventing coordinates
+ok 12 - selected official-format address returns postcode without inventing coordinates
+  ---
+  duration_ms: 1.534962
+  type: 'test'
+  ...
+# Subtest: invalid selection reports a recoverable error instead of selecting an empty address
+ok 13 - invalid selection reports a recoverable error instead of selecting an empty address
+  ---
+  duration_ms: 1.126524
+  type: 'test'
+  ...
+# Subtest: file URL reports launcher guidance without injecting a remote SDK
+ok 14 - file URL reports launcher guidance without injecting a remote SDK
+  ---
+  duration_ms: 0.857448
+  type: 'test'
+  ...
+# Subtest: postcode maps an explicitly selected road address without inventing coordinates
+ok 15 - postcode maps an explicitly selected road address without inventing coordinates
+  ---
+  duration_ms: 0.975516
+  type: 'test'
+  ...
+# Subtest: postcode honours explicit lot selection instead of an inferred road address
+ok 16 - postcode honours explicit lot selection instead of an inferred road address
+  ---
+  duration_ms: 0.41651
+  type: 'test'
+  ...
+# Subtest: postcode data is limited to the selected address, postcode and building name
+ok 17 - postcode data is limited to the selected address, postcode and building name
+  ---
+  duration_ms: 0.343219
+  type: 'test'
+  ...
+# Subtest: address postcode and details survive a real configure event
+ok 18 - address postcode and details survive a real configure event
+  ---
+  duration_ms: 1.90398
+  type: 'test'
+  ...
+# Subtest: bad postcode is rejected and map links never include private visit fields
+ok 19 - bad postcode is rejected and map links never include private visit fields
+  ---
+  duration_ms: 0.420786
+  type: 'test'
+  ...
+# Subtest: Kakao selection never silently opens Google when coordinates are missing
+ok 20 - Kakao selection never silently opens Google when coordinates are missing
+  ---
+  duration_ms: 0.234705
+  type: 'test'
+  ...
+# Subtest: HTTP demo upgrades official postcode requests without allowing arbitrary scripts or frames
+ok 21 - HTTP demo upgrades official postcode requests without allowing arbitrary scripts or frames
+  ---
+  duration_ms: 45.950591
+  type: 'test'
+  ...
+# Subtest: HTTP API rejects non-object JSON bodies without changing state
+ok 22 - HTTP API rejects non-object JSON bodies without changing state
+  ---
+  duration_ms: 104.506598
+  type: 'test'
+  ...
+# {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":413,"error":"SIZE"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/reset","status":413,"error":"SIZE"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# Subtest: HTTP routes and independent roles complete a real local-server handoff
+ok 23 - HTTP routes and independent roles complete a real local-server handoff
+  ---
+  duration_ms: 56.665512
+  type: 'test'
+  ...
+# {"url":"/api/health","status":200}
+# {"url":"/api/state","status":401,"error":"UNAUTHORIZED"}
+# {"url":"/api/places?query=a","status":400,"error":"QUERY"}
+# {"url":"/api/places?query=서울","status":503,"error":"MAP_NOT_CONFIGURED"}
+# {"url":"/api/unknown","status":404,"error":"NOT_FOUND"}
+# {"url":"/api/reset","status":403,"error":"FORBIDDEN"}
+# {"url":"/api/reset","status":200}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":200,"state":"PLANNED"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":200,"state":"PLANNED"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":200,"state":"EN_ROUTE"}
+# {"url":"/api/state","status":200,"state":"EN_ROUTE"}
+# {"url":"/api/events","status":200,"state":"ARRIVED"}
+# {"url":"/api/state","status":200,"state":"ARRIVED"}
+# {"url":"/api/events","status":200,"state":"VERIFYING"}
+# {"url":"/api/state","status":200,"state":"VERIFYING"}
+# {"url":"/api/state","status":200,"state":"VERIFYING"}
+# {"url":"/api/events","status":200,"state":"VERIFYING"}
+# {"url":"/api/state","status":200,"state":"VERIFYING"}
+# {"url":"/api/events","status":200,"state":"COMPLETED"}
+# {"url":"/api/state","status":200,"state":"COMPLETED"}
+# Subtest: HTTP easy arrival is acknowledged independently of handoff completion
+ok 24 - HTTP easy arrival is acknowledged independently of handoff completion
+  ---
+  duration_ms: 21.622454
+  type: 'test'
+  ...
+# {"url":"/api/reset","status":200}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":409,"error":"CONSENT"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":200,"state":"PLANNED"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":200,"state":"PLANNED"}
+# {"url":"/api/state","status":200,"state":"PLANNED"}
+# {"url":"/api/events","status":200,"state":"PLANNED"}
+# Subtest: presentation prepares departure without changing fail-closed domain defaults
+ok 25 - presentation prepares departure without changing fail-closed domain defaults
+  ---
+  duration_ms: 4.482281
+  type: 'test'
+  ...
+# Subtest: demo preparation never grants adult consent
+ok 26 - demo preparation never grants adult consent
+  ---
+  duration_ms: 1.302191
+  type: 'test'
+  ...
+# Subtest: presentation does not overwrite an intentional unknown or driving state
+ok 27 - presentation does not overwrite an intentional unknown or driving state
+  ---
+  duration_ms: 1.032352
+  type: 'test'
+  ...
+# Subtest: presentation preparation is idempotent and leaves closed visits alone
+ok 28 - presentation preparation is idempotent and leaves closed visits alone
+  ---
+  duration_ms: 0.477392
+  type: 'test'
+  ...
+# Subtest: return to arrival zone is simulator-only and never confirms either person
+ok 29 - return to arrival zone is simulator-only and never confirms either person
+  ---
+  duration_ms: 0.550533
+  type: 'test'
+  ...
+# Subtest: standalone bundle explicitly opts out of the HTTP API on loopback origins
+ok 30 - standalone bundle explicitly opts out of the HTTP API on loopback origins
+  ---
+  duration_ms: 0.798138
+  type: 'test'
+  ...
+# Subtest: starts without an invented safe vehicle signal
+ok 31 - starts without an invented safe vehicle signal
+  ---
+  duration_ms: 1.735496
+  type: 'test'
+  ...
+# Subtest: rejects unsupported scenario
+ok 32 - rejects unsupported scenario
+  ---
+  duration_ms: 0.691076
+  type: 'test'
+  ...
+# Subtest: departure requires a fresh parked UX-allowed signal
+ok 33 - departure requires a fresh parked UX-allowed signal
+  ---
+  duration_ms: 0.585236
+  type: 'test'
+  ...
+# Subtest: arrival is not completion
+ok 34 - arrival is not completion
+  ---
+  duration_ms: 0.817416
+  type: 'test'
+  ...
+# Subtest: arrival cannot happen before departure
+ok 35 - arrival cannot happen before departure
+  ---
+  duration_ms: 0.246673
+  type: 'test'
+  ...
+# Subtest: a missing receiver blocks code issuance
+ok 36 - a missing receiver blocks code issuance
+  ---
+  duration_ms: 0.400475
+  type: 'test'
+  ...
+# Subtest: only the assigned facility account may mark readiness
+ok 37 - only the assigned facility account may mark readiness
+  ---
+  duration_ms: 0.278531
+  type: 'test'
+  ...
+# Subtest: an observer cannot claim a handoff
+ok 38 - an observer cannot claim a handoff
+  ---
+  duration_ms: 0.998651
+  type: 'test'
+  ...
+# Subtest: a sender account cannot also receive
+ok 39 - a sender account cannot also receive
+  ---
+  duration_ms: 2.301443
+  type: 'test'
+  ...
+# Subtest: code possession does not bypass receiver assignment
+ok 40 - code possession does not bypass receiver assignment
+  ---
+  duration_ms: 1.138462
+  type: 'test'
+  ...
+# Subtest: in-person acknowledgement is mandatory
+ok 41 - in-person acknowledgement is mandatory
+  ---
+  duration_ms: 0.469981
+  type: 'test'
+  ...
+# Subtest: one confirmation cannot complete
+ok 42 - one confirmation cannot complete
+  ---
+  duration_ms: 0.368978
+  type: 'test'
+  ...
+# Subtest: both independent confirmations complete
+ok 43 - both independent confirmations complete
+  ---
+  duration_ms: 0.704891
+  type: 'test'
+  ...
+# Subtest: receiver-first confirmation is supported
+ok 44 - receiver-first confirmation is supported
+  ---
+  duration_ms: 0.274145
+  type: 'test'
+  ...
+# Subtest: incorrect codes never confirm receiver
+ok 45 - incorrect codes never confirm receiver
+  ---
+  duration_ms: 0.596522
+  type: 'test'
+  ...
+# Subtest: five incorrect attempts destroy the challenge
+ok 46 - five incorrect attempts destroy the challenge
+  ---
+  duration_ms: 0.534889
+  type: 'test'
+  ...
+# Subtest: expired challenge clears both confirmations
+ok 47 - expired challenge clears both confirmations
+  ---
+  duration_ms: 0.51544
+  type: 'test'
+  ...
+# Subtest: renewing a code requires both confirmations again
+ok 48 - renewing a code requires both confirmations again
+  ---
+  duration_ms: 0.244861
+  type: 'test'
+  ...
+# Subtest: moving invalidates an ongoing challenge
+ok 49 - moving invalidates an ongoing challenge
+  ---
+  duration_ms: 0.394537
+  type: 'test'
+  ...
+# Subtest: zero speed alone does not authorize interaction
+ok 50 - zero speed alone does not authorize interaction
+  ---
+  duration_ms: 0.150247
+  type: 'test'
+  ...
+# Subtest: unknown vehicle data fails closed
+ok 51 - unknown vehicle data fails closed
+  ---
+  duration_ms: 0.427817
+  type: 'test'
+  ...
+# Subtest: stale vehicle signals block completion and invalidate the challenge
+ok 52 - stale vehicle signals block completion and invalidate the challenge
+  ---
+  duration_ms: 0.391383
+  type: 'test'
+  ...
+# Subtest: future-dated signals do not authorize interaction
+ok 53 - future-dated signals do not authorize interaction
+  ---
+  duration_ms: 0.134233
+  type: 'test'
+  ...
+# Subtest: readiness expires
+ok 54 - readiness expires
+  ---
+  duration_ms: 0.507207
+  type: 'test'
+  ...
+# Subtest: receiver absence invalidates prior sender confirmation
+ok 55 - receiver absence invalidates prior sender confirmation
+  ---
+  duration_ms: 0.281716
+  type: 'test'
+  ...
+# Subtest: leaving the assigned area invalidates the handoff
+ok 56 - leaving the assigned area invalidates the handoff
+  ---
+  duration_ms: 0.200603
+  type: 'test'
+  ...
+# Subtest: adults start without assumed consent
+ok 57 - adults start without assumed consent
+  ---
+  duration_ms: 0.1917
+  type: 'test'
+  ...
+# Subtest: consent withdrawal destroys an active challenge
+ok 58 - consent withdrawal destroys an active challenge
+  ---
+  duration_ms: 0.797477
+  type: 'test'
+  ...
+# Subtest: unassigned community visit cannot create an alleged handoff
+ok 59 - unassigned community visit cannot create an alleged handoff
+  ---
+  duration_ms: 0.276458
+  type: 'test'
+  ...
+# Subtest: child handoff cannot fall back to arrival-only completion
+ok 60 - child handoff cannot fall back to arrival-only completion
+  ---
+  duration_ms: 0.23126
+  type: 'test'
+  ...
+# Subtest: terminal journeys reject further mutations
+ok 61 - terminal journeys reject further mutations
+  ---
+  duration_ms: 0.17164
+  type: 'test'
+  ...
+# Subtest: guardian and receiver projections do not disclose the challenge code
+ok 62 - guardian and receiver projections do not disclose the challenge code
+  ---
+  duration_ms: 0.314997
+  type: 'test'
+  ...
+# Subtest: audit messages never contain a challenge code
+ok 63 - audit messages never contain a challenge code
+  ---
+  duration_ms: 1.704759
+  type: 'test'
+  ...
+# Subtest: invalid events leave the original state unchanged
+ok 64 - invalid events leave the original state unchanged
+  ---
+  duration_ms: 0.251511
+  type: 'test'
+  ...
+# Subtest: boolean-like strings are rejected
+ok 65 - boolean-like strings are rejected
+  ---
+  duration_ms: 0.205201
+  type: 'test'
+  ...
+# Subtest: easy mode requires explicit adult consent
+ok 66 - easy mode requires explicit adult consent
+  ---
+  duration_ms: 1.661504
+  type: 'test'
+  ...
+# Subtest: self reported arrival does not change vehicle, location or handoff state
+ok 67 - self reported arrival does not change vehicle, location or handoff state
+  ---
+  duration_ms: 1.020213
+  type: 'test'
+  ...
+# Subtest: a second arrival notification is rejected
+ok 68 - a second arrival notification is rejected
+  ---
+  duration_ms: 0.238541
+  type: 'test'
+  ...
+# Subtest: staff acknowledgment is not handoff confirmation
+ok 69 - staff acknowledgment is not handoff confirmation
+  ---
+  duration_ms: 0.25121
+  type: 'test'
+  ...
+# Subtest: only the assigned staff may acknowledge an arrival notice
+ok 70 - only the assigned staff may acknowledge an arrival notice
+  ---
+  duration_ms: 0.219362
+  type: 'test'
+  ...
+# Subtest: visitor cannot issue handoff codes or confirm receipt
+ok 71 - visitor cannot issue handoff codes or confirm receipt
+  ---
+  duration_ms: 0.547559
+  type: 'test'
+  ...
+# Subtest: guardian cannot report arrival as the visitor
+ok 72 - guardian cannot report arrival as the visitor
+  ---
+  duration_ms: 2.241081
+  type: 'test'
+  ...
+# Subtest: child trips cannot use adult self consent
+ok 73 - child trips cannot use adult self consent
+  ---
+  duration_ms: 0.226553
+  type: 'test'
+  ...
+# Subtest: community arrival notice does not claim designated handoff
+ok 74 - community arrival notice does not claim designated handoff
+  ---
+  duration_ms: 0.164269
+  type: 'test'
+  ...
+# Subtest: sharing withdrawal blocks a new notice
+ok 75 - sharing withdrawal blocks a new notice
+  ---
+  duration_ms: 0.320405
+  type: 'test'
+  ...
+# Subtest: cancelled visit cannot be reported
+ok 76 - cancelled visit cannot be reported
+  ---
+  duration_ms: 0.180052
+  type: 'test'
+  ...
+# Subtest: acknowledgment requires a notice
+ok 77 - acknowledgment requires a notice
+  ---
+  duration_ms: 0.778167
+  type: 'test'
+  ...
+# Subtest: phone normalization rejects USSD, scripts and invalid punctuation
+ok 78 - phone normalization rejects USSD, scripts and invalid punctuation
+  ---
+  duration_ms: 1.399397
+  type: 'test'
+  ...
+# Subtest: phone normalization permits a dialable number only
+ok 79 - phone normalization permits a dialable number only
+  ---
+  duration_ms: 0.15874
+  type: 'test'
+  ...
+# Subtest: settings only retain supported text sizes and roles
+ok 80 - settings only retain supported text sizes and roles
+  ---
+  duration_ms: 0.185952
+  type: 'test'
+  ...
+# Subtest: easy view settings survive serialization
+ok 81 - easy view settings survive serialization
+  ---
+  duration_ms: 0.11266
+  type: 'test'
+  ...
+# Subtest: completion copy follows actual two-party state
+ok 82 - completion copy follows actual two-party state
+  ---
+  duration_ms: 0.538074
+  type: 'test'
+  ...
+# Subtest: error messages never expose raw exceptions
+ok 83 - error messages never expose raw exceptions
+  ---
+  duration_ms: 0.106602
+  type: 'test'
+  ...
+# Subtest: places rejects missing, coercible and out-of-range coordinates without changing visit state
+ok 84 - places rejects missing, coercible and out-of-range coordinates without changing visit state
+  ---
+  duration_ms: 54.065158
+  type: 'test'
+  ...
+# Subtest: places retains real zeroes, numeric strings and boundary coordinates
+ok 85 - places retains real zeroes, numeric strings and boundary coordinates
+  ---
+  duration_ms: 24.939733
+  type: 'test'
+  ...
+# Subtest: places selects at most five valid results after filtering invalid entries
+ok 86 - places selects at most five valid results after filtering invalid entries
+  ---
+  duration_ms: 13.184903
+  type: 'test'
+  ...
+# Subtest: places returns a recoverable upstream error for a malformed documents container
+ok 87 - places returns a recoverable upstream error for a malformed documents container
+  ---
+  duration_ms: 16.450293
+  type: 'test'
+  ...
+# Subtest: places ignores null documents without discarding valid siblings
+ok 88 - places ignores null documents without discarding valid siblings
+  ---
+  duration_ms: 5.377055
+  type: 'test'
+  ...
+# Subtest: release uses one public product name
+ok 89 - release uses one public product name
+  ---
+  duration_ms: 0.937618
+  type: 'test'
+  ...
+# Subtest: reset invalidates old synthetic sessions and provides new sessions
+ok 90 - reset invalidates old synthetic sessions and provides new sessions
+  ---
+  duration_ms: 66.118515
+  type: 'test'
+  ...
+# Subtest: oversized mutation is rejected without a state change
+ok 91 - oversized mutation is rejected without a state change
+  ---
+  duration_ms: 17.94479
+  type: 'test'
+  ...
+# Subtest: unsupported scenario is rejected during reset
+ok 92 - unsupported scenario is rejected during reset
+  ---
+  duration_ms: 12.00981
+  type: 'test'
+  ...
+# Subtest: private data store cannot be fetched from the web server
+ok 93 - private data store cannot be fetched from the web server
+  ---
+  duration_ms: 6.958809
+  type: 'test'
+  ...
+# Subtest: HTML responses prevent embedding and caching
+ok 94 - HTML responses prevent embedding and caching
+  ---
+  duration_ms: 5.410536
+  type: 'test'
+  ...
+# Subtest: server rejects unauthenticated reads
+ok 95 - server rejects unauthenticated reads
+  ---
+  duration_ms: 46.941666
+  type: 'test'
+  ...
+# Subtest: role cannot be forged in a payload
+ok 96 - role cannot be forged in a payload
+  ---
+  duration_ms: 22.59084
+  type: 'test'
+  ...
+# Subtest: idempotency suppresses duplicate events
+ok 97 - idempotency suppresses duplicate events
+  ---
+  duration_ms: 20.219021
+  type: 'test'
+  ...
+# Subtest: idempotency key reuse with changed payload is rejected
+ok 98 - idempotency key reuse with changed payload is rejected
+  ---
+  duration_ms: 20.685096
+  type: 'test'
+  ...
+# Subtest: optimistic version rejects stale writes
+ok 99 - optimistic version rejects stale writes
+  ---
+  duration_ms: 9.551441
+  type: 'test'
+  ...
+# Subtest: concurrent writes at the same version cannot both succeed
+ok 100 - concurrent writes at the same version cannot both succeed
+  ---
+  duration_ms: 13.627708
+  type: 'test'
+  ...
+# Subtest: persisted state survives a new server instance
+ok 101 - persisted state survives a new server instance
+  ---
+  duration_ms: 8.003268
+  type: 'test'
+  ...
+# Subtest: cross-origin state mutations are rejected
+ok 102 - cross-origin state mutations are rejected
+  ---
+  duration_ms: 6.330197
+  type: 'test'
+  ...
+# Subtest: public host names are rejected
+ok 103 - public host names are rejected
+  ---
+  duration_ms: 8.960623
+  type: 'test'
+  ...
+# Subtest: stale trip references cannot mutate a new journey
+ok 104 - stale trip references cannot mutate a new journey
+  ---
+  duration_ms: 5.55198
+  type: 'test'
+  ...
+# Subtest: observer cannot reset the presentation
+ok 105 - observer cannot reset the presentation
+  ---
+  duration_ms: 3.381315
+  type: 'test'
+  ...
+# Subtest: invalid JSON is rejected without state change
+ok 106 - invalid JSON is rejected without state change
+  ---
+  duration_ms: 4.651567
+  type: 'test'
+  ...
+# Subtest: server never exposes arbitrary filesystem paths
+ok 107 - server never exposes arbitrary filesystem paths
+  ---
+  duration_ms: 5.089484
+  type: 'test'
+  ...
+# Subtest: visitor token is scoped to adult self reporting
+ok 108 - visitor token is scoped to adult self reporting
+  ---
+  duration_ms: 4.852892
+  type: 'test'
+  ...
+# Subtest: visitor role is added when loading a 0.1.x demo store
+ok 109 - visitor role is added when loading a 0.1.x demo store
+  ---
+  duration_ms: 6.602334
+  type: 'test'
+  ...
+# Subtest: visitor route and pure UI module are served with CSP
+ok 110 - visitor route and pure UI module are served with CSP
+  ---
+  duration_ms: 3.967303
+  type: 'test'
+  ...
+# Subtest: settings save destination and contacts without changing confirmation state
+ok 111 - settings save destination and contacts without changing confirmation state
+  ---
+  duration_ms: 2.805218
+  type: 'test'
+  ...
+# Subtest: facility may configure its place but not the visitor identity
+ok 112 - facility may configure its place but not the visitor identity
+  ---
+  duration_ms: 0.627049
+  type: 'test'
+  ...
+# Subtest: wrong staff identity cannot alter facility settings
+ok 113 - wrong staff identity cannot alter facility settings
+  ---
+  duration_ms: 0.241525
+  type: 'test'
+  ...
+# Subtest: visit in progress cannot be silently retargeted
+ok 114 - visit in progress cannot be silently retargeted
+  ---
+  duration_ms: 0.377321
+  type: 'test'
+  ...
+# Subtest: settings cannot grant consent or change assigned receiver identity
+ok 115 - settings cannot grant consent or change assigned receiver identity
+  ---
+  duration_ms: 0.513557
+  type: 'test'
+  ...
+# Subtest: arrival notice locks visit identity even before driving
+ok 116 - arrival notice locks visit identity even before driving
+  ---
+  duration_ms: 0.251401
+  type: 'test'
+  ...
+# Subtest: changing an adult subject requires fresh self consent
+ok 117 - changing an adult subject requires fresh self consent
+  ---
+  duration_ms: 0.480087
+  type: 'test'
+  ...
+# Subtest: changing assigned staff display or facility clears readiness
+ok 118 - changing assigned staff display or facility clears readiness
+  ---
+  duration_ms: 0.253935
+  type: 'test'
+  ...
+# Subtest: invalid and partial coordinates are rejected
+ok 119 - invalid and partial coordinates are rejected
+  ---
+  duration_ms: 0.417752
+  type: 'test'
+  ...
+# Subtest: changing address alone clears old coordinates
+ok 120 - changing address alone clears old coordinates
+  ---
+  duration_ms: 1.771881
+  type: 'test'
+  ...
+# Subtest: zero latitude or longitude is valid and not mistaken for unset
+ok 121 - zero latitude or longitude is valid and not mistaken for unset
+  ---
+  duration_ms: 0.832039
+  type: 'test'
+  ...
+# Subtest: phone inputs reject control characters and USSD
+ok 122 - phone inputs reject control characters and USSD
+  ---
+  duration_ms: 0.333714
+  type: 'test'
+  ...
+# Subtest: map links do not contain child names or phone numbers
+ok 123 - map links do not contain child names or phone numbers
+  ---
+  duration_ms: 0.394507
+  type: 'test'
+  ...
+# Subtest: unconfigured destination requests setup instead of routing to fake facility
+ok 124 - unconfigured destination requests setup instead of routing to fake facility
+  ---
+  duration_ms: 0.1318
+  type: 'test'
+  ...
+# Subtest: address-only Kakao search and explicit Google routing are encoded
+ok 125 - address-only Kakao search and explicit Google routing are encoded
+  ---
+  duration_ms: 0.247435
+  type: 'test'
+  ...
+# Subtest: role capabilities do not let facility act as sender
+ok 126 - role capabilities do not let facility act as sender
+  ---
+  duration_ms: 0.122856
+  type: 'test'
+  ...
+# Subtest: facility projection does not include vehicle telemetry history or challenge secret
+ok 127 - facility projection does not include vehicle telemetry history or challenge secret
+  ---
+  duration_ms: 0.164889
+  type: 'test'
+  ...
+# Subtest: places API requires a role token
+ok 128 - places API requires a role token
+  ---
+  duration_ms: 48.184782
+  type: 'test'
+  ...
+# Subtest: places API reports missing configuration without exposing secrets
+ok 129 - places API reports missing configuration without exposing secrets
+  ---
+  duration_ms: 13.052378
+  type: 'test'
+  ...
+# Subtest: places API keeps the API key on the server and limits response fields
+ok 130 - places API keeps the API key on the server and limits response fields
+  ---
+  duration_ms: 7.258071
+  type: 'test'
+  ...
+# Subtest: maps failure returns a recoverable error, not invented coordinates
+ok 131 - maps failure returns a recoverable error, not invented coordinates
+  ---
+  duration_ms: 14.861519
+  type: 'test'
+  ...
+1..131
+# tests 131
+# suites 0
+# pass 131
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 432.335314

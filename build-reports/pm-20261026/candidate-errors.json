@@ -1,0 +1,62 @@
+{
+  "task_id": "AS-Q1-PM-20261026T0605",
+  "owner": "existing PM selfQA",
+  "source": "41c1812013d395b90d9c6ae7a35ccdcee8b377f4",
+  "candidate_ci": 40210143323,
+  "apk_sha256": "7801e8ffc7e393662ad73c57c3cfb385261b6dcc63405b737359a326504fe8a5",
+  "started_at_kst": "2026-10-26T06:08:18.195+09:00",
+  "finished_at_kst": "2026-10-26T06:08:21.084+09:00",
+  "environment": "Windows Chrome155.0.8059.80 headless isolated browser context; exact release APK bundled HTML; synthetic local visit",
+  "html_sha256": "c2004a65d27ffc601cad796f22c539105ced3db9b58b0d02e68bd5fa36e893d1",
+  "node_exit": 0,
+  "passed_scenarios": 4,
+  "scenarios": [
+    "empty address rejects while retaining editor; corrected actual input saves and closes",
+    "empty and wrong code show errors; receiver remains unconfirmed",
+    "reissuing code clears both confirmations and attempt counter",
+    "virtual-clock expiry refuses completion and clears challenge/confirmations; new code plus both confirmations complete; reload persists completion"
+  ],
+  "clock_scope": "Playwright clock.install/fastForward121000ms; not wall-clock or phone expiry",
+  "page_errors": 0,
+  "external_requests": 0,
+  "original_candidate_modified": false,
+  "phone_actions": false,
+  "new_apk_build": false,
+  "product_modified": false,
+  "independent_qa": false,
+  "submitted": false,
+  "slack_sent": false,
+  "raw_result_sha256": "2da341feb34b7f938ca390ce45e21d2567d6945589d4d866b33183de7ae92a47",
+  "script_sha256": "942904d57247cf58ca86baadac3d9745dad4a6d0488dc0c4f7fe173ead89d2b7",
+  "screens": [
+    {
+      "file": "expired-error.png",
+      "sha256": "79e0c442e1452e03e6142dc8f79991f1046b51a4228e03cff8e2720399b52b99"
+    },
+    {
+      "file": "recovered-complete.png",
+      "sha256": "a720ae78b4136730374f5f71d8b9c55f2f3642d5f82b0dd056914fa9b4dd1831"
+    }
+  ],
+  "screens_directly_reviewed": true,
+  "existing_ci_metadata": {
+    "run": 40219456270,
+    "sha": "6e640cd9d48c5bd6120c927c83bf887fe0376331",
+    "conclusion": "success"
+  },
+  "existing_node_test_mapping": {
+    "wrong_code": "31",
+    "five_wrong_attempts": "32",
+    "expired": "33",
+    "reissue": "34",
+    "invalid_phone": "103"
+  },
+  "not_newly_tested": [
+    "five-wrong UI lockout",
+    "10minute ready expiry UI",
+    "actual phone/release runtime",
+    "external service or vehicle integration",
+    "human usability"
+  ],
+  "initial_attempt": "PowerShell parser rejected spacing before .ToString; no test or APK extraction executed; corrected shell command only, product unchanged"
+}

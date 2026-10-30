@@ -1,0 +1,84 @@
+{
+  "fiveHashesUnchanged": true,
+  "easyAckMarker": true,
+  "owner": "AS-Q1-PM-20261028T1105",
+  "newBuild": 0,
+  "coldEasyAckVisible": true,
+  "instrumentExit": 0,
+  "scope": "PM self QA current verifyqa DOM and easy ACK cold",
+  "installs": 0,
+  "installedFinal": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "pidAbsentBeforeCold": true,
+  "primaryMarker": true,
+  "junitPass": true,
+  "finished": "2026-10-28T11:07:06.1537857+09:00",
+  "started": "2026-10-28T11:06:43.8426973+09:00",
+  "junitRuns": 1,
+  "originalAppDataTouched": false,
+  "status": "PASS_SCOPED",
+  "testedSource": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "ci": {
+    "id": 40592432776,
+    "conclusion": "success",
+    "finishedKst": "2026-10-28T07:17:53+09:00",
+    "environment": "Android 15 emulator release; distinct from physical verifyqa"
+  },
+  "junitSeconds": 9.678,
+  "markers": [
+    {
+      "timeKst": "2026-10-28T11:06:51.523+09:00",
+      "marker": "PRIMARY_HANDOFF_OK"
+    },
+    {
+      "timeKst": "2026-10-28T11:06:54.401+09:00",
+      "marker": "EASY_ARRIVAL_ACK_OK"
+    }
+  ],
+  "cold": {
+    "processAbsent": true,
+    "launchState": "COLD",
+    "activityTotalTimeMs": 344,
+    "easyFacilityAckConfirmedBy": "UI XML and direct PNG",
+    "kindergartenHandoffColdRestore": "not asserted by this run"
+  },
+  "preservation": {
+    "candidateR2FilesChecked": 16,
+    "mismatches": 0,
+    "sumFileSha256": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+    "claimReleasedKst": "2026-10-28T11:07:06.1725990+09:00",
+    "lockAbsent": true
+  },
+  "notEstablished": [
+    "independent QA approval",
+    "human touch/usability",
+    "physical release validation",
+    "real vehicle routing",
+    "authenticated external API calls",
+    "submission completion"
+  ],
+  "nextOwner": "총괄 PM (AS-M1)",
+  "nextSingleTask": "기존 봉인 r1/r2와 DOCX/PDF v4를 보존하고 새 CI/source99d5da0/release f3b8c701의 별도 후보 r3 및 문서 버전 대조",
+  "rawEvidenceDirectory": "C:\\Users\\dan18\\OneDrive\\바탕 화면\\Task\\Win-Win-Challenge-QA-20261024\\AS-Q1-PM-20261028T1105\\",
+  "slack": "pending delivery receipt; do not infer phone push"
+}

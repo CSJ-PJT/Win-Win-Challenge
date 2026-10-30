@@ -1,0 +1,102 @@
+{
+  "time": "2026-10-28T01:02:03.4908078+09:00",
+  "run": "AS-M1-PM-20261028T0055",
+  "candidateId": "candidate-f1164b0-75b53185-docv4-r2",
+  "candidateFiles": 17,
+  "newChecksums": {
+    "matched": 16,
+    "bad": [],
+    "sumsSha": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c"
+  },
+  "previousChecksumsBefore": {
+    "matched": 13,
+    "bad": [],
+    "sumsSha": "e7544d063b4091d26b0483125be939a447b53ff7b0304a098b0f105b6023a10a"
+  },
+  "previousChecksumsAfter": {
+    "matched": 13,
+    "bad": [],
+    "sumsSha": "e7544d063b4091d26b0483125be939a447b53ff7b0304a098b0f105b6023a10a"
+  },
+  "documents": [
+    {
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "file_id": "file_00000000152881f7abec3ad6c85c8e2c",
+      "name": "안심동행플랫폼_공식접수양식_최종.docx",
+      "version": 4,
+      "bytes": 500068,
+      "pages": 13,
+      "sha256": "ab4145047be92065a7d0a0383d171ad1096f89f68176278e6b8745891dc8192d",
+      "url": "https://chatgpt.com/library?file_id=libfile_412035b073bc8191a3980f378b0df188&account_id=personal",
+      "candidate_path": "official-application-v4.docx"
+    },
+    {
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "file_id": "file_000000002db0820da34a35557f4595aa",
+      "name": "안심동행플랫폼_공식접수양식_최종.pdf",
+      "version": 4,
+      "bytes": 760964,
+      "pages": 13,
+      "sha256": "87f1a1745b445bab985eca161dc937e08e3840b8f050f27556254617b70445bc",
+      "url": "https://chatgpt.com/library?file_id=libfile_bed9844c793c8191b486dc00e74925fd&account_id=personal",
+      "candidate_path": "official-application-v4.pdf"
+    }
+  ],
+  "installed": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "installedChangedCount": 0,
+  "lockExists": false,
+  "activeInstrumentation": [],
+  "relatedWriters": [],
+  "ready": false,
+  "newBuild": 0,
+  "newInstall": 0,
+  "phoneUi": 0,
+  "junit": 0,
+  "formalDocsEdited": 0,
+  "libraryVersionChanged": 0,
+  "slackSent": 0,
+  "actualSubmission": 0,
+  "publicRelease": 0,
+  "notes": [
+    "Host transport transient disconnect recovered; initial remote ENOENT before owned directory creation retained, no incomplete parts accepted",
+    "14 stage2 chunks separately completed; reconstruction passes full document SHA and size",
+    "No personal contact/signature document content uploaded to repository; documents remain private IT13 candidate"
+  ],
+  "pmHead": "8a1f28c15de2f543cc21f3d91cf034cb8a29a05f",
+  "productSource": "f1164b04dc267260771ce3ffcc674247053f56e7",
+  "ci": 40436119702,
+  "ciConclusion": "success",
+  "nextOwner": "existing PM",
+  "nextTask": "Cross-check r2 run instructions/source/APK paths/document bindings; prepare reviewable submission email subject/body and required/optional attachment list without sending.",
+  "signatureAcceptanceVerified": false,
+  "reviewerAccessVerified": false,
+  "independentQaApproved": false,
+  "releasePhysicalPass": false,
+  "productComplete": false
+}

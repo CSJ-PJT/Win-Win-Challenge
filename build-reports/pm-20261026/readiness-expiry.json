@@ -1,0 +1,70 @@
+{
+  "task_id": "AS-Q1-PM-20261026T0656",
+  "owner": "existing PM selfQA",
+  "base_head": "82d7978a6329897c7f6a6666e7d28c34e2b7a990",
+  "original_candidate": {
+    "source": "41c1812013d395b90d9c6ae7a35ccdcee8b377f4",
+    "apk_sha256": "7801e8ffc7e393662ad73c57c3cfb385261b6dcc63405b737359a326504fe8a5",
+    "html_sha256": "c2004a65d27ffc601cad796f22c539105ced3db9b58b0d02e68bd5fa36e893d1",
+    "modified": false
+  },
+  "baseline": {
+    "first_run_kst": [
+      "2026-10-26T06:57:27.229+09:00",
+      "2026-10-26T06:57:40.012+09:00"
+    ],
+    "five_wrong_refusal_recovery_pass": true,
+    "whole_first_run_success": false,
+    "failure": "readiness expiry expected automatic display; timeout7000ms",
+    "followup_kst": [
+      "2026-10-26T06:58:15.613+09:00",
+      "2026-10-26T06:58:18.285+09:00"
+    ],
+    "stale_issue_enabled": true,
+    "actual_issue_refused": true,
+    "renewal_recovery_pass": true
+  },
+  "fix": {
+    "path": "web/app.js",
+    "sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e",
+    "fixed_html_sha256": "ebb63dfef4c80fcc46e07d274483eb8816a7f1d4512214b63582d0a376dfed95",
+    "change": "render readiness transitions using existing 2s interval; retain active editor/address/code input render guard",
+    "expiry_and_recovery_pass": true,
+    "focused_draft_node_focus_value_preserved": true,
+    "portable_test_node_exit": 0,
+    "portable_test_kst": [
+      "2026-10-26T07:01:41.612+09:00",
+      "2026-10-26T07:01:44.415+09:00"
+    ]
+  },
+  "test_scope": "Windows Chrome155.0.8059.80 isolated synthetic local browser; Playwright virtual clock601000ms; not actual10min/phone timing; localStorage read-only assertions",
+  "page_errors": 0,
+  "external_requests": 0,
+  "linux_node": {
+    "version": "24.22.1",
+    "tests": 112,
+    "pass": 112,
+    "fail": 0,
+    "exit": 0,
+    "log_sha256": "166033443cbb5d7a0355327eb9e391e4de0936c16de17f7afade1008f5585aa1"
+  },
+  "new_apk_built_locally": false,
+  "phone_actions": false,
+  "independent_qa": false,
+  "submission": false,
+  "slack_sent": false,
+  "original_documents_opened": false,
+  "raw_metadata_note": "fixed-result/draft-result inherited product_modified=false from baseline template; these are raw historical receipts, not current source-change truth. Portable result corrects true and separates reference APK from fixed HTML. Source hashes above are authoritative.",
+  "screens": [
+    {
+      "file": "five-wrong-refused.png",
+      "sha256": "b9d71ab6e2bac396e82348fb1dcfc7abfba6a52a128d9888efe9604013e5cf15",
+      "directly_reviewed": true
+    },
+    {
+      "file": "fixed-ready-expired.png",
+      "sha256": "f931d17b61a6321b8add9bb824b88e20df83a8f4f745f1caf43a0dc3d37a8e82",
+      "directly_reviewed": true
+    }
+  ]
+}

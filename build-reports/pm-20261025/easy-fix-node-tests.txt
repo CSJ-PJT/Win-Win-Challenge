@@ -1,0 +1,181 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> ansim-handoff-demo@0.4.3 test
+> node --test test/*.test.js
+
+✔ postcode maps an explicitly selected road address without inventing coordinates (1.193848ms)
+✔ postcode honours explicit lot selection instead of an inferred road address (0.405164ms)
+✔ postcode data is limited to the selected address, postcode and building name (0.246864ms)
+✔ address postcode and details survive a real configure event (1.130022ms)
+✔ bad postcode is rejected and map links never include private visit fields (0.436141ms)
+✔ Kakao selection never silently opens Google when coordinates are missing (0.352374ms)
+✔ HTTP demo upgrades official postcode requests without allowing arbitrary scripts or frames (42.804053ms)
+✔ HTTP API rejects non-object JSON bodies without changing state (114.475764ms)
+ℹ {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/reset","status":400,"error":"JSON_OBJECT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":413,"error":"SIZE"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/reset","status":413,"error":"SIZE"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+✔ HTTP routes and independent roles complete a real local-server handoff (74.127576ms)
+ℹ {"url":"/api/health","status":200}
+ℹ {"url":"/api/state","status":401,"error":"UNAUTHORIZED"}
+ℹ {"url":"/api/places?query=a","status":400,"error":"QUERY"}
+ℹ {"url":"/api/places?query=서울","status":503,"error":"MAP_NOT_CONFIGURED"}
+ℹ {"url":"/api/unknown","status":404,"error":"NOT_FOUND"}
+ℹ {"url":"/api/reset","status":403,"error":"FORBIDDEN"}
+ℹ {"url":"/api/reset","status":200}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":200,"state":"EN_ROUTE"}
+ℹ {"url":"/api/state","status":200,"state":"EN_ROUTE"}
+ℹ {"url":"/api/events","status":200,"state":"ARRIVED"}
+ℹ {"url":"/api/state","status":200,"state":"ARRIVED"}
+ℹ {"url":"/api/events","status":200,"state":"VERIFYING"}
+ℹ {"url":"/api/state","status":200,"state":"VERIFYING"}
+ℹ {"url":"/api/state","status":200,"state":"VERIFYING"}
+ℹ {"url":"/api/events","status":200,"state":"VERIFYING"}
+ℹ {"url":"/api/state","status":200,"state":"VERIFYING"}
+ℹ {"url":"/api/events","status":200,"state":"COMPLETED"}
+ℹ {"url":"/api/state","status":200,"state":"COMPLETED"}
+✔ HTTP easy arrival is acknowledged independently of handoff completion (31.635334ms)
+ℹ {"url":"/api/reset","status":200}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":409,"error":"CONSENT"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/state","status":200,"state":"PLANNED"}
+ℹ {"url":"/api/events","status":200,"state":"PLANNED"}
+✔ presentation prepares departure without changing fail-closed domain defaults (3.144944ms)
+✔ demo preparation never grants adult consent (1.326169ms)
+✔ presentation does not overwrite an intentional unknown or driving state (1.401533ms)
+✔ presentation preparation is idempotent and leaves closed visits alone (0.465325ms)
+✔ return to arrival zone is simulator-only and never confirms either person (0.750487ms)
+✔ standalone bundle explicitly opts out of the HTTP API on loopback origins (0.958582ms)
+✔ starts without an invented safe vehicle signal (1.627846ms)
+✔ rejects unsupported scenario (0.517634ms)
+✔ departure requires a fresh parked UX-allowed signal (0.741764ms)
+✔ arrival is not completion (0.365844ms)
+✔ arrival cannot happen before departure (0.271932ms)
+✔ a missing receiver blocks code issuance (0.438034ms)
+✔ only the assigned facility account may mark readiness (0.244861ms)
+✔ an observer cannot claim a handoff (0.55459ms)
+✔ a sender account cannot also receive (0.558667ms)
+✔ code possession does not bypass receiver assignment (0.594921ms)
+✔ in-person acknowledgement is mandatory (0.426967ms)
+✔ one confirmation cannot complete (0.33697ms)
+✔ both independent confirmations complete (0.348267ms)
+✔ receiver-first confirmation is supported (0.28385ms)
+✔ incorrect codes never confirm receiver (0.287325ms)
+✔ five incorrect attempts destroy the challenge (0.510082ms)
+✔ expired challenge clears both confirmations (0.264961ms)
+✔ renewing a code requires both confirmations again (0.222467ms)
+✔ moving invalidates an ongoing challenge (0.210078ms)
+✔ zero speed alone does not authorize interaction (0.101204ms)
+✔ unknown vehicle data fails closed (0.391673ms)
+✔ stale vehicle signals block completion and invalidate the challenge (0.280675ms)
+✔ future-dated signals do not authorize interaction (0.142266ms)
+✔ readiness expires (0.308618ms)
+✔ receiver absence invalidates prior sender confirmation (0.302408ms)
+✔ leaving the assigned area invalidates the handoff (0.246824ms)
+✔ adults start without assumed consent (0.261306ms)
+✔ consent withdrawal destroys an active challenge (0.238171ms)
+✔ unassigned community visit cannot create an alleged handoff (0.264531ms)
+✔ child handoff cannot fall back to arrival-only completion (0.154114ms)
+✔ terminal journeys reject further mutations (0.160573ms)
+✔ guardian and receiver projections do not disclose the challenge code (0.325924ms)
+✔ audit messages never contain a challenge code (0.149646ms)
+✔ invalid events leave the original state unchanged (0.166182ms)
+✔ boolean-like strings are rejected (0.13181ms)
+✔ easy mode requires explicit adult consent (1.607616ms)
+✔ self reported arrival does not change vehicle, location or handoff state (0.835346ms)
+✔ a second arrival notification is rejected (0.211049ms)
+✔ staff acknowledgment is not handoff confirmation (0.168355ms)
+✔ only the assigned staff may acknowledge an arrival notice (0.267305ms)
+✔ visitor cannot issue handoff codes or confirm receipt (0.28397ms)
+✔ guardian cannot report arrival as the visitor (0.238572ms)
+✔ child trips cannot use adult self consent (0.259954ms)
+✔ community arrival notice does not claim designated handoff (0.165831ms)
+✔ sharing withdrawal blocks a new notice (0.274065ms)
+✔ cancelled visit cannot be reported (0.304341ms)
+✔ acknowledgment requires a notice (0.19156ms)
+✔ phone normalization rejects USSD, scripts and invalid punctuation (0.182527ms)
+✔ phone normalization permits a dialable number only (0.136416ms)
+✔ settings only retain supported text sizes and roles (0.174124ms)
+✔ easy view settings survive serialization (0.156517ms)
+✔ completion copy follows actual two-party state (0.361147ms)
+✔ error messages never expose raw exceptions (1.016981ms)
+✔ release uses one public product name (0.916768ms)
+✔ reset invalidates old synthetic sessions and provides new sessions (47.610344ms)
+✔ oversized mutation is rejected without a state change (20.066549ms)
+✔ unsupported scenario is rejected during reset (10.303118ms)
+✔ private data store cannot be fetched from the web server (8.069054ms)
+✔ HTML responses prevent embedding and caching (5.508504ms)
+✔ server rejects unauthenticated reads (35.938583ms)
+✔ role cannot be forged in a payload (16.281235ms)
+✔ idempotency suppresses duplicate events (15.439129ms)
+✔ idempotency key reuse with changed payload is rejected (12.957149ms)
+✔ optimistic version rejects stale writes (12.871369ms)
+✔ concurrent writes at the same version cannot both succeed (8.317149ms)
+✔ persisted state survives a new server instance (8.023805ms)
+✔ cross-origin state mutations are rejected (3.826196ms)
+✔ public host names are rejected (6.940003ms)
+✔ stale trip references cannot mutate a new journey (6.193563ms)
+✔ observer cannot reset the presentation (3.155621ms)
+✔ invalid JSON is rejected without state change (4.651917ms)
+✔ server never exposes arbitrary filesystem paths (4.244881ms)
+✔ visitor token is scoped to adult self reporting (9.459059ms)
+✔ visitor role is added when loading a 0.1.x demo store (9.342143ms)
+✔ visitor route and pure UI module are served with CSP (4.962117ms)
+✔ settings save destination and contacts without changing confirmation state (1.683791ms)
+✔ facility may configure its place but not the visitor identity (0.523623ms)
+✔ wrong staff identity cannot alter facility settings (0.164119ms)
+✔ visit in progress cannot be silently retargeted (0.252092ms)
+✔ settings cannot grant consent or change assigned receiver identity (0.519507ms)
+✔ arrival notice locks visit identity even before driving (0.238812ms)
+✔ changing an adult subject requires fresh self consent (0.223789ms)
+✔ changing assigned staff display or facility clears readiness (0.317872ms)
+✔ invalid and partial coordinates are rejected (0.425515ms)
+✔ changing address alone clears old coordinates (0.307816ms)
+✔ zero latitude or longitude is valid and not mistaken for unset (1.014117ms)
+✔ phone inputs reject control characters and USSD (0.309348ms)
+✔ map links do not contain child names or phone numbers (0.345563ms)
+✔ unconfigured destination requests setup instead of routing to fake facility (0.146833ms)
+✔ address-only Kakao search and explicit Google routing are encoded (0.222538ms)
+✔ role capabilities do not let facility act as sender (0.408519ms)
+✔ facility projection does not include vehicle telemetry history or challenge secret (0.169437ms)
+✔ places API requires a role token (33.823439ms)
+✔ places API reports missing configuration without exposing secrets (10.875911ms)
+✔ places API keeps the API key on the server and limits response fields (5.792805ms)
+✔ maps failure returns a recoverable error, not invented coordinates (5.170903ms)
+ℹ tests 112
+ℹ suites 0
+ℹ pass 112
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 427.248817

@@ -1,0 +1,37 @@
+{
+  "task_id": "AS-Q1-PM-20261025T1300",
+  "checked_at": "2026-10-25T13:06:55+09:00",
+  "owner": "existing PM temporary AS-Q1 selfQA",
+  "source_commit": "722a366eea91188110c70b0051fada2719f0f84c",
+  "app_sha256": "18c999d1b3e7969e54d4985eb57224428b5965947d390f00feaad11cd136f21a",
+  "test_sha256": "42f683a58352037bf8bc910aa8074db6bc29423e7913589015bf2cfcc41e21ef",
+  "environment": "Samsung SM-F936N Android16 API36 physical",
+  "procedure": "normal UI new kindergarten visit/vehicle/edit destination/official SDK road result/save,QA-only force-stop,pidof empty,COLD launch,settled main and editor reread without resave",
+  "cold_total_ms": 273,
+  "cold_wait_ms": 276,
+  "address_restored": true,
+  "postcode_restored": true,
+  "official_selected_address_process_cold": "PASS",
+  "current_harness": {
+    "result": "FAILURE",
+    "tests": 1,
+    "failures": 1,
+    "seconds": 25.18,
+    "reason": "Missing visible control: 도착지 입력하기",
+    "scope": "test assumes initial setup while actual persisted screen is easy ACK; no official search reached",
+    "fix": "NOT_IMPLEMENTED; next PM task"
+  },
+  "previous_12h_official_dom": "separate prior successful runs; not substituted for current failed harness",
+  "evidence": {
+    "official_failure_sha256": "aaa9d2268e3f344f7b6c04e7bf9f565cc20b1d650aba0148adbc8cb0d3ea5458",
+    "official_sdk_xml_sha256": "03bcbaa61bb82dc40d32e389cece706556197b6df6ab3c30d8a75a6e72a49d9f",
+    "cold_log_sha256": "aa801dc0b0bdca471770ccb4b1015a8999c2a6e5f263d188ef0a4624e2338d7c",
+    "cold_editor_xml_sha256": "66f448284009c329741b58c4ce511c8ca43d8f625d4a854c31310ae4d590d18a",
+    "cold_editor_png_sha256": "e1f2738db81320f6999f3272e5e6fc2627b638a68a339aca718f430203195970"
+  },
+  "original_app_and_old_qa_hashes_preserved": true,
+  "new_build_or_install": false,
+  "claim_released": true,
+  "independent_qa_approval": false,
+  "release_binary_physical_pass": false
+}

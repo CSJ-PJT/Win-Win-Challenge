@@ -1,0 +1,72 @@
+{
+  "input_version": 5,
+  "targeted_text_nodes": 3,
+  "changed_paragraphs": [
+    57,
+    61
+  ],
+  "all_other_zip_members_byte_identical": 25,
+  "images_signature_blank_fields_preserved": true,
+  "input_docx_sha256": "3f0bf3deb7d0469fdae5e31a40bbeecf976089be52934b37ce4e62cabe3401df",
+  "output_docx_sha256": "6de5e17ef6e4f5823a702aef64728305c8f4e3c63c7768f7d5acdc9bbc9766d9",
+  "pdf_pages": 13,
+  "pdf_text_changed_pages": [
+    5,
+    7
+  ],
+  "pdf_other_11_pages_text_preserved": true,
+  "pdf_sha256": "894e5bde6487c5c0f8b428c7da3fd18612f90cffebd49783f22e14fc95eafa38",
+  "output_docx_bytes": 500066,
+  "output_pdf_bytes": 761360,
+  "visual_review_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "visual_review": "PASS: Korean embedded font; no clipping or overlap; original forms and historical screenshots preserved",
+  "library_replacements": [
+    {
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "file_id": "file_000000001b9c81f5ac45554e39822a11",
+      "current_version_number": 6,
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "file_id": "file_00000000482c81f58b18e67e1e2d8155",
+      "current_version_number": 6,
+      "status": "succeeded",
+      "local_metadata_applied": true
+    }
+  ],
+  "observed_at_kst": "2026-10-29T17:03:00+09:00",
+  "product_source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "ci_run": 40820861095,
+  "product_code_changes": 0,
+  "builds": 0,
+  "installs": 0,
+  "physical_phone_tests": 0,
+  "independent_qa": "NOT_APPROVED",
+  "actual_submission": "NOT_SENT",
+  "it13_ledger": "NOT_SYNCED: existing monthly remote-tool limit, not retried",
+  "slack": "NOT_SENT_BY_THIS_RUN; existing sender/receipt inaccessible; public-channel date search no results; delivery and push unverified",
+  "preupload_pdf_sha256": "ee40ec107f886801fadd22e0d5f397f486281f005031e029ca01012b711a0257",
+  "preupload_output_pdf_bytes": 736230,
+  "correction": {
+    "observed_at_kst": "2026-10-29T18:00:00+09:00",
+    "reason": "17h PDF hash/bytes described renderer output before Library canonical upload, not final stored bytes. Fresh v6 materialization now supplies canonical hash. All 13 page texts and 72dpi raster pixels are identical.",
+    "c2pa_marker_present": true,
+    "c2pa_validity": "NOT_INDEPENDENTLY_VERIFIED"
+  }
+}

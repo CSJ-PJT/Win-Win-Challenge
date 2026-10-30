@@ -1,0 +1,165 @@
+{
+  "bytes": {
+    "source": "9c277ce5bcb1c7b79b2a5ce5871a8302343dd4fe",
+    "run": "40127842234",
+    "method": "actual ZIP bytes and APK signing-block certificate extraction; CI apksigner success separately checked",
+    "packages": {
+      "release": {
+        "sha256": "95d9ba4085b2e64d28241267303ed5fec037a729a10ba268fa7e1b7c0e5b1a6c",
+        "bytes": 5170128,
+        "certificate_sha256": "23a3ce03e36061d7780b69862e1ec7095d93b4301e5c84bf3d882ba72ef4a486",
+        "package": "kr.co.ansimdonghaeng",
+        "target": null
+      },
+      "qa": {
+        "sha256": "25fbaf85a8d554b8f5466385fd903ea739e6b035752ac8e994881cd0a2221827",
+        "bytes": 5170152,
+        "certificate_sha256": "23a3ce03e36061d7780b69862e1ec7095d93b4301e5c84bf3d882ba72ef4a486",
+        "package": "kr.co.ansimdonghaeng.qa",
+        "target": null
+      },
+      "instrumentation": {
+        "sha256": "af091cdb8f78d411d4f82a32bdeef788387c355a63d38965f41b334546e34634",
+        "bytes": 816844,
+        "certificate_sha256": "23a3ce03e36061d7780b69862e1ec7095d93b4301e5c84bf3d882ba72ef4a486",
+        "package": "kr.co.ansimdonghaeng.qa.test",
+        "target": "kr.co.ansimdonghaeng.qa"
+      }
+    },
+    "actual_assets_identical_count": 8,
+    "installed_prepared_qa_certificate_sha256": "faa3357362277ea4e13d7fe0d97e889b67c1610915ecf018b201921bfbd6f133",
+    "same_qa_signer_as_prepared": false,
+    "data_preserving_update": "not compatible signer; no installation attempted"
+  },
+  "manifest": {
+    "source_sha": "9c277ce5bcb1c7b79b2a5ce5871a8302343dd4fe",
+    "workflow_run": "40127842234",
+    "release": {
+      "file": "ansim-platform-0.4.3-preview.apk",
+      "bytes": 5170128,
+      "sha256": "95d9ba4085b2e64d28241267303ed5fec037a729a10ba268fa7e1b7c0e5b1a6c",
+      "package_id": "kr.co.ansimdonghaeng",
+      "target_package": null,
+      "label": "안심동행 플랫폼",
+      "debuggable": false,
+      "certificate_sha256": "23a3ce03e36061d7780b69862e1ec7095d93b4301e5c84bf3d882ba72ef4a486",
+      "authorities": []
+    },
+    "qa": {
+      "file": "ansim-platform-0.4.3-qa.apk",
+      "bytes": 5170152,
+      "sha256": "25fbaf85a8d554b8f5466385fd903ea739e6b035752ac8e994881cd0a2221827",
+      "package_id": "kr.co.ansimdonghaeng.qa",
+      "target_package": null,
+      "label": "안심동행 QA",
+      "debuggable": false,
+      "certificate_sha256": "23a3ce03e36061d7780b69862e1ec7095d93b4301e5c84bf3d882ba72ef4a486",
+      "authorities": []
+    },
+    "instrumentation": {
+      "file": "ansim-qa-tests.apk",
+      "bytes": 816844,
+      "sha256": "af091cdb8f78d411d4f82a32bdeef788387c355a63d38965f41b334546e34634",
+      "package_id": "kr.co.ansimdonghaeng.qa.test",
+      "target_package": "kr.co.ansimdonghaeng.qa",
+      "label": null,
+      "debuggable": false,
+      "certificate_sha256": "23a3ce03e36061d7780b69862e1ec7095d93b4301e5c84bf3d882ba72ef4a486",
+      "authorities": []
+    },
+    "assets_identical": true,
+    "asset_count": 8,
+    "differences": [
+      "applicationId suffix .qa",
+      "versionName suffix -qa",
+      "launcher label 안심동행 QA",
+      "BuildConfig applicationId/buildType and generated test target"
+    ],
+    "production_java_kotlin_changed": false,
+    "remote_debugging_enabled": false,
+    "physical_install": "not_performed",
+    "physical_e2e": "not_verified",
+    "handoff_status": "prepared_not_acknowledged"
+  },
+  "browser": {
+    "environment": "Chromium standalone synthetic browser UI",
+    "cases": [
+      {
+        "name": "unacknowledged notice without address has summary and usable next visit",
+        "passed": true
+      },
+      {
+        "name": "facility acknowledgement and role round trip keep clean summary",
+        "passed": true
+      },
+      {
+        "name": "browser reload retains acknowledged clean summary",
+        "passed": true
+      },
+      {
+        "name": "configured destination and dialer link survive summary rendering fixture",
+        "passed": true
+      },
+      {
+        "name": "new visit keeps editable destination setup",
+        "passed": true
+      }
+    ],
+    "page_errors": [],
+    "result": "success"
+  },
+  "native": {
+    "checks": [
+      "selected official Korean address remains saved on the device",
+      "maps intent opens from a saved address without an API key",
+      "sender confirmation is independently recorded",
+      "facility tab displays its independent reception screen",
+      "receiver finishes the handoff",
+      "guardian sees completed status",
+      "large-button arrival flow works"
+    ],
+    "passed": 7
+  },
+  "status": "instrument_exit=0\naddress_exit=0\nflow_exit=0\ndom_process_exit=0\ndom_result_exit=0\n",
+  "checked_at_kst": "2026-10-25 06:05",
+  "run_summary": {
+    "source": "9c277ce5bcb1c7b79b2a5ce5871a8302343dd4fe",
+    "started": "2026-10-24T20:00:29Z",
+    "finished": "2026-10-24T20:11:15Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 120972993090,
+        "name": "verify-build",
+        "result": "success"
+      },
+      {
+        "id": 120974019434,
+        "name": "native-smoke",
+        "result": "success"
+      },
+      {
+        "id": 120974019464,
+        "name": "live-address",
+        "result": "success"
+      },
+      {
+        "id": 120975442719,
+        "name": "publish",
+        "result": "skipped"
+      }
+    ]
+  },
+  "downloaded_zips": [
+    {
+      "id": 12574310062,
+      "bytes": 5563461,
+      "sha256": "4838309262a4838d8eb372a0413f2c74630d40744855667af93847c2479ea9ca"
+    },
+    {
+      "id": 12574380421,
+      "bytes": 1404999,
+      "sha256": "a97864867b86953d7c86c78d21ac33b1ff8e842905f021a511b971f972896151"
+    }
+  ]
+}

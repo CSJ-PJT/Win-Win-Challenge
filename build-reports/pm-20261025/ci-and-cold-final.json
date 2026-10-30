@@ -1,0 +1,69 @@
+{
+  "checked_at": "2026-10-25T19:59:45.084+09:00",
+  "task_id": "AS-Q1-PM-20261025T1956",
+  "owner": "existing PM selfQA",
+  "physical": {
+    "app_source": "b227ca2409eae9ae1f71ff1a5d1b64ef42d7ebab",
+    "app_sha256": "c5aad9eecc70bf0cac07450e414c582720582ee8286f0b255af5ff46e69eda4b",
+    "test_source": "22840169f99feeb64c22cdeba48a9707505eb0bc",
+    "test_sha256": "5f7ecaa3bd9253af916104f916623b7dbea1454d02d348eee2bcb98dfa90a840",
+    "official_junit_ok": true,
+    "official_seconds": 16.944,
+    "cold_total_ms": 264,
+    "cold_wait_ms": 268,
+    "pid_empty_before_start": true,
+    "only_one_cold_launch": true,
+    "first_xml_bytes": 823,
+    "first_xml_address_postcode_observed": false,
+    "recheck_qa_nodes": 64,
+    "address_postcode_restored": true,
+    "screen_directly_reviewed": true,
+    "all5_installed_hashes_unchanged": true,
+    "claim_acquired_released": true,
+    "no_build_install_uninstall_clear": true,
+    "independent_qa_approval": false
+  },
+  "ci": {
+    "source": "22840169f99feeb64c22cdeba48a9707505eb0bc",
+    "run": 40182818148,
+    "start": "2026-10-25T18:58:07+09:00",
+    "end": "2026-10-25T19:08:56+09:00",
+    "verify_build": "success",
+    "live_address": "success",
+    "native_smoke": "success",
+    "publish": "skipped",
+    "node_pass": 112,
+    "node_fail": 0,
+    "official_instrumentation": 1,
+    "apk_checks": 7,
+    "dom_instrumentation": 1,
+    "geocoder_class_not_invoked": true,
+    "all5_native_exits_zero": true,
+    "build_zip": {
+      "id": 12594637997,
+      "bytes": 5613319,
+      "sha256": "fe2df836f9fd23c62f38ab56a556e8b5f4039ae1041e949dd41ff79d1806e85d"
+    },
+    "native_zip": {
+      "id": 12594588779,
+      "bytes": 1283241,
+      "sha256": "163487b18e67efe6254bac1f780e3f46b6d6996537451fe15f960f10ad8226da"
+    },
+    "release_apk": {
+      "bytes": 5170796,
+      "sha256": "8397b33aed91a51cbef0cd8407873e1518dcc0643f3f0085600d796d8f94d1c2"
+    },
+    "qa_apk": {
+      "bytes": 5170820,
+      "sha256": "27ae278b3b8a162bf5badd761c36c02c23654d8da2a2e337838db4191bd861b9"
+    },
+    "qa_test": {
+      "bytes": 821260,
+      "sha256": "5761e13ce761461560f33804e50752f16d2fc3750083b35ad44dd58fc8a83ed3"
+    },
+    "certificate_manifest_and_v2_bytes_matched": "e2122eed50d98e37143ef85e12311f7a480c4ae4315baa2d74e928a8ba055539",
+    "cryptographic_apksigner_rerun_in_this_review": false,
+    "ci_apks_physically_installed": false,
+    "actual8assets_match_release_qa_and_previous_b227": true
+  }
+}

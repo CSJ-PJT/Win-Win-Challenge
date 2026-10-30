@@ -1,0 +1,215 @@
+{
+  "time": "2026-10-28T00:07:23.0619825+09:00",
+  "run": "AS-M1-PM-20261028T0003",
+  "scope": "Official submission/briefing conditions recheck; no product runtime re-test",
+  "pmHead": "c0c9a0ecae44df9110d64e1dd0453dd5aadf8843",
+  "productSource": "f1164b04dc267260771ce3ffcc674247053f56e7",
+  "ci": {
+    "id": 40436119702,
+    "conclusion": "success",
+    "verifyBuild": "success",
+    "liveAddress": "success",
+    "nativeSmoke": "success",
+    "publish": "skipped"
+  },
+  "officialPages": [
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice",
+      "retrievedAt": "2026-10-28T00:07:21.0441604+09:00",
+      "status": 200,
+      "sha256": "8cd703e69f8adc93c57e07fc83a17168b86fd579d70967ff7624eff536bb799c",
+      "bytes": 18468,
+      "externalHrefs": [],
+      "noticeHrefs": [
+        "/notice/c0a1a000-2026-4923-8000-000000000001",
+        "/notice/c0a1a000-2026-4923-8000-000000000005",
+        "/notice/c0a1a000-2026-4923-8000-000000000006"
+      ],
+      "briefingDatePresent": false,
+      "briefingTimePresent": false,
+      "rawFile": "official-0.html"
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/guide/submission",
+      "retrievedAt": "2026-10-28T00:07:21.2958530+09:00",
+      "status": 200,
+      "sha256": "344ec6bee69314a3db06c639c4f6c6d0dced70715b67e935107a0d5eddb9fa86",
+      "bytes": 45875,
+      "externalHrefs": [],
+      "noticeHrefs": [],
+      "briefingDatePresent": false,
+      "briefingTimePresent": false,
+      "rawFile": "official-1.html"
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/guide/schedule",
+      "retrievedAt": "2026-10-28T00:07:21.3707972+09:00",
+      "status": 200,
+      "sha256": "1c6fdd91a7d145d8360b4349c11e8990edf7001bb644f15f22f2807df373a497",
+      "bytes": 35822,
+      "externalHrefs": [],
+      "noticeHrefs": [
+        "/notice/c0a1a000-2026-4923-8000-000000000005"
+      ],
+      "briefingDatePresent": true,
+      "briefingTimePresent": true,
+      "rawFile": "official-2.html"
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/faq",
+      "retrievedAt": "2026-10-28T00:07:21.4634421+09:00",
+      "status": 200,
+      "sha256": "13356928dace54bc709b9b2a16fe3153651fbb4727bdfef53ddfe9493603d5d0",
+      "bytes": 57613,
+      "externalHrefs": [],
+      "noticeHrefs": [],
+      "briefingDatePresent": true,
+      "briefingTimePresent": false,
+      "rawFile": "official-3.html"
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/guide/rules",
+      "retrievedAt": "2026-10-28T00:07:21.5582221+09:00",
+      "status": 200,
+      "sha256": "bc67049d0bb367aecbff14f94490988e5300edf130880adba3d2a0e65e843ce9",
+      "bytes": 33597,
+      "externalHrefs": [],
+      "noticeHrefs": [],
+      "briefingDatePresent": false,
+      "briefingTimePresent": false,
+      "rawFile": "official-4.html"
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000006",
+      "retrievedAt": "2026-10-28T00:07:21.6326012+09:00",
+      "status": 200,
+      "sha256": "549d6ab841ecb2f46b8b22cd64b318d58153246347534ae8f0fe68abfb22a5e4",
+      "bytes": 29686,
+      "externalHrefs": [],
+      "noticeHrefs": [],
+      "briefingDatePresent": false,
+      "briefingTimePresent": false,
+      "rawFile": "official-5.html"
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000001",
+      "retrievedAt": "2026-10-28T00:07:21.7234150+09:00",
+      "status": 200,
+      "sha256": "14915ad158ff54d6c5e54eed51b854b20897d4d4914f32c583f296f84eec648a",
+      "bytes": 24492,
+      "externalHrefs": [],
+      "noticeHrefs": [],
+      "briefingDatePresent": false,
+      "briefingTimePresent": false,
+      "rawFile": "official-6.html"
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005",
+      "retrievedAt": "2026-10-28T00:07:21.8112782+09:00",
+      "status": 200,
+      "sha256": "c14b33ade04c46f1213e6d9a51500639562f904d8cdd6e5825f3cac564560449",
+      "bytes": 20598,
+      "externalHrefs": [],
+      "noticeHrefs": [],
+      "briefingDatePresent": true,
+      "briefingTimePresent": true,
+      "rawFile": "official-7.html"
+    }
+  ],
+  "comparisonBaseline": "docs/OFFICIAL_SUBMISSION_PREFLIGHT_20261027.md (16h review)",
+  "changeAssessment": "Reviewed submission/consent/attachment/briefing requirements unchanged versus prior review; byte-level website change not asserted",
+  "briefing": {
+    "timeKst": "2026-10-28T14:00:00+09:00",
+    "connectionUrlFound": false,
+    "replayPlanned": true,
+    "scope": "Published rendered notice/schedule and retrieved HTML hrefs; no claim of absence from future/private announcements"
+  },
+  "submission": {
+    "deadline": "2026-11-15",
+    "exactDeadlineTimeConfirmed": false,
+    "required": "Completed application/plan and individual consent/signature/date",
+    "optional": [
+      "demo video",
+      "GitHub source with release APK",
+      "short-form link"
+    ],
+    "email": "appdevchallenge@hyundai-partners.com",
+    "subject": "[차량용 앱 개발 공모전] 팀명(개인은 성명)_대표자명",
+    "revision": "Same original sending address; all materials and signed consent reattached; all team members CC",
+    "typedSignatureAcceptanceConfirmed": false,
+    "exactJudgeGithubAccountFound": false
+  },
+  "preservation": {
+    "time": "2026-10-28T00:07:23.0619825+09:00",
+    "lockExists": false,
+    "relatedProcesses": [],
+    "activeInstrumentationMarkers": [],
+    "installed": [
+      {
+        "package": "kr.co.ansimdonghaeng",
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "unchanged": true
+      },
+      {
+        "package": "kr.co.ansimdonghaeng.qa",
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "unchanged": true
+      },
+      {
+        "package": "kr.co.ansimdonghaeng.qa.test",
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "unchanged": true
+      },
+      {
+        "package": "kr.co.ansimdonghaeng.verifyqa",
+        "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+        "unchanged": true
+      },
+      {
+        "package": "kr.co.ansimdonghaeng.verifyqa.test",
+        "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+        "unchanged": true
+      }
+    ],
+    "installedChangedCount": 0,
+    "candidateMatched": 13,
+    "candidateMismatches": [],
+    "candidateFiles": 14,
+    "candidateSumsSha256": "e7544d063b4091d26b0483125be939a447b53ff7b0304a098b0f105b6023a10a",
+    "newBuild": 0,
+    "newInstall": 0,
+    "phoneUi": 0,
+    "junit": 0,
+    "formalDocsEdited": 0,
+    "candidateEdited": 0,
+    "slackSent": 0,
+    "actualSubmission": 0
+  },
+  "formalDocs": {
+    "status": "Existing same-ID v4 retained; not reopened/edited in this run",
+    "docxSha256": "ab4145047be92065a7d0a0383d171ad1096f89f68176278e6b8745891dc8192d",
+    "pdfSha256": "87f1a1745b445bab985eca161dc937e08e3840b8f050f27556254617b70445bc",
+    "actualBytesAttachedToCandidate": false
+  },
+  "blockers": [
+    "typed-name signature acceptability unconfirmed",
+    "briefing connection URL not found in inspected sources",
+    "exact judge GitHub account and judge access unconfirmed",
+    "actual document bytes not yet attached",
+    "release75 physical, independent QA/human usability/external integration/actual submission incomplete"
+  ],
+  "nextOwner": "existing PM",
+  "nextTask": "Bring existing same-ID DOCX/PDF v4 bytes into a separate candidate revision and verify ID/version/SHA/attachments; preserve sealed candidate, signature content, original apps; do not submit or expand permissions.",
+  "slack": {
+    "sent": false,
+    "reason": "Outside09-18",
+    "phonePush": "unverified"
+  },
+  "newBuild": 0,
+  "newInstall": 0,
+  "newCiRequests": 0,
+  "publicRelease": 0,
+  "actualSubmission": 0,
+  "independentQaApproved": false,
+  "releasePhysicalPass": false
+}

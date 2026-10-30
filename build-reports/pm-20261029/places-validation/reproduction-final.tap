@@ -1,0 +1,204 @@
+TAP version 13
+# Subtest: places rejects missing, coercible and out-of-range coordinates without changing visit state
+not ok 1 - places rejects missing, coercible and out-of-range coordinates without changing visit state
+  ---
+  duration_ms: 38.538619
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/places-validation.test.js:22:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   places: [
+    +     {
+    +       address: 'Public fixture address',
+    +       latitude: 0,
+    +       longitude: 127,
+    +       name: 'Public fixture'
+    +     },
+    +     {
+    +       address: 'Public fixture address',
+    +       latitude: 0,
+    +       longitude: 127,
+    +       name: 'Public fixture'
+    +     },
+    +     {
+    +       address: 'Public fixture address',
+    +       latitude: 0,
+    +       longitude: 127,
+    +       name: 'Public fixture'
+    +     },
+    +     {
+    +       address: 'Public fixture address',
+    +       latitude: 0,
+    +       longitude: 127,
+    +       name: 'Public fixture'
+    +     }
+    +   ]
+    -   places: []
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    places:
+  actual:
+    places:
+      0:
+        name: 'Public fixture'
+        address: 'Public fixture address'
+        latitude: 0
+        longitude: 127
+      1:
+        name: 'Public fixture'
+        address: 'Public fixture address'
+        latitude: 0
+        longitude: 127
+      2:
+        name: 'Public fixture'
+        address: 'Public fixture address'
+        latitude: 0
+        longitude: 127
+      3:
+        name: 'Public fixture'
+        address: 'Public fixture address'
+        latitude: 0
+        longitude: 127
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/places-validation.test.js:27:62)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: places retains real zeroes, numeric strings and boundary coordinates
+ok 2 - places retains real zeroes, numeric strings and boundary coordinates
+  ---
+  duration_ms: 12.200877
+  type: 'test'
+  ...
+# Subtest: places selects at most five valid results after filtering invalid entries
+not ok 3 - places selects at most five valid results after filtering invalid entries
+  ---
+  duration_ms: 5.967535
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/places-validation.test.js:35:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        [
+    +     0,
+    +     0
+    -     30,
+    -     120
+        ],
+        [
+    +     0,
+    +     0
+    -     31,
+    -     121
+        ],
+        [
+    +     0,
+    +     0
+    -     32,
+    -     122
+        ],
+        [
+    +     0,
+    +     0
+    -     33,
+    -     123
+        ],
+        [
+    +     0,
+    +     0
+    -     34,
+    -     124
+        ]
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      0: 30
+      1: 120
+    1:
+      0: 31
+      1: 121
+    2:
+      0: 32
+      1: 122
+    3:
+      0: 33
+      1: 123
+    4:
+      0: 34
+      1: 124
+  actual:
+    0:
+      0: 0
+      1: 0
+    1:
+      0: 0
+      1: 0
+    2:
+      0: 0
+      1: 0
+    3:
+      0: 0
+      1: 0
+    4:
+      0: 0
+      1: 0
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/places-validation.test.js:38:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: places returns a recoverable upstream error for a malformed documents container
+ok 4 - places returns a recoverable upstream error for a malformed documents container
+  ---
+  duration_ms: 8.25738
+  type: 'test'
+  ...
+# Subtest: places ignores null documents without discarding valid siblings
+not ok 5 - places ignores null documents without discarding valid siblings
+  ---
+  duration_ms: 5.13116
+  type: 'test'
+  location: '/workspace/scratch/2f3ff442128e/api-1200/test/places-validation.test.js:46:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    502 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 502
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/2f3ff442128e/api-1200/test/places-validation.test.js:48:35)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 2
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 157.403422

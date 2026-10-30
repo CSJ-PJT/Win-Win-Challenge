@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "slot": "2026-10-29T11:00:00+09:00",
+  "observed_at": "2026-10-29T11:07:47+09:00",
+  "owner": "existing PM AS-M1",
+  "scope": "README execution environment and data-preserving update documentation audit",
+  "base_pm_head": "3c226bf4ccab0f40b1081045bc6a53b1b44c63c3",
+  "product_source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "source_comparisons": [
+    {
+      "path": "package.json",
+      "head_blob": "6587bee7d4ab2b9a579cc3db90226bcd263597e7",
+      "source_blob": "6587bee7d4ab2b9a579cc3db90226bcd263597e7",
+      "unchanged": true
+    },
+    {
+      "path": "PC 실행.cmd",
+      "head_blob": "ffeeb0ad5e630b4b687082491bbf2aa8c0f815e1",
+      "source_blob": "ffeeb0ad5e630b4b687082491bbf2aa8c0f815e1",
+      "unchanged": true
+    },
+    {
+      "path": "start-demo.cmd",
+      "head_blob": "3bc80205c3b85263e579fa903f628b3cde4d2115",
+      "source_blob": "3bc80205c3b85263e579fa903f628b3cde4d2115",
+      "unchanged": true
+    },
+    {
+      "path": "tools/serve-demo.cjs",
+      "head_blob": "be62cc1be6e142f4ba322d7be65c9cf1224adcd8",
+      "source_blob": "be62cc1be6e142f4ba322d7be65c9cf1224adcd8",
+      "unchanged": true
+    },
+    {
+      "path": "tools/bundle.js",
+      "head_blob": "327edd3c6fa9aa72050969ae740026ac5dfd99ba",
+      "source_blob": "327edd3c6fa9aa72050969ae740026ac5dfd99ba",
+      "unchanged": true
+    },
+    {
+      "path": "server.js",
+      "head_blob": "7933942c06dc5287b982a22b5296fba3430a5040",
+      "source_blob": "7933942c06dc5287b982a22b5296fba3430a5040",
+      "unchanged": true
+    },
+    {
+      "path": "android/app/build.gradle",
+      "head_blob": "17a5a98fe098a600008349672b4796b4a9a6653b",
+      "source_blob": "17a5a98fe098a600008349672b4796b4a9a6653b",
+      "unchanged": true
+    },
+    {
+      "path": "tools/build_verifyqa.ps1",
+      "head_blob": "a255c513b653e151e004666814401ae4bafb2ba6",
+      "source_blob": "a255c513b653e151e004666814401ae4bafb2ba6",
+      "unchanged": true
+    }
+  ],
+  "findings": [
+    {
+      "status": "MATCH",
+      "subject": "npm scripts, bundler, loopback default ports",
+      "evidence": [
+        "package.json",
+        "tools/bundle.js",
+        "tools/serve-demo.cjs",
+        "server.js"
+      ]
+    },
+    {
+      "status": "DOC_GAP_CORRECTED",
+      "subject": "Node >=22 requirement, cached launcher bundle regeneration, start-demo fixed browser URL",
+      "evidence": [
+        "package.json",
+        "PC 실행.cmd",
+        "start-demo.cmd"
+      ]
+    },
+    {
+      "status": "DOC_GAP_CORRECTED",
+      "subject": "release preserving update blocked by differing certificate; do not uninstall/reset; QA variants and preflight are not release installation approval",
+      "evidence": [
+        "android/app/build.gradle",
+        "docs/RELEASE_SIGNING_POLICY_REVIEW_20261029.md",
+        "docs/PREFLIGHT_CONTRACT_REVIEW_20261029.md"
+      ]
+    },
+    {
+      "status": "DOC_CLARIFIED",
+      "subject": "Python browser tests require Python3/Playwright/Chromium; no new execution claimed",
+      "evidence": [
+        "test/flow040.py",
+        "test/flow040_http.py",
+        "test/address042_live.py"
+      ]
+    }
+  ],
+  "candidate": {
+    "path": "apk/안심동행_안심동행플랫폼_release.apk",
+    "git_blob": "80cf1a71a50ad5fa2551db1a99171dbcb5c80109",
+    "sha256_from_prior_evidence": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+    "fresh_binary_hash": false
+  },
+  "ci": {
+    "run_id": 40592432776,
+    "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+    "jobs": [
+      {
+        "name": "verify-build",
+        "conclusion": "success"
+      },
+      {
+        "name": "native-smoke",
+        "conclusion": "success"
+      },
+      {
+        "name": "live-address",
+        "conclusion": "success"
+      },
+      {
+        "name": "publish",
+        "conclusion": "skipped"
+      }
+    ],
+    "new_run": false
+  },
+  "pr": {
+    "number": 2,
+    "state": "open",
+    "draft": true
+  },
+  "release": "v0.3.0-preview",
+  "counts": {
+    "documentation_change": 1,
+    "source_file_comparisons": 8,
+    "new_product_code": 0,
+    "new_build": 0,
+    "new_install": 0,
+    "new_phone_test": 0,
+    "new_junit": 0,
+    "new_external_service_calls": 0,
+    "new_submission": 0
+  },
+  "historical_only": {
+    "installed_apks_sha256_count": 5,
+    "candidate_checksums": "20/20",
+    "last_observed_at": "2026-10-29T05:07:07+09:00",
+    "docx_pdf_same_id_version": 5,
+    "fresh_docx_pdf_read": false
+  },
+  "limitations": {
+    "remote": "Official monthly usage exhausted at 06h; no retry, reconnect or alternate route.",
+    "common_ops_synced": false,
+    "current_lock_process_keyguard_state": "NOT_OBSERVED",
+    "release_physical": "NOT_RUN",
+    "independent_qa": "NOT_APPROVED",
+    "original_release_key_availability": "NOT_INSPECTED",
+    "actual_submission": false
+  },
+  "slack": {
+    "search_observed_at": "2026-10-29T11:07:00+09:00",
+    "filter": "in:<#C0CBT8UEQCA> on:2026-10-29",
+    "search_results": 0,
+    "sender": "existing IT13 Send-AsdhReport.ps1 only",
+    "queue_registered": false,
+    "send_success": "UNCONFIRMED",
+    "no_alternate_send": true,
+    "phone_push": "UNVERIFIED",
+    "review_only_report": "🤝 *안심동행 | 10/29 11:00 KST* 🟡 *릴리스 검증 대기*\n🕒 *관측* 11:07 KST GitHub·Slack 조회 / 현장 마지막 05:07\n*한줄 결론* README에 실행 환경·기존 앱 보존 업데이트 조건을 보완.\n📊 *게이트* 소스/CI ✅ | QA앱 실기기 🟡(PM 자체)\n릴리스 실기기 ⏳(서명 차단) | 독립 QA ⏳ | 실제 제출 ⏳\n🧪 *증거* source99d5da0 기준 실행·빌드 파일 8/8 동일. CI 3/3 성공·게시 skipped.\n후보 APK 경로/blob 대조. 설치5SHA·r4 20/20은 05:07 기록; DOCX/PDF 새 검증 없음.\n🔁 *직전 대비* 문서 보완 1건 / 제품 코드·빌드·설치·폰 시험 0건.\n🚧 *차단* 원격 월간 제한·릴리스 인증서 차이. IT13 원장 미반영.\n🎯 *다음* 기존 PM AS-M1: API/bridge 검증표를 실제 라우트·메서드와 대조.\n🔗 <https://github.com/CSJ-PJT/Win-Win-Challenge/pull/2|상세> | 봇 큐·발송 성공 미확인 / 폰 push 미검증",
+    "report_lines": 11,
+    "report_chars": 563
+  },
+  "next_single_owner": "기존 PM AS-M1이 서버 API·Android bridge 검증표를 실제 라우트/메서드와 대조하고, 자동·외부 호출·물리 검증 범위를 분리해 누락 한 가지를 좁힙니다. 원격 제한 재시도·새 빌드/설치·실전화/기관전송·공개배포·제출 없이 수행합니다.",
+  "preserved": [
+    "main/easy/address and uncommitted work",
+    "existing apps/data/signers",
+    "sealed r1-r4 files",
+    "same-ID DOCX/PDF v5",
+    "private email review",
+    "existing schedules and recipients"
+  ]
+}

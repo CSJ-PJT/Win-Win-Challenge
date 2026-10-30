@@ -5,7 +5,9 @@ android {
   buildFeatures { buildConfig true }
   useLibrary 'android.car', false
   defaultConfig { applicationId 'kr.co.ansimdonghaeng'; minSdk 28; targetSdk 35; versionCode 9; versionName '0.4.3'; testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' }
-  testBuildType 'release'
+  def requestedTestBuildType = providers.gradleProperty('ansimTestBuildType').getOrElse('release')
+  if (!(requestedTestBuildType in ['release', 'deviceQa', 'verifyQa'])) throw new GradleException('Unsupported ansimTestBuildType')
+  testBuildType requestedTestBuildType
   signingConfigs {
     demoRelease {
       if (System.getenv('DEMO_KEYSTORE')) {
@@ -16,7 +18,36 @@ android {
       }
     }
   }
+  signingConfigs {
+    persistentQa {
+      if (System.getenv('ANSIM_QA_KEYSTORE')) {
+        storeFile file(System.getenv('ANSIM_QA_KEYSTORE'))
+        storePassword System.getenv('ANSIM_QA_STORE_PASSWORD')
+        keyAlias 'ansim-qa'
+        keyPassword System.getenv('ANSIM_QA_STORE_PASSWORD')
+      }
+    }
+  }
   buildTypes { release { minifyEnabled false; if (System.getenv('DEMO_KEYSTORE')) signingConfig signingConfigs.demoRelease } }
+  buildTypes {
+    deviceQa {
+      initWith release
+      applicationIdSuffix '.qa'
+      versionNameSuffix '-qa'
+      debuggable false
+      matchingFallbacks = ['release']
+    }
+  }
+  buildTypes {
+    verifyQa {
+      initWith release
+      applicationIdSuffix '.verifyqa'
+      versionNameSuffix '-verifyqa'
+      debuggable false
+      signingConfig signingConfigs.persistentQa
+      matchingFallbacks = ['release']
+    }
+  }
   compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
 kotlin { jvmToolchain(17) }
@@ -26,3 +57,31 @@ dependencies {
   androidTestImplementation 'androidx.test.ext:junit:1.2.1'
   androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'
 }
+
+
+// Build web assets from source for every variant, including direct Gradle builds.
+// Never package the stale tracked snapshot from src/main/assets.
+def webRoot = rootProject.projectDir.parentFile
+def generatedWebAssets = layout.buildDirectory.dir('generated/ansimAssets')
+def bundleAndroidWeb = tasks.register('bundleAndroidWeb', Exec) {
+  workingDir webRoot
+  commandLine 'node', 'tools/bundle.js'
+  inputs.files(fileTree(new File(webRoot, 'web')))
+  inputs.file(new File(webRoot, 'tools/bundle.js'))
+  outputs.file(new File(webRoot, 'dist/handoff-demo.html'))
+}
+def prepareAndroidAssets = tasks.register('prepareAndroidAssets', Sync) {
+  dependsOn bundleAndroidWeb
+  from(new File(webRoot, 'web')) {
+    include 'config.js', 'core.js', 'ui.js', 'address.js', 'app.js', 'style.css', 'postcode.html'
+  }
+  from(new File(webRoot, 'dist/handoff-demo.html')) { rename { 'index.html' } }
+  into generatedWebAssets
+  doLast {
+    def expected = ['config.js','core.js','ui.js','address.js','app.js','style.css','postcode.html','index.html'] as Set
+    def actual = destinationDir.listFiles().collect { it.name } as Set
+    if (actual != expected) throw new GradleException('Incomplete Android web assets: ' + actual)
+  }
+}
+android.sourceSets.main.assets.setSrcDirs([generatedWebAssets])
+tasks.named('preBuild').configure { dependsOn prepareAndroidAssets }

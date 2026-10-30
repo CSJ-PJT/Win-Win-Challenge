@@ -1,0 +1,20 @@
+Source 4a671e0 / CI40068462730 / job120797132250
+2026-10-24T06:06:16.1657491Z OK (1 test)
+2026-10-24T06:06:16.3406211Z OK (1 test)
+2026-10-24T06:06:51.1849584Z PASS selected official Korean address remains saved on the device
+2026-10-24T06:06:56.6789127Z PASS maps intent opens from a saved address without an API key
+2026-10-24T06:07:40.7906929Z PASS sender confirmation is independently recorded
+2026-10-24T06:07:49.0640397Z PASS facility tab displays its independent reception screen
+2026-10-24T06:08:20.2217330Z PASS receiver finishes the handoff
+2026-10-24T06:08:25.3527691Z PASS guardian sees completed status
+2026-10-24T06:08:39.2497404Z PASS large-button arrival flow works
+2026-10-24T06:08:59.7754505Z OK (1 test)
+2026-10-24T06:08:59.8244324Z OK (1 test)
+Artifact dom-flow-logcat.txt:
+PRIMARY_HANDOFF_OK
+EASY_ARRIVAL_ACK_OK
+instrument_exit=0
+address_exit=0
+flow_exit=0
+dom_process_exit=0
+dom_result_exit=0

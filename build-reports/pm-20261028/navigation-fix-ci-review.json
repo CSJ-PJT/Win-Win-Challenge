@@ -1,0 +1,184 @@
+{
+  "run": "AS-M1-PM-20261028T0456",
+  "time": "2026-10-28T04:59:31.3626250+09:00",
+  "baseHead": "dc4dbef56917177cad82a2345b561ae4f3838ac9",
+  "ci": {
+    "id": 40566624264,
+    "conclusion": "failure",
+    "verifyBuild": "success",
+    "jvmRetry": "success",
+    "liveAddress": "success",
+    "nativeSmoke": "failure",
+    "publish": "skipped"
+  },
+  "artifacts": [
+    {
+      "id": 12763457030,
+      "sha256": "70e8d23514db763ffd9904f96cbbff7b8a63e75fece455ba213508a3b1ba1b83",
+      "bytes": 6055784
+    },
+    {
+      "id": 12762864548,
+      "sha256": "d41a815b5568975df99020a6201f45a647580b6bd5b513773a7674a945bc16b9",
+      "bytes": 346582
+    }
+  ],
+  "verification": {
+    "time": "2026-10-28T04:59:31.3626250+09:00",
+    "apkMetadata": [
+      {
+        "manifestExit": 0,
+        "name": "release",
+        "bytes": 5171400,
+        "certificateSha256": "65e36ac4bef2ff5500c548b1628d159ca49120c07f9c97b783db191ad1d200a0",
+        "sha256": "533501c42d60aeb0c115d92992a936155fbd301c09daf920041f26fc46ce2379",
+        "signatureExit": 0,
+        "manifestFile": "release-manifest.txt"
+      },
+      {
+        "manifestExit": 0,
+        "name": "release-tests",
+        "bytes": 828932,
+        "certificateSha256": "65e36ac4bef2ff5500c548b1628d159ca49120c07f9c97b783db191ad1d200a0",
+        "sha256": "6a97ee15dd77396e33f4faa6179fa28837fb03cf193992a3553f98e99e9f28f9",
+        "signatureExit": 0,
+        "manifestFile": "release-tests-manifest.txt"
+      },
+      {
+        "manifestExit": 0,
+        "name": "qa",
+        "bytes": 5171420,
+        "certificateSha256": "65e36ac4bef2ff5500c548b1628d159ca49120c07f9c97b783db191ad1d200a0",
+        "sha256": "c5874b6db09ffc4d411a2141e71e622e7e1210e995695a73aec6e890e2615bab",
+        "signatureExit": 0,
+        "manifestFile": "qa-manifest.txt"
+      },
+      {
+        "manifestExit": 0,
+        "name": "qa-tests",
+        "bytes": 828960,
+        "certificateSha256": "65e36ac4bef2ff5500c548b1628d159ca49120c07f9c97b783db191ad1d200a0",
+        "sha256": "fcd4e2efc7f97316977b8d5ba099275e62b538fe2359d0038fd28aab33e08565",
+        "signatureExit": 0,
+        "manifestFile": "qa-tests-manifest.txt"
+      },
+      {
+        "sha256": "1c70e58282e08becc08333cad3e55371afdaef3a1d4408cf6e1b015e405e6750",
+        "name": "sourceZip",
+        "bytes": 477871
+      }
+    ],
+    "installed": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "changed": 0,
+    "candidateMatched": 16,
+    "candidateSumsSha": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+    "lock": false,
+    "newApkBuild": 0,
+    "newInstall": 0,
+    "phoneUi": 0,
+    "routeRequests": 0
+  },
+  "scopeEvidence": {
+    "webAssets": [
+      {
+        "identical": true,
+        "asset": "assets/address.js"
+      },
+      {
+        "identical": true,
+        "asset": "assets/app.js"
+      },
+      {
+        "identical": true,
+        "asset": "assets/config.js"
+      },
+      {
+        "identical": true,
+        "asset": "assets/core.js"
+      },
+      {
+        "identical": true,
+        "asset": "assets/index.html"
+      },
+      {
+        "identical": true,
+        "asset": "assets/postcode.html"
+      },
+      {
+        "identical": true,
+        "asset": "assets/style.css"
+      },
+      {
+        "identical": true,
+        "asset": "assets/ui.js"
+      }
+    ],
+    "nodeSummary": [
+      "# tests 112",
+      "# pass 112",
+      "# fail 0"
+    ],
+    "crashLogBytes": 0,
+    "testTargetLines": [
+      "    A: package=\"kr.co.ansimdonghaeng.test\" (Raw: \"kr.co.ansimdonghaeng.test\")",
+      "      A: android:name(0x01010003)=\"androidx.test.runner.AndroidJUnitRunner\" (Raw: \"androidx.test.runner.AndroidJUnitRunner\")",
+      "      A: android:targetPackage(0x01010021)=\"kr.co.ansimdonghaeng\" (Raw: \"kr.co.ansimdonghaeng\")"
+    ]
+  },
+  "nativeFailure": {
+    "class": "LiveAddressTest",
+    "exception": "StaleObjectException",
+    "method": "visible",
+    "line": 32,
+    "caller": "scrollFind52 / officialAddressReturnsToTheVisit126",
+    "junitTests": 1,
+    "failures": 1,
+    "durationSeconds": 43.255,
+    "coldRestoreCompleted": false,
+    "domCompleted": false,
+    "roundtripOkMarker": false,
+    "screenshotDirectReview": [
+      "02-returned-address.png",
+      "last-screen.png"
+    ]
+  },
+  "testChange": {
+    "scope": "visible helper only",
+    "maxStaleRequeryMs": 3000,
+    "individualStaleSkippedForFreshMatchingCandidate": true,
+    "stillThrowsOnUnsettledDeadline": true,
+    "allFollowingAssertionsAndBodyByteIdentical": true,
+    "passedAfterFix": false
+  },
+  "nextOwner": "existing PM",
+  "nextTask": "Inspect next CI JUnit/cold restore/DOM/native results and keep original failure/artifact/source pins distinct; no duplicate CI or original app replacement.",
+  "slackSent": 0,
+  "actualSubmission": 0,
+  "productComplete": false
+}

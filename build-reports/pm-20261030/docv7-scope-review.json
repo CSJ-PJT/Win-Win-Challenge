@@ -1,0 +1,160 @@
+{
+  "scope": "READ_ONLY_CURRENT_V6_TEXT_RECONCILIATION; no document replacement/render/layout verification this run",
+  "documents": [
+    {
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "file_id": "file_000000001b9c81f5ac45554e39822a11",
+      "version": "6",
+      "bytes": 500066,
+      "pages": 13,
+      "full_text_read": true
+    },
+    {
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "file_id": "file_00000000482c81f58b18e67e1e2d8155",
+      "version": "6",
+      "bytes": 761360,
+      "pages": 13,
+      "full_text_read": true
+    }
+  ],
+  "page_text_comparison": [
+    {
+      "page": 1,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 2,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 3,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 4,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 5,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 6,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 7,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 8,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 9,
+      "matchIgnoringWhitespace": false
+    },
+    {
+      "page": 10,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 11,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 12,
+      "matchIgnoringWhitespace": true
+    },
+    {
+      "page": 13,
+      "matchIgnoringWhitespace": true
+    }
+  ],
+  "page9_difference": "Extraction reading order differs between DOCX and PDF: same consent/name/date fields appear in different order. No byte or layout equality claim; preserve canonical fields and visual review in next edit.",
+  "replacements": [
+    {
+      "page": 5,
+      "old": "소스 b37287e로 자동 검사 131개",
+      "new": "소스 8f4aaf9로 자동 검사 135개",
+      "reason": "New product source and exact Node denominator; 4 response-loss tests included.",
+      "counts": [
+        1,
+        1
+      ]
+    },
+    {
+      "page": 7,
+      "old": "https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40820861095",
+      "new": "https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40887985855",
+      "reason": "New CI URL.",
+      "counts": [
+        1,
+        1
+      ]
+    },
+    {
+      "page": 7,
+      "old": "10월 29일 14:10 KST 완료. 소스 b37287e",
+      "new": "10월 29일 23:15 KST 완료. 소스 8f4aaf9",
+      "reason": "Actual new CI completion time; observation on 10/30 is separate.",
+      "counts": [
+        1,
+        1
+      ]
+    },
+    {
+      "page": 7,
+      "old": "2ce05b85…5006752",
+      "new": "09e488aa…73f5e90",
+      "reason": "New release APK, not QA or installed verifyqa.",
+      "counts": [
+        1,
+        1
+      ]
+    },
+    {
+      "page": 7,
+      "old": "이슈 #1의 10월 29일 CI 검수 기록",
+      "new": "이슈 #1의 10월 30일 CI 검수 기록",
+      "reason": "New review evidence issuecomment-6500302892.",
+      "counts": [
+        1,
+        1
+      ]
+    }
+  ],
+  "source": "8f4aaf93e36e4dd3ab267c09c274dedaca4057a6",
+  "ci": 40887985855,
+  "verified_release_sha256": "09e488aa8cf103dffb187ca4fbee6ed72a2fbd100a82c5ba89faa2da173f5e90",
+  "preserve": [
+    "Previous 99d5da0/verifyqa930 physical PM QA paragraph (address1 17.637sec; DOM1 9.678sec).",
+    "13th-page historical b227ca2/CI40167658701 screenshot attribution.",
+    "Consent/signature/date/blanks and existing images; no personal values copied into this repository evidence.",
+    "r4/r5 frozen artifacts; new source is not retroactively inserted."
+  ],
+  "gates": {
+    "product_ci": "PASS_SCOPE_ONLY",
+    "physical_new_release": "NOT_RUN",
+    "physical_new_qa": "NOT_RUN",
+    "independent_qa": "NOT_APPROVED",
+    "actual_submission": "NOT_PERFORMED",
+    "public_publish": "NOT_PERFORMED",
+    "slack": "NOT_SENT_NIGHT",
+    "slack_current_day_public_search": "0 results; sender receipts not inspected; no delivery inference",
+    "remote": "MONTHLY_LIMIT_DO_NOT_RETRY; current IT13 OPS/lock/procs/hash not inspected",
+    "it13_ledger": "NOT_SYNCED"
+  },
+  "changes": {
+    "new_review": 1,
+    "official_document_updates": 0,
+    "product_changes": 0,
+    "builds": 0,
+    "installs": 0,
+    "independent_qa_approvals": 0
+  },
+  "next_owner": "AS-M1 existing PM",
+  "next": "Materialize latest same-ID DOCX/PDF v6, apply 5 unique text replacements, render all 13 pages, compare preserved fields/images and replace same IDs only after validation. Save version/hash scopes separately from archive r5.",
+  "observed_at_utc": "2026-10-29 16:06:33 UTC"
+}

@@ -1,0 +1,62 @@
+{
+  "time": "2026-10-27T20:09:09.4047314+09:00",
+  "run": "AS-Q1-PM-20261027T2004",
+  "status": "PM_SELF_QA_EASY_ACTUAL_UI_ACK_COLD_VERIFIED",
+  "appSha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+  "method": "Actual ADB tap/swipe; no DOM/JS/state injection",
+  "scope": "Single synthetic care-center visit; consent-arrival notice-facility ACK-easy confirmation-QA-only cold restore",
+  "checks": {
+    "consentScreen": true,
+    "arrivalButton": true,
+    "pendingNotice": true,
+    "acknowledgedEasy": true,
+    "facilityAcknowledged": true,
+    "facilityAckRestoredAfterCold": true,
+    "noRepeatAckControlAfterCold": true,
+    "allFiveInstalledHashesUnchanged": true
+  },
+  "uiSnapshots": 14,
+  "images": [
+    {
+      "sha256": "60e1bfaacf8cc61490ed54db21e04c1a555377a1e688670b68d7e19a335062b1",
+      "name": "cold-restored-private.png"
+    },
+    {
+      "sha256": "6fdd32b62f9c7651be0f3768b71e5cd20413f44b642fa047614914edf5118f21",
+      "name": "easy-ack-private.png"
+    },
+    {
+      "sha256": "5544d23e3c77ffb7983bc201fdd4e2f0c0e00afcb622bbb806d599392dfdc8e7",
+      "name": "facility-ack-private.png"
+    },
+    {
+      "sha256": "8e284dd5b1a155bbb5131d25fd7f074c4381ea1771bb27e1dbd8ca19c121ddd6",
+      "name": "pending-private.png"
+    }
+  ],
+  "coldActivityMs": 361,
+  "coldWaitMs": 374,
+  "earlyColdSnapshotEmpty": true,
+  "settledEasyAckRestored": true,
+  "newBuild": 0,
+  "newInstall": 0,
+  "junitTests": 0,
+  "realInstitutionSend": 0,
+  "originalAppActions": 0,
+  "qaStateChangedThroughNormalVisit": true,
+  "releasePhysicalPass": false,
+  "independentQa": false,
+  "humanUsabilityApproved": false,
+  "slack": "not sent; outside 09-18",
+  "nextOwner": "existing PM temporary AS-Q1",
+  "nextTask": "Verify current verifyqa settings field editing, save and cold restore once, preserving prior field values and original apps/data.",
+  "claimReleased": true,
+  "notes": [
+    "PM self-QA only. One normal synthetic care-center visit; not entire localStorage equality.",
+    "Actual UI consent and notice/ack buttons; no demo-tools, JS/DOM injection, clearing, reinstall or test APK invocation.",
+    "Immediate post-COLD XML empty. Settled later XML/actual PNG showed easy ACK; facility tab and scroll then confirmed same ACK and no actionable repeated ACK control.",
+    "Activity361ms/Wait374ms are not UI-ready time or a performance PASS.",
+    "Multiple-display screencap warning retained. Pending/facility/cold images directly inspected to confirm intended QA app.",
+    "Notification registration and acknowledgement are in the QA local scenario; no external institution delivery/phone push claimed."
+  ]
+}

@@ -8,6 +8,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
+import androidx.test.uiautomator.StaleObjectException;
+import androidx.test.uiautomator.Until;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import java.io.File;
@@ -21,10 +23,25 @@ public final class LiveAddressTest {
     private UiDevice device;
     private File output;
     private UiObject2 visible(String text,boolean contains){
-        List<UiObject2> all=new ArrayList<>(device.findObjects(contains?By.textContains(text):By.text(text)));
-        all.addAll(device.findObjects(contains?By.descContains(text):By.desc(text)));
-        for(UiObject2 el:all)if(!el.getVisibleBounds().isEmpty())return el;
-        return null;
+        // A save replaces the WebView subtree. Re-query within a bounded window,
+        // including when one stale duplicate precedes another usable matching node.
+        long end=SystemClock.uptimeMillis()+3000;
+        StaleObjectException stale=null;
+        do {
+            boolean replaced=false;
+            try {
+                List<UiObject2> all=new ArrayList<>(device.findObjects(contains?By.textContains(text):By.text(text)));
+                all.addAll(device.findObjects(contains?By.descContains(text):By.desc(text)));
+                for(UiObject2 el:all){
+                    try {if(!el.getVisibleBounds().isEmpty())return el;}
+                    catch(StaleObjectException e){stale=e;replaced=true;}
+                }
+                if(!replaced)return null;
+            } catch(StaleObjectException e){stale=e;}
+            SystemClock.sleep(150);
+        } while(SystemClock.uptimeMillis()<end);
+        // Never convert an unsettled tree into a successful/missing-control result.
+        throw stale;
     }
     private UiObject2 find(String text, boolean contains) {
         long end=SystemClock.uptimeMillis()+22000;
@@ -43,22 +60,67 @@ public final class LiveAddressTest {
         }
         return find(text,true);
     }
-    private void tap(String text){find(text,false).click();SystemClock.sleep(700);}
+    private void tap(String text){tap(text,false);}
+    private void tap(String text,boolean contains){
+        for(int attempt=0;attempt<3;attempt++){
+            try {find(text,contains).click();SystemClock.sleep(700);return;}
+            catch(StaleObjectException e){if(attempt==2)throw e;SystemClock.sleep(150);}
+        }
+    }
     private void shot(String name){device.takeScreenshot(new File(output,name+".png"));}
+    private void launchApp(Context context,Intent launch) throws Exception {
+        // Wait for Home before starting the Activity; otherwise a delayed Home
+        // transition can cover the app. Shell start also avoids background-start rules.
+        device.pressHome();device.waitForIdle();
+        String component=launch.getComponent().flattenToShortString();
+        String result=device.executeShellCommand("am start -W -n "+component);
+        assertTrue("App not in foreground after launch: "+result,
+            device.wait(Until.hasObject(By.pkg(context.getPackageName())),10000));
+    }
     private void hideKeyboard() throws Exception {
         if(device.executeShellCommand("dumpsys input_method").contains("mInputShown=true")){
             device.pressBack();SystemClock.sleep(500);
         }
     }
+    private void openOfficialDestinationEditor() throws Exception {
+        // Start a synthetic visit through product controls even when a previous
+        // saved visit, role or completion screen was restored. Never clear data.
+        // The restored role can be facility, which intentionally has no visit picker.
+        // A clean install already opens the visit picker and hides the role tabs.
+        // A restored visit needs the existing role/change controls to open it.
+        long readyEnd=SystemClock.uptimeMillis()+22000;
+        while(visible("방문 유형 선택",false)==null && visible("인계자",false)==null
+            && SystemClock.uptimeMillis()<readyEnd)SystemClock.sleep(350);
+        if(visible("방문 유형 선택",false)==null){
+            tap("인계자");
+            tap("방문 변경");
+        }
+        // Match the actual button, not the Dialog whose aggregate text also matches.
+        UiObject2 visit=device.wait(Until.findObject(
+            By.clazz("android.widget.Button").textContains("유치원 등원")),22000);
+        assertNotNull("Kindergarten visit button not found",visit);
+        visit.click();
+        find("인계자",false); // Do not proceed until the picker is dismissed.
+        tap("인계자");
+        // Move the destination action away from the bottom transient toast.
+        device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()*7/10,
+            device.getDisplayWidth()/2,device.getDisplayHeight()*4/10,20);
+        SystemClock.sleep(500);
+        if(visible("도착지 입력하기",false)!=null)tap("도착지 입력하기");
+        else {scrollFind("도착지 변경");tap("도착지 변경");}
+        find("도착지 저장",false);
+        Log.i("HandoffAddress","OFFICIAL_TEST_VISIT_READY");
+    }
     @Test public void officialAddressReturnsToTheVisit() throws Exception {
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
         device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         output=context.getExternalFilesDir("address-qa");assertNotNull(output);output.mkdirs();
-        device.wakeUp();device.pressHome();
+        device.wakeUp();
         Intent launch=context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
-        assertNotNull(launch);launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);context.startActivity(launch);
+        assertNotNull(launch);assertNotNull(launch.getComponent());
         try {
-            tap("도착지 입력하기");find("도착지 저장",false);
+            launchApp(context,launch);
+            openOfficialDestinationEditor();
             UiObject2 address=device.findObject(By.res("field-address"));
             if(address==null){
                 for(UiObject2 el:device.findObjects(By.clazz("android.widget.EditText"))){
@@ -69,7 +131,7 @@ public final class LiveAddressTest {
             address.setText("세종대로 110");SystemClock.sleep(500);
             shot("00-keyboard-search");tap("주소 검색");
             UiObject2 selected=find("서울 중구 세종대로 110",true);
-            shot("01-official-results");selected.click();
+            shot("01-official-results");tap("서울 중구 세종대로 110",true);
             find("도착지 저장",false);hideKeyboard();
             UiObject2 returned=device.findObject(By.res("field-address"));
             String value=returned==null?"":returned.getText();
@@ -80,9 +142,10 @@ public final class LiveAddressTest {
             scrollFind("04524");shot("02-returned-address");
             tap("도착지 저장");scrollFind("세종대로 110");scrollFind("방문 시작하기");
             shot("03-saved-address");
-            device.pressHome();context.startActivity(launch);SystemClock.sleep(1200);
+            launchApp(context,launch);SystemClock.sleep(1200);
             scrollFind("세종대로 110");scrollFind("04524");shot("04-restored-address");
             Log.i("HandoffAddress","LIVE_POSTCODE_ROUNDTRIP_OK");
         } finally {shot("last-screen");device.dumpWindowHierarchy(new File(output,"window.xml"));}
     }
 }
+

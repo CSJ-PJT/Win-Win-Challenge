@@ -1,0 +1,560 @@
+{
+  "observed_at": "2026-10-29T11:05:48.420Z",
+  "source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "linux",
+    "transport": "real HTTP loopback 127.0.0.1 ephemeral port",
+    "synthetic_temporary_store_removed": true
+  },
+  "routes": [
+    {
+      "route": "GET /api/health",
+      "status": "PASS"
+    },
+    {
+      "route": "GET /api/bootstrap",
+      "status": "PASS"
+    },
+    {
+      "route": "GET /api/state",
+      "status": "PASS"
+    },
+    {
+      "route": "GET /api/places",
+      "status": "PASS"
+    },
+    {
+      "route": "POST /api/events",
+      "status": "PASS"
+    },
+    {
+      "route": "POST /api/reset",
+      "status": "PASS"
+    }
+  ],
+  "route_pass": 6,
+  "route_total": 6,
+  "http_requests": 74,
+  "assertions": 120,
+  "map_fixture_calls": 3,
+  "real_external_service_calls": 0,
+  "physical_phone_tests": 0,
+  "new_builds": 0,
+  "new_installs": 0,
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 403,
+      "error": "LOCAL_ONLY"
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 403,
+      "error": "ORIGIN"
+    },
+    {
+      "method": "GET",
+      "path": "/api/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 401,
+      "error": "UNAUTHORIZED"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 401,
+      "error": "UNAUTHORIZED"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/unknown",
+      "status": 404,
+      "error": "NOT_FOUND"
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=서울",
+      "status": 401,
+      "error": "UNAUTHORIZED"
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=a",
+      "status": 400,
+      "error": "QUERY"
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=서울",
+      "status": 503,
+      "error": "MAP_NOT_CONFIGURED"
+    },
+    {
+      "method": "GET",
+      "path": "/api/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=서울",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=서울",
+      "status": 502,
+      "error": "MAP_UNAVAILABLE"
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=서울",
+      "status": 502,
+      "error": "MAP_UNAVAILABLE"
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 400,
+      "error": "JSON"
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 413,
+      "error": "SIZE"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 403,
+      "error": "FORBIDDEN"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 409,
+      "error": "KEY_REUSE"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 409,
+      "error": "VERSION"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 409,
+      "error": "TRIP"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "EN_ROUTE",
+      "version": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "EN_ROUTE",
+      "version": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "ARRIVED",
+      "version": 4
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "ARRIVED",
+      "version": 4
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "VERIFYING",
+      "version": 5
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "VERIFYING",
+      "version": 5
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "VERIFYING",
+      "version": 5
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "VERIFYING",
+      "version": 6
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "VERIFYING",
+      "version": 6
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "COMPLETED",
+      "version": 7
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "COMPLETED",
+      "version": 7
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "COMPLETED",
+      "version": 7
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "COMPLETED",
+      "version": 7
+    },
+    {
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 403,
+      "error": "FORBIDDEN"
+    },
+    {
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 400,
+      "error": "JSON_OBJECT"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "COMPLETED",
+      "version": 7
+    },
+    {
+      "method": "POST",
+      "path": "/api/reset",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 401,
+      "error": "UNAUTHORIZED"
+    },
+    {
+      "method": "GET",
+      "path": "/api/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 409,
+      "error": "CONSENT"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/events",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 3
+    }
+  ],
+  "pm_head_before": "d2269eca234fb25fd1b02ed93fd1d3897a13a414",
+  "source_bytes": [
+    {
+      "path": "server.js",
+      "bytes": 9719,
+      "sha256": "717f4768c1de7c4d7bb24d41b4cc293ac19ba6034dcbe151c284bf0d21d006ee",
+      "git_blob": "8aabb68b9c0e722330f51dd9f639075887b92163",
+      "current_head_and_b37287e_match": true
+    },
+    {
+      "path": "web/config.js",
+      "bytes": 4724,
+      "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+      "git_blob": "180907d23bf4fe7f08e0a3e339e27aac963be995",
+      "current_head_and_b37287e_match": true
+    },
+    {
+      "path": "web/core.js",
+      "bytes": 15541,
+      "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+      "git_blob": "267601ac7c59e2c6e11ab1afd3f0eaea64fc1101",
+      "current_head_and_b37287e_match": true
+    }
+  ],
+  "scope": "PM self-QA; six actual local HTTP routes, external responses mocked; not production auth, real services, phone or independent QA",
+  "initial_harness_issues": [
+    "fetch ignored custom Host: switched to node:http",
+    "fresh unpersisted app restart invalidated role tokens: refreshed bootstrap",
+    "apply_patch added trailing LF to staging: removed it, git-blob checked 3/3, reran final suite"
+  ],
+  "source_bytes_verified_before_final_run": true,
+  "aggregate_with_ci_131": false,
+  "it13_ledger": "NOT_SYNCED: existing remote monthly limit; no retry/reconnect/bypass",
+  "slack": "NOT_SENT_NIGHT; daytime sender receipts and phone push unverified",
+  "next_single_owner": "existing PM AS-M1",
+  "next_task": "Bounded synthetic-store persistence failure and retry recovery test; verify unchanged state/receipt after failed write, no false completion, retry exactly once."
+}

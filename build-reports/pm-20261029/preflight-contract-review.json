@@ -1,0 +1,122 @@
+{
+  "environment": "local Linux Python subprocess; synthetic invalid non-DER/non-APK containers only",
+  "toolSha256": "9767fea05922ff9f6243adef0128eb186f2464e30d26d911ee94b4becb2bd16c",
+  "cases": [
+    {
+      "name": "same-input",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "status": "CERTIFICATES_MATCH_NOT_INSTALL_APPROVAL",
+      "structuredJson": true,
+      "authorizationFlagsRemainFalse": true,
+      "stderrPresent": false,
+      "pass": true
+    },
+    {
+      "name": "different-bytes-same-leaf",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "status": "CERTIFICATES_MATCH_NOT_INSTALL_APPROVAL",
+      "structuredJson": true,
+      "authorizationFlagsRemainFalse": true,
+      "stderrPresent": false,
+      "pass": true
+    },
+    {
+      "name": "different-leaf",
+      "expectedExit": 2,
+      "actualExit": 2,
+      "status": "CERTIFICATE_MISMATCH",
+      "structuredJson": true,
+      "authorizationFlagsRemainFalse": true,
+      "stderrPresent": false,
+      "pass": true
+    },
+    {
+      "name": "malformed-input",
+      "expectedExit": 3,
+      "actualExit": 3,
+      "status": "UNREADABLE_OR_UNSUPPORTED_APK",
+      "structuredJson": true,
+      "authorizationFlagsRemainFalse": true,
+      "stderrPresent": false,
+      "pass": true
+    },
+    {
+      "name": "missing-input",
+      "expectedExit": 3,
+      "actualExit": 3,
+      "status": "UNREADABLE_OR_UNSUPPORTED_APK",
+      "structuredJson": true,
+      "authorizationFlagsRemainFalse": true,
+      "stderrPresent": false,
+      "pass": true
+    },
+    {
+      "name": "conflicting-schemes",
+      "expectedExit": 3,
+      "actualExit": 3,
+      "status": "UNREADABLE_OR_UNSUPPORTED_APK",
+      "structuredJson": true,
+      "authorizationFlagsRemainFalse": true,
+      "stderrPresent": false,
+      "pass": true
+    },
+    {
+      "name": "missing-cli-arguments",
+      "expectedExit": 2,
+      "actualExit": 2,
+      "status": null,
+      "structuredJson": false,
+      "authorizationFlagsRemainFalse": null,
+      "stderrPresent": true,
+      "pass": true
+    },
+    {
+      "name": "output-is-directory",
+      "expectedExit": 1,
+      "actualExit": 1,
+      "status": null,
+      "structuredJson": false,
+      "authorizationFlagsRemainFalse": null,
+      "stderrPresent": true,
+      "pass": true
+    }
+  ],
+  "passed": 8,
+  "failed": 0,
+  "freshRealApkTests": 0,
+  "deviceActions": 0,
+  "signatureValidation": false,
+  "scope": "Parser/CLI behavior only. exit2 can be argument error; output write failure is exit1/no JSON. Never use exit0 as installation approval.",
+  "time": "2026-10-29T08:58:21+09:00",
+  "reportSlot": "2026-10-29 09:00 KST",
+  "owner": "기존 PM AS-M1",
+  "reviewHead": "55b1c3d38fb7949553ddf482c81eb92ae162c327",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "toolBlob": "0d9409a334989a152ef106d653d12f7199407e47",
+  "sourceBlobSame": true,
+  "historicalRealApkEvidence": {
+    "time": "2026-10-25",
+    "cases": 4,
+    "fresh": false,
+    "notAddedToSyntheticCount": true
+  },
+  "remote": {
+    "retried": false,
+    "reconnected": false,
+    "bypass": false,
+    "localOpsSynced": false,
+    "freshHashVerification": false,
+    "lastPhysicalEvidence": "2026-10-29 05:07:07 KST"
+  },
+  "slack": {
+    "status": "EXISTING_SENDER_UNAVAILABLE_UNCONFIRMED",
+    "newSend": 0,
+    "queueFileWritten": false,
+    "botReceiptChecked": false,
+    "phonePush": "UNVERIFIED",
+    "reviewOnlyText": "🤝 *안심동행 | 10/29 09:00 KST* 🟡 *릴리스 검증 중*\n🕒 *시각* 검사 08:58 KST / 폰·후보 마지막 05:07 KST\n*한줄 결론* 설치 사전검사의 승인 경계·CLI 오류 분류를 확인했습니다.\n📊 *게이트* 소스/CI ✅ | QA폰 🟡 | 릴리스폰 ⏳ | 독립 QA ⏳ | 제출 ⏳\n🧪 *증거* source99 사전검사 로컬 합성8/8, 실제 APK·Android JUnit 신규0\n🧾 *보존* APK5·후보20/20은05:07 기록, 이번 새 해시 검증 없음\n🔁 *직전 대비* 검사 근거·재현 하네스 추가, 제품수정·설치·독립QA0\n🚧 *차단* release 서명차이·원격 월간제한·실기기/독립QA 미완료\n🎯 *다음* 기존 PM AS-M1 → 공식 접수 신규 공지 재조회·게이트 대조\n🔗 <https://github.com/CSJ-PJT/Win-Win-Challenge/pull/2|상세>\n📭 *전달* 검토문만 준비·기존 봇 큐 등록/발송 미확인·폰push 미검증"
+  },
+  "nextSingleOwner": "기존 PM AS-M1: 공식 접수 페이지에서 마감·설명회 다시보기·심사 접근 조건의 신규 공지를 재조회하고 기존 제출 게이트와 대조. 조회 범위/시각을 기록하고 임의 초대·문의 발송·실제 제출 없이 수행. IT13 원격 재시도·재연결·우회 및 공통 원장 동기화는 공식 사용 가능 상태 확인 전 보류."
+}

@@ -1,0 +1,80 @@
+{
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "pmBase": "fdd8ec4caa9a995f567573cf2ddcf27f98898945",
+  "scope": "PM self QA on physical phone verifyqa, not release/independent approval",
+  "installation": [
+    {
+      "time": "2026-10-28T09:57:48.3145336+09:00",
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "result": "Success",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "time": "2026-10-28T09:57:55.3825092+09:00",
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "result": "Success",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "officialAddress": {
+    "junitOk": 1,
+    "seconds": 17.637,
+    "runnerProcessExit": null,
+    "runnerProcessExitNote": "Start-Process property not obtained; do not claim process exit0",
+    "markers": [
+      "OFFICIAL_TEST_VISIT_READY",
+      "ADDRESS_PICKER_READY",
+      "ADDRESS_SELECTED",
+      "LIVE_POSTCODE_ROUNDTRIP_OK"
+    ],
+    "warmAddressAndPostcodeScreenshotReviewed": true
+  },
+  "coldFollowup": {
+    "junitReruns": 0,
+    "coldAddressVisible": true,
+    "pidAbsentBeforeLaunch": true,
+    "started": "2026-10-28T09:58:55.6161497+09:00",
+    "owner": "AS-Q1-PM-20261028T0955",
+    "scope": "Evidence transfer and cold followup only; JUnit reruns=0",
+    "installedFinal": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "status": "PASS_SCOPED",
+    "finished": "2026-10-28T09:59:07.2579717+09:00"
+  },
+  "preservation": {
+    "candidateMatched": 16,
+    "sumsSha": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+    "lock": false,
+    "time": "2026-10-28T09:59:26.3558633+09:00"
+  },
+  "rawInitialResultPreserved": true,
+  "evidenceTransfer": {
+    "initial": "Unicode host path adb pull failed after JUnit OK",
+    "followup": "ASCII stage pull and copy, no JUnit rerun"
+  },
+  "newBuild": 0,
+  "newCi": 0,
+  "domTestsThisRun": 0,
+  "nextSingleOwner": "existing PM",
+  "next": "one DomFlowTest on current installed verifyqa and a separate easy-ACK cold followup"
+}

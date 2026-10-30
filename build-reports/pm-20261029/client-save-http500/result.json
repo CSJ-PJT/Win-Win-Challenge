@@ -1,0 +1,182 @@
+{
+  "observed_at": "2026-10-29T13:07:14.240Z",
+  "source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "node": "v24.22.1",
+  "checks": [
+    {
+      "name": "full visit editor",
+      "status": "PASS",
+      "failures_500": 2,
+      "recovered_200": 1,
+      "draft_preserved": true,
+      "inline_alert_and_template_checked": true,
+      "actual_render_or_phone": false,
+      "preferences_committed_after_success_only": true
+    },
+    {
+      "name": "destination editor",
+      "status": "PASS",
+      "failures_500": 2,
+      "recovered_200": 1,
+      "draft_preserved": true,
+      "inline_alert_and_template_checked": true,
+      "actual_render_or_phone": false,
+      "preferences_committed_after_success_only": true
+    }
+  ],
+  "passed": 2,
+  "total": 2,
+  "assertions": 70,
+  "http_requests": 18,
+  "http_trace": [
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 500
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 500
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 500
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 500
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "expected_storage_errors": [
+    {
+      "errno": "EISDIR"
+    },
+    {
+      "errno": "EISDIR"
+    },
+    {
+      "errno": "EISDIR"
+    },
+    {
+      "errno": "EISDIR"
+    }
+  ],
+  "scope": "actual app saveEditor/send/api functions in Node VM with synthetic form nodes and render disabled, connected to real loopback server with actual synthetic filesystem failures",
+  "external_calls": 0,
+  "phone_tests": 0,
+  "builds": 0,
+  "installs": 0,
+  "temporary_store_cleanup": true,
+  "source_bytes": [
+    {
+      "path": "server.js",
+      "bytes": 9719,
+      "git_blob": "8aabb68b9c0e722330f51dd9f639075887b92163",
+      "sha256": "717f4768c1de7c4d7bb24d41b4cc293ac19ba6034dcbe151c284bf0d21d006ee"
+    },
+    {
+      "path": "web/core.js",
+      "bytes": 15541,
+      "git_blob": "267601ac7c59e2c6e11ab1afd3f0eaea64fc1101",
+      "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65"
+    },
+    {
+      "path": "web/config.js",
+      "bytes": 4724,
+      "git_blob": "180907d23bf4fe7f08e0a3e339e27aac963be995",
+      "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87"
+    },
+    {
+      "path": "web/ui.js",
+      "bytes": 5297,
+      "git_blob": "01893ec7f906191bcd017317cdb8dae5ded11f9a",
+      "sha256": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851"
+    },
+    {
+      "path": "web/app.js",
+      "bytes": 44976,
+      "git_blob": "267e7ad0729abd45fff219277c250e0e7b42f73d",
+      "sha256": "54091d5fce7a2b65f6522a5a16a691ac77bd5d110c9c71875e0fac86a2fbb02c"
+    }
+  ],
+  "pm_head_before": "27235ac26657ad7d4d5f84bcf78a31190c2cc7d6",
+  "qa": "PM self-QA; Node VM synthesized form and disabled render; real local server/fs/HTTP. No visual or physical-phone pass.",
+  "initial_harness_issue": "Cross-realm prototype identity made deepStrictEqual reject equal JSON states. JSON-normalized comparison and reran both cases; no product code change.",
+  "it13": "NOT_SYNCED: existing monthly remote limit; not retried/reconnected/bypassed",
+  "slack": "NOT_SENT_NIGHT; historical daytime receipt/phone push unverified",
+  "next_owner": "existing PM AS-M1",
+  "next_task": "Bounded test of lost HTTP response after server commit: pending intent, reconnect/replay and duplicate prevention, preserving existing synthetic trip."
+}

@@ -1,0 +1,154 @@
+{
+  "task_id": "AS-Q1-PM-20261027T0155",
+  "owner": "existing PM physical self-QA; not independent approval",
+  "status": "PASS_SCOPED_ADB_UI_SCENARIO",
+  "test_environment": "SM-F936N Android16 physical / verifyqa4ed with installed test229 unchanged",
+  "base_head": "9d0e3b2aa6aec42122b31493762eb655fdf4b7ce",
+  "app_sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+  "test_sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+  "wrong_code_start": "2026-10-27T02:00:02.3249461+09:00",
+  "wrong_code_finish": "2026-10-27T02:00:32.7354188+09:00",
+  "attempts": [
+    {
+      "messages": [
+        "연결번호가 일치하지 않습니다.",
+        "연결번호 6자리",
+        "인계자가 직접 인계를 확인했어요."
+      ],
+      "at": "2026-10-27T02:00:21.3148702+09:00",
+      "n": 1
+    },
+    {
+      "messages": [
+        "연결번호가 일치하지 않습니다.",
+        "연결번호 6자리",
+        "인계자가 직접 인계를 확인했어요."
+      ],
+      "at": "2026-10-27T02:00:24.0477822+09:00",
+      "n": 2
+    },
+    {
+      "messages": [
+        "연결번호가 일치하지 않습니다.",
+        "연결번호 6자리",
+        "인계자가 직접 인계를 확인했어요."
+      ],
+      "at": "2026-10-27T02:00:26.7980880+09:00",
+      "n": 3
+    },
+    {
+      "messages": [
+        "연결번호가 일치하지 않습니다.",
+        "연결번호 6자리",
+        "인계자가 직접 인계를 확인했어요."
+      ],
+      "at": "2026-10-27T02:00:29.5461867+09:00",
+      "n": 4
+    },
+    {
+      "messages": [
+        "연결번호 5회 불일치로 번호를 폐기했습니다.",
+        "방문자가 도착하면 연결번호를 입력할 수 있어요."
+      ],
+      "at": "2026-10-27T02:00:32.3195281+09:00",
+      "n": 5
+    }
+  ],
+  "wrong_code_rejected_1_to_4": true,
+  "fifth_discard_and_input_removed": true,
+  "fresh_code_differs": true,
+  "sender_confirmation_reset": true,
+  "facility_completion": true,
+  "guardian_completion": true,
+  "force_stop_pid_empty": true,
+  "pid_query_expected_exit": 1,
+  "cold_launch": "COLD",
+  "cold_total_time_ms": 282,
+  "settled_confirmation": {
+    "scope": "same COLD launch, settled UI re-observation",
+    "confirmations": 5,
+    "completed_restored": true,
+    "checked": "2026-10-27T02:03:45.6428630+09:00",
+    "success": true,
+    "no_second_restart": true,
+    "address_postcode_retained": true
+  },
+  "raw_partial_results_preserved": [
+    {
+      "file": "recovery-result.json",
+      "raw_success": false,
+      "reported_failure": "ADB_1",
+      "meaning": "pidof exit1 after force-stop was expected; followup explicitly checked exit1/empty"
+    },
+    {
+      "file": "cold-result.json",
+      "raw_success": false,
+      "reported_failure": "COMPLETED_NOT_RESTORED",
+      "meaning": "First cold snapshot contained zero app text rows; same launch later42 rows/completed. No second restart, no state injection."
+    }
+  ],
+  "installed_before": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "installed_after": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "all5_installed_hashes_unchanged": true,
+  "claim_released": {
+    "released": "2026-10-27T02:04:00.3586475+09:00",
+    "owner": "AS-Q1-PM-20261027T0155"
+  },
+  "new_build": false,
+  "new_install": false,
+  "new_junit": 0,
+  "adb_ui_scenarios": 1,
+  "state_injection_or_clock_change": false,
+  "clear_data_or_uninstall": false,
+  "original_release_qa_apps_opened": false,
+  "verifyqa_synthetic_visit_changed": "existing arrived/expired-number visit advanced via primary UI to completed, address/postcode retained",
+  "all_localStorage_values_equal_claimed": false,
+  "private_screenshots_published": false,
+  "candidate_release_physical_tested": false,
+  "slack_sent": false,
+  "next_owner": "기존 PM",
+  "next_action": "쉬운 화면의 도착 알림 중복 방지와 시설 확인을 한정 실기기 회귀로 확인",
+  "overall_percentage": null
+}

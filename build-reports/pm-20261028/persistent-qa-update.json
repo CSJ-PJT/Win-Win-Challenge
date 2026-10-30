@@ -1,0 +1,139 @@
+{
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "basePmHead": "3969ed2c2576f0adb18a7d49ec8797505b234da8",
+  "sourceDifference": {
+    "baseline": "899a5a16e747f14cddc92c9805971e5cd4422380",
+    "webChanges": 0,
+    "mainJavaChanges": [
+      "NavigationAdapter.java"
+    ],
+    "buildAndTestChanges": [
+      "android/app/build.gradle",
+      "tools/build_verifyqa.ps1",
+      "LiveAddressTest.java",
+      "test/navigation_adapter_retry.py"
+    ],
+    "latestPmHeadOnlyDocumentation": true
+  },
+  "verification": {
+    "assets": [
+      {
+        "ciEqual": true,
+        "path": "assets/address.js",
+        "sha256": "49c8b523f9038ed2d8dbe6509d79b975f930b78b1ef94bd1fb0a8c0905280800",
+        "installedEqual": true
+      },
+      {
+        "ciEqual": true,
+        "path": "assets/app.js",
+        "sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e",
+        "installedEqual": true
+      },
+      {
+        "ciEqual": true,
+        "path": "assets/config.js",
+        "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+        "installedEqual": true
+      },
+      {
+        "ciEqual": true,
+        "path": "assets/core.js",
+        "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+        "installedEqual": true
+      },
+      {
+        "ciEqual": true,
+        "path": "assets/index.html",
+        "sha256": "1519668533310c3dded68380284a8eba0e296e6c1c9d87ca3dc90a84f810e0a8",
+        "installedEqual": true
+      },
+      {
+        "ciEqual": true,
+        "path": "assets/postcode.html",
+        "sha256": "60d789933a252a47d6c4b7b2c8188e097b8615e18b87882215618ed1a1680d7f",
+        "installedEqual": true
+      },
+      {
+        "ciEqual": true,
+        "path": "assets/style.css",
+        "sha256": "1f44836f5bd9e6b2b802aa89601ded5d80f04100223bdaf516905906495b439e",
+        "installedEqual": true
+      },
+      {
+        "ciEqual": true,
+        "path": "assets/ui.js",
+        "sha256": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851",
+        "installedEqual": true
+      }
+    ],
+    "lock": false,
+    "phoneUi": 0,
+    "candidateMatched": 16,
+    "install": 0,
+    "build": {
+      "scope": "coexisting verifyQa app and test packaging only; no install/runtime",
+      "started": "2026-10-28T09:05:33.5082487+09:00",
+      "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+      "exit": 0,
+      "newKey": 0,
+      "finished": "2026-10-28T09:06:39.3742321+09:00"
+    },
+    "apk": [
+      {
+        "manifestExit": 0,
+        "name": "app",
+        "bytes": 5171440,
+        "certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+        "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+        "signatureExit": 0,
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "manifestExit": 0,
+        "name": "test",
+        "bytes": 829252,
+        "certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+        "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+        "signatureExit": 0,
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "time": "2026-10-28T09:06:58.6129762+09:00",
+    "changed": 0,
+    "newKey": 0,
+    "candidateSumsSha": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+    "installed": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ]
+  },
+  "runtimeTestRun": false,
+  "physicalReleasePassed": false,
+  "independentQaApproval": false,
+  "nextOwner": "existing PM",
+  "next": "claim device, recheck installed hashes/signatures and update only verifyqa+verifyqa.test normally with -r; run one official-address physical test and separate cold followup; preserve original release/.qa and data",
+  "slackDelivery": "pending"
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "slot": "2026-10-29T12:00:00+09:00",
+  "observed_at": "2026-10-29T11:59:38.046927+09:00",
+  "owner": "existing PM AS-M1",
+  "base_head": "460dbb84a3a1bc2a36f94c93007a1f5e179a4d27",
+  "previous_product_source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "change": {
+    "path": "server.js",
+    "route": "GET /api/places",
+    "before": "Number(null/empty/boolean) yielded invented 0/1 coordinates; no latitude/longitude bounds; slicing before validation hid valid later entries; null document caused entire request 502.",
+    "after": "Accept only nonblank string or number values, require finite latitude [-90,90] and longitude [-180,180], ignore null/invalid documents, select first five valid results. Keep genuine zeroes and existing malformed-container 502 behavior."
+  },
+  "verification": {
+    "runtime": "Linux x64 Node v24.22.1",
+    "isolation": "new api-1200 staging; loopback ephemeral ports; fresh temporary synthetic stores removed by teardown; no original data used",
+    "source_staging": "GitHub fixed HEAD file contents; apply_patch added terminal newline only to staged source files.",
+    "preparation_error": "Initial full suite had a missing staged AndroidManifest.xml fixture; fetched exact HEAD fixture, then complete baseline passed. Not a product failure.",
+    "baseline": {
+      "tests": 112,
+      "pass": 112,
+      "fail": 0
+    },
+    "reproduction": {
+      "tests": 5,
+      "pass": 2,
+      "fail": 3,
+      "exit_code": 1
+    },
+    "fixed_targeted": {
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "exit_code": 0
+    },
+    "fixed_full_suite": {
+      "tests": 117,
+      "pass": 117,
+      "fail": 0,
+      "exit_code": 0
+    },
+    "upstream": "Injected mapFetch fixture; synthetic key only, no real secret or external Kakao call; actual loopback HTTP server/client exercised.",
+    "preservation": "New invalid-input/malformed-response tests assert whole projected visit state unchanged.",
+    "scope_exclusions": [
+      "not Android or physical QA",
+      "not real provider availability or coordinate accuracy",
+      "not independent QA",
+      "not deployed server",
+      "not submitted"
+    ],
+    "sha256": {
+      "server.js": "717f4768c1de7c4d7bb24d41b4cc293ac19ba6034dcbe151c284bf0d21d006ee",
+      "test/places-validation.test.js": "63526cfb5095cf06ebe3dd77aa4ea7a82592b2d3d1db65bb20ec8f9d57042338",
+      "baseline-complete.tap": "6e60e537491955cb5c9eb879b2019d42a585949ebfdc82435b80e3c6fad371b5",
+      "reproduction-final.tap": "c15c1f81ad36a3e9ae639ed0f1c99482e50d94a839697a42204f083b0a852d53",
+      "targeted-fixed.tap": "bc840da81093f42ef53dff105b67a328c245b204e7394c60e9dded8570830731",
+      "regression-fixed.tap": "92cad2e91bd06f88d3a302e5316de168ded90d575d1744a7a4b34a9560a4ce47"
+    }
+  },
+  "ci": {
+    "last_run": 40592432776,
+    "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+    "conclusion": "success",
+    "publish": "skipped",
+    "covers_new_fix": false,
+    "new_ci_requested": false,
+    "reason": "Server-only fix verified with complete local Node suite; no Android assets or binary change, avoid redundant Android build."
+  },
+  "artifacts": {
+    "sealed_r4": "unchanged; source ZIP e9a62dfa remains source99 and does not include this server fix",
+    "candidate_release": "f3b8c701 remains unchanged; server.js is not an Android bundled web asset",
+    "fresh_installed_hash_check": false,
+    "last_physical_hash_check": "2026-10-29T05:07:07+09:00",
+    "docx_pdf_edit": false
+  },
+  "remote": {
+    "monthly_limit": true,
+    "retry_reconnect_bypass": false,
+    "common_ops_updated": false,
+    "current_lock_process_keyguard": "NOT_OBSERVED"
+  },
+  "slack": {
+    "today_search_results": 0,
+    "search_scope": "in:<#C0CBT8UEQCA> on:2026-10-29",
+    "receipt": "UNAVAILABLE",
+    "queue_registered": false,
+    "send_success": "UNCONFIRMED",
+    "alternate_send": false,
+    "phone_push": "UNVERIFIED",
+    "review_only_report": "🤝 *안심동행 | 10/29 12:00 KST* 🟡 *릴리스 검증 대기*\n🕒 *관측* 11:59 로컬 검사 / 현장 마지막 05:07\n*한줄 결론* 지도 API의 빈 좌표→0 변환·null 결과 실패를 수정.\n📊 *게이트* 서버 회귀 ✅ | QA앱 실기기 🟡(기존 PM 자체)\n릴리스 실기기 ⏳ | 독립 QA ⏳ | 실제 제출 ⏳\n🧪 *증거* 추가 검사 수정 전 2/5→수정 후 5/5, 전체 Node 117/117.\n로컬 HTTP·외부 응답 fixture 검사이며 Kakao 실호출·Android JUnit 추가 없음.\n🔁 *직전 대비* 서버 결함 수정 1건 / 빌드·설치·폰 시험 0건.\n🚧 *차단* 원격 제한·release 서명 차이. 봉인 r4는 source99 유지.\n🎯 *다음* 기존 PM AS-M1: 지도 검색 실패·재시도 UI의 실제 동작 검증.\n🔗 <https://github.com/CSJ-PJT/Win-Win-Challenge/pull/2|상세> | 봇 큐·발송·폰 push 미확인",
+    "lines": 11,
+    "characters": 514
+  },
+  "new_build": 0,
+  "new_install": 0,
+  "new_phone_test": 0,
+  "new_junit": 0,
+  "new_external_service_call": 0,
+  "new_submission": 0,
+  "next_single_owner": "Existing PM AS-M1: exercise map-search failure/retry UI with local browser and isolated synthetic data; correct only reproduced behavior. Preserve r4 and distinguish source99 candidate from current server fix."
+}

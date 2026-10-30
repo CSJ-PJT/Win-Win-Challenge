@@ -42,7 +42,12 @@ function createApp(options = {}) {
       raw += chunk;
       if (Buffer.byteLength(raw) > 8192) throw new H.DomainError('SIZE', '요청이 너무 큽니다.', 413);
     }
-    try { return JSON.parse(raw); } catch { throw new H.DomainError('JSON', 'JSON 요청이 필요합니다.', 400); }
+    let parsed;
+    try { parsed = JSON.parse(raw); } catch { throw new H.DomainError('JSON', 'JSON 요청이 필요합니다.', 400); }
+    if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      throw new H.DomainError('JSON_OBJECT', 'JSON 객체 요청이 필요합니다.', 400);
+    }
+    return parsed;
   }
   const server = http.createServer(async (req, res) => {
     try {
@@ -69,7 +74,14 @@ function createApp(options = {}) {
           const response=await (options.mapFetch||fetch)(endpoint,{headers:{Authorization:'KakaoAK '+key},signal:AbortSignal.timeout(5000)});
           if(!response.ok)return json(res,502,{error:'MAP_UNAVAILABLE'});
           const data=await response.json();
-          const places=(data.documents||[]).slice(0,5).filter(d=>Number.isFinite(Number(d.y))&&Number.isFinite(Number(d.x))).map(d=>({name:String(d.place_name||'').slice(0,80),address:String(d.road_address_name||d.address_name||'').slice(0,180),latitude:Number(d.y),longitude:Number(d.x)}));
+          const coordinate=(value,limit)=>{
+            if(!['number','string'].includes(typeof value)||String(value).trim()==='')return null;
+            const n=Number(value);
+            return Number.isFinite(n)&&Math.abs(n)<=limit?n:null;
+          };
+          const places=(data.documents||[]).filter(d=>d&&typeof d==='object'&&!Array.isArray(d))
+            .map(d=>({name:String(d.place_name||'').slice(0,80),address:String(d.road_address_name||d.address_name||'').slice(0,180),latitude:coordinate(d.y,90),longitude:coordinate(d.x,180)}))
+            .filter(d=>d.latitude!==null&&d.longitude!==null).slice(0,5);
           return json(res,200,{places});
         } catch {return json(res,502,{error:'MAP_UNAVAILABLE'});}
       }
@@ -122,3 +134,5 @@ if (require.main === module) {
   app.listen(port, '127.0.0.1', () => console.log(`안심동행 로컬 합성 데이터 시연: http://127.0.0.1:${port}\n실제 개인정보를 입력하거나 인터넷에 공개하지 마세요.`));
 }
 module.exports = { createApp };
+
+

@@ -1,0 +1,42 @@
+{
+  "observed_at": "2026-10-29T11:04:15.973Z",
+  "source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "linux",
+    "transport": "real HTTP loopback 127.0.0.1 ephemeral port",
+    "synthetic_temporary_store_removed": true
+  },
+  "routes": [
+    {
+      "route": "GET /api/health",
+      "status": "FAIL",
+      "message": "GET /api/health status\n\n200 !== 403\n"
+    }
+  ],
+  "route_pass": 0,
+  "route_total": 6,
+  "http_requests": 2,
+  "assertions": 4,
+  "map_fixture_calls": 0,
+  "real_external_service_calls": 0,
+  "physical_phone_tests": 0,
+  "new_builds": 0,
+  "new_installs": 0,
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200
+    }
+  ],
+  "failure": {
+    "name": "AssertionError",
+    "message": "GET /api/health status\n\n200 !== 403\n"
+  }
+}

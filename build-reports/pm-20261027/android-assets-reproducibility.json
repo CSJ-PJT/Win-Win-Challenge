@@ -1,0 +1,82 @@
+{
+  "task_id": "AS-M1-PM-20261027T1057",
+  "owner": "existing PM",
+  "base_head": "fc032ea413717029c195554a084a55bacb1c5e93",
+  "prior_ci": 40402218901,
+  "root_cause": "Direct Gradle bypassed PS/CI web asset copy; source ZIP tracked Android snapshot had6 assets excluding address.js/postcode.html",
+  "changed_files": [
+    "android/app/build.gradle",
+    "tools/build_verifyqa.ps1",
+    ".github/workflows/release043.yml"
+  ],
+  "verification": {
+    "started": "2026-10-27T11:00:22.8282904+09:00",
+    "success": true,
+    "full_apk_builds": 0,
+    "phone_install": 0,
+    "source_sha256": "9ae59db5fdfc8ed20943589cccc857771474ce9d75a148d1129e35f0aa46d18a",
+    "gradle_exit": 0,
+    "assets": [
+      {
+        "sha256": "49c8b523f9038ed2d8dbe6509d79b975f930b78b1ef94bd1fb0a8c0905280800",
+        "merged_equal": true,
+        "file": "address.js",
+        "equals_current_verifyqa": true
+      },
+      {
+        "sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e",
+        "merged_equal": true,
+        "file": "app.js",
+        "equals_current_verifyqa": true
+      },
+      {
+        "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+        "merged_equal": true,
+        "file": "config.js",
+        "equals_current_verifyqa": true
+      },
+      {
+        "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+        "merged_equal": true,
+        "file": "core.js",
+        "equals_current_verifyqa": true
+      },
+      {
+        "sha256": "1519668533310c3dded68380284a8eba0e296e6c1c9d87ca3dc90a84f810e0a8",
+        "merged_equal": true,
+        "file": "index.html",
+        "equals_current_verifyqa": true
+      },
+      {
+        "sha256": "60d789933a252a47d6c4b7b2c8188e097b8615e18b87882215618ed1a1680d7f",
+        "merged_equal": true,
+        "file": "postcode.html",
+        "equals_current_verifyqa": true
+      },
+      {
+        "sha256": "1f44836f5bd9e6b2b802aa89601ded5d80f04100223bdaf516905906495b439e",
+        "merged_equal": true,
+        "file": "style.css",
+        "equals_current_verifyqa": true
+      },
+      {
+        "sha256": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851",
+        "merged_equal": true,
+        "file": "ui.js",
+        "equals_current_verifyqa": true
+      }
+    ],
+    "finished": "2026-10-27T11:00:53.4984938+09:00"
+  },
+  "source899_to_base_product_changes": 0,
+  "phone_packages_preserved": 5,
+  "phone_ui": 0,
+  "installs": 0,
+  "full_apk_builds": 0,
+  "ci_required": 1,
+  "independent_qa": false,
+  "release_physical": "not run",
+  "submission": false,
+  "next_owner": "existing PM",
+  "next": "Read new CI results and verify source-ZIP preparation and APK eight assets"
+}

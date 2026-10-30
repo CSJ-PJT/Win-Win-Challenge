@@ -1,0 +1,292 @@
+{
+  "task_id": "AS-M1-PM-20261027T1203",
+  "owner": "existing PM evidence verification",
+  "source": "f1164b04dc267260771ce3ffcc674247053f56e7",
+  "ci": {
+    "id": 40436119702,
+    "started": "2026-10-27T02:02:41Z",
+    "finished": "2026-10-27T02:12:56Z",
+    "jobs": [
+      {
+        "name": "verify-build",
+        "conclusion": "success"
+      },
+      {
+        "name": "live-address",
+        "conclusion": "success"
+      },
+      {
+        "name": "native-smoke",
+        "conclusion": "success"
+      },
+      {
+        "name": "publish",
+        "conclusion": "skipped"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": 12704581861,
+      "name": "ansim-0.4.3-live-address",
+      "bytes": 231309,
+      "digest": "sha256:f78d1c214866f61ea88e4a560b5ef9fca93e400f6fad41ab009b018ed2360fc4"
+    },
+    {
+      "id": 12703837897,
+      "name": "ansim-0.4.3-build",
+      "bytes": 6017117,
+      "digest": "sha256:17ad41a52a3db8fd42607db0fc1b5e66216879c2edbb45cf586eefd4246e3f30"
+    },
+    {
+      "id": 12703778788,
+      "name": "ansim-0.4.3-native",
+      "bytes": 1281084,
+      "digest": "sha256:26a4c029bea2733b7831c8deac0935bf571d38e37bd792c6f1496a4895107100"
+    }
+  ],
+  "byte_verification": {
+    "ansim-platform-0.4.3-preview.apk": {
+      "sha256": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100",
+      "bytes": 5170860
+    },
+    "ansim-platform-0.4.3-qa.apk": {
+      "sha256": "85a57a969a764b0d807eb072bd45e2bc63aa586f92ecc3335cf7e78b3291d648",
+      "bytes": 5170884
+    },
+    "ansim-qa-tests.apk": {
+      "sha256": "fb90d81e07d880b370db0dc516a1774b1595d873f8ac86e9d2371d88c1d20d44",
+      "bytes": 828960
+    },
+    "ansim-platform-0.4.3-source.zip": {
+      "sha256": "917ea32121adf6a6d739a1102f243a46cd001208c200172ec86ff2efbc664d18",
+      "bytes": 436508
+    },
+    "assets": [
+      {
+        "file": "assets/address.js",
+        "sha256": "49c8b523f9038ed2d8dbe6509d79b975f930b78b1ef94bd1fb0a8c0905280800",
+        "equals_previous53ca": true
+      },
+      {
+        "file": "assets/app.js",
+        "sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e",
+        "equals_previous53ca": true
+      },
+      {
+        "file": "assets/config.js",
+        "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+        "equals_previous53ca": true
+      },
+      {
+        "file": "assets/core.js",
+        "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+        "equals_previous53ca": true
+      },
+      {
+        "file": "assets/index.html",
+        "sha256": "1519668533310c3dded68380284a8eba0e296e6c1c9d87ca3dc90a84f810e0a8",
+        "equals_previous53ca": true
+      },
+      {
+        "file": "assets/postcode.html",
+        "sha256": "60d789933a252a47d6c4b7b2c8188e097b8615e18b87882215618ed1a1680d7f",
+        "equals_previous53ca": true
+      },
+      {
+        "file": "assets/style.css",
+        "sha256": "1f44836f5bd9e6b2b802aa89601ded5d80f04100223bdaf516905906495b439e",
+        "equals_previous53ca": true
+      },
+      {
+        "file": "assets/ui.js",
+        "sha256": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851",
+        "equals_previous53ca": true
+      }
+    ],
+    "font-scaling": {
+      "environment": "desktop Chromium synthetic standalone fixture",
+      "rows": [
+        {
+          "width": 360,
+          "setting": 100,
+          "root_px": 16,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 360,
+          "setting": 125,
+          "root_px": 20,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 360,
+          "setting": 150,
+          "root_px": 24,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 360,
+          "setting": 200,
+          "root_px": 32,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 412,
+          "setting": 100,
+          "root_px": 16,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 412,
+          "setting": 125,
+          "root_px": 20,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 412,
+          "setting": 150,
+          "root_px": 24,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 412,
+          "setting": 200,
+          "root_px": 32,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 768,
+          "setting": 100,
+          "root_px": 16,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 768,
+          "setting": 125,
+          "root_px": 20,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 768,
+          "setting": 150,
+          "root_px": 24,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        },
+        {
+          "width": 768,
+          "setting": 200,
+          "root_px": 32,
+          "reload_preserved": true,
+          "document_horizontal_overflow": false
+        }
+      ],
+      "success": true
+    },
+    "source": "f1164b04dc267260771ce3ffcc674247053f56e7"
+  },
+  "source_zip_repro": {
+    "started": "2026-10-27T12:05:59.1935268+09:00",
+    "success": true,
+    "source_zip_sha": "917ea32121adf6a6d739a1102f243a46cd001208c200172ec86ff2efbc664d18",
+    "full_apk_builds": 0,
+    "gradle_exit": 0,
+    "assets": [
+      {
+        "equal": true,
+        "sha256": "49c8b523f9038ed2d8dbe6509d79b975f930b78b1ef94bd1fb0a8c0905280800",
+        "file": "address.js",
+        "apk_sha256": "49c8b523f9038ed2d8dbe6509d79b975f930b78b1ef94bd1fb0a8c0905280800"
+      },
+      {
+        "equal": true,
+        "sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e",
+        "file": "app.js",
+        "apk_sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e"
+      },
+      {
+        "equal": true,
+        "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+        "file": "config.js",
+        "apk_sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87"
+      },
+      {
+        "equal": true,
+        "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+        "file": "core.js",
+        "apk_sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65"
+      },
+      {
+        "equal": true,
+        "sha256": "1519668533310c3dded68380284a8eba0e296e6c1c9d87ca3dc90a84f810e0a8",
+        "file": "index.html",
+        "apk_sha256": "1519668533310c3dded68380284a8eba0e296e6c1c9d87ca3dc90a84f810e0a8"
+      },
+      {
+        "equal": true,
+        "sha256": "60d789933a252a47d6c4b7b2c8188e097b8615e18b87882215618ed1a1680d7f",
+        "file": "postcode.html",
+        "apk_sha256": "60d789933a252a47d6c4b7b2c8188e097b8615e18b87882215618ed1a1680d7f"
+      },
+      {
+        "equal": true,
+        "sha256": "1f44836f5bd9e6b2b802aa89601ded5d80f04100223bdaf516905906495b439e",
+        "file": "style.css",
+        "apk_sha256": "1f44836f5bd9e6b2b802aa89601ded5d80f04100223bdaf516905906495b439e"
+      },
+      {
+        "equal": true,
+        "sha256": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851",
+        "file": "ui.js",
+        "apk_sha256": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851"
+      }
+    ],
+    "finished": "2026-10-27T12:06:23.6696608+09:00"
+  },
+  "signature": {
+    "full_apksigner_exit": 0,
+    "v2": true,
+    "signers": 1,
+    "certificate": "7573330d2f0123a50c4f947e6fe986cccb434f8cd5aba1c2324209dbddbd6831"
+  },
+  "tests": {
+    "node": {
+      "passed": 112,
+      "failed": 0
+    },
+    "font_combinations": 12,
+    "pc_official": 7,
+    "android15_release": {
+      "official_junit_ok": 1,
+      "seconds": 54.05,
+      "dom_junit_ok": 1,
+      "dom_seconds": 15.355,
+      "ui": 7,
+      "exit_markers": 5
+    }
+  },
+  "screenshot_review": "Android15 emulator04-received.png actual facility bothconfirm",
+  "phone_packages_preserved": 5,
+  "phone_ui": 0,
+  "installs": 0,
+  "full_local_apk_build": 0,
+  "local_source_prepare_tasks": 1,
+  "new_ci_request": 0,
+  "release_physical": "not run; signature differs from installed release",
+  "independent_qa": false,
+  "actual_submission": false,
+  "formal_documents": "not reread/edited",
+  "next_owner": "existing PM",
+  "next": "최신 검증 소스 f1164b0·release75b53185 기준 비공개 제출 후보 목록을 별도 구성하고 기존 후보·공식 문서v3와 버전 차이를 대조"
+}

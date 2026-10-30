@@ -1,0 +1,42 @@
+{
+  "scope": "CI release notes only; no product/runtime/signing logic change",
+  "before_head": "c3f9ee6e6a4c8333e5b37cde600f53a486fd4ae6",
+  "file": ".github/workflows/release043.yml",
+  "before_sha256": "3ba8261140e27f8c16d49c7a4650c016793a1b612a0c914e36775cd905c8f074",
+  "after_sha256": "4553f75a04bfa875a8655f46f29cd5a744697198aa415ef7127b47429c70a3ba",
+  "changed_lines": [
+    198
+  ],
+  "yaml_parse": "PASS both",
+  "all_workflow_nodes_except_publish_run_unchanged": true,
+  "publish_commands_after_notes_unchanged": true,
+  "note_heredoc_prefix_unchanged": true,
+  "bash_n_publish_script": "PASS syntax only; not executed",
+  "ci_trigger_concurrency_permissions_needs_signing_commands_unchanged": true,
+  "builds": 0,
+  "installs": 0,
+  "phone_tests": 0,
+  "published": false,
+  "r4_r5_and_official_v6_modified": false,
+  "ci_not_run_for_this_edit": true,
+  "product_test_source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "latest_success_ci": 40820861095,
+  "observed_at_kst": "2026-10-29T19:05:00+09:00",
+  "owner": "existing PM AS-M1",
+  "remote": {
+    "monthly_limit_previously_observed": true,
+    "retry": false,
+    "reconnect": false,
+    "bypass": false,
+    "fresh_lock_process_phone_observed": false,
+    "it13_ledger": "NOT_SYNCED"
+  },
+  "slack": {
+    "this_run": "NOT_SENT_NIGHT",
+    "today_public_search_results": 0,
+    "prior_daytime_delivery": "UNVERIFIED: sender receipt inaccessible",
+    "phone_push": "UNVERIFIED"
+  },
+  "next_single_owner": "existing PM AS-M1",
+  "next_task": "Run bounded local HTTP checks for the six server API routes from product source b37287e; distinguish real loopback calls from mocked external services; reproduce and fix only an observed failure."
+}

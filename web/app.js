@@ -24,10 +24,10 @@
   // The preview opens directly into a usable screen; role changes remain available above it.
   if(!prefs.roleChosen){prefs.role='vehicle';prefs.mode='standard';prefs.roleChosen=true;}
   let state=null,tokens=null,connected=!serverMode,busy=false,offline=false,pending=storageRead(sessionStorage,PENDING_KEY);
-  let panel=null,draft=null,editorFrom=null,editorError='',searchResults=[],searchMessage='',searchTicket=null;
+  let panel=null,draft=null,editorFrom=null,editorError='',searchResults=[],searchMessage='',searchTicket=null,editorSaving=false;
   let error='',notice='',noticeTimer=null,codeInput='',heartbeatAt=0,refreshing=false,activeVisit=null;
   let changingRole=false,roleRevision=0;
-  let addressDispose=null,addressSavedScroll=0;
+  let addressDispose=null,addressSavedScroll=0,renderedReady=null;
   let draftPreferences=null;
   const role=()=>prefs.mode==='easy'?'visitor':prefs.role;
   const terminal=()=>['COMPLETED','ARRIVAL_REPORTED','CANCELLED'].includes(state?.state);
@@ -51,22 +51,31 @@
     if(!connected||offline){if(!quiet)showError('연결 상태를 확인해 주세요.');return false;}
     busy=true;clearError();
     try{
-      if(serverMode){const intent={key:uid(),tripId:state.id,expectedVersion:state.version,event:{type,payload},role:asRole};setPending(intent);
-        const submit=()=>api('/api/events',{method:'POST',headers:{Authorization:'Bearer '+tokens[asRole],'Content-Type':'application/json'},body:JSON.stringify(intent)});
-        let data;
-        try {data=await submit();}
-        catch(e){
-          // Vehicle telemetry and a human confirmation can arrive at the same state version.
-          // A rejected VERSION write has not been applied. Refresh and retry once.
-          if(e.code!=='VERSION')throw e;
-          const latest=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[asRole]}});
-          state=latest.state;
-          if(state.id!==intent.tripId)throw e;
-          intent.expectedVersion=state.version;
-          setPending(intent);
-          data=await submit();
+      if(serverMode){
+        const transmit=async intent=>{
+          const submit=()=>api('/api/events',{method:'POST',headers:{Authorization:'Bearer '+tokens[intent.role],'Content-Type':'application/json'},body:JSON.stringify(intent)});
+          try{return await submit();}
+          catch(e){
+            // A VERSION rejection did not apply this intent. Retry its original key once.
+            if(e.code!=='VERSION')throw e;
+            const latest=await api('/api/state',{headers:{Authorization:'Bearer '+tokens[intent.role]}});
+            state=latest.state;
+            if(state.id!==intent.tripId)throw e;
+            intent.expectedVersion=state.version;setPending(intent);
+            return await submit();
+          }
+        };
+        const adopt=data=>{if(!state||data.state.id!==state.id||data.state.version>=state.version)state=data.state;};
+        // A transport error may hide a committed write. Resolve that original
+        // intent before generating another key, including after reconnect.
+        if(pending){
+          if(pending.tripId!==state.id){setPending(null);throw new Error('방문 정보가 변경됐어요. 다시 확인해 주세요.');}
+          const previous=pending,same=previous.role===asRole&&JSON.stringify(previous.event)===JSON.stringify({type,payload});
+          adopt(await transmit(previous));setPending(null);
+          if(same)return true;
         }
-        state=data.state;setPending(null);
+        const intent={key:uid(),tripId:state.id,expectedVersion:state.version,event:{type,payload},role:asRole};setPending(intent);
+        adopt(await transmit(intent));setPending(null);
       }else{
         const result=H.apply(state,{type,payload},{role:asRole,id:asRole==='facility'?'staff-001':asRole==='vehicle'?'sender-001':asRole==='visitor'?'visitor-001':asRole},{now:Date.now(),code:code()});
         recordState(result.state);
@@ -110,6 +119,7 @@
   }
   async function setRole(v){
     if(!Object.hasOwn(ROLE_LABELS,v))return;
+    discardAddressSearch();
     if(v==='visitor'){prefs.role='vehicle';prefs.mode='easy';}
     else{prefs.role=v;prefs.mode='standard';}
     prefs.roleChosen=true;savePrefs();panel=null;draft=null;clearError();
@@ -137,8 +147,8 @@
   function roleTabs(){
     return `<nav class="demo-role-tabs" role="tablist" aria-label="역할별 화면 전환">${Object.entries(ROLE_TABS).map(([r,label])=>`<button type="button" class="demo-role-tab" role="tab" data-action="select-role" data-role="${r}" aria-selected="${role()===r}" aria-controls="main" tabindex="${role()===r?'0':'-1'}">${icon(r==='vehicle'?'car':r==='guardian'?'shield':r==='facility'?'building':'person')}<span>${label}</span></button>`).join('')}</nav>`;
   }
-  function locationCard(){const info=state.info,loc=info.address||'도착지를 지정해 주세요.';
-    return `<section class="panel place-panel"><div class="panel-heading"><span class="panel-icon">${icon('pin')}</span><div><div class="eyebrow">도착지</div><h2>${escapeHTML(info.facility)}</h2></div></div><p class="address ${info.address?'':'empty-address'}">${escapeHTML(loc)}</p>${info.detailAddress?`<p class="hint">${escapeHTML(info.detailAddress)}</p>`:''}${info.postcode?`<p class="postcode-tag">우편번호 ${escapeHTML(info.postcode)}</p>`:''}${info.place?`<p class="hint">${escapeHTML(info.place)}</p>`:''}<div class="inline-actions">${role()!=='facility'&&role()!=='guardian'?btn('open-editor',icon('edit')+' 정보 수정','light',canWrite()):''}${C.hasDestination(info)?mapLink('길안내 열기'):btn('edit-destination','도착지 설정','outlined',canWrite())}</div></section>`;
+  function locationCard(summaryOnly=false){const info=state.info,loc=info.address||(summaryOnly?'':'도착지를 지정해 주세요.');
+    return `<section class="panel place-panel"><div class="panel-heading"><span class="panel-icon">${icon('pin')}</span><div><div class="eyebrow">도착지</div><h2>${escapeHTML(info.facility)}</h2></div></div>${loc?`<p class="address ${info.address?'':'empty-address'}">${escapeHTML(loc)}</p>`:''}${info.detailAddress?`<p class="hint">${escapeHTML(info.detailAddress)}</p>`:''}${info.postcode?`<p class="postcode-tag">우편번호 ${escapeHTML(info.postcode)}</p>`:''}${info.place?`<p class="hint">${escapeHTML(info.place)}</p>`:''}${summaryOnly?'':`<div class="inline-actions">${role()!=='facility'&&role()!=='guardian'?btn('open-editor',icon('edit')+' 정보 수정','light',canWrite()):''}${C.hasDestination(info)?mapLink('길안내 열기'):btn('edit-destination','도착지 설정','outlined',canWrite())}</div>`}</section>`;
   }
   function mapLink(label='지도 길안내'){
     if(!C.hasDestination(state.info))return '';
@@ -167,7 +177,7 @@
     return `<section class="hero"><span class="eyebrow">보호자 · 진행 조회</span><h1>${state.state==='COMPLETED'?'인계를 마쳤어요':state.state==='EN_ROUTE'?'이동하고 있어요':state.state==='PLANNED'?'방문을 준비하고 있어요':'인계 상황을 확인해요'}</h1><p>${escapeHTML(state.info.subject)}님 · ${escapeHTML(state.info.title)}</p></section><section class="panel"><h2>방문 진행 현황</h2><ul class="checklist">${items.map(([name,yes])=>`<li><span class="state-dot ${yes?'done':''}">${yes?'✓':''}</span><span>${name}</span><strong>${yes?'확인됨':'대기 중'}</strong></li>`).join('')}</ul><p class="hint">상태는 인계자와 시설 담당자의 확인 결과로 변경돼요.</p></section>${locationCard()}${history()}`;
   }
   function easyView(){const s=state;if(!s.info.adult)return `<section class="hero large-hero"><span class="eyebrow">쉬운 화면</span><h1>방문할 곳을<br>선택해 주세요</h1></section><div class="choice-list">${btn('easy-senior','주야간보호센터','primary big')}${btn('easy-community','경로당','outlined big')}</div>`;
-    if(s.arrivalNotice)return `<section class="hero large-hero"><span class="success-mark">${icon('check')}</span><h1>도착 소식을<br>남겼어요</h1><p>${s.arrivalNotice.acknowledgedAt?'담당자가 확인했어요.':'담당자가 확인하면 알려드려요.'}</p></section><section class="panel">${locationCard()}${contactBtn()}</section>${btn('new-visit','다른 방문 시작하기','outlined big')}`;
+    if(s.arrivalNotice)return `<section class="hero large-hero"><span class="success-mark">${icon('check')}</span><h1>도착 소식을<br>남겼어요</h1><p>${s.arrivalNotice.acknowledgedAt?'담당자가 확인했어요.':'담당자가 확인하면 알려드려요.'}</p></section><section class="panel">${locationCard(true)}${s.info.facilityPhone?contactBtn():''}</section>${btn('new-visit','다른 방문 시작하기','outlined big')}`;
     if(!s.consent)return `<section class="hero large-hero"><span class="eyebrow">도착 소식 공유</span><h1>${escapeHTML(s.info.facility)}에<br>방문하시나요?</h1><p>도착 알림을 보내려면 동의가 필요해요.</p></section>${btn('consent','동의하고 계속','primary big')}${contactBtn()}`;
     return `<section class="hero large-hero"><span class="eyebrow">오늘의 방문</span><h1>${escapeHTML(s.info.facility)}에<br>도착하셨나요?</h1></section>${locationCard()}<div class="action-stack">${btn('notify','도착 알리기','primary big')}${contactBtn()}</div>`;
   }
@@ -184,6 +194,7 @@
   function render(force=false){if(!state)return;
     // Never unmount an active form because of a background poll or heartbeat.
     if(!force&&(panel==='editor'||panel==='address'||document.activeElement?.id==='codeInput'))return;
+    renderedReady=H.readyNow(state,Date.now());
     document.documentElement.className='text-'+prefs.text;
     const body=!prefs.roleChosen?rolePicker():prefs.mode==='easy'?easyView():role()==='facility'?facilityView():role()==='guardian'?guardianView():vehicleView();
     const overlays=panel==='address'?addressPanel():panel==='editor'?editor():panel==='demo'?demoMenu():panel==='visits'?visitPicker():'';
@@ -192,14 +203,28 @@
     if(panel==='editor'){document.querySelector('.dialog>header .icon-button')?.focus({preventScroll:true});}
   }
   function countdown(){const el=$('codeSeconds');if(el&&state.challenge){const n=Math.max(0,Math.ceil((state.challenge.expiresAt-Date.now())/1000));el.textContent=n?`남은 시간 ${n}초`:'번호가 만료됐어요.';}}
-  function openPanel(name,section=null){panel=name;editorFrom=section;editorError='';searchMessage='';searchResults=[];draft=name==='editor'?{...C.defaults(),...state.info}:null;draftPreferences=name==='editor'?{mapProvider:prefs.mapProvider,text:prefs.text}:null;render(true);}
+  function discardAddressSearch(){addressDispose?.();addressDispose=null;searchTicket=null;searchResults=[];searchMessage='';}
+  function openPanel(name,section=null){discardAddressSearch();panel=name;editorFrom=section;editorError='';searchMessage='';searchResults=[];draft=name==='editor'?{...C.defaults(),...state.info}:null;draftPreferences=name==='editor'?{mapProvider:prefs.mapProvider,text:prefs.text}:null;render(true);}
   function closePanel(){if(panel==='address'){returnFromAddress();return;}addressDispose?.();addressDispose=null;panel=null;draft=null;draftPreferences=null;searchTicket=null;editorFrom=null;editorError='';render(true);}
   function captureEditor(){if(!draft)return;if($('mapProvider'))draftPreferences={mapProvider:$('mapProvider').value,text:Number($('textSize').value)};document.querySelectorAll('#visitForm [name]').forEach(el=>{if(C.fieldsFor(role()).includes(el.name))draft[el.name]=el.value;});}
   function fieldError(msg){editorError=msg;const el=$('editorError');if(el){el.textContent=msg;el.hidden=false;el.scrollIntoView({block:'nearest'});}else toast(msg);}
   async function saveEditor(){
+    if(editorSaving)return;
+    editorSaving=true;
+    const savedDraft=draft,savedTrip=state.id,savedRole=role();
+    const submitButton=$('visitForm')?.querySelector('button[type=submit]');
+    if(submitButton)submitButton.disabled=true;
     captureEditor();const form=$('visitForm'),map=form?.querySelector('#mapProvider')?.value,txt=form?.querySelector('#textSize')?.value;
     const allowed=C.fieldsFor(role());let patch={};
-    try{if(canWrite()){const keys=editorFrom==='destination'?['facility','address','postcode','detailAddress','place','latitude','longitude']:allowed;
+    try{
+      // A quiet telemetry write can overlap the user's submit. Keep the intent
+      // until that write finishes rather than turning busy into a save error.
+      const deadline=Date.now()+10000;
+      while(busy&&Date.now()<deadline)await new Promise(resolve=>setTimeout(resolve,50));
+      if(panel!=='editor'||draft!==savedDraft)return;
+      if(state.id!==savedTrip||role()!==savedRole)throw new Error('방문 정보가 변경됐어요. 다시 확인해 주세요.');
+      if(busy)throw new Error('다른 작업을 처리 중이에요. 잠시 후 다시 저장해 주세요.');
+      if(canWrite()){const keys=editorFrom==='destination'?['facility','address','postcode','detailAddress','place','latitude','longitude']:allowed;
       patch=C.cleanPatch(Object.fromEntries(keys.filter(k=>allowed.includes(k)).map(k=>[k,draft[k]??''])),role(),state.info);
       if(editorFrom==='destination'&&!C.hasDestination({...state.info,...patch}))throw new Error('주소를 입력하거나 검색 결과를 선택해 주세요.');
       if(!await send('CONFIGURE_VISIT',patch,role(),true))throw new Error(error||'정보를 저장하지 못했어요.');
@@ -209,6 +234,7 @@
     if([100,125,150,200].includes(Number(txt)))prefs.text=Number(txt);
     savePrefs();closePanel();toast('저장했어요.');
     }catch(e){fieldError(e.message||'입력을 확인해 주세요.');}
+    finally{editorSaving=false;const button=$('visitForm')?.querySelector('button[type=submit]');if(button)button.disabled=false;}
   }
   function updateSearchUI(){const e=$('lookupStatus');if(e)e.textContent=searchMessage;const b=$('lookupResults');if(b)b.innerHTML=searchResults.map((it,i)=>`<button type="button" class="search-result" data-action="choose-address" data-index="${i}"><strong>${escapeHTML(it.name||it.address)}</strong><small>${escapeHTML(it.address)}</small></button>`).join('');}
   function addressPanel(){return `<div class="modal-title"><h2>주소 검색</h2><p class="hint">도로명이나 건물 이름으로 검색해 주세요.</p></div><div id="addressLoadStatus" role="status">검색창을 불러오고 있어요.</div><div id="addressWidget" class="address-widget"></div><div id="addressRetry" hidden>${btn('retry-address','다시 연결하기','outlined')}</div>${btn('back-address','직접 입력으로 돌아가기','light')}`;}
@@ -341,7 +367,7 @@
     if(serverMode){try{await connect(false);}catch{connected=false;state=H.createTrip('kindergarten',Date.now(),uid());}}
     else{state=storageRead(localStorage,STATE_KEY);if(!state||state.schema!==1){state=H.createTrip('kindergarten',Date.now(),uid());storageWrite(localStorage,STATE_KEY,state);}state.info={...C.defaults(),...state.info};}
     await initialConditions();savePrefs();render();
-    setInterval(()=>{countdown();if(serverMode)refresh();renewVehicle();},2000);
+    setInterval(()=>{countdown();if(state&&renderedReady!==H.readyNow(state,Date.now()))render();if(serverMode)refresh();renewVehicle();},2000);
   }
   init();
 })();

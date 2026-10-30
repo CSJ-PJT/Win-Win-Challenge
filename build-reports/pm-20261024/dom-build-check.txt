@@ -1,0 +1,10 @@
+Source: 4a671e033ca504da2229526656039b5b61e025a2
+Run: https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40068462730
+Job: 120796567049 verify-build
+Observed: 2026-10-24 15:03 KST
+2026-10-24T06:00:31.7581438Z # tests 112
+2026-10-24T06:00:31.7582211Z # pass 112
+2026-10-24T06:00:31.7582582Z # fail 0
+2026-10-24T06:02:46.4882466Z > Task :app:compileReleaseAndroidTestJavaWithJavac
+2026-10-24T06:02:52.9928343Z BUILD SUCCESSFUL in 1m 1s
+Android execution result: still in progress at observation; not counted as passed.

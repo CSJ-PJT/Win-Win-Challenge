@@ -1,0 +1,39 @@
+{
+  "task_id": "AS-Q1-PM-20261025T2103",
+  "owner": "existing PM selfQA",
+  "checked_at": "2026-10-25T21:08:34.888+09:00",
+  "test_source": "ec6992f40405ce696b063a101745bd6331fe402f",
+  "source_blob": "67430684f582163091b4cf019cfa97c06dc972f3",
+  "app_source": "b227ca2409eae9ae1f71ff1a5d1b64ef42d7ebab",
+  "app_sha256": "c5aad9eecc70bf0cac07450e414c582720582ee8286f0b255af5ff46e69eda4b",
+  "old_test_sha256": "5f7ecaa3bd9253af916104f916623b7dbea1454d02d348eee2bcb98dfa90a840",
+  "test_sha256": "3544a4450d1c2fe19ea8032c496d25964c04b8d701c2e60363be36c1c622c655",
+  "test_bytes": 824828,
+  "certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+  "old_new_apksigner_verified_same": true,
+  "build": "SUCCESS53s/45tasks4executed41uptodate/test-only",
+  "run": {
+    "start": "2026-10-25T21:07:34.103+09:00",
+    "end": "2026-10-25T21:07:37.375+09:00",
+    "adb_exit": 0,
+    "junit_ok": true,
+    "junit_seconds": 2.775
+  },
+  "actual_action_dial_observed": true,
+  "synthetic_number_only": true,
+  "dialer_package_visible": true,
+  "returned_to_QA": true,
+  "saved_localstorage_unchanged": true,
+  "original_apps_hashes_preserved": true,
+  "no_call_action": true,
+  "no_dialer_controls_clicked": true,
+  "no_contacts_history_or_dialer_screenshots_collected": true,
+  "claim_acquired_released": true,
+  "independent_qa_approval": false,
+  "new_product_build": false,
+  "ci": {
+    "run": 40191642309,
+    "last_status": "verify-build in_progress",
+    "test_runtime_not_added_to_CI": true
+  }
+}

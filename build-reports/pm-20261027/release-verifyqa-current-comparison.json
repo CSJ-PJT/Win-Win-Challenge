@@ -1,0 +1,252 @@
+{
+  "time": "2026-10-27T18:06:43.8024256+09:00",
+  "scope": "Static APK comparison; read-only installed hashes; sealed candidate checksums. No install/build/UI/instrumentation.",
+  "zip": {
+    "time": "2026-10-27T18:05:52.9929952+09:00",
+    "releaseSha256": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100",
+    "verifyqaSha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+    "releaseEntries": 60,
+    "verifyqaEntries": 60,
+    "assetEntries": 8,
+    "identicalAssetEntries": 8,
+    "differences": [
+      {
+        "path": "AndroidManifest.xml",
+        "release": {
+          "bytes": 4632,
+          "sha256": "4a7613fd487851a5dc11b9a0fed7ba3d579b0f53af88a5524c0048a2b10867ca"
+        },
+        "verifyqa": {
+          "bytes": 4664,
+          "sha256": "ca6c4657cf3ccb074198491abcac67dc373c5eca0e64bcb14b767789eea3b982"
+        }
+      },
+      {
+        "path": "classes.dex",
+        "release": {
+          "bytes": 5060228,
+          "sha256": "1db85ddffe7a8948f9839b985567bc99654b7e6b05c3eec9d49b2d19bebe239e"
+        },
+        "verifyqa": {
+          "bytes": 5060264,
+          "sha256": "689d3a4a9bce214deaae0360159a6e2c0581dd3b4158e596f67befbe40b75ef4"
+        }
+      },
+      {
+        "path": "resources.arsc",
+        "release": {
+          "bytes": 20268,
+          "sha256": "39a57e7f3d06cc778a6c2c4684b9aa142110b6a895fa8984f0870f0a41128d54"
+        },
+        "verifyqa": {
+          "bytes": 20268,
+          "sha256": "bccad6722be0ca60c883aa3313560a8b0cca093d56c7b03d94f4300ae7903273"
+        }
+      }
+    ]
+  },
+  "dex": {
+    "releaseLines": 847550,
+    "verifyqaLines": 847550,
+    "rawDifferentLines": 334495,
+    "normalizedDifferentLines": 3,
+    "samples": [
+      {
+        "line": 842173,
+        "context": "Class descriptor  : 'Lkr/co/ansimdonghaeng/BuildConfig;'",
+        "release": "      value         : \"kr.co.ansimdonghaeng\"",
+        "verifyqa": "      value         : \"kr.co.ansimdonghaeng.verifyqa\"",
+        "normalizedRelease": "      value         : \"kr.co.ansimdonghaeng\"",
+        "normalizedVerifyqa": "      value         : \"kr.co.ansimdonghaeng.verifyqa\""
+      },
+      {
+        "line": 842178,
+        "context": "Class descriptor  : 'Lkr/co/ansimdonghaeng/BuildConfig;'",
+        "release": "      value         : \"release\"",
+        "verifyqa": "      value         : \"verifyQa\"",
+        "normalizedRelease": "      value         : \"release\"",
+        "normalizedVerifyqa": "      value         : \"verifyQa\""
+      },
+      {
+        "line": 842193,
+        "context": "Class descriptor  : 'Lkr/co/ansimdonghaeng/BuildConfig;'",
+        "release": "      value         : \"0.4.3\"",
+        "verifyqa": "      value         : \"0.4.3-verifyqa\"",
+        "normalizedRelease": "      value         : \"0.4.3\"",
+        "normalizedVerifyqa": "      value         : \"0.4.3-verifyqa\""
+      }
+    ]
+  },
+  "manifest": {
+    "releaseLines": 59,
+    "verifyqaLines": 59,
+    "rawDifferentLines": 3,
+    "normalizedDifferentLines": 3,
+    "samples": [
+      {
+        "line": 4,
+        "context": "",
+        "release": "    A: android:versionName(0x0101021c)=\"0.4.3\" (Raw: \"0.4.3\")",
+        "verifyqa": "    A: android:versionName(0x0101021c)=\"0.4.3-verifyqa\" (Raw: \"0.4.3-verifyqa\")",
+        "normalizedRelease": "    A: android:versionName(0x0101021c)=\"0.4.3\" (Raw: \"0.4.3\")",
+        "normalizedVerifyqa": "    A: android:versionName(0x0101021c)=\"0.4.3-verifyqa\" (Raw: \"0.4.3-verifyqa\")"
+      },
+      {
+        "line": 7,
+        "context": "",
+        "release": "    A: package=\"kr.co.ansimdonghaeng\" (Raw: \"kr.co.ansimdonghaeng\")",
+        "verifyqa": "    A: package=\"kr.co.ansimdonghaeng.verifyqa\" (Raw: \"kr.co.ansimdonghaeng.verifyqa\")",
+        "normalizedRelease": "    A: package=\"kr.co.ansimdonghaeng\" (Raw: \"kr.co.ansimdonghaeng\")",
+        "normalizedVerifyqa": "    A: package=\"kr.co.ansimdonghaeng.verifyqa\" (Raw: \"kr.co.ansimdonghaeng.verifyqa\")"
+      },
+      {
+        "line": 29,
+        "context": "",
+        "release": "      A: android:label(0x01010001)=\"안심동행 플랫폼\" (Raw: \"안심동행 플랫폼\")",
+        "verifyqa": "      A: android:label(0x01010001)=\"안심동행 검증\" (Raw: \"안심동행 검증\")",
+        "normalizedRelease": "      A: android:label(0x01010001)=\"안심동행 플랫폼\" (Raw: \"안심동행 플랫폼\")",
+        "normalizedVerifyqa": "      A: android:label(0x01010001)=\"안심동행 검증\" (Raw: \"안심동행 검증\")"
+      }
+    ]
+  },
+  "resources": {
+    "releaseLines": 494,
+    "verifyqaLines": 494,
+    "rawDifferentLines": 387,
+    "differentLinesAfterExplicitPackageNormalization": 0
+  },
+  "installed": [
+    {
+      "package": "kr.co.ansimdonghaeng",
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa",
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa",
+      "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996"
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa.test",
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f"
+    }
+  ],
+  "candidate": {
+    "files": 14,
+    "checks": [
+      {
+        "file": "ACCESS_REVIEW.json",
+        "sha256": "5442c2432dbec42d2e9a5f5b118170fddcc3ef5fcf565725455856498943f548",
+        "matches": true
+      },
+      {
+        "file": "ansim-platform-0.4.3-candidate.apk",
+        "sha256": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100",
+        "matches": true
+      },
+      {
+        "file": "ansim-platform-0.4.3-pc.zip",
+        "sha256": "d387260b36f9d6430332e72425fc0a265f8a5f2d49cd68604ed9ec1d544ec365",
+        "matches": true
+      },
+      {
+        "file": "ansim-platform-0.4.3-source.zip",
+        "sha256": "917ea32121adf6a6d739a1102f243a46cd001208c200172ec86ff2efbc664d18",
+        "matches": true
+      },
+      {
+        "file": "ci-build-12703837897.zip",
+        "sha256": "17ad41a52a3db8fd42607db0fc1b5e66216879c2edbb45cf586eefd4246e3f30",
+        "matches": true
+      },
+      {
+        "file": "ci-verification.json",
+        "sha256": "efc330af79d783af06a499555f5bd0b517140c15de8f1efd1e8ca3351c616a13",
+        "matches": true
+      },
+      {
+        "file": "DOCUMENT_VERSION_BINDINGS.json",
+        "sha256": "0bc14bb13052ad49f40280e7beccafff53815be989a5b6b9a744b542896ea1ba",
+        "matches": true
+      },
+      {
+        "file": "HISTORY_DOCUMENT_VERSION_GAPS_V3.json",
+        "sha256": "d9ddfaeb2702a3a4bc22dbfc9d3aaed61c73d04b301f4f74d4d3f6f8ae03d304",
+        "matches": true
+      },
+      {
+        "file": "manifest.json",
+        "sha256": "048f12f21b1612ca05b35db91e92117f248e8ac8a78b6d072e3fa31b57b2c375",
+        "matches": true
+      },
+      {
+        "file": "qa-package-manifest.json",
+        "sha256": "98c0dd97c0c6088eb70ea5d43c78bbcabac5c3efc3144a7b85a150e2c8c619e2",
+        "matches": true
+      },
+      {
+        "file": "README_KO.md",
+        "sha256": "b1c59e70468022c735bf6a060ec00a8e9b25a24169b8dcf3f33e3bd4d59e1b8e",
+        "matches": true
+      },
+      {
+        "file": "release-signature.txt",
+        "sha256": "efa3ede9962a746400b4d1e75812119ddcad357de0cf20c9ebbcf7b1468f39bf",
+        "matches": true
+      },
+      {
+        "file": "source-sha.txt",
+        "sha256": "10091870f8157f81df39652a0e74b21bd2ec6565f951d8bf21ccebb633108f64",
+        "matches": true
+      }
+    ],
+    "sumsSha256": "e7544d063b4091d26b0483125be939a447b53ff7b0304a098b0f105b6023a10a"
+  },
+  "deviceLockExists": false,
+  "instrumentation": "Unknown command: instrumentation\r\nBad activity command, or no activities match: instrumentation\r\nUse -h for help.",
+  "writers": [],
+  "releasePhysicalPass": false,
+  "independentQaApproved": false,
+  "humanUsabilityApproved": false,
+  "nextOwner": "existing PM (temporary AS-Q1 owner)",
+  "nextTask": "One real ADB-touch primary-flow E2E on installed verifyqa bd79075f; preserve original release/data; no install required.",
+  "instrumentationFollowup": {
+    "time": "2026-10-27T18:07:55.9752373+09:00",
+    "command": "adb shell dumpsys activity; inspect active instrumentation markers",
+    "activeMarkerMatches": [],
+    "activeMarkerCount": 0,
+    "unrelatedSectionsRetained": false
+  },
+  "baseline": {
+    "pmHead": "5159d6b1aa3c374901d17709858f716be228de5c",
+    "productSource": "f1164b04dc267260771ce3ffcc674247053f56e7",
+    "ciRun": 40436119702,
+    "ciConclusion": "success",
+    "publish": "skipped",
+    "publishedRelease": "v0.3.0-preview",
+    "pr2": "private draft open unmerged"
+  },
+  "normalization": {
+    "dex": [
+      "Ignore Processing/Opened input path lines",
+      "Remove absolute hex address and encoded bytes before |",
+      "Replace bracketed method byte offsets with OFFSET",
+      "Replace numeric string/method/type/field reference indices with REF"
+    ],
+    "resources": "Replace only kr.co.ansimdonghaeng.verifyqa with kr.co.ansimdonghaeng in verifyqa resources dump",
+    "limit": "Decoded textual comparison, not formal or runtime equivalence; signing blocks excluded from ZIP entry inventory"
+  },
+  "executionNotes": [
+    "Initial Compare-Object process stalled after dump generation; only verified own PID44348 stopped. Raw dumps preserved; linear C# follow-up completed.",
+    "Intermediate incomplete DEX normalization had 25546 remaining lines; final offset normalization leaves 3 BuildConfig values.",
+    "Inventory first save failed due UTF8 script/path handling; explicit UTF8/BOM rerun saved correct output.",
+    "Final consolidation first JSON parse failed from implicit code-page decode; explicit UTF8 follow-up succeeded.",
+    "Unsupported dumpsys activity instrumentation subcommand is retained as failed probe; full dumpsys activity filtered to active instrumentation markers, 0 found. Unrelated sections not retained."
+  ]
+}

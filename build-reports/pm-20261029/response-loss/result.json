@@ -1,0 +1,269 @@
+{
+  "observed_at": "2026-10-29T14:00:00.796Z",
+  "baseline_source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "modified_working_tree": true,
+  "working_app_sha256": "ef032dc57355479ffdc1320b3dab03a97bcbe7b38bc8f4a8f33a79e150b01b36",
+  "node": "v24.22.1",
+  "checks": [
+    {
+      "name": "lost response then direct retry",
+      "status": "PASS",
+      "durable_save_count": 1,
+      "pending_replayed": true,
+      "reconnect": false,
+      "newerState": false,
+      "changedDraft": false,
+      "actual_render_or_phone": false
+    },
+    {
+      "name": "lost response then reconnect and retry",
+      "status": "PASS",
+      "durable_save_count": 1,
+      "pending_replayed": true,
+      "reconnect": true,
+      "newerState": false,
+      "changedDraft": false,
+      "actual_render_or_phone": false
+    },
+    {
+      "name": "old receipt after a newer authoritative state",
+      "status": "PASS",
+      "durable_save_count": 1,
+      "pending_replayed": true,
+      "reconnect": true,
+      "newerState": true,
+      "changedDraft": false,
+      "actual_render_or_phone": false
+    },
+    {
+      "name": "changed draft after lost response",
+      "status": "PASS",
+      "durable_save_count": 2,
+      "pending_replayed": true,
+      "reconnect": false,
+      "newerState": false,
+      "changedDraft": true,
+      "actual_render_or_phone": false
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "assertions": 76,
+  "http_requests": 35,
+  "http_trace": [
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/state",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/events",
+      "method": "POST",
+      "status": 200
+    }
+  ],
+  "expected_storage_errors": [],
+  "scope": "actual client functions and loopback server; HTTP200 body deliberately discarded after durable commit; synthetic form nodes and disabled render",
+  "external_calls": 0,
+  "phone_tests": 0,
+  "builds": 0,
+  "installs": 0,
+  "temporary_store_cleanup": true,
+  "base_pm_head": "8f3caeb97fa8a024c61f6922d972bb4c97b71706",
+  "changed_code": [
+    {
+      "path": "web/app.js",
+      "blob": "d28e990db4554c4c0bab370f09ac7c059e4f77e6"
+    },
+    {
+      "path": "test/client-response-loss.test.js",
+      "blob": "712be5f0670ac7805f9187d7283df80f9917d008"
+    }
+  ],
+  "before": {
+    "passed": 0,
+    "total": 2,
+    "observed_duplicate_version": "3 instead of 2 in both direct retry and reconnect retry"
+  },
+  "regression": {
+    "node_pass": 135,
+    "node_total": 135,
+    "failed": 0,
+    "new_regressions": 4,
+    "pc_bundle": "REGENERATED; not APK build"
+  },
+  "actual_transport_failure": "Injected TypeError after consuming/discarding real server HTTP200 body; server disk and receipts are real synthetic temporary storage",
+  "fresh_ci": "TO_BE_TRIGGERED_ON_PUSH",
+  "product_changed": true,
+  "apk_build_locally": 0,
+  "apks_and_official_docs": "Old b37287e r5/docv6 preserved; not regenerated or relabelled as fixed code",
+  "it13_ledger": "NOT_SYNCED: existing remote monthly limit; no retry/reconnect/bypass",
+  "slack": "NOT_SENT_NIGHT; daytime sender receipt and phone push unverified",
+  "next_owner": "existing PM AS-M1",
+  "next_task": "Inspect one new CI run and exact APK/source artifacts; separate new code/CI from b37287e r5 and physical-phone historical QA."
+}

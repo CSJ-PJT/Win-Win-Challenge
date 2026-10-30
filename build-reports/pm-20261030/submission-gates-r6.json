@@ -1,0 +1,95 @@
+{
+  "observed_at_utc": "2026-10-29 18:59:06 UTC",
+  "owner": "existing PM AS-M1",
+  "source_head_before": "9867a35a3595aab47f65ba13ced2e325939ca4d7",
+  "product_source": "8f4aaf93e36e4dd3ab267c09c274dedaca4057a6",
+  "ci": 40887985855,
+  "candidate": {
+    "id": "candidate-8f4aaf9-docv7-r6",
+    "zip_sha256": "37bf2683a4ab547c22a5042420536f3af969ec103fe25c208c769f23c8ab836d",
+    "library_file_id": "libfile_46458205d1bc819184b1a045cb2e6229",
+    "official_doc_version": 7,
+    "ready_for_submission": false,
+    "evidence_scope": "03시 prepared archive record; not new Library byte/CRC verification this run"
+  },
+  "tracked_apk": {
+    "path": "apk/안심동행_안심동행플랫폼_release.apk",
+    "git_blob": "80cf1a71a50ad5fa2551db1a99171dbcb5c80109",
+    "bytes": 5171400,
+    "observation": "fresh current HEAD Git tree; no binary download/hash/signature/runtime recheck"
+  },
+  "r6_release": {
+    "bytes": 5171848,
+    "sha256": "09e488aa8cf103dffb187ca4fbee6ed72a2fbd100a82c5ba89faa2da173f5e90",
+    "observation": "00시 inspected CI artifact exact bytes, fixed r6 reference"
+  },
+  "comparison": {
+    "status": "DIFFERS_FROM_R6",
+    "reason": "5171400 != 5171848 bytes; old r4 ALIGNED cannot apply to new r6",
+    "old_tracked_binary_changed": false
+  },
+  "documents": [
+    {
+      "path": "docs/SUBMISSION_GATES_20261026.md",
+      "prior_blob": "9ccb261ff2cc27c33bc8c101a78f42f22a3868ce",
+      "operation": "prepend dated current notice; preserve original entire suffix",
+      "historical_body_preserved": true
+    },
+    {
+      "path": "docs/OFFICIAL_SUBMISSION_PREFLIGHT_20261027.md",
+      "prior_blob": "5e68472c9b30439f248014c251835a4836c66165",
+      "operation": "prepend dated current notice; preserve original entire suffix",
+      "historical_body_preserved": true
+    },
+    {
+      "path": "docs/SUBMISSION_EMAIL_REVIEW_20261028.md",
+      "prior_blob": "c76f4bf3e177eeca97283b4e900d30d25a69330a",
+      "operation": "prepend dated current notice; preserve original entire suffix",
+      "historical_body_preserved": true
+    }
+  ],
+  "gates": {
+    "F1": "V7_PREPARED; signature acceptance not confirmed",
+    "F2": "NOT_SUBMITTED",
+    "D1": "R6_PREPARED",
+    "D2": "DIFFERS_FROM_R6",
+    "D3": "JUDGE_ID_ACCESS_UNVERIFIED",
+    "M1": "LAST_OBSERVED_PRIVATE_DRAFT_R4_V5; actual draft not read/updated this run",
+    "Q1": "NEW_RELEASE_PHYSICAL_NOT_RUN_SIGNER_MISMATCH",
+    "Q2": "SCOPED_CI_EMULATOR_PM; historical phone separate",
+    "Q3": "INDEPENDENT_QA_NOT_APPROVED",
+    "Q4": "NO_NEW_REAL_SERVICE_OR_VEHICLE_VALIDATION"
+  },
+  "official_conditions": {
+    "last_direct_observation": "2026-10-29 10:05 KST",
+    "fresh_site_recheck": false,
+    "rule": "Internal product physical QA gates do not establish official inability to submit first-stage proposal alone."
+  },
+  "operations": {
+    "product_changes": 0,
+    "repository_gate_docs_updated": 3,
+    "official_doc_edits": 0,
+    "new_builds": 0,
+    "installs": 0,
+    "physical_tests": 0,
+    "independent_qa_approvals": 0,
+    "actual_submission": 0,
+    "mailbox_draft": 0,
+    "emails_sent": 0,
+    "permission_expansion": 0,
+    "public_deployment": 0,
+    "new_agents": 0,
+    "new_schedules": 0
+  },
+  "preservation": {
+    "candidates_r4_r5_r6": "not modified; no fresh remote validation",
+    "it13": "monthly quota no retry/reconnect/bypass; OPS/lock/procs/installed hashes/draft/sender receipts inaccessible",
+    "it13_ledger": "NOT_SYNCED",
+    "slack": "NOT_SENT_NIGHT",
+    "slack_search": "10/30 public channel0; not universal delivery failure proof",
+    "phone_push": "NOT_VERIFIED",
+    "reservation_activation": "NOT_QUERIED; no schedule change"
+  },
+  "next_owner": "existing PM AS-M1",
+  "next": "Prepare and review private tracked APK alignment to r6, preserving old binary/history; no rebuild/install/publication/submission/permission expansion."
+}

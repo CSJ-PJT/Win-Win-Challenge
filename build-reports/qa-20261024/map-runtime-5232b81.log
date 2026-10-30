@@ -1,0 +1,42 @@
+instrument_exit=0
+address_exit=0
+flow_exit=0
+dom_process_exit=0
+dom_result_exit=0
+
+--------- beginning of main
+10-24 09:20:54.107  3641  3641 I HandoffMap: MAP_INTENT_OPENED
+
+--------- beginning of main
+10-24 09:23:02.517  5480  5497 I HandoffDom: PRIMARY_HANDOFF_OK
+10-24 09:23:05.343  5480  5497 I HandoffDom: EASY_ARRIVAL_ACK_OK
+
+INSTRUMENTATION_STATUS: class=kr.co.ansimdonghaeng.DomFlowTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+kr.co.ansimdonghaeng.DomFlowTest:
+INSTRUMENTATION_STATUS: test=primaryButtonsCompleteBothRolesAndEasyArrival
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=kr.co.ansimdonghaeng.DomFlowTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=primaryButtonsCompleteBothRolesAndEasyArrival
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 21.5
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+2026-10-24T09:13:40.4106015Z # tests 112
+2026-10-24T09:13:40.4107242Z # pass 112
+2026-10-24T09:13:40.4118564Z # fail 0
+2026-10-24T09:15:52.7641305Z BUILD SUCCESSFUL in 1m 2s
+2026-10-24T09:16:38.6256343Z BUILD SUCCESSFUL in 44s

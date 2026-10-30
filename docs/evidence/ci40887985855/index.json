@@ -1,0 +1,84 @@
+{
+  "ci": 40887985855,
+  "source": "8f4aaf93e36e4dd3ab267c09c274dedaca4057a6",
+  "ci_completed_kst": "2026-10-29 23:15:23",
+  "reviewed_on": "2026-10-30",
+  "new_execution": false,
+  "new_capture": false,
+  "images": [
+    {
+      "path": "docs/evidence/ci40887985855/01-address-restored.png",
+      "sha": "7dc88ab7aeda9b387c4ea8dbef1db47e8b51850e",
+      "bytes": 114384,
+      "sha256": "2ceb65f68a8948d364c2b05ea07014280b6e1fd6e20d650d2b61e0f18cf1cbab",
+      "artifact": "ansim-0.4.3-native",
+      "artifact_member": "live-address/04-restored-address.png",
+      "artifact_id": 12903972325,
+      "environment": "Android15 release emulator",
+      "matched_original_zip_member": true
+    },
+    {
+      "path": "docs/evidence/ci40887985855/02-sender-confirmed.png",
+      "sha": "692fec8497f5faa61b89fa15b3cea011b23ecd82",
+      "bytes": 143772,
+      "sha256": "8080b9ca51bd7702cba707d921b769658e60cada0acc9fe00ee75fe4d9ae508b",
+      "artifact": "ansim-0.4.3-native",
+      "artifact_member": "03-sender.png",
+      "artifact_id": 12903972325,
+      "environment": "Android15 release emulator",
+      "matched_original_zip_member": true
+    },
+    {
+      "path": "docs/evidence/ci40887985855/03-facility-completed.png",
+      "sha": "0cdc4b63e058e97aceb304dffe07cc8d20ef1e81",
+      "bytes": 115884,
+      "sha256": "29f7b013aa6c63e9dd35dd8356244ccb8bf8535d8f0a741cc905646124c7921e",
+      "artifact": "ansim-0.4.3-native",
+      "artifact_member": "04-received.png",
+      "artifact_id": 12903972325,
+      "environment": "Android15 release emulator",
+      "matched_original_zip_member": true
+    },
+    {
+      "path": "docs/evidence/ci40887985855/04-guardian-planned-browser.png",
+      "sha": "1075e6bdb628a4fe98e95d31adaf461d35eb728a",
+      "bytes": 68124,
+      "sha256": "bddaae2c8b0f687c65003c7533b84c78da973669e43fb3e6aeea0751649e8211",
+      "artifact": "ansim-0.4.3-build",
+      "artifact_member": "build-reports/v043/tabs/03-guardian.png",
+      "artifact_id": 12904410733,
+      "environment": "Chromium browser",
+      "matched_original_zip_member": true
+    },
+    {
+      "path": "docs/evidence/ci40887985855/05-easy-awaiting-ack.png",
+      "sha": "a0ef166f802d1c93b41650a7c839192721c5f222",
+      "bytes": 105258,
+      "sha256": "63ee23f3b685d20d46cd878c41f9f102478e9b053003b19a6410bb66c85092e2",
+      "artifact": "ansim-0.4.3-native",
+      "artifact_member": "05-easy.png",
+      "artifact_id": 12903972325,
+      "environment": "Android15 release emulator",
+      "matched_original_zip_member": true
+    },
+    {
+      "path": "docs/evidence/ci40887985855/06-easy-acknowledged-browser.png",
+      "sha": "6521d8d6eb3be55f52fc5b52fc0b962ff4e5b879",
+      "bytes": 42173,
+      "sha256": "0613bdb7f8012f916b52d94248fab706b1c0eb8b461c7747c8a598a6a0cefb18",
+      "artifact": "ansim-0.4.3-build",
+      "artifact_member": "build-reports/v043/easy-completion/ack-empty.png",
+      "artifact_id": 12904410733,
+      "environment": "Chromium browser",
+      "matched_original_zip_member": true
+    }
+  ],
+  "logs": [
+    "docs/evidence/ci40887985855/android-dom-junit.txt",
+    "docs/evidence/ci40887985855/android-address-junit.txt",
+    "docs/evidence/ci40887985855/android-ui-results.json",
+    "docs/evidence/ci40887985855/http-ui-results.json",
+    "docs/evidence/ci40887985855/browser-easy-results.json"
+  ],
+  "scope": "Six original CI PNGs with accurate captions; different tests are not one continuous capture; guardian PNG is PLANNED and native easy PNG is before ACK."
+}

@@ -1,0 +1,164 @@
+{
+  "time": "2026-10-29T01:05:47.4127828+09:00",
+  "oldDraftSha256": "80b1450914833d6b9ae214127ed2a3fb97eb8633c707af0d61b5d2f9c0e9a858",
+  "oldDraftUnchanged": true,
+  "newDraftSha256": "f51d9c9550c5fa568977579a0cec113d5c0dfd806645d3b9464587c01e4e1821",
+  "newDraftReadbackEqual": true,
+  "privateHeadersPreserved": true,
+  "headerCount": 4,
+  "attachments": {
+    "value": [
+      {
+        "file": "official-application-v5.docx",
+        "category": "Required application/consent form - signature validity pending",
+        "bytes": 500039,
+        "sha256": "3f0bf3deb7d0469fdae5e31a40bbeecf976089be52934b37ce4e62cabe3401df",
+        "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+        "version": 5,
+        "includedInActualEmail": false
+      },
+      {
+        "file": "official-application-v5.pdf",
+        "category": "Optional readable duplicate of application",
+        "bytes": 759856,
+        "sha256": "2be8816f2b3eebd061d4de4d0aaaa95482ffdd67317e25a5a37fb0c7fa614178",
+        "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+        "version": 5,
+        "includedInActualEmail": false
+      }
+    ],
+    "Count": 2
+  },
+  "candidateChecks": [
+    {
+      "file": "ACCESS_REVIEW.json",
+      "matches": true
+    },
+    {
+      "file": "ansim-platform-0.4.3-candidate.apk",
+      "matches": true
+    },
+    {
+      "file": "ansim-platform-0.4.3-pc.zip",
+      "matches": true
+    },
+    {
+      "file": "ansim-platform-0.4.3-source.zip",
+      "matches": true
+    },
+    {
+      "file": "ci-build-12774967132.zip",
+      "matches": true
+    },
+    {
+      "file": "ci-verification-historical-0755.json",
+      "matches": true
+    },
+    {
+      "file": "DOCUMENT_VERSION_BINDINGS.json",
+      "matches": true
+    },
+    {
+      "file": "HISTORY_R2_SHA256SUMS.txt",
+      "matches": true
+    },
+    {
+      "file": "HISTORY_R3_SHA256SUMS.txt",
+      "matches": true
+    },
+    {
+      "file": "HISTORY_V4_DOCUMENT_GAPS.json",
+      "matches": true
+    },
+    {
+      "file": "manifest.json",
+      "matches": true
+    },
+    {
+      "file": "official-application-v5.docx",
+      "matches": true
+    },
+    {
+      "file": "official-application-v5.pdf",
+      "matches": true
+    },
+    {
+      "file": "official-v5-verification.json",
+      "matches": true
+    },
+    {
+      "file": "README_KO.md",
+      "matches": true
+    },
+    {
+      "file": "release-manifest.txt",
+      "matches": true
+    },
+    {
+      "file": "release-signature.txt",
+      "matches": true
+    },
+    {
+      "file": "source-sha.txt",
+      "matches": true
+    },
+    {
+      "file": "verifyqa-dom-cold-physical.json",
+      "matches": true
+    },
+    {
+      "file": "verifyqa-official-physical.json",
+      "matches": true
+    }
+  ],
+  "installed": [
+    {
+      "package": "kr.co.ansimdonghaeng",
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "matches": true
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa",
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "matches": true
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.qa.test",
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "matches": true
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa",
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "matches": true
+    },
+    {
+      "package": "kr.co.ansimdonghaeng.verifyqa.test",
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "matches": true
+    }
+  ],
+  "lockPresent": false,
+  "instrumentation": [],
+  "sumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+  "readyToSend": false,
+  "mailboxDraftCreated": false,
+  "emailSent": false,
+  "newBuild": 0,
+  "newInstall": 0,
+  "newPhoneUi": 0,
+  "newJUnit": 0,
+  "scope": "Private local review-only email draft revision, no mailbox operation",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "fixedLinkCommit": "67346cf17d58d563fa86382b1536e1fec48b4bb5",
+  "apkBlob": "80cf1a71a50ad5fa2551db1a99171dbcb5c80109",
+  "apkBytes": 5171400,
+  "releaseSha256": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+  "privateValuesPublished": false,
+  "newProductCode": 0,
+  "newCiRequest": 0,
+  "independentQA": false,
+  "slackNewSend": 0,
+  "phonePush": "unverified",
+  "nextTask": "기존 PM AS-M1: 현재 verifyQa930의 실제 주요버튼으로 출발→도착→번호→양측 인계→보호자 완료·별도 콜드 복원을 1회 확인. 기존 DOM시험/이전bd 앱터치와 구분, fresh claim/잠금/동시작업 검사·원앱보존·새빌드설치/실전화기관전송0."
+}

@@ -2,7 +2,7 @@ name: Verified address search and release 0.4.3
 on:
   workflow_dispatch:
   push:
-    branches: [feature/address-ux-0.4.3]
+    branches: [feature/address-ux-0.4.3, feature/pm-api-screen-0.4.3]
     paths: [.github/workflows/release043.yml, web/**, android/**, test/**, package.json, README.md]
 permissions:
   contents: write
@@ -35,20 +35,30 @@ jobs:
       - name: Browser input and role regressions
         timeout-minutes: 4
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
           python3 -m pip install --quiet --disable-pip-version-check playwright==1.57.0
           if ! command -v chromium >/dev/null; then
             ln -s "$(command -v google-chrome)" "$RUNNER_TEMP/chromium"
             export PATH="$RUNNER_TEMP:$PATH"
           fi
+          python3 -u test/easy_completion.py --output build-reports/v043/easy-completion
           python3 -u test/flow040.py --output build-reports/v043/flow
           python3 -u test/role_tabs041.py --output build-reports/v043/tabs
           python3 -u test/address042_mock.py --fixture --output build-reports/v043/address-ui
           timeout -k 5s 90s python3 -u test/flow040_http.py --output build-reports/v043/http
           rm -f build-reports/v043/http/server-private.json
+          npm install --no-save --ignore-scripts --no-audit --no-fund playwright@1.57.0
+          ANSIM_CHROME="$(command -v chromium)" node test/editor_save_busy.cjs
+          ANSIM_CHROME="$(command -v chromium)" node test/readiness_expiry.cjs
+          ANSIM_CHROME="$(command -v chromium)" node test/font_scaling.cjs
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
+      - name: Verify native navigation retry contract
+        run: python3 test/navigation_adapter_retry.py
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
@@ -57,8 +67,6 @@ jobs:
           DEMO_KEYSTORE: ${{ runner.temp }}/preview.jks
           DEMO_STORE_PASSWORD: preview-ci-only
         run: |
-          cp web/*.js web/style.css web/postcode.html android/app/src/main/assets/
-          cp dist/handoff-demo.html android/app/src/main/assets/index.html
           keytool -genkeypair -keystore "$DEMO_KEYSTORE" -storepass "$DEMO_STORE_PASSWORD" -keypass "$DEMO_STORE_PASSWORD" -alias demo -keyalg RSA -keysize 3072 -validity 3650 -dname 'CN=Ansim Preview, O=Contest Prototype, C=KR'
           gradle -p android --no-daemon --max-workers=2 assembleRelease assembleReleaseAndroidTest 2>&1 | tee build-reports/v043/gradle.txt
           mkdir -p apk
@@ -66,12 +74,23 @@ jobs:
           cp android/app/build/outputs/apk/androidTest/release/app-release-androidTest.apk apk/ansim-address-tests.apk
           "$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)" verify --print-certs apk/ansim-platform-0.4.3-preview.apk > build-reports/v043/signature.txt
           sha256sum apk/ansim-platform-0.4.3-preview.apk > build-reports/v043/apk-sha256.txt
+      # Verify actual package metadata before QA handoff.
+      - name: Build isolated coexisting QA package and instrumentation
+        env:
+          DEMO_KEYSTORE: ${{ runner.temp }}/preview.jks
+          DEMO_STORE_PASSWORD: preview-ci-only
+        run: |
+          gradle -p android --no-daemon --max-workers=2 -PansimTestBuildType=deviceQa assembleDeviceQa assembleDeviceQaAndroidTest 2>&1 | tee build-reports/v043/qa-gradle.txt
+          mkdir -p qa-package
+          cp android/app/build/outputs/apk/deviceQa/app-deviceQa.apk qa-package/ansim-platform-0.4.3-qa.apk
+          cp android/app/build/outputs/apk/androidTest/deviceQa/app-deviceQa-androidTest.apk qa-package/ansim-qa-tests.apk
+          python3 tools/qa_package_manifest.py | tee build-reports/v043/qa-package-check.txt
       - name: Package source and PC launcher
         run: |
           python3 - <<'PY'
           import subprocess,zipfile
           from pathlib import Path
-          entries=subprocess.check_output(['git','ls-files','-z','web','android','test','tools','server.js','package.json','README.md','.github','.gitignore','start-demo.cmd','start-demo.sh','PC 실행.cmd']).decode().split('\0')
+          entries=subprocess.check_output(['git','ls-files','-z','web','android','test','tools','docs','server.js','package.json','README.md','.github','.gitignore','start-demo.cmd','start-demo.sh','PC 실행.cmd']).decode().split('\0')
           with zipfile.ZipFile('ansim-platform-0.4.3-source.zip','w',zipfile.ZIP_DEFLATED) as z:
               for item in entries:
                   if item and Path(item).is_file():z.write(item,item)
@@ -86,6 +105,7 @@ jobs:
           path: |
             apk/ansim-platform-0.4.3-preview.apk
             apk/ansim-address-tests.apk
+            qa-package/
             dist/handoff-demo.html
             build-reports/v043/
             ansim-platform-0.4.3-source.zip
@@ -155,6 +175,7 @@ jobs:
           path: native-results/
           retention-days: 14
   publish:
+    if: github.ref == 'refs/heads/feature/address-ux-0.4.3'
     needs: [verify-build, live-address, native-smoke]
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -174,7 +195,8 @@ jobs:
           
           PC는 압축을 풀고 PC 실행.cmd로 실행합니다(Node.js 22 이상). HTML 직접 열기는 공식 주소 반환을 지원하지 않습니다. Android APK에는 별도의 주소 검색 창이 포함됩니다.
           
-          주소만 있을 때는 카카오맵 위치 검색, 좌표가 있으면 길찾기로 연결합니다. Google 지도도 선택할 수 있습니다. 이전 시험판과 서명이 다르면 삭제 후 설치해야 하며 저장 기록이 지워집니다.
+          주소만 있을 때는 카카오맵 위치 검색, 좌표가 있으면 길찾기로 연결합니다. Google 지도도 선택할 수 있습니다. 설치된 앱과 APK의 서명이 다르면 업데이트를 중단합니다. 기존 앱 삭제·데이터 초기화·서명 강제 교체를 하지 말고 기존 기록을 보존합니다. 업데이트 전 패키지·APK 해시·서명과 호환성을 확인하고, 서명 지속성이 확인된 APK로만 진행합니다.
           EOF
           gh release view v0.4.3-preview >/dev/null 2>&1 || gh release create v0.4.3-preview --target '${{ needs.verify-build.outputs.source_sha }}' --prerelease --title '안심동행 플랫폼 0.4.3' --notes-file /tmp/notes.md
           gh release upload v0.4.3-preview release-input/apk/ansim-platform-0.4.3-preview.apk release-input/ansim-platform-0.4.3-pc.zip release-input/ansim-platform-0.4.3-source.zip --clobber
+

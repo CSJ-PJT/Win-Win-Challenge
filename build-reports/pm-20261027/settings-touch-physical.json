@@ -1,0 +1,52 @@
+{
+  "time": "2026-10-27T21:11:20.7626164+09:00",
+  "run": "AS-Q1-PM-20261027T2105",
+  "status": "PM_SELF_QA_SETTINGS_TWO_FIELDS_SAVED_COLD_RESTORED_REVERTED",
+  "appSha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+  "method": "Actual ADB UI taps and keyboard; no DOM/JS/state injection",
+  "editedFields": [
+    "senderName",
+    "guardianName"
+  ],
+  "originalValues": "Both empty",
+  "syntheticValues": [
+    "QA21",
+    "QA22"
+  ],
+  "checks": {
+    "activeVisitEditGuardObserved": true,
+    "changedValuesInPostColdEditor": true,
+    "revertedFieldsMatchBaseline": true,
+    "allFiveInstalledHashesUnchanged": true
+  },
+  "observedFieldCount": 13,
+  "differentFieldIdsAfterRevert": [],
+  "postColdEditorSnapshot": "ui-1793102960802.xml",
+  "uiSnapshots": 17,
+  "coldActivityMs": 320,
+  "coldWaitMs": 322,
+  "earlyColdSnapshotEmpty": true,
+  "revertColdRepeated": false,
+  "junitTests": 0,
+  "newBuild": 0,
+  "newInstall": 0,
+  "originalAppActions": 0,
+  "realCallsInstitutionSend": 0,
+  "qaVisitStateChangedByNormalNewVisit": true,
+  "releasePhysicalPass": false,
+  "independentQa": false,
+  "humanUsabilityApproved": false,
+  "slack": "not sent; outside 09-18",
+  "nextOwner": "existing PM temporary AS-Q1",
+  "nextTask": "Inspect settings invalid-contact validation and edit-cancel preservation through actual UI; no real call or send.",
+  "claimReleased": true,
+  "notes": [
+    "Only senderName and guardianName were edited (initially empty, synthetic QA21/QA22). Not all settings fields were functionally tested.",
+    "Active-visit editor guard/disabled facility inputs observed before normal new synthetic visit.",
+    "After QA-only COLD, reopened editor showed both synthetic values in XML and directly reviewed settings-persisted-private.png.",
+    "Reverted both fields to empty by actual key events, saved, reopened. All13 observed editor field texts match pre-edit baseline; not whole localStorage equality and no second COLD after revert.",
+    "settings-reverted-private.png retained; revert verdict relies on reopened editor XML comparison, not this image alone. Multiple-display capture warning retained.",
+    "Initial immediate post-COLD own-app XML empty retained; settled follow-up read. Activity320ms/Wait322ms are not UI-ready time.",
+    "No phone number input, real calls, institutional sends, JS/DOM/state injection, clear/reset, install, build or JUnit."
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "task_id": "AS-Q1-PM-20261026T0905",
+  "source": "741869b3f7ce8d954cc7d267a69bdfe85b338e9b",
+  "owner": "PM selfQA",
+  "started_at": "2026-10-26T09:10:14.6547911+09:00",
+  "success": true,
+  "before": {
+    "kr.co.ansimdonghaeng.verifyqa": "c5aad9eecc70bf0cac07450e414c582720582ee8286f0b255af5ff46e69eda4b",
+    "kr.co.ansimdonghaeng.qa.test": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+    "kr.co.ansimdonghaeng.qa": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+    "kr.co.ansimdonghaeng": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+    "kr.co.ansimdonghaeng.verifyqa.test": "41900b95a4ef2a1dafb4af45259c95cde5e6cdec2d728ca265af93a1900f7bc2"
+  },
+  "new": {
+    "test": {
+      "install": "Success",
+      "certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test",
+      "sha256": "41900b95a4ef2a1dafb4af45259c95cde5e6cdec2d728ca265af93a1900f7bc2",
+      "bytes": 828956,
+      "signature_verified": true
+    },
+    "app": {
+      "install": "Success",
+      "certificate": "323cea9877c3cef1cae1692efdbe6638f7355a686181a1991e418cdb1975e08e",
+      "package": "kr.co.ansimdonghaeng.verifyqa",
+      "sha256": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+      "bytes": 5170900,
+      "signature_verified": true
+    }
+  },
+  "saved_ui_before": {
+    "address_visible": false,
+    "postcode_visible": false,
+    "xml_sha256": "3514ffc8ac0e5a8a7f85ecaf9c62ace72ace68e8e7130cec221267906523e4ab"
+  },
+  "saved_ui_after": {
+    "address_visible": false,
+    "postcode_visible": false,
+    "xml_sha256": "3514ffc8ac0e5a8a7f85ecaf9c62ace72ace68e8e7130cec221267906523e4ab"
+  },
+  "LiveAddressTest": {
+    "junit_ok": true,
+    "ended_at": "2026-10-26T09:11:04.9264799+09:00",
+    "started_at": "2026-10-26T09:10:47.7644436+09:00"
+  },
+  "DomFlowTest": {
+    "junit_ok": true,
+    "ended_at": "2026-10-26T09:11:14.5940903+09:00",
+    "started_at": "2026-10-26T09:11:04.9302417+09:00"
+  },
+  "after": {
+    "kr.co.ansimdonghaeng.verifyqa": "4edaf75caa62c10f7e5f690149725239d602c68ddad428afc787fcc80b68b88c",
+    "kr.co.ansimdonghaeng.qa.test": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+    "kr.co.ansimdonghaeng.qa": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+    "kr.co.ansimdonghaeng": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+    "kr.co.ansimdonghaeng.verifyqa.test": "41900b95a4ef2a1dafb4af45259c95cde5e6cdec2d728ca265af93a1900f7bc2"
+  },
+  "original3_hashes_preserved": true,
+  "ended_at": "2026-10-26T09:11:15.4012112+09:00",
+  "own_claim_released": true,
+  "junit": {
+    "official_tests": 1,
+    "official_seconds": 16.665,
+    "dom_tests": 1,
+    "dom_seconds": 9.33,
+    "three_markers": true
+  },
+  "assets": {
+    "app_sha256": "6067ad0e9d26e2b426bf5dc42c20eb87abfc82ff325defd7f42abc3b4054541e",
+    "html_sha256": "ebb63dfef4c80fcc46e07d274483eb8816a7f1d4512214b63582d0a376dfed95",
+    "same_as_ci741": true
+  },
+  "build": {
+    "exit": 0,
+    "seconds": 64,
+    "tasks": 73,
+    "initial_failure": "DPAPI text trailing whitespace; trimmed read fixed without generating key",
+    "workspace": "isolated18cc24a-readiness-verifyqa"
+  },
+  "initial_physical_attempt": "ADB argument wrapper split failure before any package query/update; claim released; corrected named array binding",
+  "data_preservation_boundary": "same signer pm install-r and original3 hashes preserved; before/after UI snapshots each6nodes and no address/postcode values, so pre-update saved-field equality NOT verified. Subsequent official test starts a synthetic visit",
+  "test_reinstall_note": "new test APK byte-identical to installed419; same signer reinstalled once; no new test byte version",
+  "new_readiness_10minute_physical_test": false,
+  "independent_qa": false,
+  "release_apk_physical_test": false,
+  "original_documents_read": false,
+  "submitted": false
+}

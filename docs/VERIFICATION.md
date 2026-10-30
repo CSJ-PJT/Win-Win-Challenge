@@ -1,5 +1,7 @@
 # 구현·검증 범위
 
+이 문서는 초기 버전의 과거 검증 기록입니다. 아래의 테스트 수·APK 해시·실행 범위는 당시 소스에만 적용됩니다. 현재 개발 0.4.3의 검증 상태는 [API 검증표](API_VERIFICATION.md), 화면 구성은 [화면설계서](SCREEN_DESIGN.md)를 기준으로 확인합니다.
+
 작성 기준: 2026-10-23. 수행한 시험과 앞으로 필요한 검증을 나눕니다.
 
 ## 로컬 시험
@@ -34,3 +36,4 @@
 - https://document.pleos.ai/en/docs/pleos-only/vehicle-app-developer-guide/driving-restriction-development-guide
 
 문서는 Vehicle State·NaviHelper를 별도 신청 없이 이용 가능한 상태로, FusedLocation·TTS·STT·Vehicle Control은 준비 중으로 안내합니다. 미제공 음성·위치 기능을 구현한 것으로 기재하지 않습니다. 제출 직전에 제공 상태를 재확인합니다.
+

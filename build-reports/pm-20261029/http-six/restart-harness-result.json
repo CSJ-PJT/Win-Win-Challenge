@@ -1,0 +1,143 @@
+{
+  "observed_at": "2026-10-29T11:04:37.650Z",
+  "source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "linux",
+    "transport": "real HTTP loopback 127.0.0.1 ephemeral port",
+    "synthetic_temporary_store_removed": true
+  },
+  "routes": [
+    {
+      "route": "GET /api/health",
+      "status": "PASS"
+    },
+    {
+      "route": "GET /api/bootstrap",
+      "status": "PASS"
+    },
+    {
+      "route": "GET /api/state",
+      "status": "PASS"
+    },
+    {
+      "route": "GET /api/places",
+      "status": "FAIL",
+      "message": "GET /api/places?query=서울 status\n\n401 !== 200\n"
+    }
+  ],
+  "route_pass": 3,
+  "route_total": 6,
+  "http_requests": 16,
+  "assertions": 35,
+  "map_fixture_calls": 0,
+  "real_external_service_calls": 0,
+  "physical_phone_tests": 0,
+  "new_builds": 0,
+  "new_installs": 0,
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 403,
+      "error": "LOCAL_ONLY"
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 403,
+      "error": "ORIGIN"
+    },
+    {
+      "method": "GET",
+      "path": "/api/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 401,
+      "error": "UNAUTHORIZED"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 401,
+      "error": "UNAUTHORIZED"
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/state",
+      "status": 200,
+      "state": "PLANNED",
+      "version": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/unknown",
+      "status": 404,
+      "error": "NOT_FOUND"
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=서울",
+      "status": 401,
+      "error": "UNAUTHORIZED"
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=a",
+      "status": 400,
+      "error": "QUERY"
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=서울",
+      "status": 503,
+      "error": "MAP_NOT_CONFIGURED"
+    },
+    {
+      "method": "GET",
+      "path": "/api/places?query=서울",
+      "status": 401,
+      "error": "UNAUTHORIZED"
+    }
+  ],
+  "failure": {
+    "name": "AssertionError",
+    "message": "GET /api/places?query=서울 status\n\n401 !== 200\n"
+  }
+}

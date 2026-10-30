@@ -1,0 +1,100 @@
+{
+  "time": "2026-10-29T10:05:00+09:00",
+  "owner": "기존 PM AS-M1",
+  "scope": "official rendered web pages and GitHub evidence review; not raw HTTP byte/hash comparison",
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "reviewHead": "541bbde903d9530ce67baaf472a6a4ff4a85b595",
+  "pages": [
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/guide/submission",
+      "read": true
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice",
+      "read": true
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/faq",
+      "read": true
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/guide/rules",
+      "read": true
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/guide/schedule",
+      "read": true
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000006",
+      "read": true
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000001",
+      "read": true
+    },
+    {
+      "url": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005",
+      "read": true
+    }
+  ],
+  "noticeCount": 3,
+  "noticeIds": [
+    "c0a1a000-2026-4923-8000-000000000006",
+    "c0a1a000-2026-4923-8000-000000000001",
+    "c0a1a000-2026-4923-8000-000000000005"
+  ],
+  "changedConditionFound": false,
+  "rawHtmlEqualityVerified": false,
+  "findings": {
+    "deadline": "2026-11-15 KST",
+    "deadlineClockTime": "NOT_FOUND_IN_REVIEWED_PAGES",
+    "proposalOnlyFirstRoundAllowed": true,
+    "optionalDevelopmentMaterials": true,
+    "stage2Demo": "actual working app; emulator or device demonstration stated in participation notice",
+    "privateRepo": "official judge account collaboration and access verification required; exact ID not found",
+    "typedSignatureAcceptance": "NOT_CONFIRMED",
+    "replayUrl": "NOT_FOUND_IN_REVIEWED_PAGES",
+    "briefingActualHeld": "NOT_VERIFIED; page still says planned",
+    "signatureConsentRequired": true
+  },
+  "officialDomainSearch": {
+    "queries": [
+      "site:appdevchallenge.auto-hmg.io \"심사용\" \"GitHub\"",
+      "site:appdevchallenge.auto-hmg.io \"다시보기\""
+    ],
+    "result": "no exact judge ID or replay URL found; unrelated news ignored"
+  },
+  "candidateState": {
+    "ready": false,
+    "readyToSend": false,
+    "actualSubmission": false,
+    "freshCandidateHashCheck": false,
+    "lastPhysicalPreservation": "2026-10-29 05:07:07 KST"
+  },
+  "remote": {
+    "retried": false,
+    "reconnected": false,
+    "bypass": false,
+    "localOpsSynced": false,
+    "freshDeviceState": false
+  },
+  "slack": {
+    "searchDate": "2026-10-29",
+    "postsFound": 0,
+    "successVerified": false,
+    "senderRunVerified": false,
+    "queueFileWritten": false,
+    "newSend": 0,
+    "phonePush": "UNVERIFIED"
+  },
+  "newProductCode": 0,
+  "newBuild": 0,
+  "newInstall": 0,
+  "newPhoneTest": 0,
+  "newJUnit": 0,
+  "newCiRequest": 0,
+  "formalDocumentRead": false,
+  "formalDocumentEdited": false,
+  "nextSingleOwner": "기존 PM AS-M1: 현재 README의 실행환경·APK 경로·데이터 보존 업데이트 안내가 실제 소스/스크립트 및 제출 조건과 일치하는지 검수하고 근거 있는 문구 차이만 보완. 새 빌드/설치·키/권한/비용·공개게시·실제 제출 없이 수행. IT13 원격 재시도/재연결/우회와 원장 동기화는 공식 사용 가능 상태 확인 전 보류."
+}

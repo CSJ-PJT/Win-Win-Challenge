@@ -1,0 +1,172 @@
+{
+  "time": "2026-10-28T02:59:00.3986689+09:00",
+  "run": "AS-M1-PM-20261028T0256",
+  "pmHead": "ef6a898fd8d17ff31a8e994f90b2b6c0b2d2ce34",
+  "productSource": "f1164b04dc267260771ce3ffcc674247053f56e7",
+  "sourceZipHeadPins": [
+    {
+      "path": "android/app/build.gradle",
+      "expectedGitBlob": "17a5a98fe098a600008349672b4796b4a9a6653b",
+      "matches": true,
+      "actualGitBlob": "17a5a98fe098a600008349672b4796b4a9a6653b"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "expectedGitBlob": "35f66163ea9446fe31f34d0a2553c96da7afd760",
+      "matches": true,
+      "actualGitBlob": "35f66163ea9446fe31f34d0a2553c96da7afd760"
+    },
+    {
+      "path": "android/app/src/main/java/kr/co/ansimdonghaeng/CarRestrictionMonitor.java",
+      "expectedGitBlob": "bb2bb09bafb40a56e195cd7910e259b16b571a85",
+      "matches": true,
+      "actualGitBlob": "bb2bb09bafb40a56e195cd7910e259b16b571a85"
+    },
+    {
+      "path": "android/app/src/main/java/kr/co/ansimdonghaeng/MainActivity.java",
+      "expectedGitBlob": "705694f43c830d2976d9bb9d9d35fad99c2538ac",
+      "matches": true,
+      "actualGitBlob": "705694f43c830d2976d9bb9d9d35fad99c2538ac"
+    },
+    {
+      "path": "android/app/src/main/java/kr/co/ansimdonghaeng/NavigationAdapter.java",
+      "expectedGitBlob": "32b2246225d0afb3304eee8520e2aed52d21465d",
+      "matches": true,
+      "actualGitBlob": "32b2246225d0afb3304eee8520e2aed52d21465d"
+    },
+    {
+      "path": "android/app/src/main/java/kr/co/ansimdonghaeng/RouteFactory.kt",
+      "expectedGitBlob": "aff62046b9b327338b555d0e6a64b91298c2e6f7",
+      "matches": true,
+      "actualGitBlob": "aff62046b9b327338b555d0e6a64b91298c2e6f7"
+    },
+    {
+      "path": "android/build.gradle",
+      "expectedGitBlob": "3035b488d80516c0ee064965f49bb1c6de904456",
+      "matches": true,
+      "actualGitBlob": "3035b488d80516c0ee064965f49bb1c6de904456"
+    },
+    {
+      "path": "android/settings.gradle",
+      "expectedGitBlob": "2b42586e9aa7888e6e4b7cec518d81caeab3b239",
+      "matches": true,
+      "actualGitBlob": "2b42586e9aa7888e6e4b7cec518d81caeab3b239"
+    }
+  ],
+  "apkSha256": "75b531853370698e198889457fa6a2c6c55e78cd88e3efc3a7ffb0ae864dd100",
+  "aaptExit": 0,
+  "manifestEvidenceFile": "release-manifest.txt",
+  "device": {
+    "automotiveFeature": "false",
+    "naviPackagePath": [],
+    "naviPackageExit": 1,
+    "naviServiceQuery": [
+      "No services found"
+    ],
+    "naviServiceQueryExit": 0,
+    "carService": [
+      "Service car_service: not found"
+    ],
+    "carServiceExit": 0,
+    "routePermissionDeclarationMatches": 0
+  },
+  "installed": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "installedChangedCount": 0,
+  "candidateChecksums": 16,
+  "candidateSumsSha256": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+  "lockExists": false,
+  "newBuild": 0,
+  "newInstall": 0,
+  "newCiRequests": 0,
+  "phoneUi": 0,
+  "junit": 0,
+  "realRouteRequested": 0,
+  "permissionsGranted": 0,
+  "newAccountOrSdkRequest": 0,
+  "formalDocsEdited": 0,
+  "candidateEdited": 0,
+  "slackSent": 0,
+  "actualSubmission": 0,
+  "vehicleSdkConnected": false,
+  "pleosRouteCompleted": false,
+  "aaosPhysicalPassed": false,
+  "initialAaptUnicodePathFailed": true,
+  "asciiStagingHashMatched": true,
+  "scopeLimit": "Exact package/service/feature checks on current phone only. Does not prove absence of another project environment, account, authorization or SDK globally.",
+  "officialReferences": [
+    {
+      "url": "https://document.pleos.ai/docs/connect/guide/getting-started/application-development/setup-connect-sdk-emulator",
+      "finding": "API28+,Gradle8+,Java/Kotlin; Pleos Emulator2.1.0/API34. Generic Android15 phone emulator is separate."
+    },
+    {
+      "url": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/NaviHelper/importing-sdk",
+      "finding": "Maven nexus-playground maven-releases; NaviHelper3.0.5 matches current source."
+    },
+    {
+      "url": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/NaviHelper/declaring-permissions",
+      "finding": "requestRoute requires NAVI_ROUTE_SEARCH; actual APK declares it."
+    },
+    {
+      "url": "https://document.pleos.ai/docs/pleos-only/create-my-project",
+      "finding": "Vehicle State and NaviHelper are available without SDK usage application; FusedLocation/TTS/STT/Vehicle Control listed as preparing. Account/project status not inspected or changed."
+    },
+    {
+      "url": "https://document.pleos.ai/docs/pleos-only/vehicle-app-developer-guide/driving-restriction-development-guide",
+      "finding": "Use CarUxRestrictionsManager notifications and actual platform ActiveRestrictions, not guessed gear/speed conditions."
+    },
+    {
+      "url": "https://document.pleos.ai/docs/pleos-only/vehicle-app-planning-guide/driving-restiction-policy",
+      "finding": "Without DO declaration, parked available/driving unavailable. App keeps DO absent and conservative blanket UI lock."
+    },
+    {
+      "url": "https://developer.android.com/training/cars/platforms/automotive-os",
+      "finding": "AAOS differs from generic Android; automotive feature and platform UX restrictions matter; Google Play distribution rules are not Pleos contest approval."
+    },
+    {
+      "url": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/NaviHelper/initialization-and-release",
+      "finding": "Connected/failed callbacks; removeListener then release, recreate/init after release. Actual runtime retry coverage remains separate."
+    }
+  ],
+  "sourceConclusions": {
+    "naviHelperDependency": "ai.pleos.playground:NaviHelper:3.0.5",
+    "minSdk": 28,
+    "targetSdk": 35,
+    "ciGradle": "8.11.1",
+    "automotiveRequired": false,
+    "nativeSdkRoute": "fixed official sample only; not stored destination navigation",
+    "vehicleStateDirectDependency": false,
+    "fusedLocationDirectDependency": false,
+    "doDeclared": false,
+    "guardExpression": "automotive && uxKnown && !uxRestricted",
+    "sdkApplicationRequiredForNaviHelper": false
+  },
+  "nextOwner": "existing PM",
+  "nextTask": "기존 PM이 NaviHelper 초기 연결 실패 후 재시도 경로를 현재 NavigationAdapter 코드와 공식 콜백 계약으로 진단합니다. initialized 상태 유지의 실제 영향은 미확정으로 두고, 서비스/차량 상태 강제 허용이나 불필요한 빌드 없이 재현 가능한 검증 범위를 정합니다.",
+  "independentQaApproved": false
+}

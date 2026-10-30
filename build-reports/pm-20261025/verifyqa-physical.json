@@ -1,0 +1,68 @@
+{
+  "checked_at": "2026-10-25T11:59:54+09:00",
+  "task_id": "AS-Q1-PM-20261025T1156",
+  "source_commit": "722a366eea91188110c70b0051fada2719f0f84c",
+  "product_source": "9c277ce5bcb1c7b79b2a5ce5871a8302343dd4fe",
+  "environment": "Samsung SM-F936N Android16 API36 physical",
+  "app": {
+    "package": "kr.co.ansimdonghaeng.verifyqa",
+    "sha256": "18c999d1b3e7969e54d4985eb57224428b5965947d390f00feaad11cd136f21a",
+    "bytes": 5170172
+  },
+  "test": {
+    "package": "kr.co.ansimdonghaeng.verifyqa.test",
+    "sha256": "42f683a58352037bf8bc910aa8074db6bc29423e7913589015bf2cfcc41e21ef",
+    "bytes": 816852
+  },
+  "official": {
+    "junit": "OK (1 test)",
+    "seconds": 14.248,
+    "marker": "LIVE_POSTCODE_ROUNDTRIP_OK",
+    "time": "2026-10-25T11:57:56+09:00",
+    "log_sha256": "8a269ec0c6d6124fb6f869a815852eb133c4f2443d86180a86672c4d9faf956b"
+  },
+  "dom": {
+    "junit": "OK (1 test)",
+    "seconds": 9.436,
+    "markers": [
+      "PRIMARY_HANDOFF_OK",
+      "EASY_ARRIVAL_ACK_OK"
+    ],
+    "time": "2026-10-25T11:58:24–11:58:27+09:00",
+    "log_sha256": "dafe4d9345380bcd8ad92f52a119a206825183de003f36ec936f44a49128b590"
+  },
+  "cold": {
+    "state": "COLD",
+    "total_ms": 279,
+    "ack_persisted": true,
+    "scope": "easy completion ACK only; not official-selected-address process cold proof",
+    "log_sha256": "18bde94273f66c6a916d7b9640097be328435fce53091972dca6e5448081093f"
+  },
+  "visual": {
+    "direct_review": true,
+    "large_korean_ack": true,
+    "blank_address_instruction": false,
+    "disabled_setup_buttons": false,
+    "next_visit_button_text": "다른 방문 시작하기",
+    "screenshot_sha256": "663d26651db5c193849781c3ff061a9b7eba4b46493d43c3a85073d17a825f75",
+    "original_capture": "private IT13 QA result folder; not published"
+  },
+  "preserved": {
+    "original_sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+    "old_qa_sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+    "old_test_sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+    "uninstall_clear_forced_update": false
+  },
+  "owner": "existing Ansim PM temporary AS-Q1 selfQA",
+  "claim_released": true,
+  "independent_qa_approval": false,
+  "release_binary_physical_pass": false,
+  "latest_ci": {
+    "run": 40153200618,
+    "source": "722a366eea91188110c70b0051fada2719f0f84c",
+    "start_kst": "2026-10-25 11:06:41",
+    "end_kst": "2026-10-25 11:16:16",
+    "jobs": "verify-build/live-address/native-smoke success;publish skipped",
+    "scope": "CI release/emulator and deviceQa build; separate from local verifyQa physical bytes"
+  }
+}

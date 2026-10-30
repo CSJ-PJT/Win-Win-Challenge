@@ -1,0 +1,210 @@
+{
+  "started": "2026-10-28T20:57:28.9430505+09:00",
+  "fiveHashesUnchanged": true,
+  "owner": "AS-Q1-PM-20261028T2055",
+  "installs": 0,
+  "junitRuns": 1,
+  "junitSeconds": 2.085,
+  "newBuild": 0,
+  "junitPass": true,
+  "status": "PASS_SCOPED",
+  "finished": "2026-10-28T20:57:36.2039249+09:00",
+  "scope": "PM self QA current verifyQa actual ACTION_DIAL screen dispatch, QA return and localStorage preservation",
+  "installedFinal": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "dialIntentObserved": true,
+  "instrumentExit": 0,
+  "returnedAndSavedStateUnchanged": true,
+  "originalAppDataTouched": false,
+  "source": "99d5da02f20d3523d55897795d1f4a6b1fb1690a",
+  "apkSha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+  "testApkSha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+  "package": "kr.co.ansimdonghaeng.verifyqa",
+  "testPackage": "kr.co.ansimdonghaeng.verifyqa.test",
+  "markers": [
+    {
+      "time": "2026-10-28T20:57:31.942+09:00",
+      "name": "ACTION_DIAL_OBSERVED DIALER_PACKAGE_VISIBLE NO_CALL_ACTION"
+    },
+    {
+      "time": "2026-10-28T20:57:32.273+09:00",
+      "name": "DIALER_BRIDGE_OK RETURNED_TO_QA SAVED_STATE_UNCHANGED"
+    }
+  ],
+  "preservation": {
+    "time": "2026-10-28T21:00:32.9011216+09:00",
+    "installed": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "matches": true,
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "matches": true,
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "matches": true,
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "93000752f021cad53d6ec8d05329e372a3e69988bbbb3483f150a33a3f809045",
+        "matches": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "dacb173a0e729eb0c74613b653697f55fc2adb62c652b477ead7d904cfaa1ae7",
+        "matches": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "checks": [
+      {
+        "matches": true,
+        "sha256": "6fd382e660a10ab28c939b04c8c3886c4295b77f54b7589bb200fa0ac3eb0859",
+        "file": "ACCESS_REVIEW.json"
+      },
+      {
+        "matches": true,
+        "sha256": "f3b8c7012f243161a1acd9c1394b29f9849839c0219eb4ad24722ad90e87df3f",
+        "file": "ansim-platform-0.4.3-candidate.apk"
+      },
+      {
+        "matches": true,
+        "sha256": "d25756aaef64149debfe016493ff7c8775b1a47cdd36a65eefe7d127f779b0f0",
+        "file": "ansim-platform-0.4.3-pc.zip"
+      },
+      {
+        "matches": true,
+        "sha256": "e9a62dfa3cd64e33eb5a3792b366dd94b9c31e176a2f612cd7f9a4a093990217",
+        "file": "ansim-platform-0.4.3-source.zip"
+      },
+      {
+        "matches": true,
+        "sha256": "be0cfdf5fe234b3212a7822a347a93279e31589324e232465403a4f785cc0687",
+        "file": "ci-build-12774967132.zip"
+      },
+      {
+        "matches": true,
+        "sha256": "976c777d3a994926b90876960cf6043c2474c45a45bff1c5529cd1e5a722dfac",
+        "file": "ci-verification-historical-0755.json"
+      },
+      {
+        "matches": true,
+        "sha256": "f7d7030a0083613c535ced49090dc11e06132b88bb39da844eda0ecd2e6ecfcd",
+        "file": "DOCUMENT_VERSION_BINDINGS.json"
+      },
+      {
+        "matches": true,
+        "sha256": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+        "file": "HISTORY_R2_SHA256SUMS.txt"
+      },
+      {
+        "matches": true,
+        "sha256": "7e0b9a0334471849166b7b5389b9bda60cf87a4957053191ce0ff2c8ffe7f8b9",
+        "file": "HISTORY_R3_SHA256SUMS.txt"
+      },
+      {
+        "matches": true,
+        "sha256": "48916c3d1eeda7061ee8d7a13094ce9246f5bc5a8ef39dfce2fc19b03b5623b7",
+        "file": "HISTORY_V4_DOCUMENT_GAPS.json"
+      },
+      {
+        "matches": true,
+        "sha256": "aec08bf4ca08d18cb948f2e3f8698af3d39f79b8a724a43bbd3105ed9220b09f",
+        "file": "manifest.json"
+      },
+      {
+        "matches": true,
+        "sha256": "3f0bf3deb7d0469fdae5e31a40bbeecf976089be52934b37ce4e62cabe3401df",
+        "file": "official-application-v5.docx"
+      },
+      {
+        "matches": true,
+        "sha256": "2be8816f2b3eebd061d4de4d0aaaa95482ffdd67317e25a5a37fb0c7fa614178",
+        "file": "official-application-v5.pdf"
+      },
+      {
+        "matches": true,
+        "sha256": "31d71250c62bf768f6f4ea489c5abaa6ee6833c850f7f05a5143f368ee8e6388",
+        "file": "official-v5-verification.json"
+      },
+      {
+        "matches": true,
+        "sha256": "8494bddb8c81bb846918fddbea811a33392d0445bdf33a60a2d16fdece5cda4e",
+        "file": "README_KO.md"
+      },
+      {
+        "matches": true,
+        "sha256": "4fe4fd217818415d63bece2f8b0823e92552ee0f31558a49cd1e3c7a7bd30f72",
+        "file": "release-manifest.txt"
+      },
+      {
+        "matches": true,
+        "sha256": "1dcce65e7c307d263f8878520f43410f7117db2ab1b5be9317fb0aeba8236e88",
+        "file": "release-signature.txt"
+      },
+      {
+        "matches": true,
+        "sha256": "99acd77854090c6be39d28e3ce0bfe201101486d64bb67afff4437b34837381e",
+        "file": "source-sha.txt"
+      },
+      {
+        "matches": true,
+        "sha256": "f785d81770fb3c2465b5a0366cb4e055315643ba8ed9a0ba9bbeea1bb64e1233",
+        "file": "verifyqa-dom-cold-physical.json"
+      },
+      {
+        "matches": true,
+        "sha256": "190cfc9ef63e9eeaaf2b763c1c29462cee8f04ab06618f23a5d703211de86fa5",
+        "file": "verifyqa-official-physical.json"
+      }
+    ],
+    "sumsSha256": "419f736acdfef6b4f5ad9c1567c21940730f09d32b5339928d009d7aaff4d31a",
+    "lockExists": false,
+    "activeInstrumentation": [],
+    "writers": [],
+    "scope": "Post-JUnit read-only preservation; no repeat test/install/UI",
+    "helperRecovery": "Initial read_file error text mistakenly became helper. Original preserve.ps1 retained; fresh explicit PowerShell followup used."
+  },
+  "claimReleasedAt": "2026-10-28T20:57:36.2175719+09:00",
+  "notEstablished": [
+    "physical release f3b8 execution",
+    "independent QA approval",
+    "primary contact button usability",
+    "real call/institution notification",
+    "AAOS/Pleos/real vehicle",
+    "authenticated REST or institution/cloud integration",
+    "actual submission"
+  ],
+  "nextOwner": "existing PM (AS-M1)",
+  "nextSingleTask": "Current verifyQa930 saved public destination major map button: actual external map display and explicit QA return under fresh claim; no route start or real institution contact.",
+  "slack": {
+    "newSend": 0,
+    "previous18Slot": "1793178691.875909",
+    "previous18ChannelSearchConfirmed": true,
+    "phonePush": "unverified"
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "slot": "2026-10-29T15:00:00+09:00",
+  "observed_at": "2026-10-29T15:05:04.259561+09:00",
+  "owner": "existing PM AS-M1",
+  "source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "ci": {
+    "id": 40820861095,
+    "conclusion": "success",
+    "completed_at": "2026-10-29T14:10:44+09:00",
+    "jobs": [
+      {
+        "id": 123272759923,
+        "name": "verify-build",
+        "conclusion": "success"
+      },
+      {
+        "id": 123274091894,
+        "name": "live-address",
+        "conclusion": "success"
+      },
+      {
+        "id": 123274091961,
+        "name": "native-smoke",
+        "conclusion": "success"
+      },
+      {
+        "id": 123275962568,
+        "name": "publish",
+        "conclusion": "skipped"
+      }
+    ],
+    "artifacts": [
+      {
+        "id": 12875230367,
+        "name": "ansim-0.4.3-native",
+        "size": 1295988,
+        "digest": "sha256:492c6d04469abd5c38e8298ed4881feba94012ecf7d3344bfa55546a9129a581",
+        "download_sha256_matched": true
+      },
+      {
+        "id": 12874811774,
+        "name": "ansim-0.4.3-live-address",
+        "size": 205402,
+        "digest": "sha256:e76dbf4f1f51cbbd4f36560825b824e168ebe52aedf3b0574afea7657a2c0828",
+        "download_sha256_matched": true
+      },
+      {
+        "id": 12874712481,
+        "name": "ansim-0.4.3-build",
+        "size": 6138506,
+        "digest": "sha256:6f441d68bd57d7b85b5ea66b2ed3c35e7207f00716c50892ecfa8297eb474630",
+        "download_sha256_matched": true
+      }
+    ]
+  },
+  "verification": {
+    "node": {
+      "pass": 131,
+      "total": 131,
+      "log_summary": [
+        "1..131",
+        "# tests 131",
+        "# suites 0",
+        "# pass 131",
+        "# fail 0",
+        "# cancelled 0",
+        "# skipped 0",
+        "# todo 0",
+        "# duration_ms 2467.044959"
+      ]
+    },
+    "browser_address_mock": {
+      "pass": 10,
+      "total": 10,
+      "errors": [],
+      "checks": [
+        "search opens inside the app even when no address was entered",
+        "cancel preserves unsaved contact, request, map and font preferences",
+        "selected result populates the draft but does not silently save",
+        "postcode, detail address and pre-existing contacts persist together and appear before departure",
+        "address-only Kakao link is labelled accurately and uses the selected map",
+        "saved address is reflected in rendered state",
+        "editing an address discards the previous postcode and coordinates",
+        "embedded address sheet remains usable with enlarged text on narrow screens",
+        "offline SDK failure offers retry and returns to the unchanged draft",
+        "no application JavaScript errors"
+      ],
+      "meaning": "Real CI Chromium with mocked SDK responses; not official-provider calls"
+    },
+    "browser_live": {
+      "mode": "live-official-network",
+      "passed": [
+        "pc-launcher: real search result selected, address and postcode returned and saved",
+        "pc-launcher: saved live result survives reload",
+        "pc-launcher: Kakao map displays the actual saved address",
+        "http-server: real search result selected, address and postcode returned and saved",
+        "http-server: saved live result survives reload",
+        "http-server: Kakao map displays the actual saved address",
+        "direct file opening shows the supported launcher rather than an unusable search result"
+      ],
+      "networkFailures": [],
+      "traffic": [
+        {
+          "url": "https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js",
+          "status": 200
+        },
+        {
+          "url": "http://postcode.map.kakao.com/search",
+          "status": 302
+        },
+        {
+          "url": "https://postcode.map.kakao.com/search",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/postcode/cssjs/service/1782746612907/service.v2.min.css",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/postcode/cssjs/service/1782746612907/service.v2.min.js",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/tiara/js/v1/tiara.min.js",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/postcode/cssjs/lib/jquery-1.12.4.min.js",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/postcode/resource/images/dark_320.png",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js",
+          "status": 200
+        },
+        {
+          "url": "https://postcode.map.kakao.com/search",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/postcode/cssjs/service/1782746612907/service.v2.min.css",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/tiara/js/v1/tiara.min.js",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/postcode/cssjs/lib/jquery-1.12.4.min.js",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/postcode/resource/images/dark_320.png",
+          "status": 200
+        },
+        {
+          "url": "https://t1.kakaocdn.net/postcode/cssjs/service/1782746612907/service.v2.min.js",
+          "status": 200
+        }
+      ]
+    },
+    "android15_release": {
+      "package": "kr.co.ansimdonghaeng",
+      "sha256": "2ce05b85013b25291131267343e3f1b692d79b874de47137f99ff1dc45006752",
+      "address_junit": {
+        "pass": 1,
+        "total": 1,
+        "seconds": 66.281
+      },
+      "dom_junit": {
+        "pass": 1,
+        "total": 1,
+        "seconds": 19.444
+      },
+      "native_ui": {
+        "checks": [
+          "selected official Korean address remains saved on the device",
+          "maps intent opens from a saved address without an API key",
+          "sender confirmation is independently recorded",
+          "facility tab displays its independent reception screen",
+          "receiver finishes the handoff",
+          "guardian sees completed status",
+          "large-button arrival flow works"
+        ],
+        "passed": 7
+      },
+      "scope": "Android15 x86_64 emulator release; not physical phone or independent QA"
+    },
+    "apk_byte_inspection": {
+      "observed_at": "2026-10-29T15:05:04.259561+09:00",
+      "apks": [
+        {
+          "file": "apk/ansim-platform-0.4.3-preview.apk",
+          "bytes": 5171460,
+          "sha256": "2ce05b85013b25291131267343e3f1b692d79b874de47137f99ff1dc45006752",
+          "v2_certificate_sha256_extracted": "96c6ed6561653a9466ffcfbc22ed5500f837bae201e2a31c7a5c48cec2a69784",
+          "manifest": {
+            "manifest": {
+              "versionCode": 9,
+              "versionName": "0.4.3",
+              "compileSdkVersion": 35,
+              "compileSdkVersionCodename": "15",
+              "package": "kr.co.ansimdonghaeng",
+              "platformBuildVersionCode": 35,
+              "platformBuildVersionName": 15
+            },
+            "application": {
+              "theme": 2131296256,
+              "label": "안심동행 플랫폼",
+              "allowBackup": false,
+              "supportsRtl": true,
+              "extractNativeLibs": false,
+              "usesCleartextTraffic": false,
+              "appComponentFactory": "androidx.core.app.CoreComponentFactory"
+            }
+          },
+          "assets": {
+            "assets/address.js": "49c8b523f9038ed2d8dbe6509d79b975f930b78b1ef94bd1fb0a8c0905280800",
+            "assets/app.js": "54091d5fce7a2b65f6522a5a16a691ac77bd5d110c9c71875e0fac86a2fbb02c",
+            "assets/config.js": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+            "assets/core.js": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+            "assets/index.html": "2c277ef9e885f0c4fdfa36abd721d05d8ab75cfb7462c63173707fec18e3c8f6",
+            "assets/postcode.html": "60d789933a252a47d6c4b7b2c8188e097b8615e18b87882215618ed1a1680d7f",
+            "assets/style.css": "1f44836f5bd9e6b2b802aa89601ded5d80f04100223bdaf516905906495b439e",
+            "assets/ui.js": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851"
+          },
+          "cancellation_present": true
+        },
+        {
+          "file": "apk/ansim-address-tests.apk",
+          "bytes": 829220,
+          "sha256": "3c090252e00141efb83ec54a82d8163082d4cf9aa5375438b74e4b2eed2221a0",
+          "v2_certificate_sha256_extracted": "96c6ed6561653a9466ffcfbc22ed5500f837bae201e2a31c7a5c48cec2a69784",
+          "manifest": {
+            "manifest": {
+              "compileSdkVersion": 35,
+              "compileSdkVersionCodename": "15",
+              "package": "kr.co.ansimdonghaeng.test",
+              "platformBuildVersionCode": 35,
+              "platformBuildVersionName": 15
+            },
+            "instrumentation": {
+              "label": "Tests for kr.co.ansimdonghaeng",
+              "name": "androidx.test.runner.AndroidJUnitRunner",
+              "targetPackage": "kr.co.ansimdonghaeng",
+              "handleProfiling": false,
+              "functionalTest": false
+            },
+            "application": {
+              "extractNativeLibs": false
+            }
+          },
+          "assets": {}
+        },
+        {
+          "file": "qa-package/ansim-platform-0.4.3-qa.apk",
+          "bytes": 5171480,
+          "sha256": "c6a9686fe193fb5a75b17d781b1996ea87d625c8ebf6b0977ac30626f574f470",
+          "v2_certificate_sha256_extracted": "96c6ed6561653a9466ffcfbc22ed5500f837bae201e2a31c7a5c48cec2a69784",
+          "manifest": {
+            "manifest": {
+              "versionCode": 9,
+              "versionName": "0.4.3-qa",
+              "compileSdkVersion": 35,
+              "compileSdkVersionCodename": "15",
+              "package": "kr.co.ansimdonghaeng.qa",
+              "platformBuildVersionCode": 35,
+              "platformBuildVersionName": 15
+            },
+            "application": {
+              "theme": 2131296256,
+              "label": "안심동행 QA",
+              "allowBackup": false,
+              "supportsRtl": true,
+              "extractNativeLibs": false,
+              "usesCleartextTraffic": false,
+              "appComponentFactory": "androidx.core.app.CoreComponentFactory"
+            }
+          },
+          "assets": {
+            "assets/address.js": "49c8b523f9038ed2d8dbe6509d79b975f930b78b1ef94bd1fb0a8c0905280800",
+            "assets/app.js": "54091d5fce7a2b65f6522a5a16a691ac77bd5d110c9c71875e0fac86a2fbb02c",
+            "assets/config.js": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87",
+            "assets/core.js": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65",
+            "assets/index.html": "2c277ef9e885f0c4fdfa36abd721d05d8ab75cfb7462c63173707fec18e3c8f6",
+            "assets/postcode.html": "60d789933a252a47d6c4b7b2c8188e097b8615e18b87882215618ed1a1680d7f",
+            "assets/style.css": "1f44836f5bd9e6b2b802aa89601ded5d80f04100223bdaf516905906495b439e",
+            "assets/ui.js": "8c924294aea2abd64bd3a8e14cfbe658375bde8e6e8917aba13e647a0b735851"
+          },
+          "cancellation_present": true
+        },
+        {
+          "file": "qa-package/ansim-qa-tests.apk",
+          "bytes": 829244,
+          "sha256": "7c53f0c8fa80b93f5005d4d5cc9161271241b6ec10125a7be976c50e8a98e2e1",
+          "v2_certificate_sha256_extracted": "96c6ed6561653a9466ffcfbc22ed5500f837bae201e2a31c7a5c48cec2a69784",
+          "manifest": {
+            "manifest": {
+              "compileSdkVersion": 35,
+              "compileSdkVersionCodename": "15",
+              "package": "kr.co.ansimdonghaeng.qa.test",
+              "platformBuildVersionCode": 35,
+              "platformBuildVersionName": 15
+            },
+            "instrumentation": {
+              "label": "Tests for kr.co.ansimdonghaeng.qa",
+              "name": "androidx.test.runner.AndroidJUnitRunner",
+              "targetPackage": "kr.co.ansimdonghaeng.qa",
+              "handleProfiling": false,
+              "functionalTest": false
+            },
+            "application": {
+              "extractNativeLibs": false
+            }
+          },
+          "assets": {}
+        }
+      ],
+      "source_app_sha256": "54091d5fce7a2b65f6522a5a16a691ac77bd5d110c9c71875e0fac86a2fbb02c",
+      "source_contains_both_fixes": true,
+      "assets_identical": true,
+      "asset_count": 8,
+      "local_signature_verification": "certificate extracted only, no cryptographic verifier locally; CI apksigner results are separate"
+    },
+    "signature_scope": "Local read-only v2 certificate extraction, no local cryptographic apksigner. Separate CI qa-package manifest and successful apksigner steps validate signing; extracted digest agrees. No lineage/upgrade authorization inferred.",
+    "restored_screen": "Viewed actual CI live-address/04-restored-address.png: saved Seoul address/postcode/visit-start UI visible. Not a new physical observation.",
+    "source_zip_sha256": "9169e4d18bc09764504cb70d4c2ba8db29e59c45e8fbef69b2d9be5affd578e6",
+    "pc_zip_sha256": "e90847c39557208ce5ff4be0291ac29a8000f0904d05daf54960eb10e318d603",
+    "source_contains_server_and_editor_fixes": true
+  },
+  "preserved": {
+    "r4_source": "99d5da0 / f3b8 remains sealed; neither APK nor sourceZIP replaced",
+    "installed_phone": "last 05:07 observation, no fresh check",
+    "docx_pdf": "same-ID v5 untouched, source99 evidence remains; do not label current b372 evidence without review",
+    "private_email": "not read/edited",
+    "repository_apk": "designated f3b8 untouched"
+  },
+  "blockers": {
+    "release_update": "new2ce05 certificate96c6 differs installedc094 certificate74f3; same package/version; no preserving update attempted",
+    "physical_qa": "new release/QA not installed/tested",
+    "independent_qa": "not approved",
+    "actual_submission": false,
+    "remote": "monthly limit; no retry/reconnect/bypass; current lock/process/keyguard not observed; common OPS not synced"
+  },
+  "new_product_code": 0,
+  "new_manual_build": 0,
+  "new_ci_rerun": 0,
+  "new_phone_install": 0,
+  "new_phone_test": 0,
+  "new_external_calls_by_this_run": 0,
+  "slack": {
+    "today_search_results": 0,
+    "queue_registered": false,
+    "receipt": "unavailable",
+    "send_success": "unconfirmed",
+    "alternate_send": false,
+    "phone_push": "unverified",
+    "review_only_report": "🤝 *안심동행 | 10/29 15:00 KST* 🟡 *릴리스 검증 대기*\n🕒 *관측* 15:05 산출물 검수 / CI 완료 14:10 / 현장 마지막 05:07\n*한줄 결론* 새 소스 b37287e의 CI·공식주소·Android 검사 통과 확인.\n📊 *게이트* 소스/CI ✅ | 새 APK 실기기 ⏳ | 독립 QA ⏳ | 실제 제출 ⏳\n🧪 *증거* CI 3/3 성공·게시 skipped, Node131/131·PC 공식주소7/7.\nAndroid15 release2ce05b8: 주소JUnit1·DOM1·UI7; 브라우저 주소 회귀10/10.\nAPK4종 manifest·인증서 추출/해시 대조, release/QA 웹자산8/8 동일.\n🔁 *직전 대비* 새 CI/산출물 검수1건; 재빌드·폰 설치0건. 봉인r4 유지.\n🚧 *차단* 새 release 서명도 설치본과 다름·원격 제한·문서v5는 source99.\n🎯 *다음* 기존 PM AS-M1: 동일ID 공식 문서의 새 소스/CI 반영 범위 검수.\n🔗 <https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40820861095|CI 상세> | 봇 발송·폰push 미확인",
+    "lines": 11,
+    "chars": 606
+  },
+  "next_single_owner": "Existing PM AS-M1: read current same-ID DOCX/PDF v5 and inspect source/CI/APK evidence changes needed for b372; preserve original signatures/blank optional fields and r4, do not claim new device QA or actual submission."
+}

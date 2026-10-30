@@ -1,0 +1,48 @@
+{
+  "task_id": "AS-PM-20261026T0003",
+  "owner": "existing PM self-review; not independent audit",
+  "checked_at": "2026-10-26T00:06:39.8558550+09:00",
+  "source_head": "6c935b48ff03e97416e14915241e9b78de0e4874",
+  "source_blobs": {
+    "MainActivity": "705694f43c830d2976d9bb9d9d35fad99c2538ac",
+    "NavigationAdapter": "32b2246225d0afb3304eee8520e2aed52d21465d",
+    "CarRestrictionMonitor": "bb2bb09bafb40a56e195cd7910e259b16b571a85"
+  },
+  "source_blobs_match_isolated_workspace": true,
+  "sdk": {
+    "dependency": "ai.pleos.playground:NaviHelper:3.0.5",
+    "aar_bytes": 65944,
+    "aar_sha256": "15fadd11c7c611b1abdf7ebf9ce91f2a6ce2728e60b4e38b4343e11bb9c12e97",
+    "classes_sha256": "1802e8a1f4f68706765133157b170f62b76b0164a528a2f43550a896f7915d31",
+    "package": "ai.pleos.playground.service.navi",
+    "component": "ai.pleos.playground.service.navi.NaviService",
+    "action": "ai.pleos.playground.intent.action.NAVI_START",
+    "manifest_min_service_version": "2.0.1/11",
+    "sdk_version": "3.0.5/75",
+    "inspection": "actual cached AAR manifest and javap, exit0; no SDK binaries published"
+  },
+  "device_readonly": {
+    "automotive": false,
+    "exact_package_path_output": [],
+    "pm_path_exit": 1,
+    "query_services_output": [
+      "No services found"
+    ],
+    "query_services_exit": 0,
+    "car_service_output": [
+      "Service car_service: not found"
+    ],
+    "car_service_exit": 0,
+    "route_search_permission_declarations": 0
+  },
+  "installed_verifyqa_sha256": "c5aad9eecc70bf0cac07450e414c582720582ee8286f0b255af5ff46e69eda4b",
+  "installed_test_sha256": "3544a4450d1c2fe19ea8032c496d25964c04b8d701c2e60363be36c1c622c655",
+  "all5_hashes_match_previous_result": true,
+  "source_guard_review_only": true,
+  "bridge_guard_runtime_invoked": false,
+  "sdk_initialize_route_callbacks_runtime_invoked": false,
+  "new_build_install_phone_UI": 0,
+  "permission_grant": 0,
+  "claim": "none; read-only no device ownership acquired",
+  "slack_sent": false
+}

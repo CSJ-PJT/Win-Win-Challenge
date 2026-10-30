@@ -1,0 +1,76 @@
+{
+  "run": "AS-M1-PM-20261028T0404",
+  "time": "2026-10-28T04:09:24.6295527+09:00",
+  "basePmHead": "d59a96100c3cd81da05d4aacde4d24e8890fab52",
+  "beforeSourceGitBlob": "32b2246225d0afb3304eee8520e2aed52d21465d",
+  "before": {
+    "time": "2026-10-28T04:07:13.4310748+09:00",
+    "compileExit": 0,
+    "runExit": 1,
+    "scope": "Unmodified current NavigationAdapter compiled against controlled JVM SDK double, no vehicle/network",
+    "output": [
+      "Exception in thread \"main\" java.lang.AssertionError: Retry after terminal failure must initialize again; actual=1",
+      "\tat kr.co.ansimdonghaeng.NavigationAdapterRetryTest.check(NavigationAdapterRetryTest.java:4)",
+      "\tat kr.co.ansimdonghaeng.NavigationAdapterRetryTest.main(NavigationAdapterRetryTest.java:11)"
+    ]
+  },
+  "after": {
+    "time": "2026-10-28T04:07:48.6630263+09:00",
+    "compileExit": 0,
+    "runExit": 0,
+    "scope": "Proposed modified NavigationAdapter compiled against controlled JVM SDK double, no vehicle/network",
+    "output": [
+      "OK NavigationAdapter retry contract: controlled JVM SDK double only; vehicle/network requests=0"
+    ],
+    "metadataCorrection": "Initial runner scope label inherited unmodified wording; actual after-sources.json contains proposed modified adapter. Initial result retained. No test rerun for metadata correction."
+  },
+  "preservation": {
+    "time": "2026-10-28T04:09:24.6295527+09:00",
+    "installed": [
+      {
+        "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng"
+      },
+      {
+        "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.qa"
+      },
+      {
+        "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.qa.test"
+      },
+      {
+        "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa"
+      },
+      {
+        "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+        "unchanged": true,
+        "package": "kr.co.ansimdonghaeng.verifyqa.test"
+      }
+    ],
+    "changed": 0,
+    "candidateMatched": 16,
+    "candidateSumsSha": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+    "lock": false,
+    "newApkBuild": 0,
+    "newInstall": 0,
+    "phoneUi": 0,
+    "routeRequests": 0
+  },
+  "scope": "JDK17 real adapter code compiled with controlled SDK doubles; not Android or vehicle service runtime",
+  "ci": "New source requires own existing release043 CI; prior40436119702 covers f1164b0 only",
+  "previousCandidateSource": "f1164b04dc267260771ce3ffcc674247053f56e7",
+  "newApkInstalled": false,
+  "vehicleConnected": false,
+  "independentQaApproved": false,
+  "slackSent": false,
+  "publicRelease": false,
+  "actualSubmission": false,
+  "nextOwner": "existing PM",
+  "nextTask": "Inspect new source CI regression/build/live-address/native results and artifact metadata without duplicate CI or original app replacement."
+}

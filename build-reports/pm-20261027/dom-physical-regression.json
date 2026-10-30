@@ -1,0 +1,117 @@
+{
+  "task_id": "AS-Q1-PM-20261027T0957",
+  "environment": "SM-F936N Android16 physical verifyqa",
+  "owner": "existing PM self QA",
+  "app_sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+  "test_sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+  "product_source": "899a5a16e747f14cddc92c9805971e5cd4422380",
+  "latest_ci": 40402218901,
+  "junit": {
+    "class": "kr.co.ansimdonghaeng.DomFlowTest",
+    "ok": 1,
+    "seconds": 9.707,
+    "executions": 1,
+    "method": "DOM click/input through Android WebView instrumentation; not human touch usability"
+  },
+  "markers": [
+    {
+      "time": "2026-10-27T09:58:30.478+09:00",
+      "name": "PRIMARY_HANDOFF_OK"
+    },
+    {
+      "time": "2026-10-27T09:58:33.364+09:00",
+      "name": "EASY_ARRIVAL_ACK_OK"
+    }
+  ],
+  "raw": {
+    "task_id": "AS-Q1-PM-20261027T0957",
+    "owner": "PM self QA",
+    "started": "2026-10-27T09:58:23.1101956+09:00",
+    "success": false,
+    "junit_pass": true,
+    "builds": 0,
+    "installs": 0,
+    "instrument_exit": 0,
+    "before_cold_text": "",
+    "failure": "ACK_NOT_VISIBLE",
+    "five_hashes_preserved": true,
+    "finished": "2026-10-27T09:58:40.2250914+09:00"
+  },
+  "cold": {
+    "task_id": "AS-Q1-PM-20261027T0957",
+    "owner": "PM self QA",
+    "started": "2026-10-27T09:59:36.9828356+09:00",
+    "success": true,
+    "junit_pass": true,
+    "builds": 0,
+    "installs": 0,
+    "activity_ms": 256,
+    "snapshots": [
+      {
+        "ack_restored": false,
+        "attempt": 1
+      },
+      {
+        "ack_restored": true,
+        "attempt": 2
+      }
+    ],
+    "cold_ack_restored": true,
+    "five_hashes_preserved": true,
+    "finished": "2026-10-27T09:59:45.3497828+09:00"
+  },
+  "claim": {
+    "released": "2026-10-27T09:59:45.3624770+09:00",
+    "owner": "AS-Q1-PM-20261027T0957",
+    "claim_exists": false
+  },
+  "installed_after": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "scope": [
+    "manual address",
+    "depart",
+    "arrive",
+    "six-digit connection PIN",
+    "sender confirm",
+    "receiver confirm",
+    "guardian complete",
+    "easy-senior consent/notify",
+    "facility ACK",
+    "cold ACK restore"
+  ],
+  "official_picker": "09run separate; not rerun",
+  "final_state": "synthetic senior easy visit ACK; prior kindergarten completion was asserted in test before switching visit",
+  "initial_snapshot": "QA package absent after instrumentation; excluded from QA evidence; no other app operated",
+  "png_reviewed": "cold-1-private.png",
+  "builds": 0,
+  "installs": 0,
+  "new_ci": 0,
+  "whole_localStorage_equality": "not tested",
+  "release53ca_physical": "NOT_RUN",
+  "independent_qa": "not approved",
+  "human_usability": "not approved",
+  "actual_submission": false,
+  "formal_documents": "not reread/edited this run",
+  "next_owner": "existing PM",
+  "next_action": "소스 ZIP의 Android 주소 자산 준비 경로를 점검해, 수동 복사 없이 8개 자산을 포함하도록 재현성을 보완"
+}

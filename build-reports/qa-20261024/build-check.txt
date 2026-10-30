@@ -1,0 +1,11 @@
+Source 341bc88ce9c86ea3c88b82bba281f0e21da50258
+CI https://github.com/CSJ-PJT/Win-Win-Challenge/actions/runs/40076247150
+2026-10-24T08:02:27.4823308Z > Task :app:assembleReleaseAndroidTest
+2026-10-24T08:02:31.2480563Z > Task :app:assembleRelease
+2026-10-24T08:02:31.3470595Z BUILD SUCCESSFUL in 1m 5s
+2026-10-24T08:03:09.1051301Z > Task :app:compileDeviceQaAndroidTestJavaWithJavac
+2026-10-24T08:03:10.8120766Z > Task :app:assembleDeviceQaAndroidTest
+2026-10-24T08:03:15.5070660Z > Task :app:assembleDeviceQa
+2026-10-24T08:03:15.6090569Z BUILD SUCCESSFUL in 43s
+Independent artifact and APK byte/hash checks passed on Codex host and IT13.
+Physical install/E2E not performed. AS-Q1 acknowledgement pending.

@@ -1,0 +1,104 @@
+{
+  "observed_at": "2026-10-29T12:00:41.604Z",
+  "source": "b37287ef63a164c6eeedd41e6aeb3be9170b2882",
+  "node": "v24.22.1",
+  "transport": "real HTTP bound only to 127.0.0.1",
+  "filesystem": "real temporary synthetic stores; no fs monkeypatch",
+  "cases": [
+    {
+      "name": "ordinary event temporary-file open failure",
+      "filesystem_failure": "real EISDIR opening temporary file",
+      "status": "PASS",
+      "failed_status": 500,
+      "retry_status": 200,
+      "original_store_and_receipts_preserved": true,
+      "completion_after_recovery_only": false,
+      "reset": false
+    },
+    {
+      "name": "final handoff temporary-file open failure",
+      "filesystem_failure": "real EISDIR opening temporary file",
+      "status": "PASS",
+      "failed_status": 500,
+      "retry_status": 200,
+      "original_store_and_receipts_preserved": true,
+      "completion_after_recovery_only": true,
+      "reset": false
+    },
+    {
+      "name": "final handoff atomic rename failure",
+      "filesystem_failure": "real EISDIR renaming over directory",
+      "status": "PASS",
+      "failed_status": 500,
+      "retry_status": 200,
+      "original_store_and_receipts_preserved": true,
+      "completion_after_recovery_only": true,
+      "reset": false
+    },
+    {
+      "name": "reset temporary-file open failure",
+      "filesystem_failure": "real EISDIR opening temporary file",
+      "status": "PASS",
+      "failed_status": 500,
+      "retry_status": 200,
+      "original_store_and_receipts_preserved": true,
+      "completion_after_recovery_only": false,
+      "reset": true
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "http_requests": 74,
+  "assertions": 82,
+  "expected_server_errors": [
+    {
+      "type": "server persistence rejection",
+      "errno": "EISDIR"
+    },
+    {
+      "type": "server persistence rejection",
+      "errno": "EISDIR"
+    },
+    {
+      "type": "server persistence rejection",
+      "errno": "EISDIR"
+    },
+    {
+      "type": "server persistence rejection",
+      "errno": "EISDIR"
+    }
+  ],
+  "temporary_stores_removed": true,
+  "external_calls": 0,
+  "phone_tests": 0,
+  "builds": 0,
+  "installs": 0,
+  "pm_head": "60c2bd20c134acb2dd920a1534107630eb73370b",
+  "source_bytes": [
+    {
+      "path": "server.js",
+      "bytes": 9719,
+      "git_blob": "8aabb68b9c0e722330f51dd9f639075887b92163",
+      "sha256": "717f4768c1de7c4d7bb24d41b4cc293ac19ba6034dcbe151c284bf0d21d006ee"
+    },
+    {
+      "path": "web/core.js",
+      "bytes": 15541,
+      "git_blob": "267601ac7c59e2c6e11ab1afd3f0eaea64fc1101",
+      "sha256": "f1be0a0ed80a4888ed93e3563199231434e4870728587ba461c52c33abd88b65"
+    },
+    {
+      "path": "web/config.js",
+      "bytes": 4724,
+      "git_blob": "180907d23bf4fe7f08e0a3e339e27aac963be995",
+      "sha256": "d2adea2543951444bd6bf8a1624c26ff5f717050938254fe7594b2868fdeac87"
+    }
+  ],
+  "qa_scope": "PM self-QA of synthetic local filesystem/HTTP persistence, not a physical-phone or production/institution test",
+  "initial_harness_correction": "Initial assertion expected INTERNAL, but server returns real filesystem EISDIR with generic non-path message. Updated expected contract; no product fix. Initial JSON preserved.",
+  "aggregate_with_ci_or_20h": false,
+  "it13_ledger": "NOT_SYNCED; remote monthly limit not retried/reconnected/bypassed",
+  "slack": "NOT_SENT_NIGHT; historical daytime receipts and phone push unverified",
+  "next_owner": "existing PM AS-M1",
+  "next_task": "Verify client save failure indication and retry against local HTTP 500, preserving unsaved draft and existing trip status; distinguish programmatic state from real screen/phone usability."
+}

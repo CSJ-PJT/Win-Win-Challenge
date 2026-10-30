@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "selected official Korean address remains saved on the device",
+    "maps intent opens from a saved address without an API key",
+    "sender confirmation is independently recorded",
+    "facility tab displays its independent reception screen",
+    "receiver finishes the handoff",
+    "guardian sees completed status",
+    "large-button arrival flow works"
+  ],
+  "passed": 7
+}

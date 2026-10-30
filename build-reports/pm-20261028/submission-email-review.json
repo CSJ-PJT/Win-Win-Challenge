@@ -1,0 +1,106 @@
+{
+  "time": "2026-10-28T02:05:41.7577665+09:00",
+  "run": "AS-M1-PM-20261028T0203",
+  "candidateId": "candidate-f1164b0-75b53185-docv4-r2",
+  "candidateChecksums": 16,
+  "candidateSumsShaBefore": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+  "candidateSumsShaAfter": "465f8212d5417f15700e656544b12c547662353c40e717dc43228699a7886e9c",
+  "attachments": [
+    {
+      "file": "official-application-v4.docx",
+      "category": "Required application/consent form - signature validity pending",
+      "bytes": 500068,
+      "sha256": "ab4145047be92065a7d0a0383d171ad1096f89f68176278e6b8745891dc8192d",
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "version": 4,
+      "includedInActualEmail": false
+    },
+    {
+      "file": "official-application-v4.pdf",
+      "category": "Optional readable duplicate of application",
+      "bytes": 760964,
+      "sha256": "87f1a1745b445bab985eca161dc937e08e3840b8f050f27556254617b70445bc",
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "version": 4,
+      "includedInActualEmail": false
+    }
+  ],
+  "zipInventory": [
+    {
+      "zip": "ansim-platform-0.4.3-source.zip",
+      "entries": 139,
+      "sha256": "917ea32121adf6a6d739a1102f243a46cd001208c200172ec86ff2efbc664d18",
+      "launcherPresent": true,
+      "staticServerPresent": true
+    },
+    {
+      "zip": "ansim-platform-0.4.3-pc.zip",
+      "entries": 4,
+      "sha256": "d387260b36f9d6430332e72425fc0a265f8a5f2d49cd68604ed9ec1d544ec365",
+      "launcherPresent": true,
+      "staticServerPresent": true
+    }
+  ],
+  "repositoryApkGitBlob": "70e9c7735818bacf9937b3b0a6ac959cb0a5add8",
+  "repositoryApkBytes": 5170860,
+  "senderNameResolvedFromApplication": true,
+  "senderEmailResolvedFromApplication": true,
+  "privateDraftFile": "SUBMISSION_EMAIL_REVIEW_ONLY.txt",
+  "draftSha256": "80b1450914833d6b9ae214127ed2a3fb97eb8633c707af0d61b5d2f9c0e9a858",
+  "draftReadyForReview": true,
+  "readyToSend": false,
+  "installed": [
+    {
+      "sha256": "c09449f878f70690495b8925d69294bea58889d17b91fe4afdba3231e0dbde54",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng"
+    },
+    {
+      "sha256": "2903bc1490f5e53c805bcc1f64a08c3a3e44e709d59c8dd011845f01890a2d0d",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.qa"
+    },
+    {
+      "sha256": "c73efa7945d514e3df3154e1f99a77f6eb45713a98c7d0e7745cb0118985cf84",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.qa.test"
+    },
+    {
+      "sha256": "bd79075fa5140cc8064c41676f5b56ca479ff2caa8da858baf8b1e06db7fa996",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.verifyqa"
+    },
+    {
+      "sha256": "229eefc4b328c310cdf5f8fca63af65485ee40cbd80263de2a11688228c56d4f",
+      "unchanged": true,
+      "package": "kr.co.ansimdonghaeng.verifyqa.test"
+    }
+  ],
+  "installedChangedCount": 0,
+  "lockExists": false,
+  "newBuild": 0,
+  "newInstall": 0,
+  "newCiRequests": 0,
+  "phoneUi": 0,
+  "formalDocumentEdits": 0,
+  "candidateEdits": 0,
+  "emailDraftInMailbox": 0,
+  "emailSent": 0,
+  "actualSubmission": 0,
+  "slackSent": 0,
+  "reviewerAccessVerified": false,
+  "signatureValidityVerified": false,
+  "notes": [
+    "Direct attachment list: required DOCX form and optional PDF duplicate; source/APK repository is optional and access remains blocked",
+    "Candidate ZIPs inspected statically, no launcher or app execution this run",
+    "Git blob/size comparison is not independent HTTP re-download or reviewer access proof",
+    "Private draft retains applicant fields only on IT13; repository report redacts sender values"
+  ],
+  "pmHead": "2694957b9db4b9e6706ff6c6a942c37ab08913e0",
+  "productSource": "f1164b04dc267260771ce3ffcc674247053f56e7",
+  "ci": 40436119702,
+  "nextOwner": "existing PM",
+  "nextTask": "기존 PM이 Pleos/AAOS 차량 대응 범위를 현재 소스의 SDK 의존성·Android manifest와 공식 개발 문서로 대조합니다. 실제 차량·기관 연동 성공 여부와 구분하고 새 빌드·권한 확대 없이 조사합니다.",
+  "releasePhysicalPass": false,
+  "independentQaApproved": false
+}
