@@ -1,0 +1,16 @@
+{
+  "passed": [
+    "HTTP server saves configured destination across a browser reload",
+    "vehicle departure works through the real API",
+    "independent facility page opens only reception actions",
+    "facility rejects wrong codes through HTTP service",
+    "receiver confirmation survives a concurrent telemetry version change",
+    "independent actor confirmation completes via HTTP",
+    "read-only guardian page shows the completed status",
+    "in-app facility-to-guardian switch loads the guardian-scoped projection",
+    "selected role survives a reload on its routed URL",
+    "facility screen restores its own completed reception result",
+    "no client-side JavaScript exceptions"
+  ],
+  "errors": []
+}

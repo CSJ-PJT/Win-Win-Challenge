@@ -1,0 +1,27 @@
+{
+  "environment": "Chromium standalone synthetic browser UI",
+  "cases": [
+    {
+      "name": "unacknowledged notice without address has summary and usable next visit",
+      "passed": true
+    },
+    {
+      "name": "facility acknowledgement and role round trip keep clean summary",
+      "passed": true
+    },
+    {
+      "name": "browser reload retains acknowledged clean summary",
+      "passed": true
+    },
+    {
+      "name": "configured destination and dialer link survive summary rendering fixture",
+      "passed": true
+    },
+    {
+      "name": "new visit keeps editable destination setup",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "result": "success"
+}

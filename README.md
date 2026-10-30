@@ -67,3 +67,5 @@ CI40887985855의 Node135/135, 모의 주소10/10, PC 공식주소7/7, Android15 
 공식 근거: [지원·제출](https://appdevchallenge.auto-hmg.io/guide/submission) · [일정](https://appdevchallenge.auto-hmg.io/guide/schedule)
 
 [11월 1일 제출 목록과 비공개 심사 접근 확인](docs/SUBMISSION_MANIFEST_20261101.md)
+
+[PoC 실제 화면 6장과 검증 범위](docs/POC_VISUAL_EVIDENCE_20261101.md)
