@@ -1,0 +1,56 @@
+{
+  "status": "LIBRARY_V9_VALIDATED",
+  "document_version_target": 9,
+  "source_commit": "8f4aaf93e36e4dd3ab267c09c274dedaca4057a6",
+  "ci_run_id": 40887985855,
+  "changed_docx_members": [
+    "word/document.xml",
+    "word/media/image4.png",
+    "word/media/image5.png"
+  ],
+  "left_image_sha256": "29f7b013aa6c63e9dd35dd8356244ccb8bf8535d8f0a741cc905646124c7921e",
+  "right_image_sha256": "63ee23f3b685d20d46cd878c41f9f102478e9b053003b19a6410bb66c85092e2",
+  "docx": {
+    "bytes": 499605,
+    "sha256": "5123c562535269bb48d1d80ca121a5c560315fb703179150c2ee4bcdff4c380c"
+  },
+  "pdf_preupload": {
+    "bytes": 737766,
+    "sha256": "d83e72c209c8d007e743286b21821c20ac78d57354e21f59e58aeb01bf30411d",
+    "pages": 13
+  },
+  "visual_qa": {
+    "pages_inspected": 13,
+    "pages_1_12_pixel_unchanged_after_caption_tune": true,
+    "page_13_updated": true,
+    "korean_glyphs": "PASS",
+    "layout": "PASS"
+  },
+  "signature_fields": {
+    "application_date": "BLANK",
+    "user_signature": "BLANK",
+    "signature_date": "BLANK"
+  },
+  "submission_status": "NOT_SUBMITTED",
+  "qa_scope": "existing 2026-10-29 CI artifacts; no new phone test, build, install, or independent QA",
+  "library": {
+    "docx": {
+      "library_file_id": "libfile_412035b073bc8191a3980f378b0df188",
+      "file_id": "file_000000008f4081fbb44fc80657b99521",
+      "version": 9,
+      "bytes": 499605,
+      "sha256": "5123c562535269bb48d1d80ca121a5c560315fb703179150c2ee4bcdff4c380c",
+      "byte_equal_to_reviewed_output": true
+    },
+    "pdf": {
+      "library_file_id": "libfile_bed9844c793c8191b486dc00e74925fd",
+      "file_id": "file_000000002de881fbb1b2b0dae459d572",
+      "version": 9,
+      "bytes": 762896,
+      "sha256": "a82ab644e08a27497967ebb70dc8dc171a791dc6ea6aacbf81444ad3b4fc0ea0",
+      "preupload_sha256": "d83e72c209c8d007e743286b21821c20ac78d57354e21f59e58aeb01bf30411d",
+      "page_text_equal_to_reviewed_output": "13/13",
+      "page_pixels_equal_to_reviewed_output": "13/13"
+    }
+  }
+}

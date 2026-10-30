@@ -12,7 +12,7 @@
 | 지정 APK | [apk/안심동행_안심동행플랫폼_release.apk](apk/안심동행_안심동행플랫폼_release.apk) · 0.4.3 · 5,171,848바이트 |
 | APK SHA256 | `09e488aa8cf103dffb187ca4fbee6ed72a2fbd100a82c5ba89faa2da173f5e90` |
 | APK 고정 링크 | [r6와 정합화한 파일](https://github.com/CSJ-PJT/Win-Win-Challenge/blob/bfaae931cee93d83ce8472a3f9ce819f386f8209/apk/안심동행_안심동행플랫폼_release.apk) |
-| 공식 기획서 | 동일 ID DOCX/PDF v8, 13쪽 서명 전 작업본. 본인 서명·작성/서명일은 실제 11/1 확인 후 기입 |
+| 공식 기획서 | 동일 ID DOCX/PDF v9, 13쪽 서명 전 작업본. 13쪽은 source 8f4aaf9·CI 40887985855 기존 화면 증거. 본인 서명·작성/서명일은 실제 11/1 확인 후 기입 |
 | 봉인 후보 | r6는 제품 8f4aaf9·공식 문서 v7의 과거 검토 묶음. 이후 README·문서 작업본을 포함하지 않음 |
 
 현재 브랜치의 문서·시연 도구 커밋과 앱을 만든 제품 소스 커밋을 구분합니다. 조회 시 `git rev-parse HEAD`로 실제 체크아웃을 기록합니다. 저장소는 Private이며 리뷰어 접근 확인은 별도 절차입니다.

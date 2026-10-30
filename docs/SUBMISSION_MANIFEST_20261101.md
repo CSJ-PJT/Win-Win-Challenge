@@ -6,14 +6,14 @@
 
 | 구분 | 자료와 현재 고정 기준 | 제출 전에 필요한 일 |
 | --- | --- | --- |
-| 필수 | 공식 접수양식(기획서)·개인정보 동의서: 동일 ID DOCX/PDF v8, 13쪽. [기존 문서 검수 기록](OFFICIAL_DOCUMENT_V8_20261030.md) | 실제 11/1 본인 확인·서명, 작성일·서명일 기입 후 최종 파일 확인. 현재는 서명 전 작업본 |
+| 필수 | 공식 접수양식(기획서)·개인정보 동의서: 동일 ID DOCX/PDF v9, 13쪽. [현재 문서 검수 기록](OFFICIAL_DOCUMENT_V9_20261030.md) | 실제 11/1 본인 확인·서명, 작성일·서명일 기입 후 최종 파일 확인. 현재는 서명 전 작업본 |
 | 선택 Git | Private 저장소 https://github.com/CSJ-PJT/Win-Win-Challenge, 검토 브랜치 feature/pm-api-screen-0.4.3 | 공지된 심사계정 ID의 공식 출처 확인 → 별도 권한변경 승인 → 실제 접근 확인. 이번 초대0 |
 | 선택 Git 소스 | [제품 8f4aaf9](https://github.com/CSJ-PJT/Win-Win-Challenge/tree/8f4aaf93e36e4dd3ab267c09c274dedaca4057a6), [README·PoC 검토 도구 08c28a3](https://github.com/CSJ-PJT/Win-Win-Challenge/tree/08c28a37067510cadd8a38fa198124ce3bb99ea8) | 제출 시 브랜치뿐 아니라 고정 커밋 링크를 함께 명시 |
 | 선택 Git APK | [apk/안심동행_안심동행플랫폼_release.apk](https://github.com/CSJ-PJT/Win-Win-Challenge/blob/bfaae931cee93d83ce8472a3f9ce819f386f8209/apk/안심동행_안심동행플랫폼_release.apk) | r6와 정합화한 release09e488aa, 5,171,848B. 심사자 다운로드·기동 확인은 별도. 기존 폰 삭제/교체 금지 |
 | 선택 시연 자료 | [시연 진행안](https://github.com/CSJ-PJT/Win-Win-Challenge/blob/08c28a37067510cadd8a38fa198124ce3bb99ea8/docs/DEMO_SCRIPT.md), [화면·API·오류·권한](https://github.com/CSJ-PJT/Win-Win-Challenge/blob/08c28a37067510cadd8a38fa198124ce3bb99ea8/docs/POC_REVIEW_GUIDE.md) | 저장소 문서를 영상 제출로 계산하지 않음. 실제 제출할 영상 URL은 이 목록에 없음 |
 | 선택 숏폼 | 공식 기획서 해당 칸 공란 | 이번 미선택. 임의 링크 생성·공개게시0 |
 
-DOCX와 PDF는 같은 양식의 편집본·열람본입니다. 공식 안내가 두 형식 모두 제출을 필수로 요구한다고 해석하지 않습니다. 본인 서명한 양식에 개인정보 동의서가 포함되어 있으므로 별도 기획서를 중복 생성하지 않습니다. r6 ZIP에는 **v7**이 들어 있어 v8/11월1일 서명본의 대체물로 보내면 안 됩니다. r4/r5/r6는 수정하지 않습니다.
+DOCX와 PDF는 같은 양식의 편집본·열람본입니다. 공식 안내가 두 형식 모두 제출을 필수로 요구한다고 해석하지 않습니다. 본인 서명한 양식에 개인정보 동의서가 포함되어 있으므로 별도 기획서를 중복 생성하지 않습니다. r6 ZIP에는 **v7**이 들어 있어 v9/11월1일 서명본의 대체물로 보내면 안 됩니다. r4/r5/r6는 수정하지 않습니다.
 
 문서 작업본의 사용자 열람 위치: [DOCX](https://chatgpt.com/library?file_id=libfile_412035b073bc8191a3980f378b0df188&account_id=personal) · [PDF](https://chatgpt.com/library?file_id=libfile_bed9844c793c8191b486dc00e74925fd&account_id=personal). 이 링크는 소유자 검토용이며 공모전 심사자에게 접근 가능한 공개 제출 링크라고 주장하지 않습니다. 실제 접수에는 본인 서명한 파일 첨부가 필요합니다. 개인정보 문서 바이트는 GitHub에 복제하지 않습니다.
 
